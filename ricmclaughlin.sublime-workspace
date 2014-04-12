@@ -175,6 +175,57 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "_includes/sidebar.html",
+			"settings":
+			{
+				"buffer_size": 336,
+				"line_ending": "Unix",
+				"name": "<div class=\"row-fluid\">"
+			}
+		},
+		{
+			"file": "css/custom.css",
+			"settings":
+			{
+				"buffer_size": 28,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "_posts/2011-02-14-LoremIpsum.md",
+			"settings":
+			{
+				"buffer_size": 734,
+				"line_ending": "Unix",
+				"name": "---"
+			}
+		},
+		{
+			"file": "_posts/2014-02-14-ConsecteturElit.md",
+			"settings":
+			{
+				"buffer_size": 743,
+				"line_ending": "Unix",
+				"name": "---"
+			}
+		},
+		{
+			"file": "_includes/footer.html",
+			"settings":
+			{
+				"buffer_size": 314,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "_includes/header.html",
+			"settings":
+			{
+				"buffer_size": 1952,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -252,6 +303,17 @@
 	},
 	"file_history":
 	[
+		"/Users/ric/jekyll/ricmclaughlin.github.com/_includes/header.html",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/_layouts/default.html",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/css/bootstrap-theme.css",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/css/bootstrap-theme.css.map",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/css/bootstrap.css",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/assets/themes/twitter/bootstrap/css/bootstrap.2.2.2.min.css",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/typography.md",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/assets/themes/twitter/css/style.css",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/.gitignore",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/_config.yml",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/ricmclaughlin.sublime-workspace",
 		"/Users/ric/jekyll/fullstacksolo/_config.yml",
 		"/Users/ric/rails_projects/flixtest/config/routes.rb",
 		"/Users/ric/rails_projects/flixtest/app/controllers/movies_controller.rb",
@@ -368,17 +430,7 @@
 		"/Users/ric/rails_projects/sample_app2/config/initializers/secret_token.rb",
 		"/Users/ric/rails_projects/sample_app2/config/initializers/secret_token.r",
 		"/Users/ric/rails_projects/demo_app2/app/models/micropost.rb",
-		"/Users/ric/rails_projects/sample_app2/.gitignore",
-		"/Users/ric/rails_projects/sample_app2/gemfile",
-		"/Users/ric/.ssh/config",
-		"/Users/ric/rails_projects/demo_app2/app/models/user.rb",
-		"/Users/ric/rails_projects/demo_app2/demo_app2.sublime-project",
-		"/Users/ric/.gitconfig",
-		"/Users/ric/rails_projects/first_app/.gitignore",
-		"/Users/ric/rails_projects/first_app/Gemfile",
-		"/Users/ric/Documents/koans/koans.sublime-project",
-		"/Users/ric/rails_projects/first_app/first_app.sublime-project",
-		"/Users/ric/Documents/koans/about_arrays.rb"
+		"/Users/ric/rails_projects/sample_app2/.gitignore"
 	],
 	"find":
 	{
@@ -425,8 +477,168 @@
 	"groups":
 	[
 		{
+			"selected": 5,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "_includes/sidebar.html",
+					"settings":
+					{
+						"buffer_size": 336,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								159,
+								159
+							]
+						],
+						"settings":
+						{
+							"auto_name": "<div class=\"row-fluid\">",
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "css/custom.css",
+					"settings":
+					{
+						"buffer_size": 28,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								28,
+								28
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "_posts/2011-02-14-LoremIpsum.md",
+					"settings":
+					{
+						"buffer_size": 734,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								733,
+								733
+							]
+						],
+						"settings":
+						{
+							"auto_name": "---",
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "_posts/2014-02-14-ConsecteturElit.md",
+					"settings":
+					{
+						"buffer_size": 743,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								743,
+								743
+							]
+						],
+						"settings":
+						{
+							"auto_name": "---",
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "_includes/footer.html",
+					"settings":
+					{
+						"buffer_size": 314,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								314,
+								314
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "_includes/header.html",
+					"settings":
+					{
+						"buffer_size": 1952,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								978,
+								978
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -476,8 +688,36 @@
 		"selected_items":
 		[
 			[
-				"",
+				"hea",
+				"_includes/header.html"
+			],
+			[
+				"foo",
+				"_includes/footer.html"
+			],
+			[
+				"de",
+				"_layouts/default.html"
+			],
+			[
+				"sty",
+				"assets/themes/twitter/css/style.css"
+			],
+			[
+				"ty",
+				"typography.md"
+			],
+			[
+				"yml",
 				"_config.yml"
+			],
+			[
+				".w",
+				"ricmclaughlin.sublime-workspace"
+			],
+			[
+				"",
+				".gitignore"
 			],
 			[
 				"mc",
@@ -684,10 +924,6 @@
 				"spec/requests/static_pages_spec.rb"
 			],
 			[
-				"hea",
-				"app/views/layouts/_header.html.erb"
-			],
-			[
 				"cu",
 				"app/assets/stylesheets/custom.css.scss"
 			],
@@ -773,7 +1009,7 @@
 	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": false,
-	"side_bar_width": 150.0,
+	"side_bar_visible": true,
+	"side_bar_width": 262.0,
 	"status_bar_visible": true
 }
