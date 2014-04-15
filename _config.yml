@@ -1,5 +1,5 @@
-title:            Site Title
-description:      Describe your website here.
+title:            The Full Stack Solopreneur
+description:      My journey from almost zero to app making hero
 logo:             site-logo.png
 disqus_shortname: 
 search:           true
@@ -8,7 +8,7 @@ url:              http://localhost:4000
 
 # Owner/author information
 owner:
-  name:           Your Name
+  name:           Ric McLaughlin
   avatar:         bio-photo.jpg
   email:          you@email.com
   # Social networking links used in footer. Update and remove as you like.
@@ -38,8 +38,8 @@ links:
     url: /articles/
   - title: Theme Setup
     url: /theme-setup/
-  - title: Made Mistakes
-    url: http://mademistakes.com
+  - title: Website Honcho
+    url: http://www.websitehoncho.com
     external: true
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
