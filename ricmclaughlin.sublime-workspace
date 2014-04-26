@@ -175,57 +175,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "_includes/sidebar.html",
-			"settings":
-			{
-				"buffer_size": 336,
-				"line_ending": "Unix",
-				"name": "<div class=\"row-fluid\">"
-			}
-		},
-		{
-			"file": "css/custom.css",
-			"settings":
-			{
-				"buffer_size": 28,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "_posts/2011-02-14-LoremIpsum.md",
-			"settings":
-			{
-				"buffer_size": 734,
-				"line_ending": "Unix",
-				"name": "---"
-			}
-		},
-		{
-			"file": "_posts/2014-02-14-ConsecteturElit.md",
-			"settings":
-			{
-				"buffer_size": 743,
-				"line_ending": "Unix",
-				"name": "---"
-			}
-		},
-		{
-			"file": "_includes/footer.html",
-			"settings":
-			{
-				"buffer_size": 314,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "_includes/header.html",
-			"settings":
-			{
-				"buffer_size": 1952,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -303,6 +252,19 @@
 	},
 	"file_history":
 	[
+		"/Users/ric/jekyll/ricmclaughlin.github.com/404.md",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/about.md",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/tags.html",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/_config.yml",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/articles.html",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/_site/tags.html",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/Gemfile",
+		"/Users/ric/rails_projects/flixr/Gemfile",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/_includes/footer.html",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/_posts/2014-02-14-ConsecteturElit.md",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/_posts/2011-02-14-LoremIpsum.md",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/css/custom.css",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/_includes/sidebar.html",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/_includes/header.html",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/_layouts/default.html",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/css/bootstrap-theme.css",
@@ -312,7 +274,6 @@
 		"/Users/ric/jekyll/ricmclaughlin.github.com/typography.md",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/assets/themes/twitter/css/style.css",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/.gitignore",
-		"/Users/ric/jekyll/ricmclaughlin.github.com/_config.yml",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/ricmclaughlin.sublime-workspace",
 		"/Users/ric/jekyll/fullstacksolo/_config.yml",
 		"/Users/ric/rails_projects/flixtest/config/routes.rb",
@@ -418,19 +379,7 @@
 		"/Users/ric/rails_projects/sample_app3/app/views/static_pages/home.html.erb",
 		"/Users/ric/rails_projects/sample_app3/app/views/layouts/application.html.erb",
 		"/Users/ric/rails_projects/sample_app3/.rspec",
-		"/Users/ric/Library/Application Support/Sublime Text 2/Packages/RubyTest/TestConsole.hidden-tmTheme",
-		"/Users/ric/Library/Application Support/Sublime Text 2/Packages/User/RubyTest.sublime-settings",
-		"/Users/ric/rails_projects/sample_app3/Guardfile",
-		"/Users/ric/rails_projects/sample_app3/README.md",
-		"/Users/ric/rails_projects/sample_app3/config/initializers/secret_token.rb",
-		"/Users/ric/rails_projects/sample_app3/config/environment.rb",
-		"/Users/ric/rails_projects/sample_app3/sample_app3.sublime-project",
-		"/Users/ric/rails_projects/sample_app3/.gitignore",
-		"/Users/ric/rails_projects/sample_app3/gemfile",
-		"/Users/ric/rails_projects/sample_app2/config/initializers/secret_token.rb",
-		"/Users/ric/rails_projects/sample_app2/config/initializers/secret_token.r",
-		"/Users/ric/rails_projects/demo_app2/app/models/micropost.rb",
-		"/Users/ric/rails_projects/sample_app2/.gitignore"
+		"/Users/ric/Library/Application Support/Sublime Text 2/Packages/RubyTest/TestConsole.hidden-tmTheme"
 	],
 	"find":
 	{
@@ -477,168 +426,8 @@
 	"groups":
 	[
 		{
-			"selected": 5,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "_includes/sidebar.html",
-					"settings":
-					{
-						"buffer_size": 336,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								159,
-								159
-							]
-						],
-						"settings":
-						{
-							"auto_name": "<div class=\"row-fluid\">",
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "css/custom.css",
-					"settings":
-					{
-						"buffer_size": 28,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								28,
-								28
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "_posts/2011-02-14-LoremIpsum.md",
-					"settings":
-					{
-						"buffer_size": 734,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								733,
-								733
-							]
-						],
-						"settings":
-						{
-							"auto_name": "---",
-							"syntax": "Packages/Markdown/Markdown.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "_posts/2014-02-14-ConsecteturElit.md",
-					"settings":
-					{
-						"buffer_size": 743,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								743,
-								743
-							]
-						],
-						"settings":
-						{
-							"auto_name": "---",
-							"syntax": "Packages/Markdown/Markdown.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "_includes/footer.html",
-					"settings":
-					{
-						"buffer_size": 314,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								314,
-								314
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "_includes/header.html",
-					"settings":
-					{
-						"buffer_size": 1952,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								978,
-								978
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -687,6 +476,14 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"ar",
+				"articles.html"
+			],
+			[
+				"ge",
+				"Gemfile"
+			],
 			[
 				"hea",
 				"_includes/header.html"
@@ -930,10 +727,6 @@
 			[
 				"lay",
 				"app/views/layouts/application.html.erb"
-			],
-			[
-				"ge",
-				"Gemfile"
 			],
 			[
 				".r",
