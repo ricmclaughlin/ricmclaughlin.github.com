@@ -21,7 +21,7 @@ owner:
   flickr:         
   tumblr:         
   # For Google Authorship https://plus.google.com/authorship
-  google_plus:  http://ric.mclaughlin.today/106580996997363627472?rel=author  
+  google_plus:  "https://plus.google.com/106580996997363627472?rel=author"
 
 # Analytics and webmaster tools stuff goes here
 google_analytics:   

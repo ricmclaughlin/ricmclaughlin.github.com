@@ -252,10 +252,11 @@
 	},
 	"file_history":
 	[
+		"/Users/ric/jekyll/ricmclaughlin.github.com/CNAME",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/_config.yml",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/404.md",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/about.md",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/tags.html",
-		"/Users/ric/jekyll/ricmclaughlin.github.com/_config.yml",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/articles.html",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/_site/tags.html",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/Gemfile",
@@ -378,8 +379,7 @@
 		"/Users/ric/rails_projects/sample_app3/app/views/static_pages/help.html.erb",
 		"/Users/ric/rails_projects/sample_app3/app/views/static_pages/home.html.erb",
 		"/Users/ric/rails_projects/sample_app3/app/views/layouts/application.html.erb",
-		"/Users/ric/rails_projects/sample_app3/.rspec",
-		"/Users/ric/Library/Application Support/Sublime Text 2/Packages/RubyTest/TestConsole.hidden-tmTheme"
+		"/Users/ric/rails_projects/sample_app3/.rspec"
 	],
 	"find":
 	{
