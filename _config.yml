@@ -25,7 +25,7 @@ owner:
 
 # Analytics and webmaster tools stuff goes here
 google_analytics: UA-4937627-4  
-google_verify: <meta name="google-site-verification" content="m9Fkf-x6YB9Xi7v7yZ9rezqpu5WN7f534xcvMNZnfNQ" />     
+google_verify:   
 # https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
 bing_verify:      <meta name="msvalidate.01" content="A3C758EB2C05DBD9D8B8A69373F18B09" />   
 
