@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"link",
+				"link	link - stylesheet"
+			],
+			[
 				"movie",
 				"movies_path"
 			],
@@ -179,9 +183,13 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 347.0,
+		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"Package Control: list",
+				"Package Control: List Packages"
+			],
 			[
 				"",
 				"Package Control: Install Package"
@@ -235,7 +243,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 449.0
+		"width": 413.0
 	},
 	"console":
 	{
@@ -252,16 +260,23 @@
 	},
 	"file_history":
 	[
-		"/Users/ric/jekyll/ricmclaughlin.github.com/CNAME",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/projects/TutRepBootstrap/css/bootstrap.css",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/_config.yml",
-		"/Users/ric/jekyll/ricmclaughlin.github.com/404.md",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/projects/TutRepBootstrap/template.html",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/about.md",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/_includes/head.html",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/README.md",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/projects/TutRepBootstrap/css/bootstrap.min.css",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/_includes/scripts.html",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/_includes/footer.html",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/_layouts/page.html",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/CNAME",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/404.md",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/tags.html",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/articles.html",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/_site/tags.html",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/Gemfile",
 		"/Users/ric/rails_projects/flixr/Gemfile",
-		"/Users/ric/jekyll/ricmclaughlin.github.com/_includes/footer.html",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/_posts/2014-02-14-ConsecteturElit.md",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/_posts/2011-02-14-LoremIpsum.md",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/css/custom.css",
@@ -372,14 +387,7 @@
 		"/Users/ric/rails_projects/sample_app3/spec/requests/static_pages_spec.rb",
 		"/Users/ric/rails_projects/sample_app3/Gemfile",
 		"/Users/ric/rails_projects/sample_app3/config/routes.rb",
-		"/Users/ric/rails_projects/sample_app3/app/controllers/static_pages_controller.rb",
-		"/Users/ric/rails_projects/sample_app3/app/views/static_pages/contact.html.erb",
-		"/Users/ric/rails_projects/sample_app3/app/views/static_pages/about.html.erb",
-		"/Users/ric/rails_projects/sample_app3/config.ru",
-		"/Users/ric/rails_projects/sample_app3/app/views/static_pages/help.html.erb",
-		"/Users/ric/rails_projects/sample_app3/app/views/static_pages/home.html.erb",
-		"/Users/ric/rails_projects/sample_app3/app/views/layouts/application.html.erb",
-		"/Users/ric/rails_projects/sample_app3/.rspec"
+		"/Users/ric/rails_projects/sample_app3/app/controllers/static_pages_controller.rb"
 	],
 	"find":
 	{

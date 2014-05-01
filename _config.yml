@@ -21,14 +21,13 @@ owner:
   flickr:         
   tumblr:         
   # For Google Authorship https://plus.google.com/authorship
-  google_plus:  "https://plus.google.com/106580996997363627472?rel=author"
+  google_plus:
 
 # Analytics and webmaster tools stuff goes here
-google_analytics: UA-4937627-4  
-google_verify:   
+google_analytics:
+google_verify:
 # https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
-bing_verify:      <meta name="msvalidate.01" content="A3C758EB2C05DBD9D8B8A69373F18B09" />   
-
+bing_verify:
 # Links to include in top navigation
 # For external links add external: true
 links:
