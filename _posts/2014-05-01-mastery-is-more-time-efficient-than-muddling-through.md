@@ -4,7 +4,7 @@ title: "Mastery is More Time Efficient Than Muddling Through"
 modified: 2014-05-01 19:53:58 +0200
 tags: [Full Stack, Development]
 image:
-  feature: header1.jpg
+  feature: header2.png
   credit: 
   creditlink: 
 comments: 

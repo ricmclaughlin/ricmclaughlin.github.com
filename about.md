@@ -5,8 +5,8 @@ title: About the Full Stack Solopreneur
 tags: [Ric, McLaughlin, Full Stack, Solopreneur]
 modified: 2014-04-15
 image:
-  feature: so-simple-sample-image-4.jpg
-  credit: Michael Rose
+  feature: header3.png
+  
   creditlink: http://mademistakes.com
 ---
 So what is a Full Stack Solopreneur? Let's break it down and figure it out.
