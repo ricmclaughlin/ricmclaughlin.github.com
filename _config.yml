@@ -1,6 +1,6 @@
 title:            The Full Stack Solopreneur
 description:      My journey from almost zero to app making hero
-logo:             site-logo.png
+logo:             
 disqus_shortname: fullstacksolo
 search:           true
 # Change url to your domain. Leave localhost server or blank when working locally.
@@ -9,7 +9,7 @@ url: http://ric.mclaughlin.today
 # Owner/author information
 owner:
   name:           Ric McLaughlin
-  avatar:         bio-photo.jpg
+  avatar:         bio-photo.png
   email:          you@email.com
   # Social networking links used in footer. Update and remove as you like.
   twitter:        
