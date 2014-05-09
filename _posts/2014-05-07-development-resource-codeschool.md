@@ -32,7 +32,7 @@ The Bad:
 2. Often Down-Right Confusing - More than once, I came away not having a single clue how to solve the coding challenges after the material was presented. One case of this stands out for me - in “Ruby Bit 2” class starts with a 10 minute discussion of Lambda and Procs. This is a very confusing topic at best. And even though I really do get it, watching the video on the topic sent me into a “what the hell?” tail spin for a day.
 3. A mile wide and ½ inch deep - Each class covers too much width (number of topics) but doesn’t cover enough depth. What good is knowing something exists if you can’t place it in context of other approaches or use it?? This was the most common issue I had with these courses.
 
-Sure coding in a browser is cook but your time is better spent elsewhere. There are tons of other coding in a browser sites that are free http://www.programmr.com/, free http://www.codecademy.com/learn, free https://rubymonk.com/. 
+Sure coding in a browser is cook but your time is better spent elsewhere. There are tons of other coding in a browser sites that are [free]( http://www.programmr.com/ "Title"), [free](http://www.codecademy.com/ "Title"), [free](http://rubymonk.com/ "Title" )!
 
  
 
