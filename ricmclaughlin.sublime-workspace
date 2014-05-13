@@ -183,9 +183,13 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 392.0,
+		"height": 67.0,
 		"selected_items":
 		[
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
 			[
 				"Package Control: list",
 				"Package Control: List Packages"
@@ -196,10 +200,6 @@
 			],
 			[
 				"Package Control: ",
-				"Package Control: Install Package"
-			],
-			[
-				"Package Control: in",
 				"Package Control: Install Package"
 			],
 			[
@@ -243,7 +243,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 413.0
+		"width": 575.0
 	},
 	"console":
 	{
@@ -260,16 +260,21 @@
 	},
 	"file_history":
 	[
-		"/Users/ric/jekyll/ricmclaughlin.github.com/projects/TutRepBootstrap/css/bootstrap.css",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/_includes/footer.html",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/_config.yml",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/_posts/2014-05-04-ruby-resource-ruby-koans.md",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/circle.html",
+		"/Users/ric/foundation/.ruby-version",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/_includes/navigation.html",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/_layouts/post.html",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/_includes/head.html",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/_layouts/page.html",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/_includes/scripts.html",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/projects/TutRepBootstrap/css/bootstrap.css",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/projects/TutRepBootstrap/template.html",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/about.md",
-		"/Users/ric/jekyll/ricmclaughlin.github.com/_includes/head.html",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/README.md",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/projects/TutRepBootstrap/css/bootstrap.min.css",
-		"/Users/ric/jekyll/ricmclaughlin.github.com/_includes/scripts.html",
-		"/Users/ric/jekyll/ricmclaughlin.github.com/_includes/footer.html",
-		"/Users/ric/jekyll/ricmclaughlin.github.com/_layouts/page.html",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/CNAME",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/404.md",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/tags.html",
@@ -382,12 +387,7 @@
 		"/Users/ric/rails_projects/next1/app/view/layouts/_header.html.erb",
 		"/Users/ric/rails_projects/next1/.rspec",
 		"/Users/ric/rails_projects/sample_app3/spec/spec_helper.rb",
-		"/Users/ric/rails_projects/next1/config/database.yml",
-		"/Users/ric/rails_projects/next1/.gitignore",
-		"/Users/ric/rails_projects/sample_app3/spec/requests/static_pages_spec.rb",
-		"/Users/ric/rails_projects/sample_app3/Gemfile",
-		"/Users/ric/rails_projects/sample_app3/config/routes.rb",
-		"/Users/ric/rails_projects/sample_app3/app/controllers/static_pages_controller.rb"
+		"/Users/ric/rails_projects/next1/config/database.yml"
 	],
 	"find":
 	{
@@ -485,16 +485,20 @@
 		"selected_items":
 		[
 			[
+				"hea",
+				"_includes/head.html"
+			],
+			[
+				"con",
+				"_config.yml"
+			],
+			[
 				"ar",
 				"articles.html"
 			],
 			[
 				"ge",
 				"Gemfile"
-			],
-			[
-				"hea",
-				"_includes/header.html"
 			],
 			[
 				"foo",
@@ -547,10 +551,6 @@
 			[
 				"in",
 				"app/views/movies/index.html.erb"
-			],
-			[
-				"con",
-				"app/controllers/movies_controller.rb"
 			],
 			[
 				"li",
