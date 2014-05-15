@@ -4,7 +4,7 @@ title: "The Ruby Learning Path"
 modified: 2014-05-15 13:48:55 +0200
 tags: [Ruby, Development]
 image:
-  feature: header3.jpg
+  feature: header3.png
   credit: 
   creditlink: 
 comments: 
