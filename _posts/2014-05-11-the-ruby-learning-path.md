@@ -18,14 +18,14 @@ And there are tons of great ways to learn [Ruby](http://iwanttolearnruby.com/ �
 
 So I set out to solve this problem for myself a couple of months back. I wanted something cheap if not free. At first, I was using an non-unix based machine installing Ruby was harder than [it should be](http://rubyinstaller.org/ "Title") - coding in a browser instead of the command line would be good. And I really don't like learning to code from a giant tome of a book. Who wants to be 200 pages into a book and be 1/4 done??
 
-What that in mind I made The Ruby Learning Path. I have worked up has three levels: Beginner, Intermediate and Advanced. The first question you have is - Where should I start? 
+What that in mind I made [The Ruby Learning Path](http://ric.mclaughlin.today/the-ruby-learning-path/). I have worked up has three levels: Beginner, Intermediate and Advanced. The first question you have is - Where should I start? 
 
-Start at the Beginner Level if you haven’t programmed before, need a programming refresher or would just like to start with easier material before getting to the harder stuff. 
+Start at the [The Ruby Learning Path - Beginner Level](http://ric.mclaughlin.today/the-ruby-learning-path-beginner/ "Title") if you haven’t programmed before, need a programming refresher or would just like to start with easier material before getting to the harder stuff. 
 
 OR
 
-Start at the Intermediate Level if you have programmed before and feel confident with install Ruby and a code editor 
+Start at the [The Ruby Learning Path - Intermediate Level](the-ruby-learning-path-intermediate/ "Title") if you have programmed before and feel confident with [install Ruby](https://www.ruby-lang.org/en/installation/ "Title") and a [code editor](http://www.rubybacon.com/3-common-ruby-editors/ "Title") 
 
-Don’t start directly at the Advanced level of the Path to Learning Ruby unless you already know Ruby well. This is more advanced materials and lots of Ruby language features don’t exist in other languages so it is way, way better to start at the Intermediate level instead.
+Don’t start directly at [The Ruby Learning Path - Advanced Level](http://ric.mclaughlin.today/the-ruby-learning-path-advanced/ "Title") of the Path to Learning Ruby unless you already know Ruby well. This is more advanced materials and lots of Ruby language features don’t exist in other languages so it is way, way better to start at the [Intermediate Level](the-ruby-learning-path-intermediate/ "Title") instead.
 
 Good luck learning Ruby!
