@@ -10,7 +10,7 @@ image:
 comments: 
 share: 
 ---
-Since the first of the year, and after I got my [PMI-ACP certification](http://www.pmi.org/en/Certification/New-PMI-Agile-Certification.aspx “Title”), I have been doing a lot of professional development on the web development side. The overall goal is to be able to pull off a nontrivial web app that runs across all client platforms developed in MV* javascript framework (obviously using HTML5/CSS), with an API based Ruby on Rails hosted in the cloud. 
+Since the first of the year, and after I got my [PMI-ACP certification](http://www.pmi.org/en/Certification/New-PMI-Agile-Certification.aspx “Title”), I have been doing a lot of professional development on the web development side. The overall goal is to be able to pull off a nontrivial web app that runs across all client platforms developed in MV* javascript framework (obviously using HTML5/CSS), with an API based [Ruby on Rails](http://rubyonrails.org/ “Title”) hosted in the cloud. 
 
 I have taken a sh*t ton of online courses. Here is my profile on those sites:
 
@@ -20,7 +20,7 @@ I have taken a sh*t ton of online courses. Here is my profile on those sites:
 
 What is my plan to swallow each of these technical elephants? Keep at and take a bit every day. Here is my detailed plan by track:
 
-* Ruby 
+* [Ruby](http://ric.mclaughlin.today/the-ruby-learning-path/ "Title") 
 * Rails
 * HTML5/CSS
 * MV*
