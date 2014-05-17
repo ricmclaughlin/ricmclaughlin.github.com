@@ -4,7 +4,7 @@ title: "Check My Learning Progress"
 modified: 2014-05-10 09:20:53 +0200
 tags: [development, rails, ruby, js, html/css]
 image:
-  feature: header2.jpg
+  feature: header2.png
   credit: 
   creditlink: 
 comments: 
