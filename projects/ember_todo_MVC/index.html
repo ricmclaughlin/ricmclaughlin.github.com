@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Ember.js • TodoMVC</title>
+    <title>Ember.js • TodoMVC • Ric</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
@@ -23,13 +23,13 @@
     <script type="text/x-handlebars" data-template-name="todos">    
       <section id="todoapp">
         <header id="header">
-          <h1>todos</h1>
+          <h1>Ember Todo</h1>
           {{input type="text" id="new-todo" placeholder="What needs to be done?" 
                 value=newTitle action="createTodo"}}
         </header>
         <section id="main">
           {{outlet}}
-          <input type="checkbox" id="toggle-all">
+          {{input type="checkbox" id="toggle-all" checked=allAreDone}}
         </section>
         <footer id="footer">
           <span id="todo-count">
@@ -46,8 +46,6 @@
               {{#link-to "todos.completed" activeClass="selected"}}Completed{{/link-to}}
             </li>
           </ul>
-
-
           {{#if hasCompleted}}
             <button id="clear-completed" {{action "clearCompleted"}}>
               Clear completed ({{completed}})
@@ -59,6 +57,7 @@
 
       <footer id="info">
           <p>Double-click to edit a todo</p>
+          <p><a href="http://ric.mclaughlin.today">Ric McLaughlin Learning Ember</a>
       </footer>
     </script> 
   <script src="http://emberjs.com.s3.amazonaws.com/getting-started/jquery.min.js"></script>
