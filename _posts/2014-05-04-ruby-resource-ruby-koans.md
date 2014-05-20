@@ -10,9 +10,9 @@ image:
 comments: 
 share: 
 ---
-One of the first really good Ruby activities I did was Ruby Koans. This is a highly recommended learning tool from beginners to master level Rubyists. Here is the rundown:
+One of the first really good [Ruby](https://www.ruby-lang.org/en/ “Title”) activities I did was [Ruby Koans](http://rubykoans.com "Title"). This is a highly recommended learning tool from beginners to master level Rubyists. Here is the rundown:
 
-**What is it?** A super cool way of learning Ruby by doing thought provoking exercises seasoned with a dash of TDD.
+**What is it?** A super cool way of learning Ruby by doing thought provoking exercises seasoned with a dash of [TDD](http://en.wikipedia.org/wiki/Test-driven_development "Title").
 
 **Who is it for?** You would need to be familiar with the command line and have at least some programming background. Some familiarity with TDD will help. No Ruby knowledge is required.
 
@@ -26,6 +26,6 @@ One of the first really good Ruby activities I did was Ruby Koans. This is a hig
 
 **Setup:** Ruby > 1.8 and text editor
 
-**Recommendation:** Download the koans and dig in. 
+**Recommendation:** Download the [koans](http://en.wikipedia.org/wiki/Koan "Title") and dig in. 
 
 **Where:** [Ruby Koans](http://rubykoans.com "Title")
