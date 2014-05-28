@@ -260,6 +260,20 @@
 	},
 	"file_history":
 	[
+		"/Users/ric/jekyll/ricmclaughlin.github.com/projects/ember_smashing/js/router.js",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/projects/ember_smashing/js/store.js",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/projects/ember_smashing/models/user.js",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/projects/ember_todo_MVC/js/router.js",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/projects/ember_todo_MVC/js/models/todo.js",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/projects/ember_todo_MVC/js/controllers/todos_controller.js",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/projects/ember_todo_MVC/js/application.js",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/projects/ember_todo_MVC/js/controllers/todo_controller.js",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/projects/ember_smashing/index.html",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/projects/ember_smashing/js/app.js",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/.ruby-version",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/.ruby-gemset",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/projects/ember_todo_MVC/bower.json",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/projects/ember_todo_MVC/index.html",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/_includes/footer.html",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/_config.yml",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/_posts/2014-05-04-ruby-resource-ruby-koans.md",
@@ -373,21 +387,7 @@
 		"/Users/ric/Library/Application Support/Sublime Text 2/Packages/User/Ruby on Rails.sublime-settings",
 		"/Users/ric/rails_projects/sample_model_test.rb",
 		"/Users/ric/rails_projects/next1/db/migrate/20140313134905_add_index_to_user_email.rb",
-		"/Users/ric/rails_projects/next1/next1.sublime-workspace",
-		"/Users/ric/rails_projects/next1/app/views/static_pages/contact.html.erb",
-		"/Users/ric/rails_projects/next1/app/views/static_pages/perin.html.erb",
-		"/Users/ric/rails_projects/next1/app/perin.html.erb",
-		"/Users/ric/rails_projects/next1/app/views/layouts/_footer.html.erb",
-		"/Users/ric/rails_projects/next1/app/views/static_pages/help.html.erb",
-		"/Users/ric/rails_projects/next1/app/contact.html.erb",
-		"/Users/ric/rails_projects/next1/app/views/static_pages/home.html.erb",
-		"/Users/ric/rails_projects/next1/spec/support/utilities.rb",
-		"/Users/ric/rails_projects/next1/spec/spec_helper.rb",
-		"/Users/ric/rails_projects/next1/app/views/layouts/_shim.html.erb",
-		"/Users/ric/rails_projects/next1/app/view/layouts/_header.html.erb",
-		"/Users/ric/rails_projects/next1/.rspec",
-		"/Users/ric/rails_projects/sample_app3/spec/spec_helper.rb",
-		"/Users/ric/rails_projects/next1/config/database.yml"
+		"/Users/ric/rails_projects/next1/next1.sublime-workspace"
 	],
 	"find":
 	{
@@ -484,6 +484,10 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"proin",
+				"projects/ember_todo_MVC/index.html"
+			],
 			[
 				"hea",
 				"_includes/head.html"
