@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Ember Flameout"
-modified: 2014-12-09 20:51:04 +0100
+modified: 2014-07-09 20:51:04 +0100
 tags: [ember.js]
 image:
   feature: 
