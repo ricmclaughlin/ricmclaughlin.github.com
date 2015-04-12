@@ -10,3 +10,8 @@ image:
 comments: 
 share: 
 ---
+I think the big question is, "huh?"" Why would Microsoft do a [course](https://courses.edx.org/courses/course-v1:Microsoft+DEV203x+2015_T2/info) on [Bootstrap](http://getbootstrap.com/)?
+
+Answer: To promote Visual Studio.
+
+I knew there was a catch.
