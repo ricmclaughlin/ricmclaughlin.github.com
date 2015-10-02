@@ -10,9 +10,9 @@ url: http://ric.mclaughlin.today
 owner:
   name:           Ric McLaughlin
   avatar:         bio-photo.png
-  email:          you@email.com
+  email:          ric_mclaughlin@yahoo.com
   # Social networking links used in footer. Update and remove as you like.
-  twitter:        
+  twitter:        ric_mclaughlin
   facebook:       ric.mclaughlin1
   github:         ricmclaughlin
   stackexchange:  
@@ -31,14 +31,15 @@ bing_verify:
 # Links to include in top navigation
 # For external links add external: true
 links:
-  - title: About
-    url: /about/
   - title: Articles
     url: /articles/
+  - title: Portfolio
+    url: /portfolio/
   - title: Website Honcho
     url: http://www.websitehoncho.com
     external: true
-
+  - title: About
+    url: /about/
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone:    America/New_York
 future:      true

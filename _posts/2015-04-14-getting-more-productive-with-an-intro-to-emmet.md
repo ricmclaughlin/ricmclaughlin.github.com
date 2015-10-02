@@ -18,4 +18,6 @@ And it looks very cool. Then I went over to Udemy and took the free class at [Ud
 
 Then I invested an hour reading through the [docs](http://docs.emmet.io/) and watching the videos.
 
+Then I made a little walk through, play-ground sort of a [thing](http://ric.mclaughlin.today/prj_html5_emmet/)...
+
 Now the HTML just flows from my hands like a crystal clear stream descending from the heavens or something like that.

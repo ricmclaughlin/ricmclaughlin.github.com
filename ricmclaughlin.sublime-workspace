@@ -181,9 +181,14 @@
 	[
 	],
 	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
 	"command_palette":
 	{
 		"height": 67.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -247,7 +252,11 @@
 	},
 	"console":
 	{
-		"height": 125.0
+		"height": 125.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
 	},
 	"distraction_free":
 	{
@@ -258,8 +267,15 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/Users/ric/jekyll/ricmclaughlin.github.com"
+	],
 	"file_history":
 	[
+		"/Users/ric/jekyll/ricmclaughlin.github.com/_config.yml",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/_posts/2015-07-16-airpair-with-me.md",
+		"/Users/ric/jekyll/ricmclaughlin.github.com/.gitignore",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/projects/ember_smashing/js/router.js",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/projects/ember_smashing/js/store.js",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/projects/ember_smashing/models/user.js",
@@ -275,7 +291,6 @@
 		"/Users/ric/jekyll/ricmclaughlin.github.com/projects/ember_todo_MVC/bower.json",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/projects/ember_todo_MVC/index.html",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/_includes/footer.html",
-		"/Users/ric/jekyll/ricmclaughlin.github.com/_config.yml",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/_posts/2014-05-04-ruby-resource-ruby-koans.md",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/circle.html",
 		"/Users/ric/foundation/.ruby-version",
@@ -308,7 +323,6 @@
 		"/Users/ric/jekyll/ricmclaughlin.github.com/assets/themes/twitter/bootstrap/css/bootstrap.2.2.2.min.css",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/typography.md",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/assets/themes/twitter/css/style.css",
-		"/Users/ric/jekyll/ricmclaughlin.github.com/.gitignore",
 		"/Users/ric/jekyll/ricmclaughlin.github.com/ricmclaughlin.sublime-workspace",
 		"/Users/ric/jekyll/fullstacksolo/_config.yml",
 		"/Users/ric/rails_projects/flixtest/config/routes.rb",
@@ -386,8 +400,7 @@
 		"/Users/ric/rails_projects/next1/spec/factories.rb",
 		"/Users/ric/Library/Application Support/Sublime Text 2/Packages/User/Ruby on Rails.sublime-settings",
 		"/Users/ric/rails_projects/sample_model_test.rb",
-		"/Users/ric/rails_projects/next1/db/migrate/20140313134905_add_index_to_user_email.rb",
-		"/Users/ric/rails_projects/next1/next1.sublime-workspace"
+		"/Users/ric/rails_projects/next1/db/migrate/20140313134905_add_index_to_user_email.rb"
 	],
 	"find":
 	{
@@ -474,6 +487,12 @@
 	{
 		"height": 76.0
 	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "ricmclaughlin.sublime-project",
 	"replace":
 	{
 		"height": 64.0
@@ -482,6 +501,7 @@
 	"select_file":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -806,15 +826,32 @@
 	"select_project":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 		],
 		"width": 0.0
 	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
 	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 262.0,
-	"status_bar_visible": true
+	"side_bar_width": 558.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
 }
