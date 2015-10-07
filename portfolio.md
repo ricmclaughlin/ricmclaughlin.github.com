@@ -23,3 +23,8 @@ The book that covers the aspects of AngularJS that I find most critical is [Angu
 Tons of projects in the Udemy [Projects in HTML5](https://www.udemy.com/projects-in-html5/learn/#/) course. Tons of cheese in there too... bad code formatting. Bad Boston accent. Clearly the instructor is a reformed php hack. But hey, we all come from somewhere.
 
 [Projects in HTML5 - Getting Started](http://ric.mclaughlin.today/prj_html5_get_started/) 
+
+## Projects in Bootstrap
+Tons of projects in the Udemy [Projects in HTML5](https://www.udemy.com/projects-in-html5/learn/#/) course. T
+
+[Projects in HTML5 - Getting Started](http://ric.mclaughlin.today/prj_html5_get_started/) 
