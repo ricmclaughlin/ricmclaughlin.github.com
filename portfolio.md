@@ -25,6 +25,6 @@ Tons of projects in the Udemy [Projects in HTML5](https://www.udemy.com/projects
 [Projects in HTML5 - Getting Started](http://ric.mclaughlin.today/prj_html5_get_started/) 
 
 ## Projects in Bootstrap
-Tons of projects in the Udemy [Projects in HTML5](https://www.udemy.com/projects-in-html5/learn/#/) course. T
+Tons of projects in the Udemy [Projects in HTML5](https://www.udemy.com/projects-in-html5/learn/#/) course. Simply a great review of Bootstrap - a bit tedious at times.
 
 [Projects in HTML5 - Getting Started](http://ric.mclaughlin.today/prj_html5_get_started/) 
