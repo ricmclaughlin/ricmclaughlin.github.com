@@ -1,10 +1,10 @@
-title:            The Full Stack Solopreneur
-description:      My journey from almost zero to app making hero
+title:            Lean-tastic UX-asaurus
+description:      From apps to websites and back again via Lean UX
 logo:             
 disqus_shortname: fullstacksolo
 search:           true
 # Change url to your domain. Leave localhost server or blank when working locally.
-url: http://ric.mclaughlin.today             
+url:            
 
 # Owner/author information
 owner:
@@ -31,15 +31,17 @@ bing_verify:
 # Links to include in top navigation
 # For external links add external: true
 links:
-  - title: Articles
-    url: /articles/
+  - title: Home
+    url: /
+  - title: Musings
+    url: /musings/
   - title: Portfolio
     url: /portfolio/
-  - title: Website Honcho
-    url: http://www.websitehoncho.com
+  - title: Process
+    url: /process/
     external: true
-  - title: About
-    url: /about/
+  - title: My Story
+    url: /mystory/
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone:    America/New_York
 future:      true
