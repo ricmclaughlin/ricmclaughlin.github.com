@@ -4,12 +4,10 @@ permalink: /mystory/
 title: My Story
 tags: [Ric, McLaughlin]
 modified: 2014-04-15
-image:
-  feature: header3.png
   
 
 ---
-**Who am I?**
+**Who are you?**
 
 I build apps. and features. Using [Ric-ified Lean UX](http://ric.mclaughlin.today/process).  
 
@@ -23,7 +21,7 @@ Simple. When I look around I don't see problems; I see puzzles. And apps, if don
 
 **So what does that have to do with Lean UX?**
 
-The [Lean Startup Methodology](http://http://theleanstartup.com/principles) when applied to UX, called Lean UX, gives apps the right quality. Not the quality that means "bug free"; quality as in ["fitness for purpose"](https://en.wikipedia.org/wiki/Quality_(business)). The best way to make an app that is fit for its purpose is to build a solution, testing the solution and drawing conclusions from the test and repeat as quickly as possible until you run out of time. Each iteration bring you closer to knowing, not guessing, you have are solving the puzzle.
+The [Lean Startup Methodology](http://theleanstartup.com/principles) when applied to UX, called Lean UX, gives apps the right quality. Not the quality that means "bug free"; quality as in ["fitness for purpose"](https://en.wikipedia.org/wiki/Quality_(business)). The best way to make an app that is fit for its purpose is to build a solution, testing the solution and drawing conclusions from the test and repeat as quickly as possible until you run out of time. Each iteration bring you closer to knowing, not guessing, you have are solving the puzzle.
 
 **Ok. But how did you get here?**
 

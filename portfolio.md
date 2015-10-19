@@ -3,12 +3,8 @@ layout: page
 permalink: /portfolio/
 title: "Ric McLaughlin's Portfolio"
 modified: 2015-10-02 11:37
-tags: [HTML5 Development AngularJS Firebase MEAN]
-image:
-  feature: header4.png
-  credit: 
-  creditlink: 
-share: 
+tags: [HTML5 Development AngularJS Firebase MEAN UX]
+
 ---
 # Walk Throughs
 I learn a lot by coding along while watching videos and reading books. This process really cements the knowledge. And I've done quite a few video series and books...

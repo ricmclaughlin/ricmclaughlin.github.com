@@ -3,8 +3,6 @@ layout: page
 permalink: /musings/
 title: Musings
 description: "An archive of posts sorted by date."
-image:
-  feature: header3.png
 ---
 
 <ul class="post-list">
