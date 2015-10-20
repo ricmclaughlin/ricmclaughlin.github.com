@@ -3,6 +3,8 @@ layout: page
 permalink: /musings/
 title: Musings
 description: "An archive of posts sorted by date."
+herby: true
+titleintro: false
 ---
 
 <ul class="post-list">

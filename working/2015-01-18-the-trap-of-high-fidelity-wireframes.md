@@ -10,31 +10,40 @@ image:
 comments: 
 share: 
 ---
-How many times have you heard, "I hate that color" or "Why isn't that _______ aligned with " or some other detail instead of "Shouldn't Blah be on this page?" or "I notice that blah should be here instead of there - that makes way more sense."
+How many times have you heard, "I hate the color of that font!" or "Why isn't that this aligned with that?" or some other detail instead of "Shouldn't the customer data be on this page?" or "I notice that blah should be here instead of there - that makes way more sense."
 
-Or, in other words, have you ever presented a great wireframe only to be nit-picked to death on presentation not substance?
+Even though you have steered the conversation with probing functional questions you get nit-picked to death on presentation?
 
-Yes, asking good questions while you are talking through a wireframe helps, but what if the wireframe was the problem?
-
-I am not alone when I've noticed that people focus on "look and feel," the visual style when something looked finished. And that is the trap of high fidelity wireframes. 
+Experience tells me that every single time, people focus on "look and feel," the visual style, when something looked finished. And that is the trap of high fidelity wireframes. 
 
 For example, when it looks like:
 
-Folks think: oooh. That is pretty. It must be finished. I am supposed to comment on how it looks. 
+Folks think: "oooh. That is pretty. It must be finished. I am supposed to comment on how it looks." 
 
 But if it looks like this:
 
 
 
-Folks think: Is that hand drawn - that isn't finished so yeah we can change this... hand me the pen or better yet, you can draw. What if it did this? 
+Folks think: "Is that hand drawn - that isn't finished so yeah we can change this... hand me the pen or better yet, you can draw. What if it did this? "
 
-So that makes sense. And that is why most folks I like doing paper wireframes during a joint design session and for the first couple of customer discussions. 
+Which leads me to an observation. The feedback I get from a paper prototype is more substantial, more on-topic than from well styled wireframe. 
 
-But what about when you move past
+And better than that, I still am all about doing Joint Application Design sessions. 
 
+
+But what about when you move past the whiteboard, past the paper wireframe to... well something polished. Something you would make with "" or "" or "."
+
+Same problem show up. It enhances looks to nice. Plus there is another problem here. A nice wireframe, one produced with " " or "" is a dead end deliverable. You gotta turn around and build the next version, the real version in HTML and CSS. There isn't any leverage in producing a nice wireframe - we can't use the deliverable again - we just throw it away or maybe redo it on a later project.
+
+But what if we could 
 
 The answer to that is a low fidelity wireframe. Not initially. 
 
+
+
+And doesn't get us the unifying deliverable we need to move forward sucessfully.
+
+To sum that all up, any wireframe I have two problems with high fidelity wireframes. They don't get the type of responses we need to get during the check process and the 
 
 
 What if the wireframe looked incomplete, like a piece of sketchy paper, except was part of a functional website?
