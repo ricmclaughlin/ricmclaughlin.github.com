@@ -1,0 +1,33 @@
+---
+layout: page
+title: Portfolio
+categories: projects
+---
+{% assign cat = 'projects' %}
+{% assign project_tags = site.array %}
+{% assign project_tags = "angularjs,emmet" | split: "," %}
+<div class="category-archive">
+
+  {% for project_tag in project_tags %}
+    {% assign includer = "tags/" | append: project_tag | append: ".html" %}
+    <h3>{{tag | upcase}}</h3>
+    <ul class="posts">
+      {% include {{includer}} %}
+      {% for post in site.categories[cat] %}
+        {% if post.tags contains {{project_tag}} %} 
+          <li><span>{{ post.date | date_to_string }} - </span> <a href="{{ post.url }}">{{ post.title }}</a></li>
+        {% endif %}  
+      {% endfor %}
+    </ul>
+  {% endfor %}  
+</div>
+
+
+<!-- <h3>Emmet</h3>
+    <ul class="posts">
+      {% for post in site.categories[cat] %}
+        {% if post.tags contains 'emmet' %} 
+          <li><span>{{ post.date | date_to_string }} - </span> <a href="{{ post.url }}">{{ post.title }}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ul> -->

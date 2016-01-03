@@ -41,15 +41,17 @@
           </div>
           <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav pull-left">
-              {% assign pages_list = site.pages %}
-              {% assign group = 'navigation' %}
-              {% include JB/pages_list %}
+              <li class="{% if page.categories == 'projects' %}active{% endif %}"><a href="/portfolio">Portfolio</a></li>
+              <li class="{% if page.categories == 'processes' %}active{% endif %}"><a href="/process">Process</a></li>
+              <li class="{% if page.categories == 'posts' %}active{% endif %}"><a href="/blog">Blog</a></li>
+              <li class="{% if page.url == '/mystory' %}active{% endif %}"><a href="/mystory">My Story</a></li>
             </ul>
           </div>
         </div>
       </nav>
       
       {{ content }}
+
       <footer class="row">
       <div id="copyright" class="col-md-6 col-sm-6">
         <p>&copy; <a href="#">Ric McLaughlin</a>, All rights reserved.</p>

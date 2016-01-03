@@ -2,13 +2,8 @@
 layout: post
 title: "Ruby Resource - Ruby Koans"
 modified: 2014-05-04 18:49:32 +0200
-tags: [Ruby, Development]
-image:
-  feature: header1.png
-  credit: 
-  creditlink: 
-comments: 
-share: 
+tags: [ruby, development, article]
+categories: posts
 ---
 One of the first really good [Ruby](https://www.ruby-lang.org/en/ "Title") activities I did was [Ruby Koans](http://rubykoans.com "Title"). This is a highly recommended learning tool from beginners to master level Rubyists. Here is the rundown:
 

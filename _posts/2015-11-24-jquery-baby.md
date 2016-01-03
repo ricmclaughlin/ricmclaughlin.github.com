@@ -2,13 +2,8 @@
 layout: post
 title: "jQuery baby!"
 modified: 2015-11-24 19:08:14 -0800
-tags: [development jQuery]
-image:
-  feature: 
-  credit: 
-  creditlink: 
-comments: 
-share: 
+tags: [development, jquery]
+categories: posts
 ---
 So you know, I'm not that hot on jQuery or jQuery plugins. "Not hot" as in interested in implementing either. But I just completed a project that features BOTH! 
 
