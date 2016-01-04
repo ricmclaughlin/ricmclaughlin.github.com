@@ -2,7 +2,7 @@
 layout: post
 title: "Ruby Resource - tryruby.org"
 modified: 2014-05-05 10:43:03 +0200
-tags: [ruby, development]
+tags: [ruby, beginner]
 categories: posts
 ---
 One of the first significant figures in the lore of Ruby after [matz](http://en.wikipedia.org/wiki/Yukihiro_Matsumoto) - the originator of ruby and [dhh](http://en.wikipedia.org/wiki/David_Heinemeier_Hansson) - the originator of ruby on rails is _why the lucky stiff.   

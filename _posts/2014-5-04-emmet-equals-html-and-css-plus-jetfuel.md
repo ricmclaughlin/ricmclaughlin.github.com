@@ -2,7 +2,7 @@
 layout: post
 title: "Emmet = HTML &amp; CSS + jetfuel "
 modified: 2014-05-04 18:49:32 +0200
-tags: [emmet, development]
+tags: [emmet, sublime]
 categories: projects
 ---
 

@@ -42,7 +42,7 @@
           <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav pull-left">
               <li class="{% if page.categories == 'projects' %}active{% endif %}"><a href="/portfolio">Portfolio</a></li>
-              <li class="{% if page.categories == 'processes' %}active{% endif %}"><a href="/process">Process</a></li>
+              <!-- <li class="{% if page.categories == 'processes' %}active{% endif %}"><a href="/process">Process</a></li> -->
               <li class="{% if page.categories == 'posts' %}active{% endif %}"><a href="/blog">Blog</a></li>
               <li class="{% if page.url == '/mystory' %}active{% endif %}"><a href="/mystory">My Story</a></li>
             </ul>
@@ -51,22 +51,23 @@
       </nav>
       
       {{ content }}
-
+      
       <footer class="row">
-      <div id="copyright" class="col-md-6 col-sm-6">
-        <p>&copy; <a href="#">Ric McLaughlin</a>, All rights reserved.</p>
-      </div>
-      <div id="socialicons" class="col-md-6 col-sm-6">
-        <a href="mailto:ric@mclaughlin.today"><img class="social-icon" src="{{ ASSET_PATH }}/images/email.png" alt="Ric McLaughlin Email"></a>
-        <a href="https://twitter.com/ric_mclaughlin"><img class="social-icon" src="{{ ASSET_PATH }}/images/twitter.png" alt="Ric McLaughlin twitter"></a>
-        <a href="https://www.linkedin.com/in/ricmclaughlin"><img class="social-icon" src="{{ ASSET_PATH }}/images/linkedin.png" alt=""></a>
-        <a href="https://github.com/ricmclaughlin"><img class="social-icon" src="{{ ASSET_PATH }}/images/github.png" alt=""></a> 
-      </div>
-    </footer>
+        <div id="copyright" class="col-md-6 col-sm-6">
+          <p>&copy; <a href="#">Ric McLaughlin</a>, All rights reserved.</p>
+        </div>
+        <div id="socialicons" class="col-md-6 col-sm-6">
+          <a href="mailto:ric@mclaughlin.today"><img class="social-icon" src="{{ ASSET_PATH }}/images/email.png" alt="Ric McLaughlin Email"></a>
+          <a href="https://twitter.com/ric_mclaughlin"><img class="social-icon" src="{{ ASSET_PATH }}/images/twitter.png" alt="Ric McLaughlin twitter"></a>
+          <a href="https://www.linkedin.com/in/ricmclaughlin"><img class="social-icon" src="{{ ASSET_PATH }}/images/linkedin.png" alt=""></a>
+          <a href="https://github.com/ricmclaughlin"><img class="social-icon" src="{{ ASSET_PATH }}/images/github.png" alt=""></a> 
+        </div>
+      </footer>
       
     </div>  
     {% include JB/analytics %}
     <script src="{{ ASSET_PATH }}/resources/jquery/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
   </body>
 </html>
