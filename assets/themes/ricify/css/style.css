@@ -5976,3 +5976,12 @@ h2.lesshead {
   height: 75px;
   width: 75px;
 }
+
+.techicon {
+  height: 30px;
+  width: 30px;
+}
+
+.skillheader {
+  display:inline
+}

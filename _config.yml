@@ -30,6 +30,7 @@ author :
 #
 production_url : http://ricmclaughlin.github.com
 array: []
+otherarray: []
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
 JB :

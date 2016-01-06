@@ -6,13 +6,15 @@ categories: projects
 {% assign cat = 'projects' %}
 {% assign project_tags = site.array %}
 {% assign project_tags = "angularjs,emmet" | split: "," %}
+{% assign skills = site.otherarray %}
+{% assign test_action = "frontend,backend,projectdelivery,wireframe,htmlcss,devops-ci,tdd" | split: "," %}
 
 
   {% for project_tag in project_tags %}
     {% assign includer = "tags/" | append: project_tag | append: ".html" %}
     {% assign imager = "tags/" | append: project_tag | append: ".html" %}
     <div class="category-archive">
-    {% include {{includer}} %}
+      {% include {{includer}} %}
       <ul class="posts">
         
         {% for post in site.categories[cat] %}
@@ -23,8 +25,9 @@ categories: projects
           {% endif %}  
         {% endfor %}
       </ul>
+    </div>
   {% endfor %}  
-</div>
+
 
 <div id="footerbar"></div>
 
@@ -39,29 +42,23 @@ categories: projects
     ...
   </div>
 </div> -->
-
-<a  data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-  Angular
-</a>
-
-<div class="collapse" id="collapseExample">
-  <div class="well">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id inventore assumenda facilis temporibus, ratione architecto quo sequi iste rerum obcaecati, eveniet blanditiis, minus libero vitae.  
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingOne">
-          <h4 class="panel-title">
-            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Collapsible Group Item #1
-            </a>
-          </h4>
-        </div>
-        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-          <div class="panel-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-          </div>
-        </div>
-      </div>
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <a href=""><h2 class="skillheader">Front End Dev</h2></a>
     </div>
-  </div>
-</div>
+    <div class="col-md-7">
+      <a href=""><img class="techicon" src="/assets/themes/ricify/images/angular.png"></a>
+      <a href=""><img class="techicon" src="/assets/themes/ricify/images/angular.png"></a>
+      <a href=""><img class="techicon" src="/assets/themes/ricify/images/angular.png"></a>
+    </div>
+    <div class="col-md-2">
+      <h3 class="skillheader">Projects <span class="badge">5</span> </h3>
+    </div>
+  </div>  
+   
+</div> -->
+
+
+
+
