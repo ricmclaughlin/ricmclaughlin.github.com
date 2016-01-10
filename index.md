@@ -43,7 +43,7 @@ tagline: Supporting tagline
           </tr>
           <tr>
             <td>Back End </td>
-            <td>JavaScript, Express, Sails, MongoDB</td>            
+            <td>JavaScript, Node, Express, Sails, MongoDB</td>            
           </tr>
           <tr>
             <td>Test Driven Development</td>
