@@ -5973,12 +5973,15 @@ h2.lesshead {
 }
 
 .media-object {
-  height: 75px;
-  width: 75px;
+  width: 65px;
+  float: left;
+  position: relative;
 }
 
 .techicon {
-  height: 30px;
+  width: 80px;
+  float: left;
+  position: relative;
 }
 
 .skillheader {

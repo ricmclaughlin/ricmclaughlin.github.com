@@ -30,8 +30,8 @@ tagline: Supporting tagline
         </thead>
         <tbody>
           <tr>
-            <td>Rapid Lo-fi Wireframing </td>
-            <td>White Boarding, Emmet, Sublime, lo.fi.ui</td>
+            <td><a href="/portfolio#wireframe-ref">Rapid Lo-fi Wireframing</a> </td>
+            <td>White Boarding, <a href="/portfolio#emmet-ref">Emmet</a>, <a href="/portfolio#sublime-ref">Sublime</a>, lo.fi.ui</td>
           </tr>
           <tr>
             <td>HTML & CSS Crafting </td>
@@ -47,7 +47,7 @@ tagline: Supporting tagline
           </tr>
           <tr>
             <td>Test Driven Development</td>
-            <td>Jasmine, Frisby &amp; Protractor</td>
+            <td>Jasmine, Chai, Mocha &amp; Protractor</td>
           </tr>
           <tr>
             <td>DevOps &amp; Continous Integration</td>

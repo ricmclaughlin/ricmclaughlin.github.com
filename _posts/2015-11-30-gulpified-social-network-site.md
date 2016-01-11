@@ -2,8 +2,8 @@
 layout: post
 title: "Gulpified Social Network Site"
 modified: 2015-11-30 09:32:57 -0800
-tags: [jquery, htmlcss]
-categories: posts
+tags: [jquery, htmlcss, gulp]
+categories: projects
 ---
 This project is a walk through of the Socal Media Template chapter of [Udemy's Projects in Bootstrap](https://www.udemy.com/learn-bootstrap-development-by-building-10-projects/learn/#/). 
 

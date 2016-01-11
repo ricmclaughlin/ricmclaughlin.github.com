@@ -2,7 +2,7 @@
 layout: post
 title: "Chai + Mocha !== Jasmine"
 modified: 2015-12-05 15:20:03 -0800
-tags: [tdd]
+tags: [tdd, chai, mocha, protractor, jasmine]
 categories: posts
 ---
 I've been spending some time working with TDD and angular. Lots of stuff to do on this. So I developed a very simple angular.js app with a super simple [express](http://expressjs.com/en/)  bunch of TDD tools including [chai](http://chaijs.com/), [mocha](https://mochajs.org/), [protractor](https://angular.github.io/protractor/#/) and [instanbul](https://gotwarlost.github.io/istanbul/).
