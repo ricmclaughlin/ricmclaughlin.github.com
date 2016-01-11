@@ -39,7 +39,7 @@ tagline: Supporting tagline
           </tr>
           <tr>
             <td>Front End</td>
-            <td>JavaScript, Angularjs, ionic</td>
+            <td>JavaScript, Angularjs, ionic, jQuery</td>
           </tr>
           <tr>
             <td>Back End </td>

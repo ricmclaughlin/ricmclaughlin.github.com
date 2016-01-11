@@ -5979,9 +5979,12 @@ h2.lesshead {
 
 .techicon {
   height: 30px;
-  width: 30px;
 }
 
 .skillheader {
   display:inline
+}
+
+.project {
+  text-indent: 10px;
 }

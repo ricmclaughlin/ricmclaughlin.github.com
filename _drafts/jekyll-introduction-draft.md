@@ -7,7 +7,7 @@ tags : [intro, beginner, jekyll, tutorial]
 {% include JB/setup %}
 
 
-This is an example of a draft. Read more here: [http://jekyllrb.com/docs/drafts/](http://jekyllrb.com/docs/drafts/)
+
 
 
 
@@ -48,3 +48,51 @@ This is an example of a draft. Read more here: [http://jekyllrb.com/docs/drafts/
 
 
 </article>
+
+
+<div class="media">
+  <div class="media-left">
+    <a href="#">
+      <img class="media-object" src="..." alt="...">
+    </a>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading">Media heading</h4>
+    ...
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <a href=""><h2 class="skillheader">Front End Dev</h2></a>
+    </div>
+    <div class="col-md-7">
+      <a href=""><img class="techicon" src="/assets/themes/ricify/images/angular.png"></a>
+      <a href=""><img class="techicon" src="/assets/themes/ricify/images/angular.png"></a>
+      <a href=""><img class="techicon" src="/assets/themes/ricify/images/angular.png"></a>
+    </div>
+    <div class="col-md-2">
+      <h3 class="skillheader">Projects <span class="badge">5</span> </h3>
+    </div>
+  </div>  
+   
+</div>
+
+<!-- 
+{% for project_tag in project_tags %}
+    {% assign includer = "tags/" | append: project_tag | append: ".html" %}
+    {% assign imager = "tags/" | append: project_tag | append: ".html" %}
+    <div class="category-archive">
+      {% include {{includer}} %}
+      <ul class="posts">
+        
+        {% for post in site.categories[cat] %}
+          {% if post.tags contains {{project_tag}} %}
+            <ul> 
+              <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+            </ul>
+          {% endif %}  
+        {% endfor %}
+      </ul>
+    </div>
+  {% endfor %}   -->

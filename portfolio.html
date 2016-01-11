@@ -5,59 +5,88 @@ categories: projects
 ---
 {% assign cat = 'projects' %}
 {% assign project_tags = site.array %}
-{% assign project_tags = "angularjs,emmet" | split: "," %}
 {% assign skills = site.otherarray %}
-{% assign test_action = "frontend,backend,projectdelivery,wireframe,htmlcss,devops-ci,tdd" | split: "," %}
+{% assign skills = "frontend,backend,projectdelivery,wireframe,htmlcss,devops-ci,tdd" | split: "," %}
 
 
-  {% for project_tag in project_tags %}
-    {% assign includer = "tags/" | append: project_tag | append: ".html" %}
-    {% assign imager = "tags/" | append: project_tag | append: ".html" %}
+  {% for skill in skills %}
     <div class="category-archive">
-      {% include {{includer}} %}
-      <ul class="posts">
+      {% if skill == "frontend" %}
+        {% assign project_tags = "angularjs,ionic,jquery" | split: "," %}
+        {% assign skill_full_name = "Front End Development" %}
+        {% assign skill_html_description = "  %}
+      {% endif %}
+      {% if skill == "backend" %}
+        {% assign project_tags = "node,express,sails,mongodb" | split: "," %}
+        {% assign skill_full_name = "Back End Development" %}
+        {% assign skill_html_description = "Back End Development text" %}
+      {% endif %}
+      {% if skill == "projectdelivery" %}
+        {% assign project_tags = "scrum,kanban,leanux" | split: "," %}
+        {% assign skill_full_name = "Project Delivery" %}
+        {% assign skill_html_description = "Project Delivery text" %}
+      {% endif %}
+      {% if skill == 'wireframe' %}
+        {% assign project_tags = "sublime,emmet,lo.fi.ui" | split: "," %}
+        {% assign skill_full_name = "Rapid Lo-fi Wireframing" %}
+        {% assign skill_html_description = "Rapid Lo-fi Wireframing text" %}
+      {% endif %}
+      {% if skill == 'htmlcss' %}
+        {% assign project_tags = "bootstrap,angular.ui,sass" | split: "," %}
+        {% assign skill_full_name = "HTML & CSS Crafting" %}
+        {% assign skill_html_description = "HTML & CSS Crafting text" %}
+      {% endif %}
+      {% if skill == 'devops-ci' %}
+        {% assign project_tags = "git,gulp,travis" | split: "," %}
+        {% assign skill_full_name = "DevOps & Continous Integration" %}
+        {% assign skill_html_description = "DevOps & Continous Integration text" %}
+      {% endif %}
+      {% if skill == 'tdd' %}
+        {% assign project_tags = "jasmine,frisby,protractor" | split: "," %}
+        {% assign skill_full_name = "Test Driven Development" %}
+        {% assign skill_html_description = "Test Driven Development text" %}
+      {% endif %}
+      
+      {% assign includer = "tags/" | append: skill | append: ".html" %}
+      <h1>{{skill_full_name}}</h1>
+      <p>{% include {{includer}} %}</p>
+      
+      
+      {% for tag in project_tags %}
+        {% assign image_url = "/assets/themes/ricify/images/" | append: tag | append: ".png" %}
+        {% assign includer = "tags/" | append: tag | append: ".html" %}
+        {% assign tag_page_ref = "/tags.html#" | append: tag | append: "-ref" %}
+        <div class="media">
+          <div class="media-left">
+            <a href="{{tag_page_ref}}">
+              <img class="media-object img-thumbnail" src="{{image_url}}" alt="{{tag | capitalize}} logo">
+            </a>
+          </div>
+          <div class="media-body">
+            <h2 class="media-heading">{{tag | capitalize}}</h2>
+              <p>{% include {{includer}} %}</p>
+              <p>{{tag | capitalize}} Projects:</p>
+              <ul class="posts">
+                {% for post in site.categories[cat] %}
+                  {% if post.tags contains tag %}
+                      <li><a href="{{ post.url }}">{{ post.title }}</a></li>  
+                  {% endif %}
+                {% endfor %}
+              </ul>
+          </div>
+        </div>
         
-        {% for post in site.categories[cat] %}
-          {% if post.tags contains {{project_tag}} %}
-            <ul> 
-              <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-            </ul>
-          {% endif %}  
+
         {% endfor %}
-      </ul>
     </div>
   {% endfor %}  
 
 
+
+
+
 <div id="footerbar"></div>
 
-<!-- <div class="media">
-  <div class="media-left">
-    <a href="#">
-      <img class="media-object" src="..." alt="...">
-    </a>
-  </div>
-  <div class="media-body">
-    <h4 class="media-heading">Media heading</h4>
-    ...
-  </div>
-</div> -->
-<!-- <div class="container">
-  <div class="row">
-    <div class="col-md-2">
-      <a href=""><h2 class="skillheader">Front End Dev</h2></a>
-    </div>
-    <div class="col-md-7">
-      <a href=""><img class="techicon" src="/assets/themes/ricify/images/angular.png"></a>
-      <a href=""><img class="techicon" src="/assets/themes/ricify/images/angular.png"></a>
-      <a href=""><img class="techicon" src="/assets/themes/ricify/images/angular.png"></a>
-    </div>
-    <div class="col-md-2">
-      <h3 class="skillheader">Projects <span class="badge">5</span> </h3>
-    </div>
-  </div>  
-   
-</div> -->
 
 
 
