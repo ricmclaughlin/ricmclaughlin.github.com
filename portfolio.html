@@ -12,15 +12,15 @@ categories: projects
   {% for skill in skills %}
     <div class="category-archive">
       {% if skill == "frontend" %}
-        {% assign project_tags = "angularjs,ionic,jquery" | split: "," %}
+        {% assign project_tags = "angularjs,jquery" | split: "," %}
         {% assign skill_full_name = "Front End Development" %}
       {% endif %}
       {% if skill == "backend" %}
-        {% assign project_tags = "node,express,sails,mongodb" | split: "," %}
+        {% assign project_tags = "express,sails" | split: "," %}
         {% assign skill_full_name = "Back End Development" %}
       {% endif %}
       {% if skill == 'wireframe' %}
-        {% assign project_tags = "sublime,emmet,lo.fi.ui" | split: "," %}
+        {% assign project_tags = "sublime,emmet" | split: "," %}
         {% assign skill_full_name = "Rapid Lo-fi Wireframing" %}
       {% endif %}
       {% if skill == 'htmlcss' %}
@@ -36,7 +36,7 @@ categories: projects
         {% assign skill_full_name = "Test Driven Development" %}
       {% endif %}
       {% if skill == 'fcc' %}
-        {% assign project_tags = "basicfront,intfront,api,webapp" | split: "," %}
+        {% assign project_tags = "basicfront" | split: "," %}
         {% assign skill_full_name = "Free Code Camp Projects" %}
       {% endif %}
       {% assign includer = "tags/" | append: skill | append: ".html" %}
