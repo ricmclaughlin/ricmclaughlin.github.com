@@ -6,7 +6,7 @@ categories: projects
 {% assign cat = 'projects' %}
 {% assign project_tags = site.array %}
 {% assign skills = site.otherarray %}
-{% assign skills = "frontend,backend,projectdelivery,wireframe,htmlcss,devops-ci,tdd" | split: "," %}
+{% assign skills = "frontend,backend,wireframe,htmlcss,devops-ci,tdd,fcc" | split: "," %}
 
 
   {% for skill in skills %}
@@ -14,42 +14,53 @@ categories: projects
       {% if skill == "frontend" %}
         {% assign project_tags = "angularjs,ionic,jquery" | split: "," %}
         {% assign skill_full_name = "Front End Development" %}
-        {% assign skill_html_description = "  %}
       {% endif %}
       {% if skill == "backend" %}
         {% assign project_tags = "node,express,sails,mongodb" | split: "," %}
         {% assign skill_full_name = "Back End Development" %}
-        {% assign skill_html_description = "Back End Development text" %}
       {% endif %}
-
       {% if skill == 'wireframe' %}
         {% assign project_tags = "sublime,emmet,lo.fi.ui" | split: "," %}
         {% assign skill_full_name = "Rapid Lo-fi Wireframing" %}
-        {% assign skill_html_description = "Rapid Lo-fi Wireframing text" %}
       {% endif %}
       {% if skill == 'htmlcss' %}
         {% assign project_tags = "bootstrap,angular.ui,sass,htmlcss" | split: "," %}
         {% assign skill_full_name = "HTML & CSS Crafting" %}
-        {% assign skill_html_description = "HTML & CSS Crafting text" %}
       {% endif %}
       {% if skill == 'devops-ci' %}
         {% assign project_tags = "git,gulp,travis" | split: "," %}
         {% assign skill_full_name = "DevOps & Continous Integration" %}
-        {% assign skill_html_description = "DevOps & Continous Integration text" %}
       {% endif %}
       {% if skill == 'tdd' %}
         {% assign project_tags = "jasmine,chai,protractor" | split: "," %}
         {% assign skill_full_name = "Test Driven Development" %}
-        {% assign skill_html_description = "Test Driven Development text" %}
       {% endif %}
-      
+      {% if skill == 'fcc' %}
+        {% assign project_tags = "basicfront,intfront,api,webapp" | split: "," %}
+        {% assign skill_full_name = "Free Code Camp Projects" %}
+      {% endif %}
       {% assign includer = "tags/" | append: skill | append: ".html" %}
       {% assign portfolio_skill_ref = skill | append: "-ref" %}
-      <h2 id="{{portfolio_skill_ref}}">{{skill_full_name}}</h2>
+      <h2 class="lesshead" id="{{portfolio_skill_ref}}">{{skill_full_name}}</h2>
       <p>{% include {{includer}} %}</p>
       
       
       {% for tag in project_tags %}
+        {% if tag == 'basicfront' %}
+          {% assign tag_full_name = "Basic Front End Development" %}
+        {% elsif tag == 'intfront' %}
+          {% assign tag_full_name = "Intermediate Front End Development" %}
+        {% elsif tag == 'api' %}
+          {% assign tag_full_name = "API Development" %}
+        {% elsif tag == 'webapp' %}
+          {% assign tag_full_name = "Web Applications" %}
+        {% elsif tag == 'htmlcss' %}
+          {% assign tag_full_name = "HTML5 & CSS" %}
+        {% else %}
+
+          {% assign tag_full_name = {{tag | capitalize}}  %}
+        {% endif %}
+
         {% assign image_url = "/assets/themes/ricify/images/" | append: tag | append: ".png" %}
         {% assign includer = "tags/" | append: tag | append: ".html" %}
         {% assign tag_page_ref = "/tags.html#" | append: tag | append: "-ref" %}
@@ -57,13 +68,13 @@ categories: projects
         <div class="media" id="{{portfolio_tag_ref}}">
           <div class="media-left">
             <a href="{{tag_page_ref}}">
-              <img class="media-object" src="{{image_url}}" alt="{{tag | capitalize}} logo">
+              <img class="media-object" src="{{image_url}}" alt="{{tag_full_name | capitalize}} logo">
             </a>
           </div>
           <div class="media-body">
-            <h3 class="media-heading" ><a href="{{tag_page_ref}}">{{tag | capitalize}}</a></h3>
+            <h3 class="media-heading" ><a href="{{tag_page_ref}}">{{tag_full_name | capitalize}}</a></h3>
               <p>{% include {{includer}} %}</p>
-              <p>{{tag | capitalize}} Projects:</p>
+              <p>{{tag_full_name }} Projects:</p>
               <ul class="posts">
                 {% for post in site.categories[cat] %}
                   {% if post.tags contains tag %}
