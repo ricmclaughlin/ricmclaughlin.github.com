@@ -5991,3 +5991,8 @@ h2.lesshead {
 .project {
   text-indent: 10px;
 }
+
+.media {
+  margin-left: 5px;
+  margin-right: 5px;
+}

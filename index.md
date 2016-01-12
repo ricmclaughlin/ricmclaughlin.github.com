@@ -34,8 +34,8 @@ tagline: Supporting tagline
             <td>White Boarding, <a href="/portfolio#emmet-ref">Emmet</a>, <a href="/portfolio#sublime-ref">Sublime</a>, lo.fi.ui</td>
           </tr>
           <tr>
-            <td>HTML & CSS Crafting </td>
-            <td>Bootstrap, Angular.UI, Sass</td>
+            <td><a href="/portfolio#htmlcss-ref">HTML & CSS Crafting</a> </td>
+            <td><a href="/portfolio#bootstrap-ref">Bootstrap</a>, <a href="/portfolio#angular.ui">Angular.UI</a>, <a href="/portfolio#sass">Sass</a></td>
           </tr>
           <tr>
             <td>Front End</td>
