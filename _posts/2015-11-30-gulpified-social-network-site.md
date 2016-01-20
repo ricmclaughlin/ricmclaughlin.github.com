@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Gulpified Social Network Site"
+title: "A Gulp-ified Social Network Site"
 modified: 2015-11-30 09:32:57 -0800
 tags: [jquery, htmlcss, gulp, sass]
 categories: projects

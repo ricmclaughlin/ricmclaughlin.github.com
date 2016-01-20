@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Project in HTML5"
+title: "Projects in HTML5"
 modified: 2015-12-05 18:49:32 +0200
-tags: [javascript, frontend, html5]
+tags: [javascript, frontend, htmlcss]
 categories: projects
 ---
 

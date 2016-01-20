@@ -42,12 +42,12 @@ tagline: Supporting tagline
             <td>JavaScript, <a href="/portfolio#angularjs-ref">Angularjs</a>, <a href="/portfolio#ionic-ref">ionic</a>, <a href="/portfolio#jquery-ref">jQuery</a></td>
           </tr>
           <tr>
-            <td>Back End </td>
-            <td>JavaScript, Node, Express, Sails, MongoDB, Postgres</td>            
+            <td><a href="/portfolio#backend-ref">Back End</td>
+            <td>JavaScript, Node, <a href="/portfolio#express-ref">Express</a>, <a href="/portfolio#sails-ref">Sails</a>, MongoDB, Postgres</td>            
           </tr>
           <tr>
-            <td>Test Driven Development</td>
-            <td>Jasmine, Chai, Mocha &amp; Protractor</td>
+            <td><a href="/portfolio#tdd-ref">Test Driven Development</a></td>
+            <td><a href="/portfolio#jasmine-ref">Jasmine</a>, Chai, Mocha &amp; Protractor</td>
           </tr>
           <tr>
             <td>DevOps &amp; Continous Integration</td>
