@@ -50,8 +50,8 @@ tagline: Supporting tagline
             <td><a href="/portfolio#jasmine-ref">Jasmine</a>, Chai, Mocha &amp; Protractor</td>
           </tr>
           <tr>
-            <td>DevOps &amp; Continous Integration</td>
-            <td>Git, Gulp, Travis</td>
+            <td><a href="/portfolio#devops-ci-ref">DevOps &amp; Continous Integration</a></td>
+            <td><a href="/portfolio#git-ref">Git</a>, <a href="/portfolio#gulp-ref">Gulp</a>, <a href="/portfolio#travis-ref">Travis</a></td>
           </tr>
           <tr>
             <td>Project Delivery</td>
