@@ -20,10 +20,17 @@ It is very cool that FCC lets you use what ever tools you want to create these p
 
 For this project I didn't go full force TDD. I implemented unit tests for the controllers and services but didn't implement any e2e tests. I'll be doing that on future projects. 
 
-Interesting tid-bit I learned on this project:
+Interesting tid-bits I learned on this project:
 
 1. If you try to lighten up up and use Angular 1.4 jqLite instead of regular jQuery and try to add the regular tweet javascript inline using <code>script</code> tags or in it's own .js file, you get a nice Content Security Policy in Chrome. So I implemented a nifty sharing directive from [Jason Watmore](http://jasonwatmore.com/post/2014/08/01/AngularJS-directives-for-social-sharing-buttons-Facebook-Like-GooglePlus-Twitter-and-Pinterest.aspx) that works like a champ... but requires jQuery. 
 
 1. There are lots of APIs around for quotes and they all suck. The one used by the majority of campers doesn't emit proper JSON. So, I embbedded the quotes required for this project in an angular service.
 
 1. [ui.router](https://github.com/angular-ui/ui-router) is the coolest routing solution I have seen. The idea of a state machine applied to router is nifty.
+
+<ul>
+<li>
+  Live Project URL: <a href="http://ric.mclaughlin.today/fcc_quote_machine/">http://ric.mclaughlin.today/fcc_quote_machine/</a>
+</li>
+<li>Github Repository: <a href="https://github.com/ricmclaughlin/fcc_quote_machine">https://github.com/ricmclaughlin/fcc_quote_machine</a></li>
+</ul>

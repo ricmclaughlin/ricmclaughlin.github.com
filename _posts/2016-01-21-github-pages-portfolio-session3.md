@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Github Pages Portfolio Course - Session 2"
+title: "Github Pages Portfolio Course - Session 3"
 description: ""
 category: projects
 tags: [git, devops-ci, gulp, ruby, jekyll, bootstrap]
