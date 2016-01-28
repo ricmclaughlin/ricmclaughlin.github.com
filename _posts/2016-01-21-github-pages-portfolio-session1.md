@@ -21,7 +21,7 @@ The first session covers the following topics:
 
 3. Git client installation &amp; configuration
 
-4. Features and functions of git including <a href="http://slides.com/ricmclaughlin/githubportfolio1-1#/16">branches &amp; commits</a>.
+4. Features and functions of git including clone, fork, push, pull, checkout, merge, <a href="http://slides.com/ricmclaughlin/githubportfolio1-1#/16">branches &amp; commits</a>.
 
 5. Git hub profile and a <a href="http://slides.com/ricmclaughlin/githubportfolio1-1#/20">personal gh-pages</a> website
 
