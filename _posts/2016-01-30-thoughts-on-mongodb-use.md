@@ -3,7 +3,7 @@ layout: post
 title: "Thoughts on MongoDB Use"
 description: ""
 category: 
-tags: []
+tags: [mongodb, node, backend]
 ---
 {% include JB/setup %}
 

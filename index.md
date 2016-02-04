@@ -55,7 +55,7 @@ tagline: Supporting tagline
           </tr>
           <tr>
             <td>Project Delivery</td>
-            <td>Ricified LeanUX (Scrum, Kanban, LeanUX)</td>  
+            <td>Scrum, Kanban, LeanUX, Ric's Special Sauce</td>  
           </tr>
         </tbody>
     </table>

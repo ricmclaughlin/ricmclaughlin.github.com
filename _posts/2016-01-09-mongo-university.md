@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Excellent, Free, Mongo-University"
+title: "Excellent, Free, MongoDB-University"
 modified: 2014-05-04 18:49:32 +0200
-tags: [mongo, node, backend]
+tags: [mongodb, node, backend]
 categories: posts
 ---
 <p>I've been interested in MongoDB for a while. In fact, I have started, but not finished the <a href="https://university.mongodb.com/courses/M101J/about">M101P: MongoDB for developers class</a> twice now.</p> 

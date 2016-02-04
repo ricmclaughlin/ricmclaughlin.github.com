@@ -19,7 +19,7 @@ Seeing that Less is on the way out I rewrote this project in Sass. Every time I 
 
 3. Autoprefixer - Yet another reason to use a task runner for building your website, [gulp-autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer) pretty much eliminates the need to remember what you need to write a vendor prefix for and luckily eliminates the need to look at [canIUse.com](http://caniuse.com/) ever again! I love [gulp](http://gulpjs.com/).
 
-Just because I love jQuery so much, I implemented the jQuery [Easing plugin](http://gsgd.co.uk/sandbox/jquery/easing/) to do a nice little scrolling technique from the menu. Nothing to amazing but fun to implement!
+Just because I love jQuery so much, I implemented the jQuery [easing plugin](http://gsgd.co.uk/sandbox/jquery/easing/) to do a nice little scrolling technique from the menu. Nothing to amazing but fun to implement!
 
 This project is part of my [portfolio](http://ric.mclaughlin.today/prj_btstrp_agency).
 
