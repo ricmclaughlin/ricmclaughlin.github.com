@@ -13,19 +13,19 @@ The big thing I hope students get out of this is basic git workflow, the identif
 
 Topics in this class include: 
 
-1. [The importance of an online portfolio](http://slides.com/ricmclaughlin/githubportfolio1-1-2#/2)
+1. [The importance of an online portfolio](http://slides.com/ricmclaughlin/githubportfolio1-1-2#/2) - Yes, I feel the need to talk about this again!
 
-2. [Git gh-pages review](http://slides.com/ricmclaughlin/githubportfolio1-1-2#/5)
+2. [Git gh-pages review](http://slides.com/ricmclaughlin/githubportfolio1-1-2#/5) - A touch of review on gh-pages.
 
-3. [Comparing the Nodejs toolchain and the Ruby toolchain](http://slides.com/ricmclaughlin/githubportfolio1-1-2#/12)
+3. [Comparing the Nodejs toolchain and the Ruby toolchain](http://slides.com/ricmclaughlin/githubportfolio1-1-2#/12) - We now know something about the ruby toolchain - how does the node.js toolchain compare and contrast?
 
-4. [nvm - Node Version Manager](http://slides.com/ricmclaughlin/githubportfolio1-1-2#/15)
+4. [nvm - Node Version Manager](http://slides.com/ricmclaughlin/githubportfolio1-1-2#/15) - We like rvm; we learn to love nvm.
 
-5. [Yeoman and project Scaffolding](http://slides.com/ricmclaughlin/githubportfolio1-1-2#/19)
+5. [Yeoman and project Scaffolding](http://slides.com/ricmclaughlin/githubportfolio1-1-2#/19) - Scaffolding new projects with <code>yo</code> saves tons of time and makes development easier.
 
-6. [Gulp, gulp plugins &amp; gulp-gh-pages](http://slides.com/ricmclaughlin/githubportfolio1-1-2#/25)
+6. [Gulp, gulp plugins &amp; gulp-gh-pages](http://slides.com/ricmclaughlin/githubportfolio1-1-2#/25) - Let's add functionality to our new build process to integrated it with github.
 
-7. [Jekyll post creation and github project creation review](http://slides.com/ricmclaughlin/githubportfolio1-1-2#/27)
+7. [Jekyll post creation and github project creation review](http://slides.com/ricmclaughlin/githubportfolio1-1-2#/27) - Now do everything you have learned... on your own!
 
 <p>
   The First Part of Github Pages Portfolio Development - <a href={{ BASE_PATH }}"/projects/github-pages-portfolio-session1">Session 1</a>

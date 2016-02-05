@@ -2,8 +2,8 @@
 layout: post
 title: "My Gulpfile.js Recipe - Part 1"
 description: ""
-category: posts
-tags: [javascript, gulp, angularjs, devops-ci, tdd, travis, coveralls]
+category: projects
+tags: [javascript, gulp, angularjs, travis, coveralls, devops-ci]
 ---
 {% include JB/setup %}
 
