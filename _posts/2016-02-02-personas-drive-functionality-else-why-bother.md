@@ -2,7 +2,7 @@
 layout: post
 title: "Personas Should Drive Functionality. Else Why Bother?"
 description: ""
-category: 
+category: posts
 tags: []
 ---
 {% include JB/setup %}
