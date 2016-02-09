@@ -28,5 +28,7 @@ Not sure. But I am sure that the M101JS: MongoDB for Node.js Developers class ge
 * Sort fields second
 * Range fields last
 
-8. The simple case of poor performance for the 
+8. The simple case of spotting poor performance in a MongoDB query is looking through the database output log - all slow queries get logged. MongoDB also has [mongotop](https://docs.mongodb.org/manual/reference/program/mongotop/) a utility that enables you to track read and write performance during a time interval. You can also use [mongostat](https://docs.mongodb.org/manual/reference/program/mongostat/) to get quick overview of running mongod or mongos instances. 
+
+Again, this mongoDB class is really good. Again, this class shows me that there might be a bit too much control and power given to the average developer who might be using MongoDB. 
 
