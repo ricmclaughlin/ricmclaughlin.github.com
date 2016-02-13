@@ -3,7 +3,7 @@ layout: post
 title: "Github Pages Portfolio Development Course with Jekyll, Yeoman and Gulpjs"
 description: ""
 category: projects
-tags: [git, classes]
+tags: [git, classes, portfoliodev]
 ---
 {% include JB/setup %}
 The idea behind the class is to take students who have a basic compentence in HTML & CSS with bit of commandline and JavaScript skills and teach them the basics of [git](https://git-scm.com/), [github](https://github.com/ricmclaughlin), [Jekyll](http://jekyllrb.com/) and [gulp.js](http://gulpjs.com/). In addition, folks will get some understanding of what a development tool chain is and how to manage that tool chain on an [Ubuntu](http://www.ubuntu.com/) workstation using the super cool [c9](https://c9.io) cloud development environment.
@@ -23,6 +23,7 @@ Checkout details of the class:
 This class uses [c9](https://c9.io) and here are the [setup instructions](http://ric.mclaughlin.today/posts/github-pages-portfolio-class-setup-with-c9). Please email me at ric + the @ sign + mclaughlin.today to register!
 
 The next class will be held:
+
 * 6:30-8:30 - February 15, 16 & 18 at [1800 NW Market St, Suite 201, Seattle, WA, us](https://goo.gl/maps/GvZkjFbR8Mu) 
 
 
