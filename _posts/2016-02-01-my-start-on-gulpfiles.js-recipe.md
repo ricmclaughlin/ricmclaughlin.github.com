@@ -9,7 +9,7 @@ tags: [javascript, gulp, angularjs, travis, coveralls, devops-ci]
 
 ## Angular Gulp Recipe
 
-In the quest to build the ultimate Angular Gulpfile, I worked through a couple of gulp classes and then set out to make my own using smatterings of everything I have learned. This is the result. Technics I have implemented here include:
+In the quest to build the ultimate Angular Gulpfile, I worked through a couple of gulp classes and then set out to make my own using smatterings of everything I have learned and then implemented. This is the result. Technics I have implemented here include:
 
 0. Helpers & Organization - Lots of folks dislike gulp because it gets unweldy as the tasks pile up. Welcome to development. There is a reason it is complex. It's the nature of software. That said, there are a couple of things I have figured out to simplify were you can. And there are so many hints and bits of sunshine that I made a new post on [gulpjs helpers, organization and best practices]({{ BASE_PATH }}/project/gulpjs-helpers-organization-best-practices).
 

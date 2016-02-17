@@ -23,11 +23,11 @@ How I am counting: If the class is more than 1 day, it only counts as 1 class. I
 
 Let's track my progress so far:
 
-Total as of 2/10/2016: 1
+Total as of 2/17/2016: 13
 
 * January: 1 Delivered
 
-* February: 0 Delivered; 10 Booked
+* February: 12 Delivered
 
 * March: 10 Booked
 
