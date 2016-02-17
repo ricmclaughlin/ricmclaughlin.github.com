@@ -26,5 +26,6 @@ The next class will be held:
 
 * 6:30-8:30 - February 15, 16 & 18 at [1800 NW Market St, Suite 201, Seattle, WA, us](https://goo.gl/maps/GvZkjFbR8Mu) 
 
-Session #1 [Live session URL](http://slides.com/ricmclaughlin/githubportfolio1-1/live) 
+Session #1 [Live session URL](http://slides.com/ricmclaughlin/githubportfolio1-1/live)
 
+Session #2 [Live session URL](http://slides.com/ricmclaughlin/githubportfolio2/live) 
