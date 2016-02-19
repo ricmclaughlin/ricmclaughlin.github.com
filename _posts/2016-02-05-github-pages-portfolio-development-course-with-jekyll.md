@@ -29,3 +29,5 @@ The next class will be held:
 Session #1 [Live session URL](http://slides.com/ricmclaughlin/githubportfolio1-1/live)
 
 Session #2 [Live session URL](http://slides.com/ricmclaughlin/githubportfolio2/live) 
+
+Session #3 [Live session URL](http://slides.com/ricmclaughlin/githubportfolio1-1-2/live) 
