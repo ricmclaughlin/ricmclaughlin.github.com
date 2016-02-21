@@ -25,6 +25,7 @@ Checkout the details of the class:
 This class uses [c9](https://c9.io) and here are the [setup instructions](http://ric.mclaughlin.today/posts/github-pages-portfolio-class-setup-with-c9). Please email me at ric + the @ sign + mclaughlin.today to register!
 
 The next class will be held:
+
 * 6:30-8:30 - February 29, Mar 1 &amp; 3 at [1800 NW Market St, Suite 201, Seattle, WA, us](https://goo.gl/maps/GvZkjFbR8Mu) 
 
 * Session #1 [Live session URL](http://slides.com/ricmclaughlin/githubportfolio1-1/live)
@@ -35,4 +36,5 @@ The next class will be held:
 
 
 Previous Sessions:
+
 * 6:30-8:30 - February 15, 16 & 18 - 10 Students
