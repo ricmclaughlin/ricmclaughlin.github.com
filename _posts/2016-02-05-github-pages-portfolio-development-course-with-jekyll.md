@@ -28,12 +28,20 @@ The next class will be held:
 
 * 6:30-8:30 - February 29, Mar 1 &amp; 3 at [1800 NW Market St, Suite 201, Seattle, WA, us](https://goo.gl/maps/GvZkjFbR8Mu) 
 
+During the class I drive a presentation that you view online with the following links: 
+
 * Session #1 [Live session URL](http://slides.com/ricmclaughlin/githubportfolio1-1/live)
 
 * Session #2 [Live session URL](http://slides.com/ricmclaughlin/githubportfolio2/live) 
 
 * Session #3 [Live session URL](http://slides.com/ricmclaughlin/githubportfolio1-1-2/live) 
 
+AFTER the class done, or ever before if you want to checkout what is in each session, you can the presentations online with the following links: 
+* Session #1 [Presentation URL](http://slides.com/ricmclaughlin/githubportfolio1-1)
+
+* Session #2 [Presentation URL](http://slides.com/ricmclaughlin/githubportfolio2) 
+
+* Session #3 [Presentation URL](http://slides.com/ricmclaughlin/githubportfolio1-1-2) 
 
 Previous Sessions:
 
