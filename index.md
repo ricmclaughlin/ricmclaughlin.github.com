@@ -13,7 +13,7 @@ tagline: Supporting tagline
   <div id="about-me" class="col-md-6">
       <h2>Hi! I'm Ric McLaughlin!</h2>
       <h2>I'm a Seattle based full-stack, app developer focused like-a-laser on the <a href="https://en.wikipedia.org/wiki/MEAN_(software_bundle)"><img class="inline-block" src="/assets/themes/ricify/images/mean.png" alt="MEAN"></a> stack.</h2> 
-      <h2>I design, code, and lead teams. </h2>
+      <h2>I design, code, and lead teams. Oh, and I <a href="/portfolio#classes-ref">teach a bit too.</a></h2>
     
   </div>
 

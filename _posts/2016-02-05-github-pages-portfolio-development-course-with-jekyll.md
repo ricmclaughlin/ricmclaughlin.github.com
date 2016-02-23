@@ -36,7 +36,8 @@ During the class I drive a presentation that you view online with the following 
 
 * Session #3 [Live session URL](http://slides.com/ricmclaughlin/githubportfolio1-1-2/live) 
 
-AFTER the class done, or ever before if you want to checkout what is in each session, you can the presentations online with the following links: 
+AFTER the class done, or even before if you want to checkout what is in each session, you can the presentations online with the following links:
+
 * Session #1 [Presentation URL](http://slides.com/ricmclaughlin/githubportfolio1-1)
 
 * Session #2 [Presentation URL](http://slides.com/ricmclaughlin/githubportfolio2) 
