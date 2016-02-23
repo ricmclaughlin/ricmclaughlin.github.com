@@ -27,7 +27,7 @@ This week's lesson continues to add to my troubling thoughts about MongoDB from 
 
 2. Building a Sharded Environment - Sharding is the ability to horizonally scale a MongoDB instances using a range of `_id` and shard key and uses a different router called `mongoS`. If you don't include a shard key in your request, mongoS must communicate with all the nodes in the replica set.
 
-5. Sharding + Replication - This is the holy grail of mongoDB deployments. Quite complicate but requires little addition
+5. Sharding + Replication - This is the holy grail of mongoDB deployments.
 
 
 
