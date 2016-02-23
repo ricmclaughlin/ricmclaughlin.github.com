@@ -25,9 +25,9 @@ This week's lesson continues to add to my troubling thoughts about MongoDB from 
 
 4. Read Preferences - There are 5 read preferences that are apptly named: Primary, Primary Preferred, Secondary, Secendary Preferred and Nearest.
 
-2. Building a Sharded Environment - Sharding is the ability to horizonally scale a MongoDB instances using a range of `_id` and shard key and uses a different router called `mongoS`. If you don't include a shard key in your request, mongoS must communicate with all the nodes in the replica set.
+2. Building a Sharded Environment - Sharding is the ability to horizonally scale a MongoDB instances using a range of `_id` and shard key and uses a different router called `mongoS`. If you don't include a shard key in your request, mongoS must communicate with all the nodes in the replica set. If you understand that every document must include the shard key ideally as the `_id`, shard keys are immutable and ranges of `_id` get distributed between shards then you the basics.
 
-5. Sharding + Replication - This is the holy grail of mongoDB deployments.
+5. Sharding + Replication - This is the holy grail of mongoDB deployments and why giant web properties use MongoDB to begin with. MongoDB it is for "giant ideas", right? From a developer perspective nothing really changes. All the configuration for a sharded replica set should be configured on the replica set. I hope one day to run property that is so darn popular that we have a problem this big to solve. And when that happens MongoDB will be part of the solution. 
 
 
 
