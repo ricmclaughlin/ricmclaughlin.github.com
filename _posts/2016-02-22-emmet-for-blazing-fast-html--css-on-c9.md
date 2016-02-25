@@ -11,6 +11,6 @@ This is a single evening hour-ish long course that introduces students to how th
 
 I first taught this class February 23, 2016 at the Free Code Camp - Ballard meetup.
 
-* Here is a link to the live [emmet on c9](http://slides.com/ricmclaughlin/deck/live) presentation
+* Here is a link to the [live emmet on c9](http://slides.com/ricmclaughlin/deck/live) presentation
 
-* Here is a link to the archived [emmet on c9](http://slides.com/ricmclaughlin/deck) presentation
+* Here is a link to the [archived emmet on c9](http://slides.com/ricmclaughlin/deck) presentation
