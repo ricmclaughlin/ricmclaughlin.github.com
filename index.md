@@ -39,15 +39,15 @@ tagline: Supporting tagline
           </tr>
           <tr>
             <td><a href="/portfolio#frontend-ref">Front End</a></td>
-            <td>JavaScript, <a href="/portfolio#angularjs-ref">Angularjs</a>, <a href="/portfolio#ionic-ref">ionic</a>, <a href="/portfolio#jquery-ref">jQuery</a></td>
+            <td><a href="/tags.html#javascript-ref">JavaScript</a>, <a href="/portfolio#angularjs-ref">Angularjs</a>, <a href="/portfolio#ionic-ref">ionic</a>, <a href="/portfolio#jquery-ref">jQuery</a></td>
           </tr>
           <tr>
             <td><a href="/portfolio#backend-ref">Back End</td>
-            <td>JavaScript, Node, <a href="/portfolio#express-ref">Express</a>, <a href="/portfolio#sails-ref">Sails</a>, MongoDB, Postgres</td>            
+            <td><a href="/tags.html#javascript-ref">JavaScript</a>, <a href="/portfolio#node-ref">Node</a>, <a href="/portfolio#express-ref">Express</a>, <a href="/portfolio#sails-ref">Sails</a>, <a href="/portfolio#mongodb-ref">MongoDB</a>, Postgres</td>            
           </tr>
           <tr>
             <td><a href="/portfolio#tdd-ref">Test Driven Development</a></td>
-            <td><a href="/portfolio#jasmine-ref">Jasmine</a>, Chai, Mocha &amp; Protractor</td>
+            <td><a href="/portfolio#jasmine-ref">Jasmine</a>, <a href="/portfolio#chai-ref">Chai</a>, <a href="/portfolio#mocha-ref">Mocha</a> &amp; <a href="/portfolio#protractor-ref">Protractor</a></td>
           </tr>
           <tr>
             <td><a href="/portfolio#devops-ci-ref">DevOps &amp; Continous Integration</a></td>

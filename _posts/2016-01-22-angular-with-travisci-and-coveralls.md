@@ -3,7 +3,7 @@ layout: post
 title: "Angularjs with TravisCI and Coveralls"
 description: ""
 category: projects
-tags: [devops-ci, travis, jasmine]
+tags: [devops-ci, travis, jasmine, coveralls]
 ---
 {% include JB/setup %}
 

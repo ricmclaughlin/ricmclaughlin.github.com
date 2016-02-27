@@ -17,20 +17,21 @@ I like to code but I'm no superstar coder. In fact, I, like lots of developers, 
 
 So to sum that up: I like to teach, I want to help people that help that want to help themselves, I like to code and I like to meet people. If you combine all those passions together you end up with this goal:
 
-I will teach a coding class that I have created to 200 people in 2016. 
+*I will teach a coding class that I have created to 200 people in 2016.* 
 
-How I am counting: If the class is more than 1 day, it only counts as 1 class. If someone attends more than one class from me during the year, they get counted as a student in each class.
+#Total as of 3/04/2016
+* January: 2 Delivered
 
-Let's track my progress so far:
+* February: 27 Delivered
 
-Total as of 2/17/2016: 13
+So after a little addition you end up realizing 29 Students have received instruction in classes I have developed this year. Do a little multiplication and you realize that 178.5 hours of teaching have been received by these worthy students. 
 
-* January: 1 Delivered
+I currently have a backlog of 8 students for the portfolio class.
 
-* February: 12 Delivered
+How I am counting: Even if the class is more than 1 day, it only counts as 1 class. If someone attends more than one class from me during the year, they get counted as a student in each class.
 
-* March: 10 Booked
-
-Classes I have developed:
+#Classes I have developed:
 
 1. [Github Pages Portfolio Development Course with Jekyll, Yeoman and Gulpjs]({{ BASE_PATH }}/projects/github-pages-portfolio-development-course-with-jekyll)
+
+2. [Super Quick Fast HTML & CSS with Emmet on c9]({{ BASE_PATH }}/emmet-for-blazing-fast-html-css-on-c9)
