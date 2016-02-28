@@ -34,4 +34,4 @@ How I am counting: Even if the class is more than 1 day, it only counts as 1 cla
 
 1. [Github Pages Portfolio Development Course with Jekyll, Yeoman and Gulpjs]({{ BASE_PATH }}/projects/github-pages-portfolio-development-course-with-jekyll)
 
-2. [Super Quick Fast HTML & CSS with Emmet on c9]({{ BASE_PATH }}/emmet-for-blazing-fast-html-css-on-c9)
+2. [Super Quick Fast HTML & CSS with Emmet on c9]({{ BASE_PATH }}/projects/emmet-for-blazing-fast-html-css-on-c9)

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "A mongoDB Project Direct From the Mongo Folks"
+title: "A MongoDB Project Direct From the Mongo Folks"
 description: ""
 category: projects
 tags: [mongodb, node, backend, javascript, express]

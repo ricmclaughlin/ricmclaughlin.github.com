@@ -9,13 +9,13 @@ Sure, [Ruby](https://www.ruby-lang.org/en/) is used by [sysadmins](http://devops
 
 But I proceed with caution about learning anything new... learning is time consuming so if you want to learn rails... well, you should be sure about it. To that end, I'd recommend getting your feed wet with Rails, learn Ruby completely, then complete learning Rails.  
 
-I should also say that while the "[bootcamp](http://www.skilledup.com/articles/the-ultimate-guide-to-coding-bootcamps-the-exhaustive-list/)" or [giant expensive courses](http://www.gotealeaf.com/) to learn Rail seem necessary, I have done a lot of professional software development with no training, with free training or with course that cost less than $200 dollars. 
+I should also say that while the "[bootcamp](http://www.skilledup.com/articles/the-ultimate-guide-to-coding-bootcamps-the-exhaustive-list/)" or [giant expensive courses](https://launchschool.com/) to learn Rails seem necessary, I have done a lot of professional software development with no training, with free training or with course that cost less than $200 dollars. 
 
 That said, I'd recommend these courses in this order:
 
 Start off with Michael Hartl's ubiquitous [Ruby on Rails Tutorial](https://www.railstutorial.org/book). This tutorial takes time. Not a couple of day thing like lots of others. He starts with installing the perquisite software, which is a non-trivial task for some, and leads you into the basics of a blog app. I'm not as fond of the third, current edition, as I am of the older editions - He's taken the TDD aspect of the tutorial out. Nevertheless, the price is right: Free.
 
-From here, follow my [The Ruby Learning Path - Beginner Level](http://ric.mclaughlin.today/the-ruby-learning-path-beginner/ "Title") set of courses or the [The Ruby Learning Path - Intermediate Level](the-ruby-learning-path-intermediate/ "Title") if you have programmed before. 
+From here, follow my [The Ruby Learning Path - Beginner Level](posts/the-ruby-learning-path-beginner) set of courses or the [The Ruby Learning Path - Intermediate Level](the-ruby-learning-path-intermediate/ "Title") if you have programmed before. 
 
 Up next is the [Ruby on Rails:Level I](https://pragmaticstudio.com/rails) course. The thing I really like about this class is the format. Watch a video. Do some exercises that require you to think. Do some bonus material. THEN create another app on your own that is similar enough to the example so that you know what you are doing but different enough to make you think. A little weak on the testing side but has crystal clear material with a superior format. A deal at $169. Should take a couple of weeks to soak it all in.
 
