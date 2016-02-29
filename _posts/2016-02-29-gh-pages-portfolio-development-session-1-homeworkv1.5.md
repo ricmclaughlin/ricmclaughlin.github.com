@@ -8,13 +8,13 @@ tags: []
 {% include JB/setup %}
 
 
-#Session 1 Homework
+# Session 1 Homework
 
 The goal is to use the same process we used to create the first_one project and create a new project. 
 
 There isn’t anything in this homework we haven’t covered and if you have problems you call refer to the live presentation and modify as needed. Email me if you are having problems.
-
-##Create a new website project
+ 
+## Create a new website project
 
 1. Create a new repo on github called second_one
 
@@ -34,7 +34,7 @@ There isn’t anything in this homework we haven’t covered and if you have pro
 
 2. Confirm you your new project is live at at https://[github username].github.io/second_one
 
-##Add a link to second_one from your portfolio
+## Add a link to second_one from your portfolio
 
 2. Open your portfolio workspace on c9
 
