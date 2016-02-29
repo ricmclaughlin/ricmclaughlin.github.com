@@ -1,13 +1,11 @@
 ---
 layout: post
-title: "Github Pages Portfolio Course - Session 1 v1.0"
+title: "Github Pages Portfolio Course - Session 1 v1.5"
 description: ""
 category: projects
-tags: [git, devops-ci, bootstrap, portfoliodev]
+tags: [git, devops-ci, ruby, jekyll, bootstrap, portfoliodev]
 ---
 {% include JB/setup %}
-
-There is a new version of this class here: [Github Pages Portfolio Development Course with Jekyll, Yeoman and Gulpjs v1.5]({{ BASE_PATH }}/projects/gh-pages-portfolio-with-jekyllv1.5)
 
 I've been involved with the Free Code Camp group here in Seattle for the last several months and I have gotten so much from the energy and enthuisasm of it.
 
@@ -17,7 +15,7 @@ This is my opportunity to give back to the group. To share what I know with the 
 
 The entire class is conducted in a hands on manner - at the end of the class everyone will have made their own online portfolio, hosted on github using the Jekyll static site generator, complete with a blog and knowledge of the Ruby and NodeJS toolchains, git/github, a bit of experience on the command line, a bit about gulpjs and the ability to create new projects and host the source and completed website on github as well. This is a jam packed course.
 
-To make things easier, the class uses the free c9 service that Free Code Camp uses in their curriculum. Folks taking the class should setup a git hub account, a c9 account and create their new workspace for the class. I have made instructions on how to do that on [my blog]({{ BASE_PATH/projects/github-pages-portfolio-class-setup-with-c9 }}). 
+To make things easier, the class uses the free c9 service that Free Code Camp uses in their curriculum. Folks taking the class should setup a git hub account, a c9 account and create their new workspace for the class. I have made instructions on how to do that on . 
 
 The first session covers the following topics:
 
@@ -31,7 +29,7 @@ The first session covers the following topics:
 
 5. Git hub profile and a <a href="http://slides.com/ricmclaughlin/githubportfolio1-1#/20">personal gh-pages</a> website - How to host a website on github.
 
-6. <a href="http://slides.com/ricmclaughlin/githubportfolio1-1#/24">Gh-pages for projects</a> - How we can use gh-pages for projects to host our projects.
+6. <a href="http://slides.com/ricmclaughlin/githubportfolio1-1#/24">gh-pages for projects</a> - How we can use gh-pages for projects to host our projects.
 
 <p>
   Check out the presentation on slides.com: <a href="http://slides.com/ricmclaughlin/githubportfolio1-1#/">http://slides.com/ricmclaughlin/githubportfolio1-1#/</a>

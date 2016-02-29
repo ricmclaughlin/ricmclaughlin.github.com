@@ -1,13 +1,11 @@
 ---
 layout: post
-title: "Github Pages Portfolio Course - Session 2 v1.0"
+title: "Github Pages Portfolio Course - Session 2 v1.5"
 description: ""
 category: projects
 tags: [git, devops-ci, gulp, ruby, jekyll, bootstrap, portfoliodev]
 ---
 {% include JB/setup %}
-
-There is a new version of this class here: [Github Pages Portfolio Development Course with Jekyll, Yeoman and Gulpjs v1.5]({{ BASE_PATH }}/projects/gh-pages-portfolio-with-jekyllv1.5)
 
 The focus of the second session of the Github Pages Portfolio Course is the installation of a ruby based tool chain, and the implementation of Jekyll for a portfolio website including blog posts and portfolio projects. This is a meaty class that is entirely hands on. By the end of the session, students have a great understanding of the ends and outs of Jekyll and have a fully functional github portfolio - just without projects that should be hosted in github. And we add those in session #3!
 

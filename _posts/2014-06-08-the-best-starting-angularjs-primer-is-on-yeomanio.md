@@ -3,6 +3,7 @@ layout: post
 title: "The Best Starting Angular.js Primer is on Yeoman.io"
 modified: 2014-06-08 14:28:38 +0200
 tags: [angularjs, yeoman, grunt]
+categories: posts
 ---
 {% include JB/setup %}
 The first struggle with [Angular.js](https://angularjs.org/), and most web app things it seems, is what parts go where in the project. So I figure that this is a good place to start. Perhaps that is the configuration-management build-guy deep within me talking. Anyways.
