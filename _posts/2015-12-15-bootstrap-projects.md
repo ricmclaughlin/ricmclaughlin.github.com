@@ -10,8 +10,6 @@ categories: projects
 
 <a href="http://ric.mclaughlin.today/prj_btstrp_photo_app/">Projects in Bootstrap - Photo App</a>
 
-  
-
 <a href="http://ric.mclaughlin.today/prj_btstrp_portfolio_sass/">Projects in Bootstrap - Portfolio Site with sass</a>
 
 <a href="http://ric.mclaughlin.today/prj_btstrp_dobble/">Projects in Bootstrap - Social Network site</a>
