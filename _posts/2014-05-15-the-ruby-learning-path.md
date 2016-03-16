@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The Ruby Learning Path"
-modified: 2014-05-15 13:48:55 +0200
+modified: 2015-05-15 13:48:55 +0200
 tags: [ruby, beginner, intermediate, advanced]
 categories: posts
 

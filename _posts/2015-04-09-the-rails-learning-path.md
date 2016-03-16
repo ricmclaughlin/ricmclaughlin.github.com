@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Rails Learning Path"
+title: "The Rails Learning Path"
 modified: 2015-04-09 18:55:38 +0200
 tags: [ruby, rails]
 categories: posts
