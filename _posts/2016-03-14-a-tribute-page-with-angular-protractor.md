@@ -3,7 +3,7 @@ layout: post
 title: "A Tribute Page using Angular & Protractor"
 description: ""
 category: projects
-tags: [angularjs, tdd, frontend, jasmine, basicfront, gulp]
+tags: [angularjs, tdd, frontend, jasmine, basicfront, gulp, protractor]
 ---
 {% include JB/setup %}
 
