@@ -36,7 +36,7 @@ categories: projects
         {% assign skill_full_name = "Test Driven Development" %}
       {% endif %}
       {% if skill == 'fcc' %}
-        {% assign project_tags = "basicfront" | split: "," %}
+        {% assign project_tags = "basicfront,basicback" | split: "," %}
         {% assign skill_full_name = "Free Code Camp Projects" %}
       {% endif %}
       {% if skill == 'classes' %}
@@ -52,9 +52,9 @@ categories: projects
       
       {% for tag in project_tags %}
         {% if tag == 'basicfront' %}
-          {% assign tag_full_name = "Basic Front End Development" %}
-        {% elsif tag == 'intfront' %}
-          {% assign tag_full_name = "Intermediate Front End Development" %}
+          {% assign tag_full_name = "Front End Development" %}
+        {% elsif tag == 'basicback' %}
+          {% assign tag_full_name = "Backend End Development" %}
         {% elsif tag == 'api' %}
           {% assign tag_full_name = "API Development" %}
         {% elsif tag == 'webapp' %}
