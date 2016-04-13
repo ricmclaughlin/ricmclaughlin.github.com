@@ -19,14 +19,16 @@ So to sum that up: I like to teach, I want to help people that help that want to
 
 *I will teach a coding class that I have created to 200 people in 2016.* 
 
-#Total as of 3/04/2016
+#Total as of 4/13/2016
 * January: 2 Delivered
 
-* February: 27 Delivered
+* February: 15 Delivered
 
-So after a little addition you end up realizing 29 Students have received instruction in classes I have developed this year. Do a little multiplication and you realize that 178.5 hours of teaching have been received by these worthy students. 
+* March: 10 Delivered
 
-I currently have a backlog of 8 students for the portfolio class.
+* April: 11 Delivered
+
+So after a little addition you end up realizing 38 Students have received instruction in classes I have developed this year. Do a little multiplication and you realize that 246 hours of teaching have been received by these worthy students. 
 
 How I am counting: Even if the class is more than 1 day, it only counts as 1 class. If someone attends more than one class from me during the year, they get counted as a student in each class.
 
