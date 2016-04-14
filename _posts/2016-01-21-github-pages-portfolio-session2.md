@@ -3,7 +3,7 @@ layout: post
 title: "Github Pages Portfolio Course - Session 2 v1.0"
 description: ""
 category: projects
-tags: [git, devops-ci, gulp, ruby, jekyll, bootstrap, portfoliodev]
+tags: [git, devops-ci, ruby, jekyll, bootstrap, portfoliodev]
 ---
 {% include JB/setup %}
 

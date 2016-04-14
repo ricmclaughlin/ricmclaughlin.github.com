@@ -7,6 +7,8 @@ tags: [git, devops-ci, ruby, jekyll, bootstrap, portfoliodev]
 ---
 {% include JB/setup %}
 
+There is a new version of this class here: [Github Pages Portfolio Development Course with Jekyll, Yeoman and Gulpjs v1.6]({{ BASE_PATH }}/projects/portfolio-development-class-v1.6)
+
 I've been involved with the Free Code Camp group here in Seattle for the last several months and I have gotten so much from the energy and enthuisasm of it.
 
 In the midst of that enthuisasm I have noticed that FCC, and almost no one I can find, teaches folks how to make an online portfolio and certainly not using [jeykll](http://jekyllrb.com/) and [gh-pages](https://pages.github.com/). Combined with the troubles lots of folks have taking coding skill they have learned in a browser and applying them to the desktop you have the makings of a great class.

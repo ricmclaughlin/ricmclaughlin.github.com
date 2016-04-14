@@ -3,7 +3,7 @@ layout: post
 title: "A Solid Jekyll Bootstrap Starter Project"
 description: ""
 category: projects
-tags: [git, devops-ci, ruby, jekyll, bootstrap, portfoliodev]
+tags: [git, devops-ci, ruby, jekyll, bootstrap]
 ---
 {% include JB/setup %}
 For the first serveral sessions of the [Github Pages Portfolio Development with Jekyll, Yeoman, and Gulpjs](projects/gh-pages-portfolio-with-jekyllv1.5), I've been using the best generic boostrap theme I could find - a fork of [jekyll-bootstrap-3](https://github.com/dbtek/jekyll-bootstrap-3)  which is a fork of [jekyll-bootstrap](https://github.com/plusjade/jekyll-bootstrap). 

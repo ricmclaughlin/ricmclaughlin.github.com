@@ -28,7 +28,7 @@ So to sum that up: I like to teach, I want to help people that help that want to
 
 * April: 11 Delivered
 
-So after a little addition you end up realizing 38 Students have received instruction in classes I have developed this year. Do a little multiplication and you realize that 246 hours of teaching have been received by these worthy students. 
+So after a little addition, you end up realizing 38 Students have received instruction in classes I have developed this year. Do a little multiplication and you realize that 246 hours of teaching have been received by these worthy students. 
 
 How I am counting: Even if the class is more than 1 day, it only counts as 1 class. If someone attends more than one class from me during the year, they get counted as a student in each class.
 
