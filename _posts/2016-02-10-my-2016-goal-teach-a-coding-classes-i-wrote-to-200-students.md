@@ -3,7 +3,7 @@ layout: post
 title: "My 2016 Goal: Teach a Coding Classes I Wrote to 200 Students"
 description: ""
 category: posts
-tags: [git, classes]
+tags: [git, classes, portfoliodev, c9]
 ---
 {% include JB/setup %}
 
