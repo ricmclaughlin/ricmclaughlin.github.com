@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Optimizing Your c9 Workspace"
+title: "Optimizing Your C9 Workspace"
 description: ""
 category: posts
 tags: [jekyll, c9]
