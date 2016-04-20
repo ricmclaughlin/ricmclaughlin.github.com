@@ -26,14 +26,16 @@ So to sum that up: I like to teach, I want to help people that help that want to
 
 * March: 10 Delivered
 
-* April: 11 Delivered
+* April: 20 Delivered
 
-So after a little addition, you end up realizing 38 Students have received instruction in classes I have developed this year. Do a little multiplication and you realize that 246 hours of teaching have been received by these worthy students. 
+So after a little addition, you end up realizing 47 Students have received instruction in classes I have developed this year. Do a little multiplication and you realize that 264 hours of teaching have been received by these worthy students. 
 
 How I am counting: Even if the class is more than 1 day, it only counts as 1 class. If someone attends more than one class from me during the year, they get counted as a student in each class.
 
 #Classes I have developed:
 
-1. [Github Pages Portfolio Development Course with Jekyll, Yeoman and Gulpjs]({{ BASE_PATH }}/projects/github-pages-portfolio-development-course-with-jekyll)
+1. [Github Pages Portfolio Development with Jekyll, Yeoman and Gulpjs Course]({{ BASE_PATH }}/projects/github-pages-portfolio-development-course-with-jekyll)
 
-2. [Super Quick Fast HTML & CSS with Emmet on c9]({{ BASE_PATH }}/projects/emmet-for-blazing-fast-html-css-on-c9)
+2. [Super Quick Fast HTML & CSS with Emmet on c9 Class]({{ BASE_PATH }}/projects/emmet-for-blazing-fast-html-css-on-c9)
+
+3. [Intro to JavaScript Data Structures with Commander.js Class]({{ BASE_PATH }}/projects/emmet-for-blazing-fast-html-css-on-c9)

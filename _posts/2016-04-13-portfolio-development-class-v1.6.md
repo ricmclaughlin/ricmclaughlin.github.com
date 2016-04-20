@@ -2,8 +2,8 @@
 layout: post
 title: "Github Pages Portfolio Development with Jekyll, Yeoman and Gulpjs v1.6"
 description: ""
-category: projects
-tags: [git, classes, portfoliodev, node]
+category: posts
+tags: [git, classes, portfoliodev, node, c9]
 ---
 {% include JB/setup %}
 

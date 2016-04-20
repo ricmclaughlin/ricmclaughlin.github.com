@@ -6,7 +6,7 @@ categories: projects
 {% assign cat = 'projects' %}
 {% assign project_tags = site.array %}
 {% assign skills = site.otherarray %}
-{% assign skills = "classes,frontend,backend,wireframe,htmlcss,devops-ci,tdd,fcc" | split: "," %}
+{% assign skills = "frontend,backend,wireframe,htmlcss,devops-ci,tdd,fcc,classes" | split: "," %}
 
 
   {% for skill in skills %}
@@ -40,8 +40,8 @@ categories: projects
         {% assign skill_full_name = "Free Code Camp Projects" %}
       {% endif %}
       {% if skill == 'classes' %}
-        {% assign project_tags = "portfoliodev,c9" | split: "," %}
-        {% assign skill_full_name = "Coding Class Development" %}
+        {% assign project_tags = "portfoliodev,htmlcssclass,javascriptclass,c9" | split: "," %}
+        {% assign skill_full_name = "Web Development Classes" %}
       {% endif %}
 
       {% assign includer = "tags/" | append: skill | append: ".html" %}

@@ -2,7 +2,7 @@
 layout: post
 title: "Emmet for Blazing Fast HTML & CSS on C9"
 description: ""
-tags: [emmet, htmlcss, frontend, classes, c9]
+tags: [emmet, htmlcss, frontend, classes, c9, htmlcssclass]
 categories: projects
 ---
 {% include JB/setup %}
