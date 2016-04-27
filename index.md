@@ -13,7 +13,7 @@ tagline: Supporting tagline
   <div id="about-me" class="col-md-6">
       <h2>Hi! I'm Ric McLaughlin!</h2>
       <h2>I'm a Seattle based full-stack, app developer focused like-a-laser on the <a href="https://en.wikipedia.org/wiki/MEAN_(software_bundle)"><img class="inline-block" src="/assets/themes/ricify/images/mean.png" alt="MEAN"></a> stack.</h2> 
-      <h2>I design, code, and lead teams. Oh, and I <a href="/portfolio#classes-ref">teach a bit too.</a></h2>
+      <h2>I design, code, and lead teams.</h2>
     
   </div>
 
@@ -43,7 +43,7 @@ tagline: Supporting tagline
           </tr>
           <tr>
             <td><a href="/portfolio#backend-ref">Back End</td>
-            <td><a href="/tags.html#javascript-ref">JavaScript</a>, <a href="/portfolio#node-ref">Node</a>, <a href="/portfolio#express-ref">Express</a>, <a href="/portfolio#sails-ref">Sails</a> | <a href="/portfolio#rails-ref">Ruby on Rails</a>, <a href="/portfolio#ruby-ref">Ruby</a> | <a href="/portfolio#mongodb-ref">MongoDB</a>, Postgres</td>            
+            <td><a href="/tags.html#javascript-ref">JavaScript</a>, <a href="/portfolio#node-ref">Node</a>, <a href="/portfolio#express-ref">Express</a> | <a href="/portfolio#rails-ref">Ruby on Rails</a>, <a href="/portfolio#ruby-ref">Ruby</a> | <a href="/portfolio#mongodb-ref">MongoDB</a>, Postgres</td>            
           </tr>
           <tr>
             <td><a href="/portfolio#tdd-ref">Test Driven Development</a></td>

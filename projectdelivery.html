@@ -1,48 +1,33 @@
 ---
 layout: page
-title: Portfolio
-categories: projects
+title: Project Delivery
+categories: delivery
 ---
-{% assign cat = 'projects' %}
+{% assign cat = 'delivery' %}
 {% assign project_tags = site.array %}
 {% assign skills = site.otherarray %}
-{% assign skills = "frontend,backend,wireframe,htmlcss,devops-ci,tdd,fcc,classes" | split: "," %}
+{% assign skills = "specialsauce,scrum,kanban,leanux" | split: "," %}
 
 
   {% for skill in skills %}
     <div class="category-archive">
-      {% if skill == "frontend" %}
+      {% if skill == "specialsauce" %}
         {% assign project_tags = "angularjs,jquery" | split: "," %}
-        {% assign skill_full_name = "Front End Development" %}
+        {% assign skill_full_name = "Ric's Special Sauce" %}
       {% endif %}
-      {% if skill == "backend" %}
+      {% if skill == "scrum" %}
         {% assign project_tags = "express,mongodb,postgresql,node,ruby,rails" | split: "," %}
-        {% assign skill_full_name = "Back End Development" %}
+        {% assign skill_full_name = "Scrum" %}
       {% endif %}
-      {% if skill == 'wireframe' %}
+      {% if skill == 'kanban' %}
         {% assign project_tags = "sublime,emmet" | split: "," %}
-        {% assign skill_full_name = "Rapid Lo-fi Wireframing" %}
+        {% assign skill_full_name = "Kanban" %}
       {% endif %}
-      {% if skill == 'htmlcss' %}
+      {% if skill == 'leanux' %}
         {% assign project_tags = "bootstrap,angular.ui,sass,htmlcss" | split: "," %}
-        {% assign skill_full_name = "HTML & CSS Crafting" %}
+        {% assign skill_full_name = "LeanUX" %}
       {% endif %}
-      {% if skill == 'devops-ci' %}
-        {% assign project_tags = "git,gulp,travis" | split: "," %}
-        {% assign skill_full_name = "DevOps & Continous Integration" %}
-      {% endif %}
-      {% if skill == 'tdd' %}
-        {% assign project_tags = "jasmine,chai,protractor" | split: "," %}
-        {% assign skill_full_name = "Test Driven Development" %}
-      {% endif %}
-      {% if skill == 'fcc' %}
-        {% assign project_tags = "basicfront,basicback" | split: "," %}
-        {% assign skill_full_name = "Free Code Camp Projects" %}
-      {% endif %}
-      {% if skill == 'classes' %}
-        {% assign project_tags = "portfoliodev,htmlcssclass,javascriptclass,c9" | split: "," %}
-        {% assign skill_full_name = "Web Development Classes" %}
-      {% endif %}
+      
 
       {% assign includer = "tags/" | append: skill | append: ".html" %}
       {% assign portfolio_skill_ref = skill | append: "-ref" %}
