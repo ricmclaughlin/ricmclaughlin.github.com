@@ -12,40 +12,40 @@ categories: delivery
   {% for skill in skills %}
     <div class="category-archive">
       {% if skill == "specialsauce" %}
-        {% assign project_tags = "angularjs,jquery" | split: "," %}
+        {% assign project_tags = "specialsauce" | split: "," %}
         {% assign skill_full_name = "Ric's Special Sauce" %}
       {% endif %}
       {% if skill == "scrum" %}
-        {% assign project_tags = "express,mongodb,postgresql,node,ruby,rails" | split: "," %}
+        {% assign project_tags = "scrum" | split: "," %}
         {% assign skill_full_name = "Scrum" %}
       {% endif %}
       {% if skill == 'kanban' %}
-        {% assign project_tags = "sublime,emmet" | split: "," %}
+        {% assign project_tags = "kanban" | split: "," %}
         {% assign skill_full_name = "Kanban" %}
       {% endif %}
       {% if skill == 'leanux' %}
-        {% assign project_tags = "bootstrap,angular.ui,sass,htmlcss" | split: "," %}
+        {% assign project_tags = "leanux" | split: "," %}
         {% assign skill_full_name = "LeanUX" %}
       {% endif %}
       
 
-      {% assign includer = "tags/" | append: skill | append: ".html" %}
+     <!--  {% assign includer = "tags/" | append: skill | append: ".html" %}
       {% assign portfolio_skill_ref = skill | append: "-ref" %}
       <h2 class="lesshead" id="{{portfolio_skill_ref}}">{{skill_full_name}}</h2>
-      <p>{% include {{includer}} %}</p>
+      <p>{% include {{includer}} %}</p> -->
       
       
       {% for tag in project_tags %}
-        {% if tag == 'basicfront' %}
-          {% assign tag_full_name = "Front End Development" %}
-        {% elsif tag == 'basicback' %}
-          {% assign tag_full_name = "Backend End Development" %}
-        {% elsif tag == 'api' %}
-          {% assign tag_full_name = "API Development" %}
-        {% elsif tag == 'webapp' %}
+        {% if tag == 'specialsauce' %}
+          {% assign tag_full_name = "Ric's Special Sauce" %}
+        {% elsif tag == 'scrum' %}
+          {% assign tag_full_name = "Scrum" %}
+        {% elsif tag == 'Kanban' %}
+          {% assign tag_full_name = "kanban" %}
+        {% elsif tag == 'bob' %}
           {% assign tag_full_name = "Web Applications" %}
-        {% elsif tag == 'htmlcss' %}
-          {% assign tag_full_name = "HTML5 & CSS" %}
+        {% elsif tag == 'leanux' %}
+          {% assign tag_full_name = "LeanUX" %}
         {% else %}
 
           {% assign tag_full_name = {{tag | capitalize}}  %}

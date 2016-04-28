@@ -3,7 +3,7 @@ layout: post
 title: "Personas Should Drive Functionality. Else Why Bother?"
 description: ""
 category: posts
-tags: []
+tags: [specialsauce]
 ---
 {% include JB/setup %}
 Personas have been around for a really long time. I first heard them about the same time as I heard about [timeboxing](http://www.websitehoncho.com/2011/10/time-box-your-website-projects.html) and [iterative development](http://www.websitehoncho.com/2011/10/iterative-development-project-success.html)... think last century. But they never really did much for me back then. The picture they painted of the user wasn't vivid enough to be useful. 

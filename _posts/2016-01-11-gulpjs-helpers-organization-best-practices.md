@@ -3,7 +3,7 @@ layout: post
 title: "Gulpjs Helpers, Organization and Best Practices"
 description: ""
 category: projects
-tags: [javascript, gulpjs, devops-ci, travis]
+tags: [javascript, gulp, devops-ci, travis]
 ---
 {% include JB/setup %}
 
