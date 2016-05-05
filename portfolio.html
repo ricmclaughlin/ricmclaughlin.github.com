@@ -12,7 +12,7 @@ categories: projects
   {% for skill in skills %}
     <div class="category-archive">
       {% if skill == "frontend" %}
-        {% assign project_tags = "angularjs,jquery" | split: "," %}
+        {% assign project_tags = "angularjs,jquery,javascript" | split: "," %}
         {% assign skill_full_name = "Front End Development" %}
       {% endif %}
       {% if skill == "backend" %}
@@ -25,11 +25,11 @@ categories: projects
       {% endif %}
       {% if skill == 'htmlcss' %}
         {% assign project_tags = "bootstrap,angular.ui,sass,htmlcss" | split: "," %}
-        {% assign skill_full_name = "HTML & CSS Crafting" %}
+        {% assign skill_full_name = "HTML &amp; CSS Crafting" %}
       {% endif %}
       {% if skill == 'devops-ci' %}
         {% assign project_tags = "git,gulp,travis" | split: "," %}
-        {% assign skill_full_name = "DevOps & Continous Integration" %}
+        {% assign skill_full_name = "DevOps &amp; Continous Integration" %}
       {% endif %}
       {% if skill == 'tdd' %}
         {% assign project_tags = "jasmine,chai,protractor" | split: "," %}
