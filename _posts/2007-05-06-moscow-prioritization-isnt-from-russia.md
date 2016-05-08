@@ -5,6 +5,7 @@ description: ""
 category: posts
 tags: [specialsauce]
 ---
+
 {% include JB/setup %}
 First off, MoSCoW prioritization isn’t from Russia. And it’s not communist either. It’s an agile project management technique that is part of the DSDM agile project management methodology.
 
@@ -39,50 +40,50 @@ Why allow a project to have more project feature hours than the time box hours? 
 
 So the next question how do you do it?
 <h3>
-How to Use MoSCoW Prioritization  in an Agile Website Project</h3>
+How to Use MoSCoW Prioritization in an Agile Website Project</h3>
 Let’s revisit our supertoybox.com e-commerce project we talked starting working through in the last article about time boxing.
 
 So far, the supertoybox.com project has a large defined set of features we need to prioritize for the first site release on 11/5, just in time for the Christmas season. Here is our feature list:
 
 <div class="separator" style="clear: both; text-align: center;">
-<a href="http://2.bp.blogspot.com/-50CN-CU_fn4/TrbqThMzI-I/AAAAAAAAAms/aRKq6h2947I/s1600/features.gif" imageanchor="1" style="margin-left:1em; margin-right:1em"><img border="0" height="538" width="193" src="http://2.bp.blogspot.com/-50CN-CU_fn4/TrbqThMzI-I/AAAAAAAAAms/aRKq6h2947I/s1600/features.gi" /></a></div>
+<a href="/assets/themes/ricify/images/features.gif" imageanchor="1" style="margin-left:1em; margin-right:1em"><img border="0" height="538" width="193" src="/assets/themes/ricify/images/features.gif" /></a></div>
 
 Using some simple calculations, our timeframe of about 13 weeks and 5 resources cranking about 170 hours a week gives up a project time box of 2210 hours. Given that, our mission is to prioritize the list of features and end up with about 2210 hours of work that will yield a good first release of the supertoybox.com website.
 
 <strong>1. Prioritize “Must have” features</strong> - On the first pass through the list I like identify the “Must have” features. At a minimum our site has to have a basic product catalog, search, and a shopping cart with tax and shipping calculations. We will also need to do credit card transactions, have some way of getting orders out of the system and a page framework to hang the functionality on. That’s pretty much the bare minimum. So our first pass looks like:
 
 <div class="separator" style="clear: both; text-align: center;">
-<a href="http://3.bp.blogspot.com/-XB6RL7Q6H6s/TrbrEb-dtjI/AAAAAAAAAm4/nF52hKW0Fgo/s1600/MoSCoW_prioritization_must.gif" imageanchor="1" style="margin-left:1em; margin-right:1em"><img alt="List of project features marked Must have, Won't have, should have and could have using MoSCoW Prioritization" border="0" height="538" width="237" src="http://3.bp.blogspot.com/-XB6RL7Q6H6s/TrbrEb-dtjI/AAAAAAAAAm4/nF52hKW0Fgo/s1600/MoSCoW_prioritization_must.gif" /></a></div>
+<a href="/assets/themes/ricify/images/MoSCoW_prioritization_must.gif" imageanchor="1" style="margin-left:1em; margin-right:1em"><img alt="List of project features marked Must have, Won't have, should have and could have using MoSCoW Prioritization" border="0" height="538" width="237" src="/assets/themes/ricify/images/MoSCoW_prioritization_must.gif" /></a></div>
 
 Using this initial prioritization, the “Must have” hours they are about 57% of total time box hours, which is about where we want to be.
 
 <strong>2. Prioritize “Won’t have” features </strong>- Next, I like to see what I can easily defer out of the project to make it nearly the size of the time box. I try to look for large features than can be worked around and are not technically required to make the project work. For this project I would look to defer system integration and do manual order entry. We can also safely defer the reporting and statistics feature because we could likely get that information from our ERP system. Features like multiple address shipments, product category admin and the wish list can also safely be deferred. That puts us with a prioritization like:
 
 <div class="separator" style="clear: both; text-align: center;">
-<a href="http://2.bp.blogspot.com/-VeS2EwosRKE/Trbr0HFlSPI/AAAAAAAAAnE/e0tAHNrVQgY/s1600/MoSCoW_prioritization_wont.gif" imageanchor="1" style="margin-left:1em; margin-right:1em"><img alt="List of project features marked Must have, Won't have, should have and could have using MoSCoW Prioritization" border="0" height="538" width="237" src="http://2.bp.blogspot.com/-VeS2EwosRKE/Trbr0HFlSPI/AAAAAAAAAnE/e0tAHNrVQgY/s1600/MoSCoW_prioritization_wont.gif" /></a></div>
+<a href="/assets/themes/ricify/images/MoSCoW_prioritization_wont.gif" imageanchor="1" style="margin-left:1em; margin-right:1em"><img alt="List of project features marked Must have, Won't have, should have and could have using MoSCoW Prioritization" border="0" height="538" width="237" src="/assets/themes/ricify/images/MoSCoW_prioritization_wont.gif" /></a></div>
 
 After deferring these features, our project is down to an estimated 2240 hours, which is just about 1% larger than our time box. That’s good.
 
 <strong>3. Prioritize the “Should have” features</strong> - "Should have” features complete functionality that are categorized “Must have.” I’d look at browse product by age, the CVV2 and paypal and shipping confirmation emails as very important but not critical features to include in this first release. Now our prioritization looks like:
 
 <div class="separator" style="clear: both; text-align: center;">
-<a href="http://1.bp.blogspot.com/-Z-NtjnRzwsI/TrbsHKQULSI/AAAAAAAAAnQ/T8XK3UD3JzU/s1600/MoSCoW_prioritization_should.gif" imageanchor="1" style="margin-left:1em; margin-right:1em"><img border="0" alt="List of project features marked Must have, Won't have, should have and could have using MoSCoW Prioritization" height="538" width="237" src="http://1.bp.blogspot.com/-Z-NtjnRzwsI/TrbsHKQULSI/AAAAAAAAAnQ/T8XK3UD3JzU/s1600/MoSCoW_prioritization_should.gif" /></a></div>
+<a href="/assets/themes/ricify/images/MoSCoW_prioritization_should.gif" imageanchor="1" style="margin-left:1em; margin-right:1em"><img border="0" alt="List of project features marked Must have, Won't have, should have and could have using MoSCoW Prioritization" height="538" width="237" src="/assets/themes/ricify/images/MoSCoW_prioritization_should.gif" /></a></div>
 
 <strong>4. Prioritize the “Could have” features</strong> - I like this step; all the rest of the features are “Could have” features by default. That puts us to a completed prioritization that looks like:
 
 <div class="separator" style="clear: both; text-align: center;">
-<a href="http://1.bp.blogspot.com/-yc6zq7RuTno/TrbschRC7TI/AAAAAAAAAnc/6ULfP893Mlc/s1600/MoSCoW.gif" imageanchor="1" style="margin-left:1em; margin-right:1em"><img alt="List of project features marked Must have, Won't have, should have and could have using MoSCoW Prioritization" border="0" height="538" width="237" src="http://1.bp.blogspot.com/-yc6zq7RuTno/TrbschRC7TI/AAAAAAAAAnc/6ULfP893Mlc/s1600/MoSCoW.gif" /></a></div>
+<a href="/assets/themes/ricify/images/MoSCoW.gif" imageanchor="1" style="margin-left:1em; margin-right:1em"><img alt="List of project features marked Must have, Won't have, should have and could have using MoSCoW Prioritization" border="0" height="538" width="237" src="/assets/themes/ricify/images/MoSCoW.gif" /></a></div>
 
 We get pretty lucky on this project because the “Won’t have” features are pretty easy to defer and the “Must”, “Should” and “Could” features are not much bigger than the 2210 time box:
 
 <div class="separator" style="clear: both; text-align: center;">
-<a href="http://2.bp.blogspot.com/-nZO_F_6AdZM/TrbsxaRAqKI/AAAAAAAAAno/dsJalKn1wHQ/s1600/MoSCoW_prioritization_metrics.gif" imageanchor="1" style="margin-left:1em; margin-right:1em"><img alt="MoSCoW Prioritization project metrics including must have, should have, could have and won't have feature hours metrics" border="0" height="118" width="333" src="http://2.bp.blogspot.com/-nZO_F_6AdZM/TrbsxaRAqKI/AAAAAAAAAno/dsJalKn1wHQ/s400/MoSCoW_prioritization_metrics.gif" /></a></div>
+<a href="/assets/themes/ricify/images/MoSCoW_prioritization_metrics.gif" imageanchor="1" style="margin-left:1em; margin-right:1em"><img alt="MoSCoW Prioritization project metrics including must have, should have, could have and won't have feature hours metrics" border="0" height="118" width="333" src="/assets/themes/ricify/images/MoSCoW_prioritization_metrics.gif" /></a></div>
 
 At first glance, we have enough time to deliver the 1260 hours of “Must have” features in our time box of 2210 which ends up at 57% of the total time box hours. That’s good. The total project feature hours for this release is only 101% of the time box hours.
 
-But, how do we make sure that we can deliver ALL the “Must have” features and pack in as many of the “Should have” and “Could have” features as possible? Let’s try out iterative development to see what that can do for us.
+But, how do we make sure that we can deliver ALL the “Must have” features and pack in as many of the “Should have” and “Could have” features as possible? Use this technique as part of a fantastic overall approach - 
 <h1>
 MoSCoW Prioritization Resources</h1>
-<a href="http://www.dsdm.org/dsdm-atern"> DSDM</a> used to have some great resources on MoSCoW but no longer. 
+<a href="https://www.dsdm.org/content/moscow-prioritisation"> DSDM</a> has a great outline of MoSCoW prioritization. 
 
-Wikipedia has some good information on <a href="http://en.wikipedia.org/wiki/DSDM">DSDM</a>, <a href="http://en.wikipedia.org/wiki/Timebox">time boxing</a>, <a href="http://en.wikipedia.org/wiki/MoSCoW">MoSCoW prioritization</a> and <a href="http://en.wikipedia.org/wiki/Iterative_development">iterative development</a>.
+Wikipedia has some good information on <a href="http://en.wikipedia.org/wiki/DSDM">DSDM</a>, <a href="https://en.wikipedia.org/wiki/Timeboxing">time boxing</a>, <a href="http://en.wikipedia.org/wiki/MoSCoW">MoSCoW prioritization</a> and <a href="http://en.wikipedia.org/wiki/Iterative_development">iterative development</a>.
