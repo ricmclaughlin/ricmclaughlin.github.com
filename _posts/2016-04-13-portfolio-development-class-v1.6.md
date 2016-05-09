@@ -13,6 +13,8 @@ The cool part is that ALL particpants end up with a new portfolio, which we crea
 
 You are reading this post on [my version](http://ric.mclaughlin.today) of the website you will make in this class.
 
+As a little FAQ - Yes, you will need to attend all the classes - each session builds on the last session. Nope, I won't be offering this class on the weekend - there is way too much material to absorb in one day. Yes, you need to bring a laptop. No, you don't need any special tools for the class but you will need to complete some setup activities before you attend. Yes, your portfolio will rock when you get done with the class. Yes, every single person, except one, has left the class with a fully functional Github based portfolio. Yes, this class is completely free - free as in beer.
+
 Checkout the details of the class:
 
 * Github Pages Portfolio Development [Session 1]({{ BASE_PATH }}/projects/github-pages-portfolio-session1v1.6)
