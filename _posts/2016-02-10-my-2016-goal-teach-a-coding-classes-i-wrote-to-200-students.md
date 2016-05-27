@@ -31,7 +31,9 @@ And that might be a little odd. But a worthy thing.
 
 * April: 20 Delivered
 
-So after a little addition, you end up realizing 47 Students have received instruction in classes I have developed this year. Do a little multiplication and you realize that 264 hours of teaching have been received by these worthy students. 
+* May: 4 Delivered
+
+So after a little addition, you end up realizing 51 Students have received instruction in classes I have developed this year. Do a little multiplication and you realize that 264 hours of teaching have been received by these worthy students. 
 
 How I am counting: Even if the class is more than 1 day, it only counts as 1 class. If someone attends more than one class from me during the year, they get counted as a student in each class.
 
