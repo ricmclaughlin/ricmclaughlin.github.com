@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AWS Developer Certification-Dynamo DB"
+title: "AWS Developer Certification - DynamoDB"
 description: ""
 category: 
 tags: [AWS, developercert, mongodb, dynamodb]
