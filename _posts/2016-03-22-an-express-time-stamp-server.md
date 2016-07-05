@@ -3,7 +3,7 @@ layout: post
 title: "A Time Stamp Server using Express"
 description: ""
 category: projects
-tags: [basicback, express, node, javascript]
+tags: [basicback, express, node, javascript, heroku]
 ---
 {% include JB/setup %}
 This is the first FCC project that develops an API. I used [node v4.2.3](https://nodejs.org/en/), [Express 4](http://expressjs.com/) with a project I scaffold myself using [gulp.js](http://gulpjs.com/). 
@@ -22,4 +22,4 @@ I implemented integration tests using [supertest](https://github.com/visionmedia
 
 * The source code for this application is at [https://github.com/ricmclaughlin/fcc_express_time](https://github.com/ricmclaughlin/fcc_express_time).
 
-* The live running versionof this application is at [https://tranquil-harbor-71589.herokuapp.com/](https://tranquil-harbor-71589.herokuapp.com/).
+* The live running version of this application is at [https://tranquil-harbor-71589.herokuapp.com/](https://tranquil-harbor-71589.herokuapp.com/).

@@ -2,8 +2,8 @@
 layout: post
 title: "AWS Developer Certification - SNS"
 description: ""
-category: 
-tags: [AWS, developercert, sns]
+category: posts
+tags: [aws, developercert, sns]
 ---
 {% include JB/setup %}
 

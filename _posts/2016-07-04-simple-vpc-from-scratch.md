@@ -2,8 +2,8 @@
 layout: post
 title: "A Simple VPC from Scratch"
 description: ""
-category: posts
-tags: [aws, vpc]
+category: projects
+tags: [aws, developercert, vpc]
 ---
 {% include JB/setup %}
 

@@ -3,7 +3,7 @@ layout: post
 title: "A Node URL Shortener MicroService"
 description: ""
 category: projects
-tags: [node, backend, javascript, express, basicback, gulp]
+tags: [node, backend, javascript, express, basicback, gulp, heroku]
 ---
 {% include JB/setup %}
 

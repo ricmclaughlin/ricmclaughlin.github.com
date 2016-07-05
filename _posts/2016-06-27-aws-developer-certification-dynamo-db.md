@@ -2,8 +2,8 @@
 layout: post
 title: "AWS Developer Certification - DynamoDB"
 description: ""
-category: 
-tags: [AWS, developercert, mongodb, dynamodb]
+category: posts
+tags: [aws, developercert, mongodb, dynamodb]
 ---
 {% include JB/setup %}
 

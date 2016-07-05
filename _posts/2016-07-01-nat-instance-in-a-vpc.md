@@ -2,7 +2,7 @@
 layout: post
 title: "NAT Instance in a VPC"
 description: ""
-category: 
+category: projects
 tags: [aws, vpc]
 ---
 {% include JB/setup %}

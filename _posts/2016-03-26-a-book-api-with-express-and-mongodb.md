@@ -3,7 +3,7 @@ layout: post
 title: "A Book API with Express and MongoDB"
 description: ""
 category: projects
-tags: [node, backend, javascript, express, mongodb]
+tags: [node, backend, javascript, express, mongodb, heroku]
 ---
 {% include JB/setup %}
 
