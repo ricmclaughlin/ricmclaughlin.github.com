@@ -23,19 +23,17 @@ Security Groups - firewall port filtering at the instance level renamed; allows 
 
 Network Access Control List - firewall port filtering at the subnet level renamed; allows filtering inbound and outbound; return traffic is not specfically allowed so it is stateless; Each ACL rule has a number and rules are evaluated ascending; Best practice is to create rule numbers by 5 so other rules can be added later; Once rules are added all other traffic is denied by default
 
-Customer Gateway - a vpn endpoint inside a VPC
+Customer Gateway - a vpn endpoint inside a VPC that allows computers in the corporate network access the datacenter resourcs
 
-NAT Instance - actually a EC2 instances; not exactly sure why you would use this... A NAT Gateway 
+NAT - EC2 instances in a private subnet can't access the Internet therefore can not access updates via a package manager. Both a NAT instance and NAT gateway can solve this problem. A NAT instance, which is a special purpose EC2 instances, is one solution but a bit old school. A [NAT Gateway](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html) is a fully managed AWS service that is way more practical and easier to implement. 
 
-NAT Gateway
+RDS instances in a VPC - There is a mythical sort of subnet, called a [DB Subnet Group](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html), that must span multiple availability zones and can house RDS instances.  
 
-RDS instances in a VPC - 
+[Elastic IP Addresses](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html) - A static IP address that can easily be allocated and remapped to another computer resource 
 
-Elastic IP Addresses - 
+Elastic Networks Interfaces - a virtual network interface that you can remap and assign to instances; dual homing would be a great way to think about it.
 
-Elastic Networks Interfaces - 
-
-
+Routing Tables - each subnet has only one routing table but one routing table can be shared by many subnets
 
 
 
