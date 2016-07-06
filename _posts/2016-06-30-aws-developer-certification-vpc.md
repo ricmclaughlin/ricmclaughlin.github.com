@@ -29,7 +29,7 @@ NAT - EC2 instances in a private subnet can't access the Internet therefore can 
 
 RDS instances in a VPC - There is a mythical sort of subnet, called a [DB Subnet Group](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html), that must span multiple availability zones and can house RDS instances.  
 
-[Elastic IP Addresses](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html) - A static IP address that can easily be allocated and remapped to another computer resource 
+[Elastic IP Addresses](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html) - A static IP address that can easily be allocated and remapped to another computer resource; 5 per AWS account by default 
 
 Elastic Networks Interfaces - a virtual network interface that you can remap and assign to instances; dual homing would be a great way to think about it.
 
