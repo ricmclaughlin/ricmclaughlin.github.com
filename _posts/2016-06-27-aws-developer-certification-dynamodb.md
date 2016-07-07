@@ -9,17 +9,15 @@ tags: [aws, developercert, mongodb, dynamodb]
 
 Here are a couple of notes on what I found important to know about DynamoDB.
 
-Yes, DynamoDB is like MongoDB - but the concepts behind MongoDB have better names. 
+Yes, DynamoDB is like MongoDB - but the concepts behind MongoDB have better names. Reads of a DynamoDB table, unless you specify otherwise are eventually consistent. DynamoDB uses optimistic concurrency control.
 
-Partitian Keys - When DynamoDB stores data it uses the partition key to divide the table between partitions/servers. The primary key of the table can be the partition key only, which makes it a simple key, or a composite key using the partition key and the sort key. 
+Partition Keys - When DynamoDB stores data it uses the partition key to divide the table between partitions/servers. The primary key of the table can be the partition key only, which makes it a simple key, or a composite key using the partition key and the sort key. 
 
 Secondary Indexes - total of 5 global indexes and 5 secondary indexes for a total of 10 per table
 
-* secondary local indexes - same partition key different sort key; consumes tables defined read capacity; can only be created WITH the table not after the table has been created.
+* secondary local indexes - same partition key different sort key( has the same hash key as the table, but a different range key); consumes tables defined read capacity; can only be created WITH the table not after the table has been created.
 
-* global indexes - uses a different partition key and a different sort key - A global secondary index is considered "global" because queries on the index can span all of the data in a table, across all partitions. Global indexes have completely different read/write capacity unitsbobster
-
-
+* global indexes - uses a different partition key and a different sort key (an index with a hash and range key that can be different from those on the table.) - A global secondary index is considered "global" because queries on the index can span all of the data in a table, across all partitions. Global indexes have completely different read/write capacity units.
 
 ### Read capacity unit estimation 
 one strongly consistent read per second and two eventually consistent read per second up to 4KB
@@ -57,4 +55,8 @@ Scan vs Query - A query result is an eventually consistent read but you can requ
 
 Atomic Counters - allows all write requests to be applied in the order they are received by incrementing or decrementing the attribute value.
 
-DynamoDB limits - DynamoDB limits the tables per region to 256 but this can be increased by contacting AWS., 
+DynamoDB limits - DynamoDB limits the tables per region to 256 but this can be increased by contacting AWS. The maximum size of a DynamoDB range primary key attribute value is 1024 bytes.
+
+
+
+

@@ -31,3 +31,5 @@ Regions - an independent area of several avialability zones designed to be indep
 Availability zone - each availability zone is one or more data centers linked by private networking infrastructure, not public Internet
 
 Edge Locations - located in densely populated areas designed to deliver fast content to these areas
+
+There are a number of services on AWS that are free - auto scaling, kinesis, CloudFormation, VPC and IAM. AWS provides an SDK in Go, PHP, JavaScript, python and Java but no perl.
