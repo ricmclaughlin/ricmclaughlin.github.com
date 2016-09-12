@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Free Code Camp Project - jQuery Calculator"
+title: "A jQuery Calculator"
 description: ""
 category: projects
 tags: [basicfront, frontend]
