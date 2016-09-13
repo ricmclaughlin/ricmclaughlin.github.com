@@ -8,10 +8,24 @@ tags: [aws]
 {% include JB/setup %}
 If you want to get a broad overview of AWS technologies for free, I am going to recommend [qwikLABS](https://qwiklabs.com). They have tons of free labs, on almost every single technology from AWS and they have tons of paid classes too. I took these classes while preparing for the [AWS Certified Developer - Associate ](https://aws.amazon.com/certification/certified-developer-associate/) exam and they were quite useful.
 
-I took a couple of free labs along the way too. I've noted those with bling.
+I took a couple of non-free labs along the way too. I've noted those with bling.
 
 ## IAM
-* Introduction to AWS Identity and Access Management (IAM)
+* [Introduction to AWS Identity and Access Management (IAM)](https://qwiklabs.com/focuses/2885) - $ 1 credit lab... 
+https://www.brighttalk.com/webcast/9019/187431
+
+
+
+MasterClass
+AWS EC2 Masterclass - https://www.youtube.com/watch?v=fA3Ptf7hzCY
+
+
+WhitePapers
+
+
+
+
+
 
 ## S3
 * [Introduction to Amazon Simple Storage Service (S3)](https://qwiklabs.com/focuses/2355) - super basic. Still useful.

@@ -14,5 +14,5 @@ After the first call from the app to STS, it returns a temporary security creden
 
 When using an API there are two options to use the temporary security credentials: add the session token to the HTTP header or adding it to the query string parameter `X-AMZ-Security-Token`.
 
-Federation - creating a trust relationship between an identity store like Amazon, Facebook, Google (also called an Identity Broker), Active Directory any SAML 2.0 system and AWS
+Overall, this service seems to be a backend to [AWS Cognito](https://aws.amazon.com/cognito/) and somewhat obsolete. 
 
