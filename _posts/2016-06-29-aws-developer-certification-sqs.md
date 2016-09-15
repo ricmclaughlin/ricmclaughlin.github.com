@@ -1,4 +1,4 @@
- Default timeout for visibility queue is ____ seconds.---
+---
 layout: post
 title: "AWS Developer Certification - SQS"
 description: ""
@@ -17,4 +17,7 @@ tags: [AWS, developercert, sqs]
 
 3. Each 64kb of SQS message is billed as a message for a max of 256kb per message total. If the message payload is larger than 256kb it is best practice to store the message in ElasticCache, DynamoDB or on S3.
 
-VisibilityTimeout defines how long a message is INVISIBLE to other workers after being accessed by a worker. It is invisible so the worker who retrieved the message has the opportunity to process the message and remove it from the queue. If the worker is not successfully in processing the message, the VisibilityTimout then expires and the message is again available to be accessed by another worker. This ensures that if part of your application fails the message is not lost.
+VisibilityTimeout defines how long a message is INVISIBLE to other workers after being accessed by a worker. It is invisible so the worker who retrieved the message has the opportunity to process the message and remove it from the queue. If the worker is not successfully in processing the message, the VisibilityTimout then expires and the message is again available to be accessed by another worker. This ensures that if part of your application fails the message is not lost. 
+
+What is the answer to: Default timeout for visibility queue is ____ seconds.
+

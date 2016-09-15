@@ -7,9 +7,25 @@ tags: [aws, developercert, mongodb, dynamodb]
 ---
 {% include JB/setup %}
 
+The [AWS Developer Certification - Associate]() has a some stuff about databases in general.
+
+## Databases in General
+Online Transaction processing (OLTP) databases - Database systems like MySQL, PostgreSQL, Oracle, Aurora and MariaDB handle transactions... and transactions are important. Just think about doing an ATM deposit transaction... you want the your money to get credited to your account or fail completely. You want to know for sure. When this is the case you want an OLTP database. In addition, these systems tend to use a normalized data structure.
+
+Online Analytics Processing (OLAP) databases - Databases systems enable data analysis capabilities WITHOUT transactions and don't use a normalized data structure. In general, these systems pull and transform data from an OLTP system and then do reporting. Often called a data warehouse.
+
+Database Caching - AWS offers Elasticache which provides an in memory caching layer using either the open source Memcached or Redis engines.
+
+## DyanamoDB Overall
 Here are a couple of notes on what I found important to know about DynamoDB.
 
 Yes, DynamoDB is like MongoDB - but the concepts behind MongoDB have better names. Reads of a DynamoDB table, unless you specify otherwise are eventually consistent. DynamoDB uses optimistic concurrency control.
+
+### Pricing 
+
+Pricing with DyanamoDB is difficult. Instead of being priced on just disk storage, 
+
+### Parition Keys and Indexes
 
 Partition Keys - When DynamoDB stores data it uses the partition key to divide the table between partitions/servers. The primary key of the table can be the partition key only, which makes it a simple key, or a composite key using the partition key and the sort key. 
 
