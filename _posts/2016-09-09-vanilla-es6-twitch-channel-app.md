@@ -26,7 +26,7 @@ My User Stories are more technical in nature:
 
 * User Story: I will see all application information in a responsive way on a laptop, high res display, iPhone, iPad and Galaxy S5.
 
-* User Story: The page weight inclusive of JS, CSS, images, fonts will be less than 500kb. (Kicked ass on this one - total average page weight is 394kb!)
+* User Story: The page weight inclusive of JS, CSS, images, fonts will be less than 500kb. (Kicked ass on this one - total average page weight is 394kb - with no build tool compression!)
 
 Technology Choices:
 
