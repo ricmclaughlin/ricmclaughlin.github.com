@@ -29,9 +29,12 @@ My User Stories are more technical in nature:
 * User Story: The page weight inclusive of JS, CSS, images, fonts will be less than 500kb. (Kicked ass on this one - total average page weight is 394kb!)
 
 Technology Choices:
-1. Vanilla JS instead of jQuery
+
+1. Vanilla JS instead of jQuery. After looking at jQuery again a couple of weeks ago... well, it isn't any better than it was before. Feels like a manky set of libraries built on an old version of C... where as Vanilla JS is starting to feel like C++ with a lightweight library. 
+
 2. [Skeleton](http://getskeleton.com/) instead of... something big. Page weight was a driving requirement here and for all my projects moving forward.
-3. ES6 instead of ES5 - It's time. Time for me to make the switch to the next version of JS. I just completed bunch of studying and took a great [Wes Bos ES6 for everyone](http://wesbos.com/es6-for-everyone/) and the always great stuff from Mark Zamoyta in this case [Rapid ES6 Training](https://app.pluralsight.com/library/courses/rapid-es6-training/table-of-contents). So it was time to implement some great new front end API like `.fetch` and use generators my fav new es6 feature.
+
+3. ES6 instead of ES5 - It's time. Time for me to make the switch to the next version of JS. I just completed bunch of studying back in April and took a great [Wes Bos ES6 for everyone](http://wesbos.com/es6-for-everyone/) and the always great stuff from Mark Zamoyta in this case [Rapid ES6 Training](https://app.pluralsight.com/library/courses/rapid-es6-training/table-of-contents). So it was time to implement some great new front end data access API like `.fetch` and use [generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator) my fav new es6 feature. Add `.map()` and `.reduce() and you have yourself a good old fashion geek fest.
 
 Lessons Learned:
 1. Thinking in async is still hard. Even though I've written a crap ton of async code it just never gets easy to figure out how to debug it... or what is going wrong. In this case, there is a list of things that need more data sprinkled on top of them... and each bit of sprinkling requires a `.fetch()` then some logic then a `.fetch()` and a bit of logic. Using es6 generators was a huge big deal on this project.
