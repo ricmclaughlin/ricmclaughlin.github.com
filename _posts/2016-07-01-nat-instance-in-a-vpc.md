@@ -20,4 +20,4 @@ To get this all setup properly you are going to need to follow the instruction t
 
 2. From the "Route Tables" list select the default route table, which should have no subnets associated with it, and associate the "0.0.0.0/0" route with the new NAT gateway.
 
-And then you are up and running. To confirm this worked ssh into the 'EC2-private' server and then do some action that would require Internet access!
+And then you are up and running. To confirm this worked `ssh` into the 'EC2-private' server and then do some action that would require Internet access!

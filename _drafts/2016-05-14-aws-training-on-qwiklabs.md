@@ -41,11 +41,10 @@ WhitePapers
 ## CloudFormation
 Introduction to AWS CloudFormation
 Introduction to AWS CloudFormation Designer
-[Working with AWS CloudFormation](https://qwiklabs.com/focuses/2867?search=151925) - need to complete
+[Working with AWS CloudFormation](https://qwiklabs.com/focuses/2867) - need to complete
 
 ## EC2
-Introduction to Amazon Elastic Compute Cloud (EC2)
-Introduction to Amazon Elastic Block Store (EBS)
+
 
 ## WebServices
 
