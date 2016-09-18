@@ -40,5 +40,11 @@ There are two different CLI interfaces to CloudFormation, the older [CloudFormat
 | cfn-describe-stacks    | describe-stacks   |   only list stacks that are running |
 |  cfn-list-stacks |   list-stacks  |   lists all stacks over last 90 |
 |   |   |   |
+# Resources
+## Qwik Labs
+Introduction to AWS CloudFormation
+Introduction to AWS CloudFormation Designer
+[Working with AWS CloudFormation](https://qwiklabs.com/focuses/2867) - need to complete
 
+## Reading
 

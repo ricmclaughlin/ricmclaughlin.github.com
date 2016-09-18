@@ -3,7 +3,7 @@ layout: post
 title: "AWS Developer Certification - IAM"
 description: ""
 category: posts
-tags: [aws, developercert]
+tags: [aws, developercert, iam]
 ---
 {% include JB/setup %}
 
@@ -34,6 +34,13 @@ Federation - creating a trust relationship between an identity store like Amazon
 2. Obtain Temporary Security Credentials - Done by calling STS using a call to `AssumeRoleWithWebIdentity` or `AssumeRoleWithSAML`
 3. Access the AWS resource - now, based the users' permission, you have access to AWS Resources.
 
-## Resources: 
-
+# Resources
+## Qwik Labs
 [qwiklabs - Introduction to AWS Identity and Access Management (IAM)](https://qwiklabs.com/focuses/2885) - This is a low cost (1 credit) lab that simply walks through the stuff of IAM - policies, users, groups and touches on roles.
+
+## Reading
+[IAM FAQ](https://aws.amazon.com/iam/faqs/)
+
+## Videos
+[IAM Policy Ninja](https://www.youtube.com/watch?v=Du478i9O_mc)
+[IAM Best Practices to Live By](https://www.youtube.com/watch?v=_wiGpBQGCjU)

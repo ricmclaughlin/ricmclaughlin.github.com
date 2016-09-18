@@ -21,6 +21,12 @@ Here are a couple of notes on what I found important to know about DynamoDB.
 
 Yes, DynamoDB is like MongoDB - but the concepts behind MongoDB have better names. Reads of a DynamoDB table, unless you specify otherwise are eventually consistent. DynamoDB uses optimistic concurrency control.
 
+Scan vs Query - A query result is an eventually consistent read but you can request it to be a strongly consistent read.
+
+Atomic Counters - allows all write requests to be applied in the order they are received by incrementing or decrementing the attribute value.
+
+DynamoDB limits - DynamoDB limits the tables per region to 256 but this can be increased by contacting AWS. The maximum size of a DynamoDB range primary key attribute value is 1024 bytes.
+
 ### Pricing 
 
 Pricing with DyanamoDB is difficult. Instead of being priced on just disk storage, 
@@ -67,12 +73,11 @@ Read Capacity Units = 2 * .5 * 120 = 120
 Formula -> writes per item (size in KB rounded up to the nearest whole number) * writes per second
 write capacity unit - on write per second up to 1KB
 
-Scan vs Query - A query result is an eventually consistent read but you can request it to be a strongly consistent read.
+# Resources
+## Qwik Labs
+* [Introduction to Amazon DynamoDB](https://qwiklabs.com/focuses/2376) - need to complete
 
-Atomic Counters - allows all write requests to be applied in the order they are received by incrementing or decrementing the attribute value.
+* $$[Working with Amazon DynamoDB](https://qwiklabs.com/focuses/2865) - need to complete
 
-DynamoDB limits - DynamoDB limits the tables per region to 256 but this can be increased by contacting AWS. The maximum size of a DynamoDB range primary key attribute value is 1024 bytes.
-
-
-
+## Reading
 

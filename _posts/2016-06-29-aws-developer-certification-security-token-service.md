@@ -3,10 +3,9 @@ layout: post
 title: "AWS Developer Certification - STS"
 description: ""
 category: posts
-tags: [aws, developercert]
+tags: [aws, developercert, sts]
 ---
 {% include JB/setup %}
-
 
 AWS [Security Token Service (STS)](http://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html) is a web service that enables you to request temporary, limited-privilege credentials for AWS Identity and Access Management (IAM) users or for users that you authenticate (federated users). 
 
