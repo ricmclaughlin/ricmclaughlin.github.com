@@ -46,11 +46,9 @@ RDS instances in a VPC - There is a mythical sort of subnet, called a [DB Subnet
 
 # Resources
 ## Qwik Labs
-* [Introduction to Amazon Virtual Private Cloud (VPC)](https://qwiklabs.com/focuses/2546?search=124038) - good basic setup of a VPC
+* [Building Your First Amazon Virtual Private Cloud (VPC)](https://qwiklabs.com/focuses/2546) - this one includes some windows specific stuff like SQL server and even a bastion host. Ugly stuff.
 
-* [Building Your First Amazon Virtual Private Cloud (VPC)](https://qwiklabs.com/focuses/2546?search=124048) - this one includes some windows specific stuff like SQL server and even a bastion host. Ugly stuff.
-
-* $$[Creating an Amazon Virtual Private Cloud (VPC) with AWS CloudFormation](https://qwiklabs.com/focuses/2640?search=151921) - need to complete
+* $$[Creating an Amazon Virtual Private Cloud (VPC) with AWS CloudFormation](https://qwiklabs.com/focuses/2640) - need to complete
 
 ## Reading
 

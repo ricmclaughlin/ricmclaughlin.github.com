@@ -37,9 +37,9 @@ Partition Keys - When DynamoDB stores data it uses the partition key to divide t
 
 Secondary Indexes - total of 5 global indexes and 5 secondary indexes for a total of 10 per table
 
-* secondary local indexes - same partition key different sort key( has the same hash key as the table, but a different range key); consumes tables defined read capacity; can only be created WITH the table not after the table has been created.
+* Secondary Local Indexes - same partition key different sort key( has the same hash key as the table, but a different range key); consumes tables defined read capacity; can only be created WITH the table not after the table has been created.
 
-* global indexes - uses a different partition key and a different sort key (an index with a hash and range key that can be different from those on the table.) - A global secondary index is considered "global" because queries on the index can span all of the data in a table, across all partitions. Global indexes have completely different read/write capacity units.
+* Global Indexes - uses a different partition key and a different sort key (an index with a hash and range key that can be different from those on the table.) - A global secondary index is considered "global" because queries on the index can span all of the data in a table, across all partitions. Global indexes have completely different read/write capacity units.
 
 ### Read capacity unit estimation 
 one strongly consistent read per second and two eventually consistent read per second up to 4KB
@@ -80,4 +80,7 @@ write capacity unit - on write per second up to 1KB
 * $$[Working with Amazon DynamoDB](https://qwiklabs.com/focuses/2865) - need to complete
 
 ## Reading
+
+## Videos
+
 

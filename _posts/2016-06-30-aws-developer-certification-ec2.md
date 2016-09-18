@@ -67,7 +67,6 @@ There is a ton of meta-data available about each EC2 instance available via this
 # Resources
 ## Qwik Labs
 [Introduction to Amazon Elastic Compute Cloud (EC2)](https://qwiklabs.com/focuses/2921)
-
 [Introduction to Amazon Elastic Block Store (EBS)](https://qwiklabs.com/focuses/2920)
 [Creating Amazon EC2 Instances (for Linux)](https://qwiklabs.com/focuses/2548)
 
@@ -76,4 +75,6 @@ There is a ton of meta-data available about each EC2 instance available via this
 [EBS FAQ](https://aws.amazon.com/ebs/faqs/)
 [ELB Overview](https://aws.amazon.com/elasticloadbalancing/)
 
+## Videos
+[EC2 Master Class](https://www.youtube.com/watch?v=jLVPqoV4YjU)
 

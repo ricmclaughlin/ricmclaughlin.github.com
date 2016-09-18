@@ -37,6 +37,9 @@ S3-Reduced Redundancy Storage - 99.99% durability - for files that can be regen'
 
 [glacier](https://aws.amazon.com/glacier/) - an object storage capability that is mostly offline and way, way cheaper than S3. It might take hours (like 3-5 hours) to retrieve an object from glacier so it is mostly suited towards stuff you need to store but will rarely, if ever, need to access.  
 
+## Versioning
+Stores all version of an object; can be suspended but not disabled for bucket; can be used with MFA to provide extra layer of DELETE security. Cross region replication requires versioning and an IAM role setup. ALL version of the file are stored so the amount of spaced required can end up being HUGE.
+
 ## Bucket Names &amp; Such
 Bucket names can not start with a '.' or '-' and cannot be formatted like an IP address. Remove public read access and use signed URLs with expiry dates to prevent read access from unauthorized sites. 
 
@@ -55,6 +58,8 @@ Use Multipart upload to stop and resume uploads and ideally for any file over 10
 ## S3 Website Hosting
 To make a website on S3 at a minimium upload an index document to your S3 bucket, enable static website hosting in your S3 bucket properties, select the 'Make Public' permission for your bucket’s objects or apply a bucket permission script. The only allowed domain prefix when creating Route 53 Aliases for S3 static websites is the 'www' prefix. S3 buckets do not have https!
 
+CORS rules - The bucket hosting the assets needs CORS configuration - add the domain of the "static" site to fix this up.
+
 # Resources
 ## Qwik Labs
 [Introduction to Amazon Simple Storage Service (S3)](https://qwiklabs.com/focuses/2355)
@@ -62,5 +67,5 @@ To make a website on S3 at a minimium upload an index document to your S3 bucket
 
 ## Reading
 
-
-
+## Videos
+[AWS S3 Deep Drive and Best Practices](https://www.youtube.com/watch?v=1TvJCLl9NNg)

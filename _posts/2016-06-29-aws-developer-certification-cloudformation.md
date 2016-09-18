@@ -42,9 +42,9 @@ There are two different CLI interfaces to CloudFormation, the older [CloudFormat
 |   |   |   |
 # Resources
 ## Qwik Labs
-Introduction to AWS CloudFormation
-Introduction to AWS CloudFormation Designer
-[Working with AWS CloudFormation](https://qwiklabs.com/focuses/2867) - need to complete
+[Introduction to AWS CloudFormation](https://qwiklabs.com/focuses/2931)
+[Introduction to AWS CloudFormation Designer](https://qwiklabs.com/focuses/2932)
+[Working with AWS CloudFormation](https://qwiklabs.com/focuses/2867)
 
 ## Reading
 
