@@ -113,4 +113,3 @@ Database Caching - AWS offers Elasticache which provides an in memory caching la
 
 ## Videos
 [Deep Dive: Amazon DynamoDB](https://www.youtube.com/watch?v=VuKu23oZp9Q)
-

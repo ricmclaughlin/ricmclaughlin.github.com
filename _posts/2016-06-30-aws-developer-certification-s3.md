@@ -96,6 +96,7 @@ CORS rules - The bucket hosting the assets needs CORS configuration - add the do
 Edge Location used by CloudFront are not just for download acceleration. S3 Transfer Acceleration uses the AWS backbone to speed up uploads. This costs more money. 
 
 # Resources
+
 ## Qwik Labs
 [Introduction to Amazon Simple Storage Service (S3)](https://qwiklabs.com/focuses/2355)
 [Introduction to AWS Key Management Service](https://qwiklabs.com/focuses/2367) - yeah, this is about Key Management Service but under-the-covers this is about S3.
