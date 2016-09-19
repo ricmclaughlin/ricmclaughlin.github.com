@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "AWS Developer Certification"
+title: "AWS Developer Certification - Overview"
 description: ""
 category: posts
-tags: [AWS, developercert]
+tags: [aws, developercert]
 ---
 {% include JB/setup %}
 As part of studying for the [AWS Developer Certification - Associate](https://aws.amazon.com/certification/certified-developer-associate/), I'm pulling together some study notes here on my blog. For each chunky topic, I'll capture the big facts and stuff I had to remind myself to remember:
@@ -35,15 +35,15 @@ As part of studying for the [AWS Developer Certification - Associate](https://aw
 * [AWS Storage & S3 notes]({{ BASE_PATH }}/aws-developer-certification-s3) - including s3, Cloud Front, Elastic File System (EFS), Snowball, Storage Gateway and Glacier.
 
 ## Compute
-* [AWS EC2 notes]({{ BASE_PATH }}/aws-developer-certification-ec2)
+* [AWS EC2]({{ BASE_PATH }}/aws-developer-certification-ec2)
 
-* [Elastic Beanstalk]()
+* [Elastic Beanstalk]({{ BASE_PATH }}/aws-developer-certification-cloudfront)
 
 * [Lambda]()
 
 ## Networking
 
-* [AWS VPC notes]({{ BASE_PATH }}/aws-developer-certification-vpc)
+* [AWS VPC]({{ BASE_PATH }}/aws-developer-certification-vpc)
 
 # Overall AWS Architecture:
 
@@ -57,7 +57,6 @@ As part of studying for the [AWS Developer Certification - Associate](https://aw
 There are a number of services on AWS that are free - auto scaling, Kinesis, CloudFormation, VPC and IAM. AWS provides an SDK in Go, PHP, JavaScript, python and Java but not perl.
 
 ## Sharing Security Responsibility
-
 There are three levels of shared security in AWS: Infrastructure Services (for services like EC2 and RDS), Container Services (for container services) and Abstracted Services (for services like SQS, SES and other high level apps).
 
 
