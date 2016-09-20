@@ -19,10 +19,6 @@ As part of studying for the [AWS Developer Certification - Associate](https://aw
 ## Management Tools
 * [AWS Cloud Formation]({{ BASE_PATH }}/aws-developer-certification-cloudformation)
 
-* [Opsworks]()
-
-* [Trusted Advisor]()
-
 ## Security and Identity
 * [AWS IAM]({{ BASE_PATH }}/aws-developer-certification-iam)
 

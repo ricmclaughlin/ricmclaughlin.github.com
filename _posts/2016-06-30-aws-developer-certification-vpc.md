@@ -26,29 +26,41 @@ When creating a new VPC and using the default options, all hardware is shares us
 ## VPC Networking
 * [Elastic IP Addresses](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html) - A static IP address that can easily be allocated and remapped to another computer resource; 5 per AWS account by default.
 
+* Subnets cannot span availability zones. 
+
+* Internet Gateway - one gateway per VPC; detached upon creation.
+
 * Elastic Networks Interfaces - a virtual network interface that you can remap and assign to instances; dual homing would be a great way to think about it.
 
 * Routing Tables - each subnet has only one routing table but one routing table can be shared by many subnets
 
-* Customer Gateway - a vpn endpoint inside a VPC that allows computers in the corporate network access the datacenter resources
-
-* VPC peering - allow you the ability to directly route between two VPC using private IP addresses - this might also be configured to share VPC between AWS accounts.
+* Customer Gateway - a vpn endpoint inside a VPC that allows computers in the corporate network access the datacenter resources 
 
 * Network Address Translation - EC2 instances in a private subnet can't access the Internet therefore can not access updates via a package manager. Both a NAT instance and NAT gateway can solve this problem. A NAT instance, which is a special purpose EC2 instances, is one solution but a bit old school. A [NAT Gateway](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html) is a fully managed AWS service that is way more practical and easier to implement.
+
+### VPC Peering
+* VPC peering - allow you the ability to directly route between two VPC using private IP addresses - this might also be configured to share VPC between AWS accounts. VPC peering is NOT transitive so if VPC BobNet is peered to VPC RalphNet and VPC FrankNet that does NOT mean that RalphNet and FrankNet can exchange traffic.
 
 ## VPC Security
 * Security Groups - firewall port filtering at the instance level renamed; allows filtering inbound and outbound; return traffic is allowed so it is state-ful; supports allow rules only
 
-* Network Access Control List - firewall port filtering at the subnet level renamed; allows filtering inbound and outbound; return traffic is not specifically allowed so it is stateless; Each ACL rule has a number and rules are evaluated ascending; Best practice is to create rule numbers by 5 so other rules can be added later; Once rules are added all other traffic is denied by default
+* Network Access Control List - firewall port filtering at the subnet level renamed; allows filtering inbound and outbound; return traffic is not specifically allowed so it is stateless; Each ACL rule has a number and rules are evaluated ascending; Best practice is to create rule numbers by 5 so other rules can be added later; Once rules are added all other traffic is denied by default. A network ACL overrides security groups. Only 1 ACL per subnet and they encompass and over-write the permissions defined there. Rules are evaluated ascending.
 
-## RDS
+## NAT Gateway
+An instance needs an public IP address in addition to having a route in order to access the Internet.
+Disable Source/Destination Check
+
+## RDS (DB Subnet Group)
 RDS instances in a VPC - There is a mythical sort of subnet, called a [DB Subnet Group](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html), that must span multiple availability zones and can house RDS instances.  
 
 # Resources
+
 ## Qwik Labs
+* [Introduction to Amazon Virtual Private Cloud (VPC))](https://qwiklabs.com/focuses/2928)
+
 * [Building Your First Amazon Virtual Private Cloud (VPC)](https://qwiklabs.com/focuses/2546) - this one includes some windows specific stuff like SQL server and even a bastion host. Ugly stuff.
 
-* $$[Creating an Amazon Virtual Private Cloud (VPC) with AWS CloudFormation](https://qwiklabs.com/focuses/2640) - need to complete
+* [Creating an Amazon Virtual Private Cloud (VPC) with AWS CloudFormation](https://qwiklabs.com/focuses/2640)
 
 ## Reading
 
