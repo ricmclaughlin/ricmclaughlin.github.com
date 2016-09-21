@@ -13,11 +13,11 @@ CloudFormation Templates have 8 main sections but only the resources section is 
 
 * AWSTemplateFormatVersion -- this specfies the template version.. duh.
 
-* Description -- this specifies what the heck the template does. Where can you stamp the version of the file you are creating?? A Description block requires an AWSTemplateFormatVersion block.
+* Description -- this specifies what the heck the template does. Where can you stamp the version of the file you are creating?? A Description block requires an `AWSTemplateFormatVersion` block.
 
 * Metadata -- as the name suggests, this sets up additional information about each of the resources
 
-* Parameters -- imagine default values and customized template values and stuff you can pass in on the commandline. Sounds a lot like commander or commander.js functionality!
+* Parameters -- imagine default values and customized template values and stuff you can pass in on the commandline OR when you run the template. Sounds a lot like commander or commander.js functionality!
 
 * Mappings -- maps keys to values - imagine a different value for each AWS region!
 
@@ -39,13 +39,16 @@ There are two different CLI interfaces to CloudFormation, the older [CloudFormat
 |:--------------------------:|:--------------------------:|:--------------------------:|
 | cfn-describe-stacks    | describe-stacks   |   only list stacks that are running |
 |  cfn-list-stacks |   list-stacks  |   lists all stacks over last 90 |
+| ?? | ListStackResources | list all the stack resources |
 
 # Resources
 
 ## Qwik Labs
-[Introduction to AWS CloudFormation](https://qwiklabs.com/focuses/2931)
-[Introduction to AWS CloudFormation Designer](https://qwiklabs.com/focuses/2932)
-[Working with AWS CloudFormation](https://qwiklabs.com/focuses/2867)
+* [Introduction to AWS CloudFormation](https://qwiklabs.com/focuses/2931) - Complete
+
+* [Introduction to AWS CloudFormation Designer](https://qwiklabs.com/focuses/2932) - Complete
+
+* [Working with AWS CloudFormation](https://qwiklabs.com/focuses/2867) - Complete (no love on this one... lab was mostly broken)
 
 ## Reading
-[AWS Cloudformation User Guide](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)
+* [AWS Cloudformation User Guide](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)

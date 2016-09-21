@@ -62,5 +62,7 @@ RDS instances in a VPC - There is a mythical sort of subnet, called a [DB Subnet
 
 * [Creating an Amazon Virtual Private Cloud (VPC) with AWS CloudFormation](https://qwiklabs.com/focuses/2640)
 
+* [Create a VPC From Scratch]
+
 ## Reading
 

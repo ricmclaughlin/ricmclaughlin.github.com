@@ -35,7 +35,9 @@ S3 is an object, as in file, based storage and is a key-value based - the key is
 
 AWS charges you for storage, requests and data transfer.
 
-Use Multipart upload to stop and resume uploads and ideally for any file over 100mg. A benefit of multi-part upload is that you can upload a file as it is being created.
+Use Multipart upload to stop and resume uploads and ideally for any file over 100mg and required over 5Gig. A benefit of multi-part upload is that you can upload a file as it is being created. 
+
+S3 Limits - the minimium size for a s3 object is 0 bytes; 100 S3 buckets per account; 5Tb object size max.
 
 ## Security
 Buckets are private by default but access control you can define a bucket policy and or an access control list. Access logs can also be defined if required.
@@ -65,7 +67,7 @@ S3-Reduced Redundancy Storage - 99.99% durability - for files that can be regen'
 [glacier](https://aws.amazon.com/glacier/) - an object storage capability that is mostly offline and way, way cheaper than S3. It might take hours (like 3-5 hours) to retrieve an object from glacier so it is mostly suited towards stuff you need to store but will rarely, if ever, need to access.  
 
 ## Versioning
-Stores all version of an object; can be suspended but not disabled for bucket; can be used with MFA to provide extra layer of DELETE security. Cross region replication requires versioning and an IAM role setup. ALL version of the file are stored so the amount of spaced required can end up being HUGE.
+Stores all version of an object; can be suspended but not disabled for bucket; can be used with MFA to provide extra layer of DELETE security. Cross region replication requires versioning and an IAM role setup. ALL version of the file are stored so the amount of spaced required can end up being HUGE. Versioning only starts after it is enable and files have been added - existing files end up with a NULL version.
 
 ## Lifecycle
 Actions include: 
@@ -85,7 +87,6 @@ Files must be stored in buckets and buckets are a universal namespace.
 
 Using a sequential prefix, such as time-stamp or an alphabetical sequence, increases the likelihood that Amazon S3 will target a specific partition for a large number of your keys, overwhelming the I/O capacity of the partition. If you introduce some randomness in your key name prefixes, the key names, and therefore the I/O load will be distributed across more than one partition.
 
-S3 Limits - the minimium size for a s3 object is 0 bytes; 100 S3 buckets per account
 
 ## S3 Website Hosting
 To make a website on S3 at a minimium upload an index document to your S3 bucket, enable static website hosting in your S3 bucket properties, select the 'Make Public' permission for your bucket’s objects or apply a bucket permission script. The only allowed domain prefix when creating Route 53 Aliases for S3 static websites is the 'www' prefix. S3 buckets do not have https!

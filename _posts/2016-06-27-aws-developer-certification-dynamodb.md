@@ -28,10 +28,9 @@ Conditional updates - When the system applies an update, the record is checked t
 
 Atomic Counters - The other way to work this is to allows all write requests to be applied in the order they are received by incrementing or decrementing the attribute value. Challenging to figure out how this works. Overall, I'd say this is another case where you mark a record inactive, and insert it as a new record.
 
-
 ## Pricing 
 
-Pricing with DyanamoDB is difficult. Instead of being priced on just disk storage, 
+Pricing with DyanamoDB is difficult. Instead of being priced on just disk storage, pricing is based on disk storage AND request traffic.
 
 ## Keys and Indexes
 Primary Key  - Like all databases a DynamoDB primary key is a unique identifier for a record in a table. The primary key can be simple (use the partition key) or composite (the primary key and sort key)
@@ -81,9 +80,9 @@ It's a database log that emits events.
 ## Scans vs Queries
 Overall, you want to avoid table scans therefore designing tables to use the `Query`, `Get` or `BatchGetItems` APIs. Scan vs Query - A query result is an eventually consistent read but you can request it to be a strongly consistent read.
 
-Queries - find items based on primary key attribute; optionally provide sort key and value; use a `ProjectionExpress` so the query only returns some of the attributes. Defaults to sorted Ascending by the sort key; use `ScanIndexForward` to false for Descending.
+Queries - find items based on primary key attribute; optionally provide sort key and value; use a `ProjectionExpress` so the query only returns some of the attributes. Defaults to sorted Ascending by the sort key; use `ScanIndexForward` to false for Descending. 
 
-Scan - examines every item in the table; avoid this.
+Scan - examines every item in the table; avoid this. Supports eventually consistent and consistent reads.
 
 ## Web Identity Provider Access to DynamoDB
 This is a huge issue because many times users are authenticated by an ID provider then need access to Dynamo. Steps:
