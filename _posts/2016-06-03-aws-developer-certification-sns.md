@@ -41,9 +41,25 @@ POST / HTTP/1.1
     "UnsubscribeURL" : "https://sns.us-west-2.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:us-west-2:123456789012:MyTopic:c9135db0-26c4-47ec-8998-413945fb5a96"
   }
 ```
+## Mobile Push
+Mobile Push is a primary use case for SNS. Setup is required for each mobile platform.
+
+1. Request credentials from mobile platform - get a login
+
+2. Get request token from mobile platform - get a thingy that represents your app
+
+3. Create a Platform Application Object - register it with SNS and get an object you can use
+
+4. Create a Platform End Point - create an event handler that recieves the SNS message and routes it to the mobile platform
+
+
+## Security Rules
+By default, ALL requests to use a resource are denied - *default deny*.
+All *allows* override any default denies.
+All *explicit denies* override allows.
 
 # Resources
 
 ## Reading
-[SNS Developer Guide]http://docs.aws.amazon.com/sns/latest/dg/welcome.html
+[SNS Developer Guide](http://docs.aws.amazon.com/sns/latest/dg/welcome.html)
 
