@@ -61,10 +61,35 @@ ELB configuration requires a protocol, a front end port, and a back end port. Th
 
 ELB are NOT free - there is a charge by the hour and per GB of usage.
 
+Only one SSL Cert per ELB.
+
 ## Instance Meta-Data
-There is a ton of meta-data available about each EC2 instance available via this [handy URL: curl http://169.254.169.254/latest/meta-data/](curl http://169.254.169.254/latest/meta-data/)
+There is a ton of meta-data available about each EC2 instance available via this [handy URL: curl http://169.254.169.254/latest/meta-data/](http://169.254.169.254/latest/meta-data/)
+
+## EC2 API Reference Points
+The EC2 API is huge and covers creating and deploying AMI, instances, instance specifics like EBS, Elastic IP, etc. You can manage dedicated, spot, spot fleet &amp; reserved instances. You can setup an entire VPC using this API. Amazing stuff.
+
+
+
+### AMI API Highlights
+
+| **AMI**  | **Notes**  |
+|:-----------------------------------------|:--------------------------------------------------------|
+| [DescribeImages](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeImages.html) | Describes one or more of the images (AMIs, AKIs, and ARIs) available to you|
+| AttachVolume | EBS volume to an EC2 instance |
+| RegisterImage | Registers an AMI. When you're creating an AMI, this is the final step you must complete before you can launch an instance from the AMI.|
+
+### Instance API Highlights
+All actions are pretty much plural. 
+
+| **Instance**  | **Notes**  |
+|:-----------------------------------------|:--------------------------------------------------------|
+|RunInstances|Launches the specified number of instances using an AMI for which you have permissions.|
+|DescribeInstances| Describes one or more of your instances.|
+
 
 # Resources
+
 ## Qwik Labs
 [Introduction to Amazon Elastic Compute Cloud (EC2)](https://qwiklabs.com/focuses/2921)
 [Introduction to Amazon Elastic Block Store (EBS)](https://qwiklabs.com/focuses/2920)
