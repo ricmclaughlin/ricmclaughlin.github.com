@@ -42,7 +42,7 @@ S3 Limits - the minimium size for a s3 object is 0 bytes; 100 S3 buckets per acc
 ## Security
 Buckets are private by default but access control you can define a bucket policy and or an access control list. Access logs can also be defined if required.
 
-### Data In-Transit
+### Data in-Transit
 Data in-transit security happens using SSL or TLS (which is SSL v 3.1)
 
 ### Data at-Rest
@@ -95,6 +95,42 @@ CORS rules - The bucket hosting the assets needs CORS configuration - add the do
 
 ## S3 Transfer Acceleration
 Edge Location used by CloudFront are not just for download acceleration. S3 Transfer Acceleration uses the AWS backbone to speed up uploads. This costs more money. 
+
+## S3 API Reference Points
+
+### Bucket API
+Seeing that S3 is a REST API, all the operations... well, they are REST.
+
+| S3 Bucket API Method  | Notes  |
+|:--------------------------------------:|:----------------------------------------:|
+|    DELETE                 | Bucket, CORS, website, etc.  |
+|  GET  |  Bucket, CORS, website, etc.  |
+|  PUT | Bucket, CORS, website, etc. | 
+|  HEAD | Unsure if you have access and a bucket exist? | 
+
+### Object API
+This section of the API is REST-like. Multi Part upload - Multi-part upload API allows you to upload parts of an object once broken apart. As a file/object is being created, the multi-part upload API will allow you to upload the file to S3. Only after all parts of the object have been uploaded do you execute the CompleteMultipartUpload API call which completes a multi-part upload by assembling previously uploaded parts.
+
+You first initiate the multi-part upload and then upload all parts using the Upload Parts operation (see Upload Part). After successfully uploading all relevant parts of an upload, you call this operation to complete the upload. Upon receiving this request, Amazon S3 concatenates all the parts in ascending order by part number to create a new object. In the Complete Multi-part Upload request, you must provide the parts list. You must ensure the parts list is complete, this operation concatenates the parts you provide in the list. For each part in the list, you must provide the part number and the ETag header value, returned after that part was uploaded.
+
+| S3 Object API  | Notes  |
+|:--------------------------------------:|:----------------------------------------:|
+| DELETE                    |   single file or using a DELETE Object |
+| GET | Object, Object ACL, Object Torrent |
+| HEAD | get meta data (might returns 404 or 403 error) |
+| POST | writes an object to S3 from a form (can also copy the file) |
+| | |
+
+### Error Codes from API
+Common Errors - S3 handles error codes with HTTP response codes - which makes sense seeing that we are using a REST API here.
+
+| S3 API HTTP Responses  | Notes  |
+|:--------------------------------------:|:----------------------------------------:|
+| 403 Forbidden                    |   AccessDenied or AccountProblem |
+| 409 Conflict  | BucketNotEmpty - you tried to delete a bucket that was not empty. |
+| 400 Bad Request | InvalidBucketName, InlineDataTooLarge, InvalidPart/InvalidPartOrder, TooManyBuckets|
+| 404 Not Found | NoSuchBucket, NoSuchBucketPolicy |
+| 200 - Yeah!| All is good, continue about your day!|
 
 # Resources
 

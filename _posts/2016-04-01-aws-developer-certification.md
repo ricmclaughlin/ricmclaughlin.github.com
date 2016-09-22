@@ -8,38 +8,39 @@ tags: [aws, developercert]
 {% include JB/setup %}
 As part of studying for the [AWS Developer Certification - Associate](https://aws.amazon.com/certification/certified-developer-associate/), I'm pulling together some study notes here on my blog. For each chunky topic, I'll capture the big facts and stuff I had to remind myself to remember:
 
-
 ## Application Services
-* [AWS Simple Notification Service (SNS)]({{ BASE_PATH }}/aws-developer-certification-sns)
+* [AWS Simple Notification Service (SNS)]({{ BASE_PATH }}/posts/aws-developer-certification-sns)
 
-* [AWS Simple Queue Service (SQS)]({{ BASE_PATH }}/aws-developer-certification-sqs)
+* [AWS Simple Queue Service (SQS)]({{ BASE_PATH }}/posts/aws-developer-certification-sqs)
 
-* [AWS Simple Work Flow (SWF)]({{ BASE_PATH }}/aws-developer-certification-swf)
+* [AWS Simple Work Flow (SWF)]({{ BASE_PATH }}/posts/aws-developer-certification-swf)
 
 ## Management Tools
-* [AWS Cloud Formation]({{ BASE_PATH }}/aws-developer-certification-cloudformation)
+* [AWS Cloud Formation]({{ BASE_PATH }}/posts/aws-developer-certification-cloudformation)
 
 ## Security and Identity
-* [AWS IAM]({{ BASE_PATH }}/aws-developer-certification-iam)
+* [AWS IAM]({{ BASE_PATH }}/posts/aws-developer-certification-iam)
 
-* [Key Management Services]()
+* [Key Management Services]() - not yet...
+
+* [Cognito]() - not yet...
 
 ## Databases
-* [AWS DynamoDB, RDS, &amp; Elasticache]({{ BASE_PATH }}/aws-developer-certification-dynamo-db)
+* [AWS DynamoDB, RDS, &amp; Elasticache]({{ BASE_PATH }}/posts/aws-developer-certification-dynamodb)
 
 ## Storage
-* [AWS Storage & S3 notes]({{ BASE_PATH }}/aws-developer-certification-s3) - including s3, Cloud Front, Elastic File System (EFS), Snowball, Storage Gateway and Glacier.
+* [AWS Storage & S3 notes]({{ BASE_PATH }}/posts/aws-developer-certification-s3) - including s3, Cloud Front, Elastic File System (EFS), Snowball, Storage Gateway and Glacier.
 
 ## Compute
-* [AWS EC2]({{ BASE_PATH }}/aws-developer-certification-ec2)
+* [AWS EC2]({{ BASE_PATH }}/posts/aws-developer-certification-ec2)
 
-* [Elastic Beanstalk]({{ BASE_PATH }}/aws-developer-certification-cloudfront)
+* [Elastic Beanstalk]({{ BASE_PATH }}/posts/aws-developer-certification-cloudfront)
 
-* [Lambda]()
+* [Lambda]() - not yet...
 
 ## Networking
 
-* [AWS VPC]({{ BASE_PATH }}/aws-developer-certification-vpc)
+* [AWS VPC]({{ BASE_PATH }}/posts/aws-developer-certification-vpc)
 
 # Overall AWS Architecture:
 

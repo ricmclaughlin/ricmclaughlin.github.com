@@ -7,7 +7,7 @@ tags: [aws, developercert, mongodb, dynamodb]
 ---
 {% include JB/setup %}
 
-The [AWS Developer Certification - Associate]() has a some stuff about databases in general.
+The [AWS Developer Certification - Associate]({{ BASE_PATH }}/posts/aws-developer-certification) has a some stuff about databases in general.
 
 # DyanamoDB Overall
 Here are a couple of notes on what I found important to know about DynamoDB.
