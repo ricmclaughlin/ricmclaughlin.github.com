@@ -23,10 +23,9 @@ tags: [aws, developercert, sqs]
 | **SQS API (Messaging)**  | **Notes**  |
 |:-----------------------------------------|:--------------------------------------------------------|
 | [SendMessage](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessage.html) | Delivers a message to the specified queue. |
-| [ReceiveMessage](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ReceiveMessage.html) | Retrieves one or more messages, with a maximum limit of 10 messages, from the specified queue. You can set `WaitTimeSeconds` and enable long poll support per request.|
+| [ReceiveMessage](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ReceiveMessage.html) | Retrieves one or more messages, with a maximum limit of 10 messages, from the specified queue. You can set `WaitTimeSeconds` to a number greater than 1 and enable long poll support per request.|
 | [DeleteMessage](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteMessage.html) |Deletes the specified message from the specified queue. |
 | [ChangeMessageVisibility  ](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ChangeMessageVisibility.html) | Changes the visibility timeout of a specified message in a queue to a new value. Restarts visibility in queue but not past 12 hours. |
-
 
 
 | **SQS API (Queue)**  | **Notes**  |
