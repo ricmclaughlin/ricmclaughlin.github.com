@@ -7,7 +7,7 @@ tags: [aws, developercert, cloudformation]
 ---
 {% include JB/setup %}
 
-[CloudFormation](https://aws.amazon.com/cloudformation/) templates are JSON documents that build AWS infrastucture. The cool part is that these templates can be version control and run over and over again - this is infrastructure as code in a fleshy-codey sort of way! The only bummer is that you can only have 20 CloudFormation stacks in a region - and of course, you can increase this by contacting AWS.
+[CloudFormation](https://aws.amazon.com/cloudformation/) templates are JSON documents that build AWS infrastucture. The cool part is that these templates can be version control and run over and over again - this is infrastructure as code in a fleshy-codey sort of way! The only bummer is that you can only have 20 CloudFormation stacks in a region - and of course, you can increase this by contacting AWS. Obviously you can create as many CloudFormation Templates as you want.
 
 
 ## CloudFormation Templates
@@ -30,7 +30,7 @@ CloudFormation Templates have 8 main sections but only the resources section is 
 * Outputs -- think `console.log();` you can output stuff like the URL of the website, or other variable.
 
 ## Functions
-Intrinsic Functions - Some value that you need to access will not be known until runtime; think IP address or DNS name, anything that might vary each time the CloudFormation template is run. In these cases use the `Fn::GetAtt`, which retrieves the attribute from a resource, or other functions like `Fn:FindInMap` in template. These functions can only be used in the resource, metadata and update policy sections.
+Intrinsic Functions - Some value that you need to access will not be known until runtime; think IP address or DNS name, anything that might vary each time the CloudFormation template is run. In these cases use the `Fn::GetAtt`, which retrieves the attribute from a resource, or other functions like `Fn:FindInMap` in mappings section. These functions can only be used in the  resource properties, metadata attributes, and update policy attributes.
 
 CloudFormation Rollback - If a CloudFormation template run does not complete successfully then by default it all gets rolled back which feels like something very similiar to a transaction. 
 

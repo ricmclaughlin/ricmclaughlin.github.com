@@ -7,9 +7,9 @@ tags: [aws, developercert, sns]
 ---
 {% include JB/setup %}
 
-AWS Simple Notfication Services is a pub-sub service - no polling required. SNS is a natural architectural match with SQS. SQS is used by distributed applications and can be used to decouple sending and receiving components without requiring each application component to be concurrently available. The basis of the system is a Topic.
+AWS Simple Notfication Services is a pub-sub service - no polling required. SNS is a natural architectural match with SQS. SQS is used by distributed applications and can be used to decouple sending and receiving components without requiring each application component to be concurrently available. 
 
-1. Many services can publish to a SNS topic. Messages on a topic can be customized based on the subscribing service.
+1. The basis of the system is a Topic. Many AWS services can publish to a SNS topic. Messages on a topic can be customized based on the subscribing service.
 
 1. Many services can subscribe to an SNS topic - processing can be handled realtime by subscribing a Lambda function or webservice to the topic or processing can be handled in a loosely coupled, as available process, by subscribing a SQS queue to the topic. Protocols include HTTP/HTTPS, email, Email-JSON, SMS, SQS, AWS Lambda and application.
 
@@ -42,13 +42,13 @@ POST / HTTP/1.1
   }
 ```
 ## Mobile Push
-Mobile Push is a primary use case for SNS. Setup is required for each mobile platform.
+Mobile Push is a primary use case for SNS. You need to setup each mobile platform before you can use it.. makes sense.
 
 1. Request credentials from mobile platform - get a login
 
 2. Get request token from mobile platform - get a thingy that represents your app
 
-3. Create a Platform Application Object - register it with SNS and get an object you can use
+3. Create a Platform Application Object - register it with SNS and get an object you can use with your request
 
 4. Create a Platform End Point - create an event handler that recieves the SNS message and routes it to the mobile platform
 

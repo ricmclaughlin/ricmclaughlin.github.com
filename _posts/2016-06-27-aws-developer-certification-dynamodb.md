@@ -35,18 +35,18 @@ Primary Key  - Like all databases a DynamoDB primary key is a unique identifier 
 
 Partition Keys (hash key) - When DynamoDB stores data it uses the partition key to divide the table between partitions/servers. 
 
-Sort Keys (range key) - 
+Sort Keys (range key) - The table can be sorted as well.. and it should be.
 
 Secondary Indexes - total of 5 global indexes and 5 secondary indexes for a total of 10 per table
 
 * Secondary Local Indexes - same partition key with different sort key defined at table creation ONLY( has the same hash key as the table, but a different range key); consumes tables defined read capacity.
 
-* Global Secondary Indexes - uses a different partition key and a different sort key (the partition and sort key ~can~ be different from those on the table.) - A global secondary index is considered "global" because queries on the index can span all of the data in a table, across all partitions. Global indexes have completely different read/write capacity units.
+* Global Secondary Indexes - uses a different partition key and a different sort key (the partition and sort key *can* be different from those on the table.) - A global secondary index is considered "global" because queries on the index can span all of the data in a table, across all partitions. Global indexes have completely different read/write capacity units.
 
 ## Read capacity unit estimation 
 Formula -> (size per item KB rounded up to nearest mulitple of 4 /4) * read per sec = strongly consistent read; divide by 2 if eventually consistent.
 
-If you exceed provisioned throughput you receive a 400 HTTP status code - `ProvisionedThroughputExceededException`
+If you exceed provisioned throughput, you receive a 400 HTTP status code - `ProvisionedThroughputExceededException`
 
 ### Example read capacity problem #1
 
@@ -76,20 +76,20 @@ write capacity unit - on write per second up to 1KB
 It's a database log that emits events.
 
 ## Scans vs Queries
-Overall, you want to avoid table scans therefore designing tables to use the `Query`, `Get` or `BatchGetItems` APIs. 
-
-Scan vs Query - A query result is an eventually consistent read but you can request it to be a strongly consistent read.
-
 Queries - find items based on primary key attribute; optionally provide sort key and value; use a `ProjectionExpress` so the query only returns some of the attributes. Defaults to sorted Ascending by the sort key; use `ScanIndexForward` to false for Descending. 
 
 Scan - examines every item in the table; avoid this. Supports eventually consistent and consistent reads. 1 Mg per scan max.
+
+Scan vs Query - A query result is an eventually consistent read but you can request it to be a strongly consistent read.
+
+Overall, you want to avoid table scans therefore designing tables to use the `Query`, `Get` or `BatchGetItems` APIs. 
 
 ## Web Identity Provider Access to DynamoDB
 This is a huge issue because many times users are authenticated by an ID provider then need access to DynamoDB. Steps:
 
 1. Authenticate with ID provider (Receive Token from ID provider)
 
-3. App calls `AssumeRoleWithWebIdentity` passes in provider token and ARN for IAM role.
+3. App calls STS with `AssumeRoleWithWebIdentity` &amp; passes in provider token and ARN for IAM role.
 
 4. STS provides DynamoDB access for a period of 15 minutes to 1 hours. 1 hour is the default.
 

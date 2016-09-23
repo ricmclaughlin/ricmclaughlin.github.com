@@ -7,7 +7,7 @@ tags: [aws, developercert, swf]
 ---
 {% include JB/setup %}
 
-AWS Simple Workflow Service is very similiar to SQS/SNS yet serves a different purpose. SWF is distributed, can work with on-premises or in the cloud, can consist of human events and guarantees order of execution. SWF also allows for sync and async processing. Think about the entire Amazon.com order process - this is exactly what SWF does. 
+[AWS Simple Workflow Service (SWF)](https://aws.amazon.com/swf/) is very similiar to SQS/SNS yet serves a different purpose. SWF is distributed workflow modeling system, can work with on-premises or in the cloud server processes, can include of human offline events and guarantees order of execution. SWF implements sync and async processing. Think about the entire Amazon.com order process - this is exactly what SWF does. 
 
 ## SQS vs SWF
 SQS and SWF are both great for distributed services and can scale easily.  SWF can NOT have duplicates, can only be assigned once and uses a guaranteed order. SWF can last as long as one year. SQS does not guarantee message order, could have duplicates and can only last 12 hours. 
@@ -26,3 +26,6 @@ SQS and SWF are both great for distributed services and can scale easily.  SWF c
 
 ## Reading
 [SWF FAQ](https://aws.amazon.com/swf/faqs/)
+
+## Video
+[7 SWF Use Cases in 7 Minutes Each](https://www.youtube.com/watch?v=sXGlQruUrWE)

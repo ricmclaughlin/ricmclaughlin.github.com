@@ -18,6 +18,8 @@ As part of studying for the [AWS Developer Certification - Associate](https://aw
 ## Management Tools
 * [AWS Cloud Formation]({{ BASE_PATH }}/posts/aws-developer-certification-cloudformation)
 
+* [AWS Cloud Front]({{ BASE_PATH }}/posts/aws-developer-certification-cloudfront)
+
 ## Security and Identity
 * [AWS IAM]({{ BASE_PATH }}/posts/aws-developer-certification-iam)
 

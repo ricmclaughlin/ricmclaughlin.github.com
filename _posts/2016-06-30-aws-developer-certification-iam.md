@@ -23,16 +23,16 @@ For example, IAM roles are used for an EC2 instance that needs access to S3 inst
 
 When an IAM role is assigned to a resource, the resource takes on that role. As an application of this concept, the code that runs on an EC2 instance takes on the role assigned to that instance.
 
-An access key is used to sign requests from outside AWS. AWS SDKs and CLI use access keys. Of course they can be disabled. Of course they can be deleted. They can not be retrieved. Access keys do have a temporary nature to them which can be optionally assigned.
+An access key is used to sign requests from outside AWS. AWS SDKs and CLI use access keys. Of course, they can be disabled. Of course, they can be deleted. They can not be retrieved. Access keys do have a temporary nature to them which can be optionally assigned.
 
 ## IAM, STS, SSO &amp; WIF
 The AWS [Security Token Service API]({{ BASE_PATH }}/posts/aws-developer-certification-security-token-service) for you to request temporary security credentials and this is very closely related to IAM. The AWS sign-in endpoint for SAML is https://signin.aws.amazon.com/saml
 
-Federation - creating a trust relationship between an identity store like Amazon, Facebook, Google (also called an Identity Broker), Active Directory, any SAML 2.0 system and AWS. In Identity Access Management, using SAML (Security Assertion Markup Language 2.0) you can give your federated users single sign-on (SSO) access to the AWS Management Console. Users are authenticated with the Federated indentity store FIRST before they hit AWS. Make sense... how could it work the other way around?? The steps are:
+Federation - creating a trust relationship between an identity store like Amazon, Facebook, Google (also called an Identity Broker), Active Directory, any SAML 2.0 system and AWS. In Identity Access Management, using SAML (Security Assertion Markup Language 2.0) you can give your federated users single sign-on (SSO) access to the AWS Management Console. Users are authenticated with the Federated indentity store FIRST before they hit AWS. The steps are:
 
 1. Authenticate with Identity Provider 
 2. Obtain Temporary Security Credentials - Done by calling STS. In a single sign-on scenarios you would call `AssumeRoleWithSAML` or `AssumeRole` or in the case of a Web Indentify Federation by callsing `AssumeRoleWithWebIdentity`.
-3. Access the AWS resource - now, based the users' permission, you have access to AWS Resources.
+3. Access the AWS resource - now, based the users' role, you have access to AWS Resources.
 
 # Resources
 

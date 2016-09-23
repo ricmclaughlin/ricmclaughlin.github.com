@@ -7,9 +7,9 @@ tags: [aws, developercert, sqs]
 ---
 {% include JB/setup %}
 
-[Simple Queue Service](https://aws.amazon.com/sqs/) is a queuing product much like the [Tuxedo](http://www.oracle.com/us/products/middleware/cloud-app-foundation/tuxedo/message-queue/overview/index.html) product now owned by Oracle. Together with AWS [Simple Notification Service](http://aws.amazon.com/sns/) SQS enables distributed, fault tolerate applications to be easily created. 
+[Simple Queue Service](https://aws.amazon.com/sqs/) is a queuing product much like the [Tuxedo](http://www.oracle.com/us/products/middleware/cloud-app-foundation/tuxedo/message-queue/overview/index.html) product now owned by Oracle. Together with AWS [Simple Notification Service](http://aws.amazon.com/sns/), SQS enables distributed, fault tolerate applications to be easily created. 
 
-1. long polling vs short polling - using long polling the pulling process will wait and listen to the queue for as long as 20 seconds before it times out or retrieves a message. To enable long polling increase the `ReceiveMessageWaitTimeSeconds` attribute of the queue to a value greater then 0; a `ReceiveMessageWaitTimeSeconds` attribute of 0 enables short polling.
+1. Long polling vs short polling - using long polling, the `ReceiveMessage` call issued from the worker of the queue will wait and listen to the queue for as long as 20 seconds before it times out or retrieves a message. To enable long polling increase the `ReceiveMessageWaitTimeSeconds` attribute of the queue to a value greater then 0; a `ReceiveMessageWaitTimeSeconds` attribute of 0 enables short polling.
 
 2. SQS guarantees each message will be delivered *at least* once; the only issues is that the message might be delivered more than once. Message delivery order is not guaranteed either. SQS is NOT FIFO. The max time a SQS message can be retained (`MessageRetentionPeriod`) is 14 days.
 
@@ -19,14 +19,16 @@ tags: [aws, developercert, sqs]
 
 ## SQS API Reference Points
 
+### Messaging
 
 | **SQS API (Messaging)**  | **Notes**  |
 |:-----------------------------------------|:--------------------------------------------------------|
 | [SendMessage](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessage.html) | Delivers a message to the specified queue. |
 | [ReceiveMessage](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ReceiveMessage.html) | Retrieves one or more messages, with a maximum limit of 10 messages, from the specified queue. You can set `WaitTimeSeconds` to a number greater than 1 and enable long poll support per request.|
 | [DeleteMessage](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteMessage.html) |Deletes the specified message from the specified queue. |
-| [ChangeMessageVisibility  ](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ChangeMessageVisibility.html) | Changes the visibility timeout of a specified message in a queue to a new value. Restarts visibility in queue but not past 12 hours. |
+| [ChangeMessageVisibility  ](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ChangeMessageVisibility.html) | Changes the visibility timeout of a specified message in a queue to a new value. This call restarts visibility in queue but not past 12 hours. |
 
+### Queue
 
 | **SQS API (Queue)**  | **Notes**  |
 |:-------------------------------------------|:--------------------------------------------------------|
