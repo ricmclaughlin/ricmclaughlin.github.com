@@ -12,11 +12,11 @@ tags: [aws, developercert, vpc]
 Imagine a in-house network with routers, sub-netting, routing tables and computing resources... except in the cloud. [Virtual Private Clouds](https://aws.amazon.com/vpc/) are foundational infrastructure components much like [IAM](https://aws.amazon.com/iam/) and CloudFormation.
 
 ## Why use a VPC?
-
+Creating an [Amazon Web Services ](https://aws.amazon.com/) virtual private cloud is about the most amazing systems engineering feat ever. Using a good, yet not great, website anyone with basic technical skills can create computing infrastructure with security that would have cost hundreds of thousands of dollars just years ago - and I know this because I ran the IT group at a SaaS startup some years ago and spents millions of dollars in hardware and software and 4 or 5 months to accomplish what would take zero dollars to setup and way, way less than $100k a year to run.
 
 
 ## Types of VPC:
-* default VPC - A default VPC gives users easy access to computing resources with now configuration at all. The default VPC has a default internet gateway, a default private IP and a default public IP. A default VPC can be deleted and can only be restored by contacting AWS.
+* Default VPC - A default VPC gives users easy access to computing resources with now configuration at all. The default VPC has a default internet gateway, a default private IP and a default public IP. A default VPC can be deleted and can only be restored by contacting AWS.
 
 * Non-Default VPC - By default, an instance in a non-default VPC is not assigned a public IP address
 
@@ -30,7 +30,7 @@ When creating a new VPC and using the default options, all hardware is shares us
 
 * Internet Gateway - one gateway per VPC; detached upon creation.
 
-* Elastic Networks Interfaces - a virtual network interface that you can remap and assign to instances; dual homing would be a great way to think about it.
+* Elastic Networks Interfaces - a virtual network interface that you can remap and assign to instances; costs money if it is allocated yet not used.
 
 * Routing Tables - each subnet has only one routing table but one routing table can be shared by many subnets
 
@@ -47,8 +47,7 @@ When creating a new VPC and using the default options, all hardware is shares us
 * Network Access Control List - firewall port filtering at the subnet level renamed; allows filtering inbound and outbound; return traffic is not specifically allowed so it is stateless; Each ACL rule has a number and rules are evaluated ascending; Best practice is to create rule numbers by 5 so other rules can be added later; Once rules are added all other traffic is denied by default. A network ACL overrides security groups. Only 1 ACL per subnet and they encompass and over-write the permissions defined there. Rules are evaluated ascending.
 
 ## NAT Gateway
-An instance needs an public IP address in addition to having a route in order to access the Internet.
-Disable Source/Destination Check
+An instance needs an public IP address in addition to having a route in order to access the Internet. For a NAT instance you need to disable the "Source/Destination Check" option. 
 
 ## RDS (DB Subnet Group)
 RDS instances in a VPC - There is a mythical sort of subnet, called a [DB Subnet Group](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html), that must span multiple availability zones and can house RDS instances.  
@@ -62,7 +61,7 @@ RDS instances in a VPC - There is a mythical sort of subnet, called a [DB Subnet
 
 * [Creating an Amazon Virtual Private Cloud (VPC) with AWS CloudFormation](https://qwiklabs.com/focuses/2640)
 
-* [Create a VPC From Scratch]
+* Create a VPC From Scratch - Using acloud.guru formula.
 
 ## Reading
 
