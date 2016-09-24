@@ -6,7 +6,12 @@ category: posts
 tags: [aws, developercert]
 ---
 {% include JB/setup %}
-As part of studying for the [AWS Developer Certification - Associate](https://aws.amazon.com/certification/certified-developer-associate/), I'm pulling together some study notes here on my blog. For each chunky topic, I'll capture the big facts and stuff I had to remind myself to remember:
+As part of studying for the [AWS Developer Certification - Associate](https://aws.amazon.com/certification/certified-developer-associate/), I'm pulling together some study notes here on my blog. For each chunky topic, I'll capture the big facts and stuff I had to remind myself to remember.
+
+As a note, I passed this certification exam an earned the AWS Developer Certification - Associate.
+
+<img src="{{ BASE_PATH }}/assets/themes/ricify/images/Developer-Associateclr.jpg" width="300">
+
 
 ## Application Services
 * [AWS Simple Notification Service (SNS)]({{ BASE_PATH }}/posts/aws-developer-certification-sns)
