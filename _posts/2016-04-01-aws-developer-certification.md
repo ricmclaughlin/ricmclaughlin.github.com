@@ -12,7 +12,6 @@ As a note, I passed this certification exam an earned the AWS Developer Certific
 
 <img src="{{ BASE_PATH }}/assets/themes/ricify/images/Developer-Associateclr.jpg" width="300">
 
-
 ## Application Services
 * [AWS Simple Notification Service (SNS)]({{ BASE_PATH }}/posts/aws-developer-certification-sns)
 

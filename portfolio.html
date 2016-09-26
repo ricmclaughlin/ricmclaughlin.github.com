@@ -12,7 +12,7 @@ categories: projects
   {% for skill in skills %}
     <div class="category-archive">
       {% if skill == "frontend" %}
-        {% assign project_tags = "angularjs,jquery,javascript" | split: "," %}
+        {% assign project_tags = "reactjs,angularjs,jquery,javascript" | split: "," %}
         {% assign skill_full_name = "Front End Development" %}
       {% endif %}
       {% if skill == "backend" %}
