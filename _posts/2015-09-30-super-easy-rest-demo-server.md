@@ -2,7 +2,7 @@
 layout: post
 title: "Super Easy REST Demo Server"
 modified: 2015-09-30 11:13:13 -0800
-tags: [json, express, backend]
+tags: [express, backend]
 categories: projects
 ---
 You can't write a single page app without an API of some sorton the backend. However, getting a simple backend up for demo purposes up and running should not require busting out [Expressjs](http://expressjs.com/) or [Sails.js](http://sailsjs.org/). Or that would be the hope.

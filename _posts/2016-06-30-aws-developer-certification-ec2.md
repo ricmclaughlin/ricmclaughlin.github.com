@@ -29,13 +29,25 @@ Each instance type offers different compute, memory, and storage capabilities an
 
 * r - RAM oriented
 
-* t - Tiny general
+* t - Tiny general (burstable performance)
 
-* m - main choice or general purpose
+* m - main choice or general purpose; m3 offer instance stores; m4 uses EBS backed stores
 
 * c - Compute/processor optimized
 
 * g - Graphics optimized
+
+## Virtualization Types
+
+HVM
+
+PV
+
+## Status Checks
+
+System Status Checks - generally networking, power, hardware and system software problems that can be resolved by stopping and restarting the instance or contacting AWS.
+
+Instance Status Checks - configuration problems, out of memory, corrupted file system, or incompatible kernel. AWS does NOT help you with these sort of problems.
 
 ## Storage
 

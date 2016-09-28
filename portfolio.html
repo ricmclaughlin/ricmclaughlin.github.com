@@ -6,7 +6,7 @@ categories: projects
 {% assign cat = 'projects' %}
 {% assign project_tags = site.array %}
 {% assign skills = site.otherarray %}
-{% assign skills = "frontend,backend,wireframe,htmlcss,devops-ci,cloud,tdd,fcc,classes" | split: "," %}
+{% assign skills = "frontend,backend,htmlcss,devops-ci,cloud,tdd,fcc,classes" | split: "," %}
 
 
   {% for skill in skills %}
@@ -19,12 +19,8 @@ categories: projects
         {% assign project_tags = "express,mongodb,postgresql,node,ruby,rails" | split: "," %}
         {% assign skill_full_name = "Back End Development" %}
       {% endif %}
-      {% if skill == 'wireframe' %}
-        {% assign project_tags = "sublime,emmet" | split: "," %}
-        {% assign skill_full_name = "Rapid Lo-fi Wireframing" %}
-      {% endif %}
       {% if skill == 'htmlcss' %}
-        {% assign project_tags = "bootstrap,angular.ui,sass,htmlcss" | split: "," %}
+        {% assign project_tags = "bootstrap,sass,htmlcss" | split: "," %}
         {% assign skill_full_name = "HTML &amp; CSS Crafting" %}
       {% endif %}
       {% if skill == 'devops-ci' %}
@@ -34,10 +30,6 @@ categories: projects
       {% if skill == 'tdd' %}
         {% assign project_tags = "jasmine,chai,protractor" | split: "," %}
         {% assign skill_full_name = "Test Driven Development" %}
-      {% endif %}
-      {% if skill == 'fcc' %}
-        {% assign project_tags = "basicfront,basicback" | split: "," %}
-        {% assign skill_full_name = "Free Code Camp Projects" %}
       {% endif %}
       {% if skill == 'classes' %}
         {% assign project_tags = "portfoliodev,htmlcssclass,javascriptclass,c9" | split: "," %}
