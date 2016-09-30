@@ -132,6 +132,7 @@ Common Errors - S3 handles error codes with HTTP response codes - which makes se
 | 404 Not Found | NoSuchBucket, NoSuchBucketPolicy |
 | 200 - Yeah!| All is good, continue about your day!|
 
+
 # Resources
 
 ## Qwik Labs
