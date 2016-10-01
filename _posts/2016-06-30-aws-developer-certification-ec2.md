@@ -29,7 +29,7 @@ Each instance type offers different compute, memory, and storage capabilities an
 
 * r - RAM oriented
 
-* t - Tiny general (burstable performance)
+* t - Tiny general (burstable CPU performance)
 
 * m - main choice or general purpose; m3 offer instance stores; m4 uses EBS backed stores
 
@@ -39,9 +39,10 @@ Each instance type offers different compute, memory, and storage capabilities an
 
 ## Virtualization Types
 
-HVM
+HVM - Emulates a bare-metal experience for virtualization. Can runs for Windows. 
 
-PV
+PV - Short for ParaVirtualization is the previous version of virtualization. Uses a special boot loader called PV-GRUB and does not run Windows.
+
 
 ## Status Checks
 
@@ -51,20 +52,21 @@ Instance Status Checks - configuration problems, out of memory, corrupted file s
 
 ## Storage
 
+Performance for EBS is measured in IOPS which is a complicated metric. For SSDs,  IOPS are measured in 256 Kibibytes, because they are so good a small, non-sequential reads. For HDDs, IOPS are measured in 1024 Kibibyte chunks, because the have better performance with large sequential reads. 
+
 ## Root Storage
 Instance storage - physically attached to the host but ephemeral; Root devices are not encrypted; Root devices are deleted by default with the instance is terminated but this can be changed.
-There are three types of root storage:
 
-1. General purpose SSD -> up to 10K IOPS
-
-2. Provisioned IOPS -> over 10k IOPS
-
-3. Magnetic - Cheap and slow
-
-## EBS volumes 
+## EBS Volumes
 Elastic Block Storage - permanent storage with snapshot capability automatically mounted. There are three different volume types including general purpose, provisioned IOPS SSD which can be striped together for faster performance and magnetic volumes. Generally mapped to /dev/sda1 and can be optionally encrypted.
 
-EBS volumes can also be Cold HDD and Throughput Optimized HDD.
+There are three types of root storage:
+
+1. General purpose SSD (gp2) - Minimum of 100 IOPS then 3 IOPS per GB; can burst to 3000 IOPS if less than 1 TB. The max throughput is 160 MiB/s and this can end up being a bottleneck if read size is large. Even though you can boost performance, use if you are after less than 10K IOPS.
+
+2. Provisioned IOPS (io1) - 30 IOPS per GB up to 20,000 IOPS; Steady consisten IOPS not really a burstable; The max throughput is 320 MiB/s; Use if you are after over 10k IOPS
+
+3. Magnetic - Cheap and slow EBS volumes can also be Cold HDD (sc1) and Throughput Optimized HDD (st1).
 
 ## Elastic Load Balancers (ELB) 
 ELB distributes traffic to instances that belong to the ELB group; allows us to offload SSL certs to load balancers instead of webservers! There are three `Cookie Stickiness` options both enabled options end up with sticky sessions (so all sessions go back to the same server). The disable stickiness option is what you want and then you need to implement ElastiCache or an Amazon RDS instance.
@@ -73,7 +75,7 @@ ELB configuration requires a protocol, a front end port, and a back end port. Th
 
 ELB are NOT free - there is a charge by the hour and per GB of usage.
 
-Only one SSL Cert per ELB.
+Only one SSL Cert per ELB. The max number of requests that can be queued is 1024.
 
 ## Instance Meta-Data
 There is a ton of meta-data available about each EC2 instance available via this [handy URL: curl http://169.254.169.254/latest/meta-data/](http://169.254.169.254/latest/meta-data/)
