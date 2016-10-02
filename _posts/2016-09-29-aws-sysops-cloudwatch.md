@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AWS SysOps Certification - CloudWatch"
+title: "AWS SysOps - CloudWatch"
 description: ""
 category: posts
 tags: [aws, developercert, cloudfront]
@@ -18,15 +18,13 @@ There are three parts to CloudWatch:
 * Dashboard - A super cool way to visualize what is happening on your metrics using the AWS management console.
 
 # Monitoring
-
-uses the GetMetricStatistics command
-Look at SUM and difference between min and max values 
+Use the `GetMetricStatistics` API command from the command line. From an analysis perspective, look at SUM and difference between min and max values to get an overall picture.
 
 ## EC2 Instances
 
 EC2 instances report CloudWatch metric every 5 minutes; selecting the "Enable CloudWatch detailed monitoring" to see the metrics in 1 minute intervals. Unlike many instance options you can enable this feature after the instance starts.
 
-The amount of memory being used, The amount of swap space used, How much disk space is available
+The amount of memory being used, The amount of swap space used, How much disk space is available; EC2 instances must have permissions to write information to CloudWatch.
 
 ### EBS
 Status checks run every 5 minutes. Can report ok, warning, impaired; and reports insufficient-data when running.
