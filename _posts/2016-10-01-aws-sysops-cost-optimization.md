@@ -2,7 +2,7 @@
 layout: post
 title: "AWS SysOps Certification - Cost Optimization"
 description: ""
-category: 
+category: posts
 tags: [aws, developercert, cost]
 ---
 {% include JB/setup %}
@@ -30,4 +30,16 @@ RDS is expensive so finding idle RDS instances, in other words ones with 0 conne
 You have to enable the Price Explorer, then wait for 24 hours before things will work for you. 
 
 The Price List API is a series of JSON documents that outline the amazingly huge task of billing for AWS services. Think a complicated list with a megaton of detail.
+
+## Reserved Instances
+EC2 offers several different reserved instance types.
+
+* Standard Reserved Instances - 
+
+* Scheduled Reserved Instances - 
+
+RDS and ElastiCache offer reserved instances as well
+
+### Reserved Instance Marketplace
+
 

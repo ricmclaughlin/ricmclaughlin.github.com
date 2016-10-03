@@ -11,7 +11,7 @@ tags: [aws, developercert, cloudfront]
 
 There are three parts to CloudWatch:
 
-* Metrics - it collects data in a time series. The source of this data can be an AWS service or an application using the `PutMetricData` API action. Namespaces are containers for metrics. Dimensions are a name/value pair that ID a metric BUT only agregate for EC2 and other AWS defined dimensions.
+* Metrics - it collects data in a time series. The source of this data can be an AWS service or an application using the `PutMetricData` API action. Namespaces are containers for metrics. Dimensions are a name/value pair that ID a metric BUT only aggregate for EC2 and other AWS defined dimensions.
 
 * Alarms - a super cool way to alert when something happens; think SNS message when your ELB spills overs.
 

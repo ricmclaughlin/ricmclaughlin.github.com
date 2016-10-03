@@ -2,7 +2,7 @@
 layout: post
 title: "AWS SysOps Certification Security"
 description: ""
-category: 
+category: posts
 tags: [aws, sysopscert, security]
 ---
 {% include JB/setup %}
