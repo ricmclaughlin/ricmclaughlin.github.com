@@ -31,3 +31,9 @@ After the first call from the app to STS, it returns a temporary security creden
 When using an API there are two options to use the temporary security credentials: add the session token to the HTTP header or adding it to the query string parameter `X-AMZ-Security-Token`.
 
 Overall, this service seems to be a backend to [AWS Cognito](https://aws.amazon.com/cognito/) and somewhat obsolete.
+
+## Underlying OS Access
+There are a number of AWS services that enable us to get low and down to the OS level - EMR, EC2, ECS, Elastic BeanStalk and Opswork. Other platforms like RDS, DynamoDB do NOT allow access to OS level details.
+
+## Bastion Hosts
+Create the instance in your public subnet and assign it a public IP address. Then, use ssh-agent forwarding or OpenSSH ProxyCommand to connect to your private instances.
