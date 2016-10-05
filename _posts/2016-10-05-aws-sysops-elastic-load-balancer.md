@@ -25,3 +25,28 @@ There are three `Cookie Stickiness`, with both enabled options end up with stick
 ### External vs Internal Load Balancing
 External = Public; Elastic IP; DNS
 Internal = no public IP or Elastic IP; internal DNS name
+
+### SSL on ELB
+
+
+
+## Autoscaling and ELB Problems
+General Config Problems:
+
+1. Attempting to create instance in the wrong zone, subnet or security group or with the wrong key pair. 
+
+2. Instance is not supported in that AZ, region or is the wrong type for autoscaling.
+
+3. The region is out of capacity.
+
+3. There is an invalid EBS device mapping, or you are attaching a EBS block device to a instance store AMI.
+
+Dumbass Problems:
+
+1. Autoscaling is not enabled on the account.
+
+2. Autoscaling config is not working correctly. ie. there is a bug.
+
+3. Autoscaling is in a "suspended state"
+
+
