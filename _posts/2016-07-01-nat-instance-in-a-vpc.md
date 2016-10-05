@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "NAT Instance in a VPC"
+title: "AWS Project - NAT Instance in a VPC"
 description: ""
 category: projects
 tags: [aws, vpc]

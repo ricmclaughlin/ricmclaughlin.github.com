@@ -43,6 +43,15 @@ HVM - Emulates a bare-metal experience for virtualization. Can runs for Windows.
 
 PV - Short for ParaVirtualization is the previous version of virtualization. Uses a special boot loader called PV-GRUB and does not run Windows.
 
+## AMI Bundling
+
+### Creation
+Anyone can create an AMI 
+
+### AMI Security
+
+https://aws.amazon.com/articles/Amazon-EC2/9001172542712674
+
 ## Status Checks
 
 System Status Checks - generally networking, power, hardware and system software problems that can be resolved by stopping and restarting the instance or contacting AWS.
@@ -66,25 +75,6 @@ There are three types of root storage:
 2. Provisioned IOPS (io1) - 30 IOPS per GB up to 20,000 IOPS; Steady consisten IOPS not really a burstable; The max throughput is 320 MiB/s; Use if you are after over 10k IOPS
 
 3. Magnetic - Cheap and slow EBS volumes can also be Cold HDD (sc1) and Throughput Optimized HDD (st1).
-
-## Elastic Load Balancers (ELB) 
-ELB distributes traffic to instances that belong to the ELB group; allows us to offload SSL certs to load balancers instead of webservers! ELB configuration requires a protocol, a front end port, and a back end port. There are two version of ELB - Classic Load Balancer (only a few ports + TCP, HTTP, HTTPS, SSL) and Application Load Balancer (any port - just HTTP, HTTPS).
-
-ELB are NOT free - there is a charge by the hour and per GB of usage.
-
-Only one SSL Cert per ELB. The max number of requests that can be queued is 1024; it issues a `HTTP 503 Error` when it can process any more requests - call AWS if a huge traffic spike comes!
-
-There are three `Cookie Stickiness`, with both enabled options end up with sticky sessions (so all sessions go back to the same server), options: 
-
-* Disable Stickiness - The disable stickiness option is what you want and then you need to implement ElastiCache or an Amazon RDS instance for session.
-
-* Enable Load Balancer Generated Cookies - the ELB generates the cookie and manages the distribution of traffic; can't set the duration of the distribution
-
-* Enable Application Generated Cookie Stickiness - ELB generates a cookie that correlates to the application cookie.  
-
-### External vs Internal Load Balancing
-External = Public; Elastic IP; DNS
-Internal = no public IP or Elastic IP; internal DNS name
 
 ## Instance Meta-Data
 There is a ton of meta-data available about each EC2 instance available via this [handy URL: curl http://169.254.169.254/latest/meta-data/](http://169.254.169.254/latest/meta-data/)

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AWS SysOps Certification Security"
+title: "AWS SysOps - Security"
 description: ""
 category: posts
 tags: [aws, sysopscert, security]

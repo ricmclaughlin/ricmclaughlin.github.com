@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "A Simple VPC from Scratch"
+title: " AWS Project - A Simple VPC from Scratch"
 description: ""
 category: projects
 tags: [aws, developercert, vpc]

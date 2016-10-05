@@ -7,7 +7,7 @@ tags: [angularjs]
 ---
 {% include JB/setup %}
 
-I love Angular. It is by far my favoriate front end JavaScript framework. In this project, I used Angular 1.5.x with [Firebase](https://www.firebase.com/), an awesome database-as-a-service sort of thing, from our friends at [Google](https://www.google.com/). 
+I love Angular. It is by far my favorite front end JavaScript framework. In this project, I used Angular 1.5.x with [Firebase](https://www.firebase.com/), an awesome database-as-a-service sort of thing, from our friends at [Google](https://www.google.com/). 
 
 Where this solution really shines is speed - of implementation, of data sync AND it is super easy to get up and running. The Firebase folks have created a client side library called AngularFire which enables you to write data to and from their real time database which is very, very close to MongoDB. You also get a simple static hosting solution with Firebase as well - I'm not as fired up about that. Perhaps it as the capital letters in my paths or perhaps it was just Firebase hosting being a bit off. Most of Google services have been having small up time issues this week so perhaps that is somehow related to the deployment problems I saw. 
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AWS SysOps Certification - Cost Optimization"
+title: "AWS SysOps - Cost Optimization"
 description: ""
 category: posts
 tags: [aws, developercert, cost]

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AWS Sysops High Availability"
+title: "AWS SysOps - High Availability"
 description: ""
 category: posts
 tags: [aws, sysopscert, highavailability]
