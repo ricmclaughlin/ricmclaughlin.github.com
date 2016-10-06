@@ -27,8 +27,15 @@ External = Public; Elastic IP; DNS
 Internal = no public IP or Elastic IP; internal DNS name
 
 ### SSL on ELB
+One of the key features of ELB is the ability to terminate SSL connections for instances in the load balancing group - SSL is still a highly compute intensive process for webservers. In this configuration, the HTTPS client uses port 443 to communicate with the ELB and the ELB communicates on port 80 to the web server instances in the autoscaling group. 
 
+Managing the certificate on the ELB is always the magic... in fact, managing certs in general is the magic. There are three options. 
 
+1. Use the new AWS Certificate Manager service. Especially cool now that it is integrated with Elastic Bean Stalk -  nifty and FREE! 
+
+2. Use a certificate from IAM. 
+
+3. Upload your own.
 
 ## Autoscaling and ELB Problems
 General Config Problems:
