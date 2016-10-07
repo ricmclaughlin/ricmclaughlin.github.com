@@ -37,3 +37,5 @@ There are a number of AWS services that enable us to get low and down to the OS 
 
 ## Bastion Hosts
 Create the instance in your public subnet and assign it a public IP address. Then, use ssh-agent forwarding or OpenSSH ProxyCommand to connect to your private instances.
+
+## Bucket Permissions vs IAM roles

@@ -31,16 +31,7 @@ Problems can arise when instances are in different AZ or regions, the instance d
 `iperf3` is a great way to diagnose the problem
 
 ## RDS
-A multi-AZ failover process is key in the event of an AZ failure. Failover can be enabled from the Console or via the API. Replication from one zone to another causes a lot of higher write and commit latency - this is a syncronous process - provisioned IOPS is recommended. Patching is another benefit of standy instances - patch the standby, failover, then patch the primary. Backups can be created from the standy instance and that can eliminate I/O locking and latency spikes from backups on the primary.
-
-Failover is automatically triggers when the AZ or the underlying hardware fails or there is a manual reboot with failover is initialized. A slow server and corrupt data will NOT lead to a failover. Getting notification about a failover as you would expect - RDS events.
-
-Failovers are implemented as a DNS change so the application servers have to re-establish connections with the failover instance.
-
-### RDS Read Replicas
-To setup a RDA read replica, auto backup must be enabled (this is done by turning the backup retention period to greater than 0) then RDS takes a backup copy of the database then enable replication. Without multi-AZ operations, IO is suspended while RDS snapshots the database. A transactional DB engine must be used to support read replicas - so Aurora/MySQL must have InnoDB engine installed. 
-
-Replica lag is a key metric - keeping the read replica on a similiar, in fact, exact same configuration of instances can help keep this metric inline. You can't enable "multi-az" on read replica - single AZ only.
+I cover this material in [Data Management]({{ BASE_PATH }}/posts/aws-sysops-data-management)
 
 ## Bastion Hosts
 White list the bastion host IP using an Elastic IP address. You might want to image your bastion host and spin it up when you need it or create an auto-scaling group of bastion hosts - perhaps an autoscaling group of one?
