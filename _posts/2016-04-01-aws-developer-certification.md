@@ -2,7 +2,7 @@
 layout: post
 title: "AWS Developer Certification - Overview"
 description: ""
-category: posts
+category: projects
 tags: [aws, developercert]
 ---
 {% include JB/setup %}
@@ -13,40 +13,34 @@ As a note, I passed this certification exam an earned the AWS Developer Certific
 <img src="{{ BASE_PATH }}/assets/themes/ricify/images/Developer-Associateclr.jpg" width="300">
 
 ## Application Services
-* [AWS Simple Notification Service (SNS)]({{ BASE_PATH }}/posts/aws-developer-certification-sns)
+* [AWS Simple Notification Service (SNS)]({{ BASE_PATH }}/posts/aws-developer-sns)
 
-* [AWS Simple Queue Service (SQS)]({{ BASE_PATH }}/posts/aws-developer-certification-sqs)
+* [AWS Simple Queue Service (SQS)]({{ BASE_PATH }}/posts/aws-developer-sqs)
 
-* [AWS Simple Work Flow (SWF)]({{ BASE_PATH }}/posts/aws-developer-certification-swf)
+* [AWS Simple Work Flow (SWF)]({{ BASE_PATH }}/posts/aws-developer-swf)
 
 ## Management Tools
-* [AWS Cloud Formation]({{ BASE_PATH }}/posts/aws-developer-certification-cloudformation)
+* [AWS Cloud Formation]({{ BASE_PATH }}/posts/aws-developer-cloudformation)
 
-* [AWS Cloud Front]({{ BASE_PATH }}/posts/aws-developer-certification-cloudfront)
+* [AWS Cloud Front]({{ BASE_PATH }}/posts/aws-developer-cloudfront)
 
 ## Security and Identity
-* [AWS IAM]({{ BASE_PATH }}/posts/aws-developer-certification-iam)
-
-* [Key Management Services]() - not yet...
-
-* [Cognito]() - not yet...
+* [AWS IAM]({{ BASE_PATH }}/posts/aws-developer-iam)
 
 ## Databases
-* [AWS DynamoDB, RDS, &amp; Elasticache]({{ BASE_PATH }}/posts/aws-developer-certification-dynamodb)
+* [AWS DynamoDB, RDS, &amp; Elasticache]({{ BASE_PATH }}/posts/aws-developer-dynamodb)
 
 ## Storage
-* [AWS Storage & S3 notes]({{ BASE_PATH }}/posts/aws-developer-certification-s3) - including s3, Cloud Front, Elastic File System (EFS), Snowball, Storage Gateway and Glacier.
+* [AWS Storage & S3 notes]({{ BASE_PATH }}/posts/aws-developer-s3) - including s3, Cloud Front, Elastic File System (EFS), Snowball, Storage Gateway and Glacier.
 
 ## Compute
-* [AWS EC2]({{ BASE_PATH }}/posts/aws-developer-certification-ec2)
+* [AWS EC2]({{ BASE_PATH }}/posts/aws-developer-ec2)
 
-* [Elastic Beanstalk]({{ BASE_PATH }}/posts/aws-developer-certification-cloudfront)
-
-* [Lambda]() - not yet...
+* [Elastic Beanstalk]({{ BASE_PATH }}/posts/aws-developer-elasticbeanstalk)
 
 ## Networking
 
-* [AWS VPC]({{ BASE_PATH }}/posts/aws-developer-certification-vpc)
+* [AWS VPC]({{ BASE_PATH }}/posts/aws-developer-vpc)
 
 # Overall AWS Architecture:
 
