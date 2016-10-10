@@ -18,7 +18,7 @@ Creating an [Amazon Web Services ](https://aws.amazon.com/) virtual private clou
 ## Types of VPC:
 * Default VPC - A default VPC gives users easy access to computing resources with now configuration at all. The default VPC has a default internet gateway, a default private IP and a default public IP. A default VPC can be deleted and can only be restored by contacting AWS.
 
-* Non-Default VPC - By default, an instance in a non-default VPC is not assigned a public IP address
+* Non-Default VPC - By default, an instance in a non-default VPC is not assigned a public IP addresses; no internet gateway is attached by default
 
 ### VPC Tenancy
 When creating a new VPC and using the default options, all hardware is shares using hypervisor and other sharing technologies; using the "dedicated" option makes everything, including EC2 instances, on dedicated hardware - think more expensive.
