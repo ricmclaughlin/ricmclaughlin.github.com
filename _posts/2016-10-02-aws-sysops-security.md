@@ -38,4 +38,8 @@ There are a number of AWS services that enable us to get low and down to the OS 
 ## Bastion Hosts
 Create the instance in your public subnet and assign it a public IP address. Then, use ssh-agent forwarding or OpenSSH ProxyCommand to connect to your private instances.
 
-## Bucket Permissions vs IAM roles
+## Network Access Control Lists vs Security Groups
+
+* Security Groups - firewall port filtering at the instance level renamed; allows filtering inbound and outbound; return traffic is allowed so it is state-ful; supports allow rules only
+
+* Network Access Control List - firewall port filtering at the subnet level renamed; allows filtering inbound and outbound; return traffic is not specifically allowed so it is stateless; Each ACL rule has a number and rules are evaluated ascending; Best practice is to create rule numbers by 5 so other rules can be added later; Once rules are added all other traffic is denied by default. A network ACL overrides security groups. Only 1 ACL per subnet and each subnet MUST have an ACL.

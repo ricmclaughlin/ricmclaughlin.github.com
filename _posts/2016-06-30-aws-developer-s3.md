@@ -21,14 +21,6 @@ In-Memory caching - [ElastiCache](https://aws.amazon.com/elasticache/) (Memcache
 
 [Redshift](https://aws.amazon.com/redshift/) - data warehouse service that is very cheap and quite functional; the fastest [growing group at AWS](http://www.theregister.co.uk/2015/04/15/amazon_redshift_big_growth/)
 
-## Storage Gateway
-There are three types of storage gateways:
-
-1. Gateway Stored Volumes - The entire dataset is stored onsite and async'd backed to S3
-
-2. Gateway Cached Volumes - The entire dataset is stored on S3 and frequently access materials are cached onsite.
-
-3. Gateway Virtual Tape Library - Offsite backup gateway to backup stuff offsite directly.
 
 # S3
 S3 is an object, as in file, based storage and is a key-value based - the key is the file name and the data in the file which is the value in addition to other data like the Version ID, access control information and metadata. S3 offers *Read after Write* consistency for `PUTS` but **only** *Eventual* consistency for update `PUTS` or `DELETES`.
@@ -40,7 +32,42 @@ Use Multipart upload to stop and resume uploads and ideally for any file over 10
 S3 Limits - the minimium size for a s3 object is 0 bytes; 100 S3 buckets per account; 5Tb object size max.
 
 ## Security
-Buckets are private by default but access control you can define a bucket policy and or an access control list. Access logs can also be defined if required.
+Buckets are private by default but access control you can define a bucket policy and or an access control list. Access logs can also be defined if required. 
+
+### Bucket Policies
+While IAM policies apply to the user level, bucket policies apply to the resource level. Bucket owners can specify what other users can do the contents of the bucket - provided they can log into the console. This includes scenarios where others own the object in the bucket - think cross account PUT of an object.
+
+Bucket Policies are:
+
+1. Resource Based
+
+1. A JSON file limited to 20kb
+
+2. Should be used to manage all cross-account permissions for ALL S3 resources - ACL do not control detailed permissions.
+
+1. Possibily conditional - they can use ACL attributes to conditionally grant access to objects
+
+Elements of an Access Policy include:
+
+1. Principle - specific to bucket policies NOT user policies.
+
+1. Effect - allow or deney
+
+1. Action - what we want to describe
+
+1. Resource - the ARN
+
+### S3 ACL
+Stored in XML and can be used to manage access to objects NOT owned by the bucket owner. They can not explicitly deny permissions; they grant read and write permissions to other AWS accounts.
+
+### S3 IAM Policies
+S3 IAM policies can NOT grant anonymous access. But you can DENY access with IAM Policies. 
+
+The prefix for a bucket policy is "arn:aws:s3:::"
+
+The star (*) can be used in a policy.
+
+Template strings can be used too like -> ${aws:username}
 
 ### Data in-Transit
 Data in-transit security happens using SSL or TLS (which is SSL v 3.1)
@@ -54,7 +81,6 @@ There are three flavors of Server Side Encryption (SSE) Server side encryption c
 
 * Customer Provided Keys (SSE-C)
 
-### Client Side Encryption
 You could encrypt on the client too. 
 
 ## S3 Storage Classes

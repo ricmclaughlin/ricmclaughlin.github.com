@@ -42,5 +42,33 @@ Failovers are implemented as a DNS change so the application servers have to re-
 ## Multi-Region Read Replica
 Pretty much the same process as Multi-AZ.
 
+# Disaster Recovery - Onsite -> AWS
+A disaster is anything that has a negative impact on business continuity. AWS makes diaster recover way, way less expensive and easier to manage. One big way scenario is backing up your on-premise capability with AWS. Import/Export Snowball is great idea.
+
+There are numerous ways approaching diaster recover:
+
+- A **pilot light** is a small environment on AWS that can be scale quickly if there is a diaster recovery need.
+
+- A **hot standby**, also known as multi-site, is when all resources are ready for use at a moments notice -> This is expensive.
+
+## Storage Gateway
+Storage Gateways help extend local disaster recover to the cloud and augment local IT capabilities. There are three types of storage gateways:
+
+1. Gateway Stored Volumes - The entire dataset is stored onsite and async'd backed to S3
+
+2. Gateway Cached Volumes - The entire dataset is stored on S3 and frequently access materials are cached onsite.
+
+3. Gateway Virtual Tape Library - Offsite backup gateway to backup stuff offsite directly.
+
+
+# Diaster Recover on AWS
+Tons of learning in this areas... the big issues surrounding disaster recover ON AWS include: 
+
+- AMI are region specific
+
+- EC2 key pairs are region specific
+
+- Read replicas can have delays
+
 #Labs
 [Introduction to Amazon Relational Database Service (RDS) (Linux)](https://qwiklabs.com/focuses/2926)
