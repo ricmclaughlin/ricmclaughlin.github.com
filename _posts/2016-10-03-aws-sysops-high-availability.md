@@ -39,8 +39,9 @@ White list the bastion host IP using an Elastic IP address. You might want to im
 ## Fixed IP Address Application
 Lots of times apps are tied to a specific IP address making scalability challenging. In these cases, using an Elastic IP and assigning it to the instance can give you some good flexibility. Vertical scalability is likely the only option for these scenarios.
 
+## Troubleshooting AutoScaling
 
-
+The configuration is no longer valid: keypair has been deleted, the SG might have been deleted, autoscaling group not found, instance type not supported in the specified region, AZ not supported, invalid EBS mapping (attach an EBS block device to an instance store AMI)
 
 
 
