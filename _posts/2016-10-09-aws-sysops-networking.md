@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AWS SysOps Networking"
+title: "AWS SysOps - Networking"
 description: ""
 category: posts
 tags: [aws, sysopscert, networking]
