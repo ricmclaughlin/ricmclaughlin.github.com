@@ -18,15 +18,15 @@ A python or bash script is required.
 
 
 ## ElastiCache
-ElastiCache only really backs up Redis clusters. Snapshots backup the data for the entire cluster at a specific time and probably cause a performance degradation. Try to backup read replicas!
+ElastiCache only backs up Redis clusters. Snapshots backup the data for the entire cluster at a specific time and probably cause a performance degradation. Try to backup read replicas!
 
 ## Redshift
-Free backup storage up to the size of the cluster! Backup can be automatic or manual and is incremental.
+Free backup storage up to the size of the cluster! Backup can be automatic or manual and is incremental. Only 1 day retention period by default.
 
 ## RDS
 Transactional Storage Engines are recommended for durability. RDS instances without Multi-AZ don't perform as well as those that are - backups, restores and all housekeeping activities are performed on the secondary instance.  Backups are stored on S3. Restoration only works for the default DB parameter and security groups are associated with the instance you will likely need to setup the DB default parameters and security groups. You maybe can change storage engine - if they are related.
 
-Deleting an RDS instance deletes ALL the automated backups... but not the manual ones. -=>>"I acknowledge that upon instance deletion, automated backups, including system snapshots and point-in-time recovery, will no longer be available.""
+Deleting an RDS instance deletes ALL the automated backups... but not the manual ones. -=>>"I acknowledge that upon instance deletion, automated backups, including system snapshots and point-in-time recovery, will no longer be available."
 
 ### Multi-AZ failover
 A multi-AZ failover process is key in the event of an AZ failure but is NOT a scaling solution.  Multi-AZ systems are setup within the same region - that would be obvious from the name.
@@ -60,33 +60,7 @@ There are several ways to create Read Replica.
 
 Replicas can be promoted to a primary but this breaks the replication link.
 
-# Disaster Recovery - Onsite -> AWS
-A disaster is anything that has a negative impact on business continuity. AWS makes diaster recover way, way less expensive and easier to manage. One big way scenario is backing up your on-premise capability with AWS. Import/Export Snowball is great idea.
 
-There are numerous ways approaching diaster recover:
-
-- A **pilot light** is a small environment on AWS that can be scale quickly if there is a diaster recovery need.
-
-- A **hot standby**, also known as multi-site, is when all resources are ready for use at a moments notice -> This is expensive.
-
-## Storage Gateway
-Storage Gateways help extend local disaster recover to the cloud and augment local IT capabilities. There are three types of storage gateways:
-
-1. Gateway Stored Volumes - The entire dataset is stored onsite and async'd backed to S3
-
-2. Gateway Cached Volumes - The entire dataset is stored on S3 and frequently access materials are cached onsite.
-
-3. Gateway Virtual Tape Library - Offsite backup gateway to backup stuff offsite directly.
-
-
-# Diaster Recover on AWS
-Tons of learning in this areas... the big issues surrounding disaster recover ON AWS include: 
-
-- AMI are region specific
-
-- EC2 key pairs are region specific
-
-- Read replicas can have delays
 
 #Labs
 [Introduction to Amazon Relational Database Service (RDS) (Linux)](https://qwiklabs.com/focuses/2926)

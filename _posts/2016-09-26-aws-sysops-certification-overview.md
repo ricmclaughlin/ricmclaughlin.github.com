@@ -20,6 +20,10 @@ These articles are a collection of my notes by section. They may, or may not be,
 
 [Elastic Load Balancer]({{ BASE_PATH }}/posts/aws-sysops-elastic-load-balancer)
 
+## Disaster Recovery
+[AWS SysOps - Disaster Recovery]({{ BASE_PATH }}/posts/aws-sysops-disaster-recovery)
+
+
 ## Deployment & Provisioning
 [OpsWorks]({{ BASE_PATH }}/posts/aws-sysops-opsworks)
 
