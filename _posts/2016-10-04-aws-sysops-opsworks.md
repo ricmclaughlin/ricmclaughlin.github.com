@@ -11,13 +11,15 @@ Opsworks is [Chef](https://www.chef.io/chef/) a popular devops tool used by Amaz
 
 Currently you can choose from a Chef 12 or Chef 11 Stack.
 
+## OpsWorks Components
+
 Stacks - a set of resources you want to manage as a group = dev, stage, pro
 
 Layers - Technically it is a blueprint for a set of instances like web servers, app servers or DB servers
 
-Instances - EC2 Instances
+- Instances - EC2 Instances
 
-Apps - code someplace you want to run on instances
+- Apps - code someplace you want to run on instances
  
 Recipes
   setup - setup new instance before first boot
@@ -34,5 +36,4 @@ Just when you thought AWS was hurting... there was no soul, I found something go
 [OpsWorks Guide](http://docs.aws.amazon.com/opsworks/latest/userguide/welcome.html)
 
 ## QwikLab 
-
 [Working with AWS OpsWorks](https://qwiklabs.com/focuses/2868?search=170864)
