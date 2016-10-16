@@ -14,6 +14,8 @@ AWS is responsible for stuff "of" the cloud things like the network ACL, API End
 
 Port scanning and penetration testing is against AWS protocol but can be done with AWS permission.
 
+AWS does provide protection from DDoS, Man in the middle (MITM), IP Spoofing and port scanning. Other tenants can not packet sniff.
+
 ## AWS and IT Audits
 For IT audits, AWS provides information to auditors from the host OS to the physical security of the building but will not allow physical access to the facilities - the security "of" the cloud. This leaves AWS customers responsible for everything else like data, apps and infrastructure setup - the security "in" the cloud.
 
@@ -43,3 +45,25 @@ Create the instance in your public subnet and assign it a public IP address. The
 * Security Groups - firewall port filtering at the instance level renamed; allows filtering inbound and outbound; return traffic is allowed so it is state-ful; supports allow rules only
 
 * Network Access Control List - firewall port filtering at the subnet level renamed; allows filtering inbound and outbound; return traffic is not specifically allowed so it is stateless; Each ACL rule has a number and rules are evaluated ascending; Best practice is to create rule numbers by 5 so other rules can be added later; Once rules are added all other traffic is denied by default. A network ACL overrides security groups. Only 1 ACL per subnet and each subnet MUST have an ACL.
+
+## Security Credentials
+
+1. Password - duh. These get setup in the IAM. 
+
+1. MFA - these get setup in the IAM too.
+
+1. Access Keys - these include an access key and secret access key
+
+1. Key Pairs - SSH login, CloudFront Signed URLs
+
+1. x.509 - used to sign SOAP requests for S3
+
+## Trusted Advisor
+Not a generic security tool - a security tool for IAM but does not tell you to 
+
+1. turn on user activity logging
+
+2. Use a MFA for the root account
+
+## Resources
+[Security WhitePaper](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Whitepaper.pdf)

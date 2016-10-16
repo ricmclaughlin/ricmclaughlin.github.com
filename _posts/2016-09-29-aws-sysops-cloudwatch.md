@@ -21,13 +21,28 @@ There are three parts to CloudWatch:
 Use the `GetMetricStatistics` API command from the command line. From an analysis perspective, look at SUM and difference between min and max values to get an overall picture.
 
 ## EC2 Instances
-
 EC2 instances report CloudWatch metric every 5 minutes; selecting the "Enable CloudWatch detailed monitoring" to see the metrics in 1 minute intervals. Unlike many instance options you can enable this feature after the instance starts.
 
-The amount of memory being used, The amount of swap space used, How much disk space is available; EC2 instances must have permissions to write information to CloudWatch.
+CPU, network, disk and status checks are reported to CloudWatch by default. RAM is a custom metric. 
 
-### EBS
-Status checks run every 5 minutes. Can report ok, warning, impaired; and reports insufficient-data when running.
+EC2 instances must have permissions to write information to CloudWatch; create a service role then add a "CloudWatchRole"
+
+### Status Checks
+Status checks run every 5 minutes. 
+
+System Status => checks look at the host hardware. Stop and start the VM.
+
+Instance Status => checks the VM; reboot the machine
+
+### EBS Monitoring
+There are four status check statuses coming from EBS volumes:
+
+ - `ok` - All good.
+
+- `warning` = Degraded or Severely Degraded
+
+- `impaired` = Stalled or Not Available 
+
 
 #### gp2 Instances
 `VolumeReadBytes` & `VolumeWriteBytes` - throughput measurements can be reported in SUM or more importantly AVERAGE. Average should tell you if you are ending up with a bottleneck or excess throughput.
