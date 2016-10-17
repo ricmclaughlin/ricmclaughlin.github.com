@@ -44,7 +44,7 @@ Create the instance in your public subnet and assign it a public IP address. The
 
 * Security Groups - firewall port filtering at the instance level renamed; allows filtering inbound and outbound; return traffic is allowed so it is state-ful; supports allow rules only
 
-* Network Access Control List - firewall port filtering at the subnet level renamed; allows filtering inbound and outbound; return traffic is not specifically allowed so it is stateless; Each ACL rule has a number and rules are evaluated ascending; Best practice is to create rule numbers by 5 so other rules can be added later; Once rules are added all other traffic is denied by default. A network ACL overrides security groups. Only 1 ACL per subnet and each subnet MUST have an ACL.
+* Network Access Control List - firewall port filtering at the subnet level renamed; allows filtering inbound and outbound; return traffic is not specifically allowed so it is stateless; Each ACL rule has a number and rules are evaluated ascending; Best practice is to create rule numbers by 5 so other rules can be added later; Once rules are added all other traffic is denied by default. A network ACL overrides security groups. Only 1 ACL per subnet and each subnet MUST have an ACL. Unlike IAM or Security groups in a Network ACL an explicit Deny CAN override an explicit Allow if allow is a higher rule number.
 
 ## Security Credentials
 

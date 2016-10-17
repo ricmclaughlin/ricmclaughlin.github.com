@@ -7,7 +7,7 @@ tags: [aws, developercert, cloudfront]
 ---
 {% include JB/setup %}
 
-[CloudWatch](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html) is probably the second most important service on AWS AFTER IAM. Why? Without CloudWatch it is almost impossible to figure out what is happening to your infrastructure running on AWS. 
+[CloudWatch](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html) is probably the second most important service on AWS AFTER IAM. Why? Without CloudWatch it is almost impossible to figure out what is happening to your infrastructure running on AWS.
 
 There are three parts to CloudWatch:
 
@@ -21,7 +21,7 @@ There are three parts to CloudWatch:
 Use the `GetMetricStatistics` API command from the command line. From an analysis perspective, look at SUM and difference between min and max values to get an overall picture.
 
 ## EC2 Instances
-EC2 instances report CloudWatch metric every 5 minutes; selecting the "Enable CloudWatch detailed monitoring" to see the metrics in 1 minute intervals. Unlike many instance options you can enable this feature after the instance starts.
+EC2 instances report CloudWatch metric every 5 minutes; selecting the "Enable CloudWatch detailed monitoring" to see the metrics in 1 minute intervals. The goofy part is that you must enable a CloudWatch Write role on your EC2 instance. Unlike many instance options you can enable this feature after the instance starts.
 
 CPU, network, disk and status checks are reported to CloudWatch by default. RAM is a custom metric. 
 
@@ -67,6 +67,10 @@ More critical metrics and their solutions include:
 |ReadIOPS/WroteIOPS| Increase IOPS |
 |ReadLatency/WriteLatency| Increase IOPS |
 |ReadThroughPut/WriteThroughPut| Increase IOPS |
+|FreeStorageSpace| Increase disk space |
+|ReplicaLag | Increase IOPS or instance size |
+
+In addition to CloudWatch you can use the RDS service console to monitor RDS events. Event Subscriptions can be created as well. 
 
 ## ElastiCache Service
 The differences between memcached and redis make for differences in monitoring. memecached is multithreaded while redis is single threaded.
@@ -77,10 +81,11 @@ The differences between memcached and redis make for differences in monitoring. 
 | redis - CPU utilization | threshold: 90 / # of CPU cores; read heavy: read replicas; write heavy: larger cache instance | 
 | evictions | memecached: larger instances and # of nodes; redis: redis more nodes |
 | CurrConnections | likely an application problem with no closing connections |
-| memecached swap | should be 0-50MB; increase node size; increase ConnectionOverhead (decrease memory for caching data) |
+| memecached SwapUsage | should be 0-50MB; increase node size; increase ConnectionOverhead (decrease memory for caching data) |
+|reddis reserved-memory | 
 
 ## Elastic Load Balancing Service
-If you know there is a lot of traffic on the way, call AWS and get them to "pre-warm" your ELB.
+If you know there is a lot of traffic on the way, call AWS and get them to "pre-warm" your ELB. Metrics are reported every 60 seconds - no traffic = no metric
 
 | **Metric**  | **Solution**  |
 |:-----------------------------------------|:--------------------------------------------------------| 
@@ -88,7 +93,7 @@ If you know there is a lot of traffic on the way, call AWS and get them to "pre-
 | BackendConnectionErrors | Look at SUM and difference between min and max values |
 | SurgeQueueLength | Max in queue is 1024 |
 | SpillOverCount | This is a bad, bad thing. Avoid. ELB reports a `503 - Service Unavailable` |
-| UnHealthyHostCount | Just like what it says |
+| HealthyUnHealthyHostCount | Just like what it says |
 
 ## Resources
 

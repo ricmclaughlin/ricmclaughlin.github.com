@@ -39,8 +39,10 @@ Failover is automatically triggers when the AZ or the underlying hardware fails 
 
 Failovers are implemented as a DNS change so the application servers have to re-establish connections with the failover instance.
 
+Automated backup is done from the backup instances NOT the primary instance so there is no performance hit during backups.
+
 ### RDS Read Replicas
-Read Replicas are used to scale RDS by creating a READ ONLY copy of your database. Possible use cases include:
+Read Replicas are used to scale RDS by creating a READ ONLY copy of your database in a single AZ. Possible use cases include:
 
 - Scale beyond single instance I/O capabilities
 

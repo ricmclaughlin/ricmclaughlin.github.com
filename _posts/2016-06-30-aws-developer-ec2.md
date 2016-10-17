@@ -54,9 +54,9 @@ https://aws.amazon.com/articles/Amazon-EC2/9001172542712674
 
 ## Status Checks
 
-System Status Checks - generally networking, power, hardware and system software problems that can be resolved by stopping and restarting the instance or contacting AWS.
+System Status Checks - generally networking, power, hardware and system software problems that can be resolved by stopping and restarting the instance or contacting AWS. Checks the host.
 
-Instance Status Checks - configuration problems, out of memory, corrupted file system, or incompatible kernel. AWS does NOT help you with these sort of problems.
+Instance Status Checks - configuration problems, out of memory, corrupted file system, or incompatible kernel. AWS does NOT help you with these sort of problems. Checks the instance.
 
 ## Storage
 

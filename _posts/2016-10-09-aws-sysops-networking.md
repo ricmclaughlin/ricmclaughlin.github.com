@@ -81,4 +81,4 @@ To connect securely with your VPC on AWS you can create a Virtual Public Gateway
 
 - 50 Customer Gateways per Region
 
-If you traffic is in excess of 4 Ggps you need AWS Direct Connect which can provide up to 10Ggps. Direct Connect uses BGP and an Autonomous System Number and IP prefixes. 
+If you traffic is in excess of 4 Ggps, you need AWS Direct Connect which can provide up to 10Ggps. Direct Connect uses BGP and an Autonomous System Number and IP prefixes. 
