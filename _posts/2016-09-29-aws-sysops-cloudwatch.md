@@ -73,16 +73,8 @@ More critical metrics and their solutions include:
 In addition to CloudWatch you can use the RDS service console to monitor RDS events. Event Subscriptions can be created as well. 
 
 ## ElastiCache Service
-The differences between memcached and redis make for differences in monitoring. memecached is multithreaded while redis is single threaded.
 
-| **Metric**  | **Solution**  |
-|:-----------------------------------------|:--------------------------------------------------------| 
-| memecached - CPU utilization | good up to 90% utilization then increase size of node or # of nodes|
-| redis - CPU utilization | threshold: 90 / # of CPU cores; read heavy: read replicas; write heavy: larger cache instance | 
-| evictions | memecached: larger instances and # of nodes; redis: redis more nodes |
-| CurrConnections | likely an application problem with no closing connections |
-| memecached SwapUsage | should be 0-50MB; increase node size; increase ConnectionOverhead (decrease memory for caching data) |
-|reddis reserved-memory | 
+Makes more sense in with the rest of the information about [ElastiCache]({{BASE_PATH}}/posts/aws-sysops-elasticache) 
 
 ## Elastic Load Balancing Service
 If you know there is a lot of traffic on the way, call AWS and get them to "pre-warm" your ELB. Metrics are reported every 60 seconds - no traffic = no metric
