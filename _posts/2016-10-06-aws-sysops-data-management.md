@@ -28,6 +28,8 @@ Transactional Storage Engines are recommended for durability. RDS instances with
 
 Deleting an RDS instance deletes ALL the automated backups... but not the manual ones. -=>>"I acknowledge that upon instance deletion, automated backups, including system snapshots and point-in-time recovery, will no longer be available."
 
+A backup retention period of zero days will disable automated backups for this DB Instance.
+
 ### Multi-AZ failover
 A multi-AZ failover process is key in the event of an AZ failure but is NOT a scaling solution.  Multi-AZ systems are setup within the same region - that would be obvious from the name.
 
@@ -54,6 +56,9 @@ A transactional DB engine must be used to support read replicas - so Aurora/MySQ
 
 Replica lag is a key metric - keeping the read replica on a similiar, in fact, exact same configuration of instances can help keep this metric inline. 
 
+
+
+#### Read Replica Setup
 There are several ways to create Read Replica.
 
 1. Restore a snapshot and select Multi-AZ deployment.
@@ -61,7 +66,6 @@ There are several ways to create Read Replica.
 2. Auto backup must be enabled (this is done by turning the backup retention period to greater than 0) then RDS takes a backup copy of the database then enables replication. Without multi-AZ operations, IO is suspended while RDS snapshots the database; with Multi-AZ operations a snapshot is used. This can be enabled from the console OR using the `CreateDBInstanceReadReplica` call from the API. A backup or snapshot must have been created to setup a read replica.
 
 Replicas can be promoted to a primary but this breaks the replication link.
-
 
 
 #Labs

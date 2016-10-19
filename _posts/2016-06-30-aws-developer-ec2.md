@@ -43,14 +43,9 @@ HVM - Emulates a bare-metal experience for virtualization. Can runs for Windows.
 
 PV - Short for ParaVirtualization is the previous version of virtualization. Uses a special boot loader called PV-GRUB and does not run Windows.
 
-## AMI Bundling
 
-### Creation
-Anyone can create an AMI 
 
-### AMI Security
 
-https://aws.amazon.com/articles/Amazon-EC2/9001172542712674
 
 ## Status Checks
 
@@ -101,6 +96,7 @@ All actions are pretty much plural.
 [EC2 User Guide](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html)
 [EBS FAQ](https://aws.amazon.com/ebs/faqs/)
 [ELB Overview](https://aws.amazon.com/elasticloadbalancing/)
+[AMI Bundling](https://aws.amazon.com/articles/Amazon-EC2/9001172542712674)
 
 ## Videos
 [EC2 Master Class](https://www.youtube.com/watch?v=jLVPqoV4YjU)

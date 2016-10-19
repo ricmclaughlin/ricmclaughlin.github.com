@@ -23,7 +23,7 @@ Use the `GetMetricStatistics` API command from the command line. From an analysi
 ## EC2 Instances
 EC2 instances report CloudWatch metric every 5 minutes; selecting the "Enable CloudWatch detailed monitoring" to see the metrics in 1 minute intervals. The goofy part is that you must enable a CloudWatch Write role on your EC2 instance. Unlike many instance options you can enable this feature after the instance starts.
 
-CPU, network, disk and status checks are reported to CloudWatch by default. RAM is a custom metric. 
+CPUUtilization, network (in/out), disk (read/write - ops and bytes) and status checks are reported to CloudWatch by default. RAM & diskspace is a custom metric. 
 
 EC2 instances must have permissions to write information to CloudWatch; create a service role then add a "CloudWatchRole"
 
