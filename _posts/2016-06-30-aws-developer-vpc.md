@@ -47,7 +47,7 @@ When creating a new VPC and using the default options, all hardware is shares us
 * Network Access Control List - firewall port filtering at the subnet level renamed; allows filtering inbound and outbound; return traffic is not specifically allowed so it is stateless; Each ACL rule has a number and rules are evaluated ascending; Best practice is to create rule numbers by 5 so other rules can be added later; Once rules are added all other traffic is denied by default. A network ACL overrides security groups. Only 1 ACL per subnet and they encompass and over-write the permissions defined there. Rules are evaluated ascending.
 
 ## NAT Gateway
-An instance needs an public IP address in addition to having a route in order to access the Internet. For a NAT instance you need to disable the "Source/Destination Check" option. 
+An instance needs an public IP address in addition to having a route in order to access the Internet. For a NAT instance to route properly you need to disable the "Source/Destination Check" option AND there needs to be a route from the private subnet to the NAT instance.
 
 ## RDS (DB Subnet Group)
 RDS instances in a VPC - There is a mythical sort of subnet, called a [DB Subnet Group](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html), that must span multiple availability zones and can house RDS instances.  

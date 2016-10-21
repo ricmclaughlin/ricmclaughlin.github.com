@@ -12,7 +12,7 @@ tags: [aws, sysopscert, networking]
 Route53 is an authoritative DNS service so it will translate domain names to IP addresses. Each domain is called a hosted zone. A record set is a rule within the hosted zone. 
 
 ### Route53 Health Checks
-Health checks can monitor an end point, the status of other healthchecks or the status of a CloudWatch alarm and when the healthcheck fails the instance is taken out of the autoscaling group.
+Health checks can monitor an end point, the status of other healthchecks or the status of a CloudWatch alarm and when the healthcheck fails the thingy ( s3 bucket, ELB or instance) is taken out of the autoscaling group.
 
 ### Routing Policy 
 There are 5 different ways for Route53 to do its thing....route.
@@ -29,6 +29,13 @@ There are 5 different ways for Route53 to do its thing....route.
 
 
 ## VPC
+By default all instances within a subnet with a VPC can communicate.
+
+### Limits per VPC
+
+### DHCP
+
+### VPN
 
 ###Limits per Region
 
@@ -68,6 +75,8 @@ A DB subnet is used for a multi-AZ RDS setup. The high level steps to create a D
 1. In "configure advanced settings" select subnet group you created
 
 Presto, you have a multi-AZ DB subnet!
+
+
 
 ## Elastic IP & Network Interfaces
 Like Elastic IP addresses are independent of instances, Elastic Network Interfaces are independent of instances. The nifty trick here is that Elastic IP addresses can be associated with Elastic Network Interfaces.... which can be associated with EC2 instances. 
