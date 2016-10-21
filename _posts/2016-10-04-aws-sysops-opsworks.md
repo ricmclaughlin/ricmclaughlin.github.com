@@ -7,7 +7,7 @@ tags: [aws, sysopscert, opsworks]
 ---
 {% include JB/setup %}
 
-Opsworks is [Chef](https://www.chef.io/chef/) a popular devops tool used by Amazon - which makes sense because Chef is based in Seattle. Opsworks enable you to automate, monitor and maintain deployments.
+Opsworks is [Chef](https://www.chef.io/chef/) a popular devops tool used by Amazon - which makes sense because Chef & Amazon are both based in Seattle. Opsworks enable you to automate, monitor and maintain deployments.
 
 Currently you can choose from a Chef 12 or Chef 11 Stack.
 
@@ -15,7 +15,7 @@ Currently you can choose from a Chef 12 or Chef 11 Stack.
 
 Stacks - a set of resources you want to manage as a group = dev, stage, pro
 
-Layers - Technically it is a blueprint for a set of instances like web servers, app servers or DB servers
+Layers - A blueprint for a set of instances like web servers, app servers or DB servers
 
 - Instances - EC2 Instances
 

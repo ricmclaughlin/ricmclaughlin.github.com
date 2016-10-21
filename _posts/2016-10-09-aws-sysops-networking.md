@@ -12,7 +12,7 @@ tags: [aws, sysopscert, networking]
 Route53 is an authoritative DNS service so it will translate domain names to IP addresses. Each domain is called a hosted zone. A record set is a rule within the hosted zone. 
 
 ### Route53 Health Checks
-Health checks can monitor an end point, the status of other healthchecks or the status of a CloudWatch alarm and when the healthcheck fails the thingy ( s3 bucket, ELB or instance) is taken out of the autoscaling group.
+Health checks can monitor an end point, the status of CloudWatch Metric or Alarm and when the healthcheck fails the thingy ( s3 bucket, ELB or instance) is taken out of the DNS group.
 
 ### Routing Policy 
 There are 5 different ways for Route53 to do its thing....route.
@@ -31,15 +31,21 @@ There are 5 different ways for Route53 to do its thing....route.
 ## VPC
 By default all instances within a subnet with a VPC can communicate.
 
-### Limits per VPC
+To enable access to or from the Internet for instances in a VPC subnet, you must do the following:
 
-### DHCP
+*  Attach an Internet gateway to your VPC.
 
-### VPN
+* Ensure that your subnet's route table points to the Internet gateway.
 
-###Limits per Region
+* Ensure that instances in your subnet have public IP addresses or Elastic IP addresses.
 
-- 5 VPC with 200 subnets per VPC
+* Ensure that your network access control and security group rules allow the relevant traffic to flow to and from your instance.
+
+Limits per Region
+
+- 5 VPC per Region 
+
+- 200 subnets per VPC
 
 - 50 customer gateways
 
@@ -49,11 +55,13 @@ By default all instances within a subnet with a VPC can communicate.
 
 - 50 VPN connections
 
-- 200 Route Tables
-
 - 500 Security Groups
 
-###Scenarios
+
+### DHCP
+
+
+### Scenarios
 
 * VPC with public subnet only - single tier apps; ie. Rails app, PosgreSQL on a single machine
 
@@ -64,7 +72,7 @@ By default all instances within a subnet with a VPC can communicate.
 * VPC with VPN - On-premise access to resources in VPC
 
 ### DB Subnet
-A DB subnet is used for a multi-AZ RDS setup. The high level steps to create a DB subnet are as follows"
+A DB subnet defines the regions for a multi-AZ RDS setup. The high level steps to create a DB subnet are as follows:
 
 1. Create 2 new subnets in a VPC
 
@@ -75,7 +83,6 @@ A DB subnet is used for a multi-AZ RDS setup. The high level steps to create a D
 1. In "configure advanced settings" select subnet group you created
 
 Presto, you have a multi-AZ DB subnet!
-
 
 
 ## Elastic IP & Network Interfaces
@@ -90,4 +97,4 @@ To connect securely with your VPC on AWS you can create a Virtual Public Gateway
 
 - 50 Customer Gateways per Region
 
-If you traffic is in excess of 4 Ggps, you need AWS Direct Connect which can provide up to 10Ggps. Direct Connect uses BGP and an Autonomous System Number and IP prefixes. 
+If you traffic is in excess of 4 Ggps, you need AWS Direct Connect which can provide up to 10Ggps. Direct Connect uses BGP and an Autonomous System Number (ASN) and IP prefixes. 

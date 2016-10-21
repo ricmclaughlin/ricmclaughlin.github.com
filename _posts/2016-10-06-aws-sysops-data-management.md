@@ -37,7 +37,7 @@ For MySQL, Oracle and PostgreSQL replication from one zone to another causes a l
 
 Patching is another benefit of standy instances - patch the standby, failover, then patch the primary. Backups can be created from the standy instance and that can eliminate I/O locking and latency spikes from backups on the primary.
 
-Failover is automatically triggers when the AZ or the underlying hardware fails or you can force a fail over using a *manual reboot* using the console or with `RebootDBInstance` API call given that failover is initialized. A slow server and corrupt data will NOT lead to a failover. Getting notification about a failover as you would expect - RDS events.
+Failover is automatically triggers when the AZ or the underlying hardware fails or you can force a fail over using a *Reboot with failover* using the console or with `RebootDBInstance` API call given that failover is initialized. A slow server and corrupt data will NOT lead to a failover. Getting notification about a failover as you would expect - RDS events.
 
 Failovers are implemented as a DNS change so the application servers have to re-establish connections with the failover instance.
 
@@ -52,7 +52,7 @@ Read Replicas are used to scale RDS by creating a READ ONLY copy of your databas
 
 - Business reporting against almost live data without affecting the performance of the primary instance
 
-A transactional DB engine must be used to support read replicas - so Aurora/MySQL must have InnoDB engine installed. Needs MySQL version 5.6 or later; PostgresSQL requires 9.3.5. In this configuration, the native asynchronous engine is used. There can be a total of 5 read replica per primary instance. Read Replicas are single AZ. MySQL allows multi-region read replicas. DB Snapshots and backups can NOT be taken from read replicas. 
+A transactional DB engine must be used to support read replicas - so Aurora/MySQL must have InnoDB engine installed. Needs MySQL version 5.6 or later; PostgresSQL requires 9.3.5. In this configuration, the native asynchronous engine is used. There can be a total of 5 read replica per primary instance. MySQL allows multi-region read replicas. DB Snapshots and backups can NOT be taken from read replicas. 
 
 Replica lag is a key metric - keeping the read replica on a similiar, in fact, exact same configuration of instances can help keep this metric inline. 
 

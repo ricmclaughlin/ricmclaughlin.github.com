@@ -11,7 +11,7 @@ tags: [aws]
 There are two engines available from ElastiCache: Redis and memecached. The signifigant differences between memcached and redis make for differences in monitoring and scaling
 
 ## memcached
-memecached is multithreaded and performs well up to 90% utilization then increase size of node or # of nodes
+multithreaded; and performs well up to 90% utilization then increase size of node or # of nodes
 
 | **Metric**  | **Description**  |**Solution**  |
 |:-----------------------------------------|:--------------------------------------------------------|:----------------------| 
@@ -22,7 +22,7 @@ memecached is multithreaded and performs well up to 90% utilization then increas
 
 
 ## Redis
-Redis Single threaded; generally scale UP with larger instances OR scale out with more READ replicas
+Single threaded; generally scale UP with larger instances OR scale out with more READ replicas
 
 | **Metric**  | **Description**  |**Solution**  |
 |:-----------------------------------------|:--------------------------------------------------------|:----------------------| 
