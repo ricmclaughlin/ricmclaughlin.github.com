@@ -10,6 +10,10 @@ With my ongoing saga of AWS Certification, next up is the [AWS SysOps Administra
 
 These articles are a collection of my notes by section. They may, or may not be, useful for you. For each chunky topic, I'll capture the big facts and stuff I had to remind myself to remember.
 
+I pass the AWS SysOps Administrator Associate certification Oct 21, 2016: 
+
+<img src="{{ BASE_PATH }}/assets/themes/ricify/images/sysops-associate-clr.jpg" width="300">
+
 ## Monitoring, Metrics &amp; Analysis
 [Cloud Watch]({{ BASE_PATH }}/posts/aws-sysops-cloudwatch)
 

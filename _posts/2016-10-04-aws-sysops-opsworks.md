@@ -29,8 +29,7 @@ Recipes
   shutdown - occurs when instance starts to shut down
 
 # Hostname Themes
-Just when you thought AWS was hurting... there was no soul, I found something good. Hostname Themes!! Bad news? No cheese theme. No Pokemon theme. Scotish Island theme? lame.
-
+Just when you thought AWS was hurting... there was no soul, I found something good. Hostname Themes!! Bad news? No cheese theme. No Pokemon theme. Scottish Island theme? lame.
 
 ## Resources
 [OpsWorks Guide](http://docs.aws.amazon.com/opsworks/latest/userguide/welcome.html)
