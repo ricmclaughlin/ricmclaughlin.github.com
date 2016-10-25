@@ -3,7 +3,7 @@ layout: post
 title: "AWS Project - Windows EC2 from a Mac"
 description: ""
 category: projects
-tags: [aws, ec2]
+tags: [aws, ec2, how-to]
 ---
 {% include JB/setup %}
 
