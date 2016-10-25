@@ -10,8 +10,6 @@ tags: [reactjs]
 JSX isn't really optional. 
 
 
-
-
 ## Component Lifecycle - Initial Load
 
 ### getDefaultProps
