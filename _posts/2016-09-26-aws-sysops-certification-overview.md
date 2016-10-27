@@ -3,7 +3,7 @@ layout: post
 title: "AWS SysOps Certification - Overview"
 description: ""
 category: projects
-tags: [aws, sysopscert]
+tags: [aws, sysops]
 ---
 {% include JB/setup %}
 With my ongoing saga of AWS Certification, next up is the [AWS SysOps Administrator - Associate](https://aws.amazon.com/certification/certified-sysops-admin-associate/). This is comfortably within my skillset, yet a deep dive in RDS, and OpsWorks, is mostly new from a technical perspective even though the concepts behind these technologies have been around a while. 

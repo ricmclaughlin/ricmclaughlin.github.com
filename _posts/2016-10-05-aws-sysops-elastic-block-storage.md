@@ -3,7 +3,7 @@ layout: post
 title: "AWS SysOps - Elastic Block Storage"
 description: ""
 category: posts
-tags: [aws, sysopscert, ebs]
+tags: [aws, sysops, ebs]
 ---
 {% include JB/setup %}
 

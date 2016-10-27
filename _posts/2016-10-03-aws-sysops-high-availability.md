@@ -3,7 +3,7 @@ layout: post
 title: "AWS SysOps - High Availability"
 description: ""
 category: posts
-tags: [aws, sysopscert, highavailability]
+tags: [aws, sysops, highavailability]
 ---
 {% include JB/setup %}
 

@@ -3,7 +3,7 @@ layout: post
 title: "AWS SysOps - Data Management"
 description: ""
 category: posts
-tags: [aws, sysopscert]
+tags: [aws, sysops]
 ---
 {% include JB/setup %}
 

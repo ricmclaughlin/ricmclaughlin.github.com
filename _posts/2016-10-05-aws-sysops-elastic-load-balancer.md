@@ -3,7 +3,7 @@ layout: post
 title: "AWS SysOps - Elastic Load Balancer"
 description: ""
 category: posts
-tags: [aws, sysopscert, elb]
+tags: [aws, sysops, elb]
 ---
 {% include JB/setup %}
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AWS Solutions Arch Overview"
+title: "AWS Solutions Arch - Overview"
 description: ""
 category: posts
 tags: [aws, solutionsarch]
@@ -11,44 +11,95 @@ Not one to be satisfied taking the easy way out, I'm going to take both the asso
 
 ## Security
 
+Best Practices
+
+
+
 ## Networking
 VPC
+
 VPC DNS
+
 CloudFront
+
 VPC
+
 Route53
 
 ## Enterprise Topics
+
 Billing (Resource Groups, CloudWatch Alarms)
+
+business case development - 
+
 Cross Account Roles
+
 Direct Connect (Storage gateway)
+
 Identity Management (Federation, STS, WIF, SAML)
 
+Audit
+
+
 ## Key Management
-Key management Service
-HMS
+Key Management Service
+
+CloudHMS
+
+Cognito
 
 ## Monitoring
 Cloud Trail
+
 AWS Config
+
 Trusted Adviser
 
 ## Migration and Deployment
+
 Enterprise 
-Cloud Formation
+
+[CloudFormation]({{}}/)
+
 OpsWorks
 
 ## Data Management
+
 Kinesis
+
 ElastiCache
+
 RDS
+
 EMR
+
 CloudSearch
+
 DynamoDB
+
 SQS
+
 Redshift
 
 ## Compute
 EC2
+
 HPC
+
 ElasticTranscoder
+
+### Compute Projects
+
+
+## Topics
+High Availability
+
+Fault Tolerance
+
+Scalable
+
+Cost Efficient
+
+Security
+
+## Projects

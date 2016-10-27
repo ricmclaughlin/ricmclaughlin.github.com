@@ -3,7 +3,7 @@ layout: post
 title: "AWS SysOps - Cost Optimization"
 description: ""
 category: posts
-tags: [aws, developercert, cost]
+tags: [aws, sysops, cost]
 ---
 {% include JB/setup %}
 

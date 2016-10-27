@@ -2,7 +2,7 @@
 layout: post
 title: "AWS Project - Bundling AMIs"
 description: ""
-category: posts
+category: projects
 tags: [aws, how-to]
 ---
 {% include JB/setup %}

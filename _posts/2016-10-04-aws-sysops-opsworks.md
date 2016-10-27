@@ -3,7 +3,7 @@ layout: post
 title: "AWS SysOps - OpsWorks"
 description: ""
 category: posts
-tags: [aws, sysopscert, opsworks]
+tags: [aws, sysops, opsworks]
 ---
 {% include JB/setup %}
 

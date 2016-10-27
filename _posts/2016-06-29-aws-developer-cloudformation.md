@@ -57,3 +57,5 @@ There are two different CLI interfaces to CloudFormation, the older [CloudFormat
 
 ## Reading
 * [AWS Cloudformation User Guide](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)
+
+* [Cloud Formation Template Reference](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-reference.html)

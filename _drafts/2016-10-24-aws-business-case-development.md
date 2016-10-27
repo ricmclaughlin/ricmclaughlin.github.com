@@ -2,8 +2,8 @@
 layout: post
 title: "AWS Business Case Development"
 description: ""
-category: 
-tags: [aws,  ]
+category: posts
+tags: [aws]
 ---
 {% include JB/setup %}
 
