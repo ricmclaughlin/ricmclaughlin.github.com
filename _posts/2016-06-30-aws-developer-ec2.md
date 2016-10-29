@@ -89,13 +89,18 @@ All actions are pretty much plural.
 
 ## Qwik Labs
 [Introduction to Amazon Elastic Compute Cloud (EC2)](https://qwiklabs.com/focuses/2921)
+
 [Introduction to Amazon Elastic Block Store (EBS)](https://qwiklabs.com/focuses/2920)
+
 [Creating Amazon EC2 Instances (for Linux)](https://qwiklabs.com/focuses/2548)
 
 ## Reading
 [EC2 User Guide](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html)
+
 [EBS FAQ](https://aws.amazon.com/ebs/faqs/)
+
 [ELB Overview](https://aws.amazon.com/elasticloadbalancing/)
+
 [AMI Bundling](https://aws.amazon.com/articles/Amazon-EC2/9001172542712674)
 
 ## Videos

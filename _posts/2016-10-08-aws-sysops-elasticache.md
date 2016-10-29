@@ -8,7 +8,7 @@ tags: [aws, sysops]
 {% include JB/setup %}
 
 # Overview
-There are two engines available from ElastiCache: Redis and memecached. The signifigant differences between memcached and redis make for differences in monitoring and scaling
+ElastiCache is a managed service the provides caching services for apps. There are two engines available from ElastiCache: Redis and memecached. The signifigant differences between memcached and redis make for differences in monitoring and scaling.
 
 ## memcached
 multithreaded; and performs well up to 90% utilization then increase size of node or # of nodes

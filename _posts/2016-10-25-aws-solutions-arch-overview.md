@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "AWS Solutions Arch - Overview"
+title: "AWS Solutions Arch Certification - Overview"
 description: ""
-category: posts
+category: projects
 tags: [aws, solutionsarch]
 ---
 {% include JB/setup %}
@@ -59,7 +59,7 @@ Trusted Adviser
 
 Enterprise 
 
-[CloudFormation]({{}}/)
+[CloudFormation]()
 
 OpsWorks
 
@@ -103,3 +103,4 @@ Cost Efficient
 Security
 
 ## Projects
+[Bundling AMIs](/projects/aws-project-bundling-amis)

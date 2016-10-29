@@ -3,7 +3,7 @@ layout: post
 title: "AWS Project - Basic Account Audit"
 description: ""
 category: projects
-tags: [aws]
+tags: [aws, how-to]
 ---
 {% include JB/setup %}
 
