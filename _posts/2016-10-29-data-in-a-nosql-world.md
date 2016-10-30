@@ -19,8 +19,6 @@ no standardized schema, data or business rules
 no relationships
 [BASE](https://en.wikipedia.org/wiki/Eventual_consistency) - liveness
 mostly horizonal scaling
-
-
   
 
 Data Normalization
