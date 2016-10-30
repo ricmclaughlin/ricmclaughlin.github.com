@@ -11,7 +11,7 @@ Say you wanted to do a basic audit of a small AWS account. What sort of things w
 
 trusted advisor
 
-## Overall
+# Overall Principles
 Least priviledge
 
 Encryption - HTTPS/TLS, Data-at-Rest
@@ -42,3 +42,6 @@ ACLs
 
 ## CloudTrail
 Is cloud trail enabled for all Cloud 
+
+# New Account Check List
+
