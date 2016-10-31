@@ -24,7 +24,6 @@ And the fact that this audit does not require any special tools: just trusted ad
 ### Cost:
 
 1. Can IAM users see the [bill](https://console.aws.amazon.com/billing/home?#/account)? If not enable it.
-Services:
 
 2. Billing and Budgets enabled? If not, enable. Set a $1000 budget and track if you spend 1% if this is a free account.
 
@@ -36,19 +35,27 @@ Ok, that isn't a lot of stuff yet useful and do-able in 5 minutes.
 
 1. Fire up [Trusted Advisor](https://aws.amazon.com/premiumsupport/trustedadvisor/)
 
+### Security:
+
 Service Limits:
 
 Checks for usage that is more than 80% of the service limit. Values are based on a snapshot, so your current usage might differ. Limit and usage data can take up to 24 hours to reflect any changes. In some cases, your usage might be greater than the indicated limit for a period of time.
 
 
 # 2 Hour Review
-
-
 IAM In-Depth
 [Credential Report](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_getting-report.html)
 Policy simulator as Audit Evidence
 
 Cloud Watch 
+
+## On-going Monitoring
+
+Cost Monitoring
+
+AWS Config - AWS Config is a super effective tool for monitoring the changes in the  configuration of your environment - it examines what you have running and configured and dumps it to a json file. Over time, you can understand what you have, what has changed and all that good sort of stuff. 
+
+Cost Explorer
 
 ## Principles
 

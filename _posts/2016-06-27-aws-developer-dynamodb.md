@@ -3,7 +3,7 @@ layout: post
 title: "AWS Developer - DynamoDB"
 description: ""
 category: posts
-tags: [aws, developercert, mongodb, dynamodb]
+tags: [aws, developercert, dynamodb]
 ---
 {% include JB/setup %}
 
@@ -12,7 +12,7 @@ The [AWS Developer Certification - Associate]({{ BASE_PATH }}/posts/aws-develope
 # DyanamoDB Overall
 Here are a couple of notes on what I found important to know about DynamoDB.
 
-Yes, DynamoDB is like MongoDB - but the concepts behind MongoDB have better names. Reads of a DynamoDB table, unless you specify otherwise are eventually consistent. DynamoDB uses optimistic concurrency control. It stores data in three separate data centers - not AZs. Not sure why there is a distinction.
+Yes, DynamoDB is like MongoDB - but the concepts behind MongoDB have better names. Reads of a DynamoDB table, unless you specify otherwise, are eventually consistent. DynamoDB uses optimistic concurrency control. It stores data in three separate data centers - not AZs. Not sure why there is a distinction.
 
 Eventually Consistent Reads - By default, once there is a DynamoDB write you can access data with a second or so - it is eventually consistent. 
 
@@ -42,6 +42,15 @@ Secondary Indexes - total of 5 global indexes and 5 secondary indexes for a tota
 * Secondary Local Indexes - same partition key with different sort key defined at table creation ONLY( has the same hash key as the table, but a different range key); consumes tables defined read capacity.
 
 * Global Secondary Indexes - uses a different partition key and a different sort key (the partition and sort key *can* be different from those on the table.) - A global secondary index is considered "global" because queries on the index can span all of the data in a table, across all partitions. Global indexes have completely different read/write capacity units.
+
+## Data types
+
+DynamoDB is hybrid of document and key value pair noSQL database types and features the following mix of data types:
+Scalar types = String, Boolean, Binary and Number
+
+Sets - which are typed, non-ordered arrays including string set, number set, and binary set.
+
+Document - basically json, much like how MongoDB store data
 
 ## Read capacity unit estimation 
 Formula -> (size per item KB rounded up to nearest mulitple of 4 /4) * read per sec = strongly consistent read; divide by 2 if eventually consistent.
