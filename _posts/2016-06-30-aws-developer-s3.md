@@ -98,13 +98,11 @@ Stores all version of an object; can be suspended but not disabled for bucket; c
 ## Lifecycle
 Actions include: 
 Move to S3-IA - must be here for a minimum of 30 days (and be 128kb) before it can move to glacier
+
 Move to Glacier - can move here directly after creation if needed
 Permenantly Delete - yep, cool stuff this.
 
 S3 lifecycle Policy - S3 bucket policies require a Principal be defined.
-
-### Import/Export
-AWS offers the ability to send them a disk and import to EBS, S3 or Glacier then the ability to export from S3. This has to be totally painful so now they are a specially created device called an import/export Snowball which is a portable NAS you can ship back to AWS and they import the data to S3.
 
 ## Bucket Names &amp; Such
 Bucket names can not start with a '.' or '-' and cannot be formatted like an IP address. Remove public read access and use signed URLs with expiry dates to prevent read access from unauthorized sites. 

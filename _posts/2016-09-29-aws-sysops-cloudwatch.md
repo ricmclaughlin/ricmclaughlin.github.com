@@ -3,7 +3,7 @@ layout: post
 title: "AWS SysOps - CloudWatch"
 description: ""
 category: posts
-tags: [aws, developercert, cloudfront]
+tags: [aws, cloudwatch]
 ---
 {% include JB/setup %}
 

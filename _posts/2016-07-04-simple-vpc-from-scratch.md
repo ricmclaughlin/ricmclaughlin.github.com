@@ -1,9 +1,9 @@
 ---
 layout: post
-title: " AWS Project - A Simple VPC from Scratch"
+title: "AWS Project - A Simple VPC from Scratch"
 description: ""
 category: projects
-tags: [aws, developercert, vpc, how-to]
+tags: [aws, vpc, how-to]
 ---
 {% include JB/setup %}
 

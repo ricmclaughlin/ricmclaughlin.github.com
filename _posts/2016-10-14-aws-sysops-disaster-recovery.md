@@ -3,7 +3,7 @@ layout: post
 title: "AWS SysOps - Disaster Recovery"
 description: ""
 category: posts
-tags: [aws, sysops]
+tags: [aws, sysops, soluarch]
 ---
 {% include JB/setup %}
 
@@ -12,7 +12,7 @@ A disaster is anything that has a negative impact on business continuity.
 ## RTO &amp; RPO
 Recovery Time Objective (RTO) - From disaster all the way back to normal
 
-Recovery Point Objective (RPO) - how much data you can loose
+Recovery Point Objective (RPO) - how much data you can loose; Max duration of time of which data might be lost from an IT service due to an incident.
 
 # Disaster Recovery - Onsite -> AWS
 AWS makes diaster recover way, way less expensive and easier to manage. One big way scenario is backing up your on-premise capability with AWS. Import/Export Snowball is great idea.

@@ -32,7 +32,7 @@ business case development -
 
 Cross Account Roles
 
-Direct Connect (Storage gateway)
+[Direct Connect (Storage gateway)](/posts/aws-solutions-arch-enterprise-network-storage)
 
 Identity Management (Federation, STS, WIF, SAML)
 
