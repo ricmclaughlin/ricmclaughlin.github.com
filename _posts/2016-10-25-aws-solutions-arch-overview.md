@@ -61,7 +61,7 @@ OpsWorks
 
 ## Data Management
 
-Kinesis
+[Kinesis](/posts/aws-solutions-arch-kinesis)
 
 ElastiCache
 
