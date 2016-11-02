@@ -2,7 +2,7 @@
 layout: post
 title: "AWS Project - Auto Scaling"
 description: ""
-category: 
+category: projects
 tags: [aws, how-to]
 ---
 {% include JB/setup %}
