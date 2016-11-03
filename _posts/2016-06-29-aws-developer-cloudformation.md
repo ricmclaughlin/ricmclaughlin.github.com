@@ -3,12 +3,11 @@ layout: post
 title: "AWS Developer - CloudFormation"
 description: ""
 category: posts 
-tags: [aws, developercert, cloudformation]
+tags: [aws, developercert, cloudformation, solutionsarch]
 ---
 {% include JB/setup %}
 
 [CloudFormation](https://aws.amazon.com/cloudformation/) templates are JSON documents that build AWS infrastucture. The cool part is that these templates can be version control and run over and over again - this is infrastructure as code in a fleshy-codey sort of way! The only bummer is that you can only have 20 CloudFormation stacks in a region - and of course, you can increase this by contacting AWS. Obviously you can create as many CloudFormation templates as you want.
-
 
 ## CloudFormation Templates
 CloudFormation Templates have 8 main sections but only the resources section is required.

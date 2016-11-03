@@ -9,18 +9,14 @@ tags: [aws, solutionsarch]
 
 Not one to be satisfied taking the easy way out, I'm going to take both the associate and professional level Solutions architecture certification exams... back to back. And this post is going to organize my notes.
 
-
-
-
-
 ## Networking
 VPC
 
-VPC DNS
+VPC Peering
 
-CloudFront
+[CloudFront](/posts/aws-developer-cloudfront)
 
-VPC
+[VPC connectivity](/posts/aws-solutions-arch-enterprise-network-storage)
 
 Route53
 
@@ -28,7 +24,7 @@ Route53
 
 Billing (Resource Groups, CloudWatch Alarms)
 
-business case development - 
+business case development -  
 
 Cross Account Roles
 
@@ -55,7 +51,7 @@ Trusted Adviser
 
 Enterprise 
 
-[CloudFormation]()
+[CloudFormation](/posts/aws-developer-cloudformation)
 
 OpsWorks
 
@@ -83,9 +79,6 @@ EC2
 HPC
 
 ElasticTranscoder
-
-### Compute Projects
-
 
 ## Topics
 High Availability

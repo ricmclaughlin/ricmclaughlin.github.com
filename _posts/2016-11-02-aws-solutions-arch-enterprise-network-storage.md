@@ -56,6 +56,8 @@ VPN = quick to bring up and easy; slower and sucks Internet bandwidth
 Direct Connect = consistent lower latency and fixed bandwidth; more secure; lower cost
 
 ### Gateway Cached vs Gateway Stored vs Virtual Tape Library vs Virtual Tape Shelf vs Import/Export Snowball
+Low end = s3 directly
+
 Cached = less to maintain local, frequently access to small amount of data
 
 Stored = low latency for ALL data
@@ -66,11 +68,10 @@ Virtual Tape Library - fast access but a little but more management
 
 Snowball - lots of data with a small pipe
 
-### Backup
-Low end = s3 directly
-
 ## Resources
 [BGP](https://en.wikipedia.org/wiki/Border_Gateway_Protocol#Requirements_of_a_router_for_use_of_BGP_for_Internet_and_backbone-of-backbones_purposes)
+
+[Network Admin Guide to VPC](http://docs.aws.amazon.com/AmazonVPC/latest/NetworkAdminGuide/Introduction.html)
 
 [Import/Export Snowball](https://aws.amazon.com/importexport/)
 
