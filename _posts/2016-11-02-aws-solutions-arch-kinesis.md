@@ -3,7 +3,7 @@ layout: post
 title: "AWS Solutions Arch - Kinesis"
 description: ""
 category: posts
-tags: [aws]
+tags: [aws, soluarch]
 ---
 {% include JB/setup %}
 

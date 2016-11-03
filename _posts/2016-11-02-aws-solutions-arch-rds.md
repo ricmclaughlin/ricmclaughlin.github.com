@@ -3,7 +3,7 @@ layout: post
 title: "AWS Solutions Arch - RDS"
 description: ""
 category: posts
-tags: [aws, rds]
+tags: [aws, rds, soluarch]
 ---
 {% include JB/setup %}
 

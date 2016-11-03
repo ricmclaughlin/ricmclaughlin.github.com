@@ -37,7 +37,7 @@ Buckets are private by default but access control you can define a bucket policy
 ### Bucket Policies
 While IAM policies apply to the user level, bucket policies apply to the resource level. Bucket owners can specify what other users can do the contents of the bucket - provided they can log into the console. This includes scenarios where others own the object in the bucket - think cross account PUT of an object.
 
-Bucket Policies are:
+#### Bucket Policies are:
 
 1. Resource Based
 
@@ -47,7 +47,10 @@ Bucket Policies are:
 
 1. Possibily conditional - they can use ACL attributes to conditionally grant access to objects
 
-Elements of an Access Policy include:
+### S3 ACL
+Stored in XML and can be used to manage access to objects NOT owned by the bucket owner. They can not explicitly deny permissions; they grant read and write permissions to other AWS accounts.
+
+#### Elements of an Access Policy include:
 
 1. Principle - specific to bucket policies NOT user policies.
 
@@ -56,9 +59,6 @@ Elements of an Access Policy include:
 1. Action - what we want to describe
 
 1. Resource - the ARN
-
-### S3 ACL
-Stored in XML and can be used to manage access to objects NOT owned by the bucket owner. They can not explicitly deny permissions; they grant read and write permissions to other AWS accounts.
 
 ### S3 IAM Policies
 S3 IAM policies can NOT grant anonymous access. But you can DENY access with IAM Policies. 
@@ -79,9 +79,9 @@ There are three flavors of Server Side Encryption (SSE) Server side encryption c
 
 * AWS Key Management Service, Managed Keys (SSE-KMS) - this provides an audit trail.
 
-* Customer Provided Keys (SSE-C)
+* Customer Provided Keys (SSE-C) - you provide key; you manage key; you upload key to AWS...
 
-You could encrypt on the client too. 
+* Customer encrypted - You could encrypt on the client too. 
 
 ## S3 Storage Classes
 S3 - AWS guarantees 99.99% availability for the S3 Platform and 11 x 9 for durability.
@@ -95,8 +95,10 @@ S3-Reduced Redundancy Storage - 99.99% durability - for files that can be regen'
 ## Versioning
 Stores all version of an object; can be suspended but not disabled for bucket; can be used with MFA to provide extra layer of DELETE security. Cross region replication requires versioning and an IAM role setup. ALL version of the file are stored so the amount of spaced required can end up being HUGE. Versioning only starts after it is enable and files have been added - existing files end up with a NULL version.
 
-## Lifecycle
-Actions include: 
+## Storage Tiers & Lifecycle Policies
+
+S3 - standard tier
+ 
 Move to S3-IA - must be here for a minimum of 30 days (and be 128kb) before it can move to glacier
 
 Move to Glacier - can move here directly after creation if needed

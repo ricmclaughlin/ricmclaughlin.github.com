@@ -73,6 +73,8 @@ SQS
 
 Redshift
 
+[s3](/posts/aws-developer-s3)
+
 ## Compute
 EC2
 

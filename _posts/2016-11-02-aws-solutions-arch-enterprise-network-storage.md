@@ -49,6 +49,24 @@ Can be snapshot'ed (adhoc or scheduled) and used as an EBS volume; one gateway p
 
 ##  When to do what...
 
+### Storage
+
+Lower level convern about delete or overwrite - enable versioning
+
+Really concerned about delete and overwrite? enable MFA
+
+Cross region replication? Requires versioning on source bucket
+
+### Storage Tiers & Lifecycle Policies
+
+S3 - standard tier
+ 
+Move to S3-IA - must be here for a minimum of 30 days old and be 128kb before it can move to Glacier
+
+Move to Glacier - can move here directly after creation if needed or after 30 days in s3-IA
+
+Permenantly Delete - yep, cool stuff this.
+
 ### Direct connect vs  VPN Capability
 
 VPN = quick to bring up and easy; slower and sucks Internet bandwidth
