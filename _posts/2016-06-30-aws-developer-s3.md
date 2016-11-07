@@ -120,7 +120,7 @@ To make a website on S3 at a minimium upload an index document to your S3 bucket
 CORS rules - The bucket hosting the assets needs CORS configuration - add the domain of the "static" site to fix this up.
 
 ## S3 Transfer Acceleration
-Edge Location used by CloudFront are not just for download acceleration. S3 Transfer Acceleration uses the AWS backbone to speed up uploads. This costs more money. 
+Edge Location used by CloudFront are not just for download acceleration. S3 Transfer Acceleration uses the AWS backbone to speed up uploads. This costs more money. There is a distinct URL that syncs from the CloudFront edge locations to S3 bucket.
 
 ## S3 API Reference Points
 

@@ -78,6 +78,8 @@ Redshift
 ## Compute
 EC2
 
+[EBS]()
+
 HPC
 
 ElasticTranscoder

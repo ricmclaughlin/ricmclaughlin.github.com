@@ -3,7 +3,7 @@ layout: post
 title: "AWS SysOps - Elastic Block Storage"
 description: ""
 category: posts
-tags: [aws, sysops, ebs]
+tags: [aws, sysops, ebs, ec2, solutionsarch]
 ---
 {% include JB/setup %}
 
@@ -39,3 +39,15 @@ By default, EBS root volumes are lost when an instance is terminated. That said,
 
 3. Attach EBS volumes after instance creation.... this is not exactly a root volume.
 
+## Volumes && Snapshots
+Snapshots are incremental. Encrypted volumes are snapshotted encrypted automatically - and are restored encrypted. Stop instances to snapshots the root devices else EC2 stops it for you.
+
+## Use Cases
+
+DB or INTENSE datawarehouse server = IOPS/io1
+
+General purpose = gp2/
+
+Large I/O including EMR, Kafka, log processing and data warehouse ETL = st1 (sequential data reads)
+
+sudo fio --filename=/dev/xvdf1 --rw=randread --bs=128k --iodepth=32 --ioengine=libaio --direct=1 --name=volume-initialize

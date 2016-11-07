@@ -44,9 +44,6 @@ HVM - Emulates a bare-metal experience for virtualization. Can runs for Windows.
 PV - Short for ParaVirtualization is the previous version of virtualization. Uses a special boot loader called PV-GRUB and does not run Windows.
 
 
-
-
-
 ## Status Checks
 
 System Status Checks - generally networking, power, hardware and system software problems that can be resolved by stopping and restarting the instance or contacting AWS. Checks the host.

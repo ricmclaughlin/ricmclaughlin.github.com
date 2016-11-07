@@ -8,10 +8,9 @@ tags: [aws, how-to]
 {% include JB/setup %}
 
 ## What is "Bundling an AMI"
-An AMI is a computer image configured for a specific purpose. Using an AMI you can easily create a new EC2 instance. 
+An AMI is a computer image configured for a specific purpose. Using an AMI you can easily create a new EC2 instance. The AMI includes a template for the root volume, launch permissions and a block device mapping.
 
  - AMI:EC2 Instances::blueprint:Sky Scraper
-
 
 ## Why Would You Bundle an AMI?
 Bundling your own AMI has several advantages:

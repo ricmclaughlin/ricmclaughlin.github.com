@@ -3,7 +3,7 @@ layout: post
 title: "AWS Developer - CloudFront"
 description: ""
 category: posts
-tags: [aws, developercert, cloudfront]
+tags: [aws, developercert, cloudfront, solutionsarch]
 ---
 {% include JB/setup %}
 
@@ -63,7 +63,7 @@ costs money to invalidate distribution object
 
 ## When
 
-It is going viral baby! = Whole site CDN
+It is going viral baby! = Whole site CDN; push to CloudFront
 
 Control access to section of site or type of media on site = signed cookie
 
