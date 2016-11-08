@@ -50,12 +50,6 @@ There are several ways to create Read Replica.
 
 Replicas can be promoted to a primary but this breaks the replication link.
 
-## Use Cases
-
-Need ACID? use RDS transactional engine; no ACID? Use DynamoDB 
-
-
-
 
 #Labs
 [Introduction to Amazon Relational Database Service (RDS) (Linux)](https://qwiklabs.com/focuses/2926)

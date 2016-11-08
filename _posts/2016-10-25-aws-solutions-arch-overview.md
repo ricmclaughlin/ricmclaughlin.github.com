@@ -67,7 +67,7 @@ EMR
 
 CloudSearch
 
-DynamoDB
+[DynamoDB](/posts/)
 
 SQS
 

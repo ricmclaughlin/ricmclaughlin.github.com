@@ -105,6 +105,11 @@ Detective Controls - logging with CloudTrail, CloudWatch, AWS Config
 
 # Amazon Web Services: Overview of Security Processes
 
+- Amazon's network - it is separate from the AWS network
 
+you get protected from:
+
+DDoS attacks
+Man-in-the-Middle-Attacks
 
 [Amazon Web Services: Overview of Security Processes](https://d0.awsstatic.com/whitepapers/aws-security-whitepaper.pdf)

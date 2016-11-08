@@ -102,6 +102,9 @@ This is a huge issue because many times users are authenticated by an ID provide
 
 4. STS provides DynamoDB access for a period of 15 minutes to 1 hours. 1 hour is the default.
 
+## Use Cases
+
+
 ## DynamoDB API Reference points
 
 ### Table

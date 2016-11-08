@@ -10,6 +10,8 @@ tags: [aws, sysops]
 # Overview
 ElastiCache is a managed service the provides caching services for apps. There are two engines available from ElastiCache: Redis and memecached. The signifigant differences between memcached and redis make for differences in monitoring and scaling.
 
+ElastiCache only backs up Redis clusters. Snapshots backup the data for the entire cluster at a specific time and probably cause a performance degradation. Try to backup read replicas!
+
 ## memcached
 multithreaded; and performs well up to 90% utilization then increase size of node or # of nodes
 
