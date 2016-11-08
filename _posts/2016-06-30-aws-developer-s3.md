@@ -3,7 +3,7 @@ layout: post
 title: "AWS Developer - S3"
 description: ""
 category: posts
-tags: [aws, developercert, s3]
+tags: [aws, developercert, s3, solutionsarch]
 ---
 {% include JB/setup %}
 

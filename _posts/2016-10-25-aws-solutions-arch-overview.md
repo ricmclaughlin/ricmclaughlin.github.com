@@ -18,7 +18,7 @@ VPC Peering
 
 [VPC connectivity](/posts/aws-solutions-arch-enterprise-network-storage)
 
-Route53
+[Route53](/posts/aws-solutions-arch-route53)
 
 ## Enterprise Topics
 
@@ -61,7 +61,7 @@ OpsWorks
 
 ElastiCache
 
-RDS
+[RDS](/posts/aws-solutions-arch-rds)
 
 EMR
 
@@ -78,7 +78,7 @@ Redshift
 ## Compute
 EC2
 
-[EBS]()
+[EBS](/posts/aws-sysops-elastic-block-storage)
 
 HPC
 
@@ -94,6 +94,8 @@ Scalable
 Cost Efficient
 
 Security
+
+[The Well Architected System](/posts/aws-solutions-arch-whitepapers)
 
 ## Projects
 [Bundling AMIs](/projects/aws-project-bundling-amis)
