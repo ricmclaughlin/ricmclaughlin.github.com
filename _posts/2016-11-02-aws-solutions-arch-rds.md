@@ -11,9 +11,9 @@ tags: [aws, rds, soluarch]
 ## RDS
 Transactional Storage Engines are recommended for durability. RDS instances without Multi-AZ don't perform as well as those that are - backups, restores and all housekeeping activities are performed on the secondary instance.  Backups are stored on S3. Restoration only works for the default DB parameter and security groups are associated with the instance you will likely need to setup the DB default parameters and security groups. You maybe can change storage engine - if they are related.
 
-Deleting an RDS instance deletes ALL the automated backups... but not the manual ones. -=>>"I acknowledge that upon instance deletion, automated backups, including system snapshots and point-in-time recovery, will no longer be available."
+Deleting an RDS instance deletes ALL the automated backups... but not the manual ones. =>>"I acknowledge that upon instance deletion, automated backups, including system snapshots and point-in-time recovery, will no longer be available."
 
-A backup retention period of zero days will disable automated backups for this DB Instance.
+A backup retention period of zero days will disable automated backups for this DB Instance. Restores manifest themselves as a new RDS instance with a new endpoint. Encryption uses KMS. "Restore to point in Time" option allows you to pinpoint a time to restore from. RDS security groups do not require a port number or protocol.
 
 ### Multi-AZ failover
 A multi-AZ failover process is key in the event of an AZ failure but is NOT a scaling solution.  Multi-AZ systems are setup within the same region - that would be obvious from the name.
@@ -37,7 +37,7 @@ Read Replicas are used to scale RDS by creating a READ ONLY copy of your databas
 
 - Business reporting against almost live data without affecting the performance of the primary instance
 
-A transactional DB engine must be used to support read replicas - so Aurora/MySQL must have InnoDB engine installed. Needs MySQL version 5.6 or later; PostgresSQL requires 9.3.5. In this configuration, the native asynchronous engine is used. There can be a total of 5 read replica per primary instance. MySQL allows multi-region read replicas. DB Snapshots and backups can NOT be taken from read replicas. If not Multi-AZ on setup, expect I/O suspension; Multi-AZ = snapshot from secondary DB. Read-replicas can be promoted.
+A transactional DB engine must be used to support read replicas - so Aurora/MySQL must have InnoDB engine installed. Needs MySQL version 5.6 or later; PostgresSQL requires 9.3.5. In this configuration, the native asynchronous engine is used. There can be a total of 5 read replica per primary instance. MySQL allows multi-region read replicas. DB Snapshots and backups can NOT be taken from read replicas. If not Multi-AZ on setup, expect I/O suspension; Multi-AZ = snapshot from secondary DB. Read-replicas can be promoted. Oracle and SQL Server can't do read replicas.
 
 Replica lag is a key metric - keeping the read replica on a similiar, in fact, exact same configuration of instances can help keep this metric inline. 
 
@@ -50,6 +50,8 @@ There are several ways to create Read Replica.
 
 Replicas can be promoted to a primary but this breaks the replication link.
 
+## Aurora
+MySQL compatible, relational DB that starts with 10Gb and scales in 10Gb increments to 64 Tb and up to 32 vCPUs and 244 Gb of RAM. It has amazing HA capabilities with 2 copies in 3 AZ so you get 6 copies of your data and it is self-healing through disk and data block data scanning and errors are fixed. You can have up to 15 Aurora read replicas and 5 MySQL read replicas.
 
 #Labs
 [Introduction to Amazon Relational Database Service (RDS) (Linux)](https://qwiklabs.com/focuses/2926)

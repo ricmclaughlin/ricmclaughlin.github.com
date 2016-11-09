@@ -59,11 +59,11 @@ OpsWorks
 
 [Kinesis](/posts/aws-solutions-arch-kinesis)
 
-ElastiCache
+[ElastiCache](/posts/aws-sysops-elasticache)
 
 [RDS](/posts/aws-solutions-arch-rds)
 
-EMR
+[EMR](/posts/aws-solutions-arch-elastic-map-reduce)
 
 CloudSearch
 
@@ -71,7 +71,7 @@ CloudSearch
 
 SQS
 
-Redshift
+[Redshift](/posts/aws-solutions-arch-redshift)
 
 [s3](/posts/aws-developer-s3)
 
@@ -93,7 +93,7 @@ Scalable
 
 Cost Efficient
 
-Security
+[Security](/posts/aws-sysops-security)
 
 [The Well Architected System](/posts/aws-solutions-arch-whitepapers)
 
