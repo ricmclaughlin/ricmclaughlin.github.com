@@ -3,7 +3,7 @@ layout: post
 title: "Data in a NoSQL world"
 description: ""
 category: 
-tags: []
+tags: [aws, solutionsarch]
 ---
 {% include JB/setup %}
 

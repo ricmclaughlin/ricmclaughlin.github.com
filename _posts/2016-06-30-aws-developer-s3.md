@@ -168,5 +168,7 @@ Common Errors - S3 handles error codes with HTTP response codes - which makes se
 ## Reading
 [s3 Developer Guide](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html)
 
+[AWS Storage Services Overview](https://d0.awsstatic.com/whitepapers/AWS%20Storage%20Services%20Whitepaper-v9.pdf)
+
 ## Videos
 [AWS S3 Deep Drive and Best Practices](https://www.youtube.com/watch?v=1TvJCLl9NNg)

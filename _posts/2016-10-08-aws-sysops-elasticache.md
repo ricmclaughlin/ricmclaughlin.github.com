@@ -3,7 +3,7 @@ layout: post
 title: "AWS SysOps - ElastiCache"
 description: ""
 category: posts
-tags: [aws, sysops]
+tags: [aws, sysops, solutionsarch]
 ---
 {% include JB/setup %}
 

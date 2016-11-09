@@ -3,6 +3,6 @@ layout: post
 title: "AWS Solutions Arch - Elastic Search"
 description: ""
 category: 
-tags: []
+tags: [aws, solutionsarch]
 ---
 {% include JB/setup %}

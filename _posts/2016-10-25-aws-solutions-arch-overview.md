@@ -69,20 +69,31 @@ CloudSearch
 
 [DynamoDB](/posts/)
 
-SQS
+
 
 [Redshift](/posts/aws-solutions-arch-redshift)
 
 [s3](/posts/aws-developer-s3)
 
+## App Services
+SQS
+
+SNS
+
+SWF
+
+[ElasticTranscoder](/posts/aws-solutions-arch-elastic-transcoder)
+
 ## Compute
-EC2
+[EC2](/posts/aws-developer-ec2)
+
+EFS
 
 [EBS](/posts/aws-sysops-elastic-block-storage)
 
 HPC
 
-ElasticTranscoder
+ECS
 
 ## Topics
 High Availability

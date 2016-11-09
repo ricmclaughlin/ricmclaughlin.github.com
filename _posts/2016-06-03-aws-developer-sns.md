@@ -7,7 +7,7 @@ tags: [aws, developercert, sns]
 ---
 {% include JB/setup %}
 
-AWS Simple Notfication Services is a pub-sub service - no polling required. SNS is a natural architectural match with SQS. SQS is used by distributed applications and can be used to decouple sending and receiving components without requiring each application component to be concurrently available. 
+AWS Simple Notfication Services is a pub-sub service - no polling required. SNS is a natural architectural match with SQS. Publish to a SNS queue and subscrive the a SQS queue to fan out messages to distributed applications and can be used to decouple sending and receiving components without requiring each application component to be concurrently available. 
 
 1. The basis of the system is a Topic. Many AWS services can publish to a SNS topic. Messages on a topic can be customized based on the subscribing service.
 

@@ -3,7 +3,7 @@ layout: post
 title: "AWS Developer - SQS"
 description: ""
 category: posts
-tags: [aws, developercert, sqs]
+tags: [aws, developercert, sqs, solutionsarch]
 ---
 {% include JB/setup %}
 
@@ -37,10 +37,21 @@ tags: [aws, developercert, sqs]
 | [GetQueueAttributes  ](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_GetQueueAttributes.html) | Gets attributes for the specified queue.|
 |  [SetQueueAttributes  ](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SetQueueAttributes.html)| Sets the value of one or more queue attributes.|
 
-## Resources
+## Use Cases
 
-### Qwik Labs
-none.
+Message priority? Multiple queues
+
+Bigger than 64kb? More than one message chunk
+
+bigger than 256kb? Message with pointer to data in DynamoDB or S3
+
+Workflow longer than 14 days? SWF
+
+Decrease SQS cost? long poll
+
+Lots of Visibility timeout? up timeout
+
+## Resources
 
 ### Reading
 [SQS Developer's Guide](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/Welcome.html)

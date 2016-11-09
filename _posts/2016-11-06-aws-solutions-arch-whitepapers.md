@@ -104,12 +104,30 @@ Detective Controls - logging with CloudTrail, CloudWatch, AWS Config
 [AWS Well-Architected Framework](https://d0.awsstatic.com/whitepapers/architecture/AWS_Well-Architected_Framework.pdf)
 
 # Amazon Web Services: Overview of Security Processes
+This whitepaper is mostly review yet there are some bigger points:
 
-- Amazon's network - it is separate from the AWS network
+- Amazon's corporate network is separate from the AWS network; 
 
-you get protected from:
+- instances are isolated and memory is scrubbed prior to being reused by the hypervisor; a firewall sits between the physical layer and the security group
 
-DDoS attacks
-Man-in-the-Middle-Attacks
+AWS protects you from:
 
+- DDoS attacks
+
+- Man-in-the-Middle-Attacks
+
+- IP Spoofiing
+
+- Port Scanning
+
+- Packet Sniffing
+
+## Resources
 [Amazon Web Services: Overview of Security Processes](https://d0.awsstatic.com/whitepapers/aws-security-whitepaper.pdf)
+
+[Amazon Web Services: Risk and Compliance](https://d0.awsstatic.com/whitepapers/compliance/AWS_Risk_and_Compliance_Whitepaper.pdf) - this one is amalogomation of the [Overview of Security Processes](https://d0.awsstatic.com/whitepapers/aws-security-whitepaper.pdf) and [Well-Architected Framework](https://d0.awsstatic.com/whitepapers/architecture/AWS_Well-Architected_Framework.pdf)
+
+[Architecting for the Cloud](https://d0.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf) - nothing too new here...
+
+
+

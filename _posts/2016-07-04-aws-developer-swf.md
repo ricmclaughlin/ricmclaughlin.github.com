@@ -18,9 +18,15 @@ SQS and SWF are both great for distributed services and can scale easily.  SWF c
 
 * Workflows - can not interact with workflows in other domains. 
 
+## SWF Actors
+
+* Workflow Starters - An application that can initiate a workflow
+
 * Activity worker - Activity tasks are assigned to activity workers. A server residing outside of an AWS datacenter can perform a worker task.
 
-* Decider - A decision task tells the decider when the state of a workflow execution has changed.
+* Decider - controls task flow based when the state of a workflow execution has changed.
+
+
 
 # Resources
 

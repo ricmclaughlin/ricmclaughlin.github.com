@@ -3,7 +3,7 @@ layout: post
 title: "AWS Developer - EC2"
 description: ""
 category: posts 
-tags: [aws, developercert, ec2]
+tags: [aws, developercert, ec2, solutionsarch]
 ---
 {% include JB/setup %}
 
@@ -43,7 +43,6 @@ HVM - Emulates a bare-metal experience for virtualization. Can runs for Windows.
 
 PV - Short for ParaVirtualization is the previous version of virtualization. Uses a special boot loader called PV-GRUB and does not run Windows.
 
-
 ## Status Checks
 
 System Status Checks - generally networking, power, hardware and system software problems that can be resolved by stopping and restarting the instance or contacting AWS. Checks the host.
@@ -61,6 +60,9 @@ There tons of details about EBS.. so much that I made a separate [post about it]
 
 ## Instance Meta-Data
 There is a ton of meta-data available about each EC2 instance available via this [handy URL: curl http://169.254.169.254/latest/meta-data/](http://169.254.169.254/latest/meta-data/)
+
+## Placement Groups
+A placement group is a logical group of instances within a single AZ that participate in a low latency 10Gbps network. The name for the group must be unique within your account and only certain types of instances can be launched in a placement group and ideally only ONE type of instance per placement group. You can't merge groups or move instances into a group.
 
 ## EC2 API Reference Points
 The EC2 API is huge and covers creating and deploying AMI, instances, instance specifics like EBS, Elastic IP, etc. You can manage dedicated, spot, spot fleet &amp; reserved instances. You can setup an entire VPC using this API. Amazing stuff.
