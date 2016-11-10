@@ -65,7 +65,7 @@ There is a ton of meta-data available about each EC2 instance available via this
 A placement group is a logical group of instances within a single AZ that participate in a low latency 10Gbps network. The name for the group must be unique within your account and only certain types of instances can be launched in a placement group and ideally only ONE type of instance per placement group. You can't merge groups or move instances into a group.
 
 ## EC2 API Reference Points
-The EC2 API is huge and covers creating and deploying AMI, instances, instance specifics like EBS, Elastic IP, etc. You can manage dedicated, spot, spot fleet &amp; reserved instances. You can setup an entire VPC using this API. Amazing stuff.
+The EC2 API is huge and covers creating and deploying AMI, instances, instance specifics like EBS, Elastic IP, etc. You can manage dedicated, spot, spot fleet, &amp; reserved instances. You can setup an entire VPC using this API. Amazing stuff.
 
 ### AMI API Highlights
 
