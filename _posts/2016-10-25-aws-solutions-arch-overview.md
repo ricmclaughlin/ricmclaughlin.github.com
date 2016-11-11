@@ -12,8 +12,6 @@ Not one to be satisfied taking the easy way out, I'm going to take both the asso
 ## Networking
 VPC
 
-VPC Peering
-
 [CloudFront](/posts/aws-developer-cloudfront)
 
 [VPC connectivity](/posts/aws-solutions-arch-enterprise-network-storage)
@@ -67,7 +65,7 @@ OpsWorks
 
 CloudSearch
 
-[DynamoDB](/posts/)
+[DynamoDB](/posts/aws-developer-dynamodb)
 
 
 
@@ -107,6 +105,8 @@ Cost Efficient
 [Security](/posts/aws-sysops-security)
 
 [The Well Architected System](/posts/aws-solutions-arch-whitepapers)
+
+[Troubleshooting](/posts/aws-solutions-arch-troublshooting)
 
 ## Projects
 [Bundling AMIs](/projects/aws-project-bundling-amis)

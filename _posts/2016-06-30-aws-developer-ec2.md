@@ -83,7 +83,6 @@ All actions are pretty much plural.
 |RunInstances|Launches the specified number of instances using an AMI for which you have permissions.|
 |DescribeInstances| Describes one or more of your instances.|
 
-
 # Resources
 
 ## Qwik Labs

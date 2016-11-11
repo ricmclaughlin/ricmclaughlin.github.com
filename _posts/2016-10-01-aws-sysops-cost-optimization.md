@@ -9,11 +9,13 @@ tags: [aws, sysops, cost]
 
 
 ## Consolidated Billing
-Billing starts being consolidated the day the account signs up for consolidated billing. Consolidated billing does not give the payer access to the linked account. There can be a max of 20 consolidated accounts.
+Billing starts being consolidated the day the account signs up for consolidated billing. Consolidated billing does not give the payer access to the linked account. There is a soft limitof 20 consolidated accounts.
 
 One big reason why to consolidate account is volume discounts. These apply!
 
 In some cases excess EC2 Reserved Instances can rollover to consolidate accounts. Same for Amazon RDS DB instances. These only rollover provided the instance type, region and availability zones match.. so maybe very useful. However, AWS credits can be applied across accounts and that seems helpful.
+
+The paying account is independent of the other accounts; the paying account cannot access the resources of the other accounts. 
 
 ## Cloud Watch
 When the "Receive Billing Alerts" option is enabled in the billing preferences, and you access the North Virginia region, you can access billing data in CloudWatch. Alarms and metrics are nifty.
@@ -42,4 +44,5 @@ RDS and ElastiCache offer reserved instances as well
 
 ### Reserved Instance Marketplace
 
+If you can't use your reservations you CAN sell them.
 

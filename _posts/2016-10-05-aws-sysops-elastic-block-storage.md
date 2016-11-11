@@ -21,9 +21,8 @@ There are three types of EBS:
 
 3. Magnetic - Cheap and slow EBS volumes can also be Cold HDD (sc1) and Throughput Optimized HDD (st1). Can not specify IOPS with this storage type.
 
-
 ### Initializing EBS Volumes (pre-warm)
-For peak performance from the EBS volume if you are mounting it for the first time you can do a `dd if={mount location} of=/dev/null bs=1M` which writes to every block. If creating from a snapshot use the `fio` utility which reads from every block on the volume.
+For peak performance from the EBS volume if you are mounting it for the first time you can do a `dd if={mount location} of=/dev/null bs=1M` which writes to every block. If creating from a snapshot use the `fio` utility which reads from every block on the volume - something like `sudo fio --filename=/dev/xvdf1 --rw=randread --bs=128k --iodepth=32 --ioengine=libaio --direct=1 --name=volume-initialize`
 
 ### Resizing and Modifying an EBS Volume
 It is not possible to resize or modify an EBS volume while it is mounted. Take a snapshot, modify as you would like then stop the running instance, attach, then restart the instance.
@@ -43,6 +42,13 @@ By default, EBS root volumes are lost when an instance is terminated. That said,
 Snapshots are incremental. Encrypted volumes are snapshotted encrypted automatically - and are restored encrypted. Stop instances to snapshots the root devices else EC2 stops it for you.
 
 ## Use Cases
+Long term data storage? EBS
+
+data shared between instance fast? memecached or redis
+
+data shared between instances persisten? EFS
+
+don't care? instance store
 
 DB or INTENSE datawarehouse server = IOPS/io1
 
@@ -50,4 +56,4 @@ General purpose = gp2/
 
 Large I/O including EMR, Kafka, log processing and data warehouse ETL = st1 (sequential data reads)
 
-sudo fio --filename=/dev/xvdf1 --rw=randread --bs=128k --iodepth=32 --ioengine=libaio --direct=1 --name=volume-initialize
+

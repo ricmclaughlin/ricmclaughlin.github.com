@@ -2,8 +2,8 @@
 layout: post
 title: "AWS SysOps - OpsWorks"
 description: ""
-category: posts
-tags: [aws, sysops, opsworks]
+category: posts 
+tags: [aws, sysops, opsworks, solutionsarch]
 ---
 {% include JB/setup %}
 
@@ -21,12 +21,17 @@ Layers - A blueprint for a set of instances like web servers, app servers or DB 
 
 - Apps - code someplace you want to run on instances
  
-Recipes
-  setup - setup new instance before first boot
-  configure - fired when instance leave or enters online state
-  deploy - occurs when an app is deployed 
-  undeploy - occurs when an app is deleted from a set of instances
-  shutdown - occurs when instance starts to shut down
+## Recipes
+
+* setup - setup new instance before first boot
+  
+* configure - fired when instance leave or enters online state
+
+* deploy - occurs when an app is deployed 
+
+* undeploy - occurs when an app is deleted from a set of instances
+
+* shutdown - occurs when instance starts to shut down
 
 # Hostname Themes
 Just when you thought AWS was hurting... there was no soul, I found something good. Hostname Themes!! Bad news? No cheese theme. No Pokemon theme. Scottish Island theme? lame.

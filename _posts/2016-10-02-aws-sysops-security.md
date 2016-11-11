@@ -7,6 +7,10 @@ tags: [aws, sysops, security, solutionsarch]
 ---
 {% include JB/setup %}
 
+# Overview
+
+The same silliness of describing defense in breadth and depth apply here. This still feels like the terms are backwards... when it is wide (across all different areas of a system) how is that "defense in depth"???
+
 ## AWS Shared Responsbility Model
 The customer is responsible for the stuff "in" the cloud. Some thing are related to AWS like user access management, security groups, ACL and VPC configuration. Others are things like application level security, OS security and patches as well as OS security configuration.
 

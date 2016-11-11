@@ -39,7 +39,7 @@ When creating a new VPC and using the default options, all hardware is shares us
 * Network Address Translation - EC2 instances in a private subnet can't access the Internet therefore can not access updates via a package manager. Both a NAT instance and NAT gateway can solve this problem. A NAT instance, which is a special purpose EC2 instances, is one solution but a bit old school. A [NAT Gateway](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html) is a fully managed AWS service that is way more practical and easier to implement.
 
 ### VPC Peering
-* VPC peering - allow you the ability to directly route between two VPC using private IP addresses - this might also be configured to share VPC between AWS accounts. VPC peering is NOT transitive so if VPC BobNet is peered to VPC RalphNet and VPC FrankNet that does NOT mean that RalphNet and FrankNet can exchange traffic.
+* VPC peering - allow you the ability to directly route between two VPC using private IP addresses - this might also be configured to share VPC between AWS accounts. VPC peering is NOT transitive so if VPC BobNet is peered to VPC RalphNet and VPC FartNet that does NOT mean that RalphNet and FartNet can exchange traffic. Peering only works in a single region. Overlapping CIDR blocks will not work.
 
 ## VPC Security
 * Security Groups - firewall port filtering at the instance level renamed; allows filtering inbound and outbound; return traffic is allowed so it is state-ful; supports allow rules only
