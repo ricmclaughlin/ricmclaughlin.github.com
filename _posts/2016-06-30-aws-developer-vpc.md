@@ -63,5 +63,4 @@ RDS instances in a VPC - There is a mythical sort of subnet, called a [DB Subnet
 
 * Create a VPC From Scratch - Using acloud.guru formula.
 
-## Reading
 

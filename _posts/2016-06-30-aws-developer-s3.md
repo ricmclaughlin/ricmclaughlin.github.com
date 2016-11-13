@@ -23,7 +23,7 @@ In-Memory caching - [ElastiCache](https://aws.amazon.com/elasticache/) (Memcache
 
 
 # S3
-S3 is an object, as in file, based storage and is a key-value based - the key is the file name and the data in the file which is the value in addition to other data like the Version ID, access control information and metadata. S3 offers *Read after Write* consistency for `PUTS` but **only** *Eventual* consistency for update `PUTS` or `DELETES`.
+S3 is an object, as in file, based storage and is a key-value based - the key is the file name and the data in the file which is the value in addition to other data like the Version ID, access control information and metadata. S3 offers *Read after Write* consistency for `PUT` but **only** *Eventual* consistency for update `PUT` or `DELETE`.
 
 AWS charges you for storage, requests and data transfer.
 

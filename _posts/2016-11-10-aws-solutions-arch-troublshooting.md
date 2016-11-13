@@ -9,6 +9,11 @@ tags: [aws, ec2, solutionsarch]
 
 # EC2
 
+### Trying to launch 60 new EC2 instances in a single availability zone. 
+For all new AWS accounts there is a soft limit of 20 EC2 instances per region. You should submit the limit increase form and retry the template after your limit has been increased.
+
+
+
 ### Can't connect
 
 * Security group port not open
@@ -69,3 +74,5 @@ tags: [aws, ec2, solutionsarch]
 #### Instances start and stop
 
 * Scaling policy misconfigured - longer scale down threshold
+
+Modify the Auto Scaling group cool-down timers & modify the Amazon CloudWatch alarm period that triggers your Auto Scaling scale down policy.

@@ -26,6 +26,8 @@ As a complete side note, Kinesis is the best marketed product in the AWS line.
 ### Details
 A stream is made of up of shards and a shard is 1MB per second write and 2MB per second read capacity. There are tons of connectors, libraries and tools [available](https://aws.amazon.com/kinesis/streams/developer-resources/). 
 
+The max size of a datablob is 1 MB.
+
 ## Why && When
 In the past realtime process of massive amounts of data was hard... very hard in fact.  Kinesis is quite useful when you need to do multi-stage processing of data, partition the data then load the data. Tons of application in realtime gaming, IoT & mobile app analytics, monitoring app or system logs in real-time.
 

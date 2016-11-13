@@ -69,5 +69,18 @@ Not a generic security tool - a security tool for IAM but does not tell you to
 
 2. Use a MFA for the root account
 
+## Cloud Secuity Overview
+AWS protects you from:
+
+- DDoS attacks - distributed attacks, flooding attacks, software logic attacks; How? Redundant Internet connections and tons and tons of additional capacity
+
+- Man-in-the-Middle-Attacks - How? TLS; SSH Host certs for all EC2 instances
+
+- IP Spoofing - How? you just can't
+
+- Port Scanning - in violation of acceptable use policy; How? automatic detect and block port scans; Customer configured SG
+
+- Packet Sniffing - the Xen hypervisor will not deliver any traffic to an instance not bound for that instance
+
 ## Resources
 [Security WhitePaper](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Whitepaper.pdf)

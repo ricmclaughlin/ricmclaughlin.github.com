@@ -14,11 +14,21 @@ There are several purchase options for EC2:
 
 * On-Demand Instances - need an instance? Rent an instance. Most expensive.
 
-* Reserved Instances - cheaper and guaranteed for the availability zone you need that is a steady state and predictably used
+* Reserved Instances - cheaper and guaranteed for the availability zone you need that is a steady state and predictably used; If your needs change, you can modify or exchange reserved instances, or list eligible Standard Reserved Instances for sale on the Reserved Instance Marketplace.
 
 * Spot Instances - you set a max price and if the prices rises about your instance gets nuked; A Spot instance runs as long as its capacity is available and your bid price is higher than the Spot price... may get terminated. If Amazon terminates then you don't get charged for partial; if you terminate you DO get charged.
 
-* Free Instance - free, yet small and mostly tiny
+* Free Instance - free, yet small, and mostly `t2.micro`
+
+You can modify your whole reservation, or just a subset, in one or more of the following ways:
+
+* Change Availability Zones within the same region
+
+* Change the scope of the reservation from Availability Zone to Region (and vice-versa)
+
+* Change between EC2-VPC and EC2-Classic
+
+* Change the instance size within the same instance type
 
 ## Instance Types
 Each instance type offers different compute, memory, and storage capabilities and are grouped in instance families based on these capabilities. DIRTMCG is the mnemonic!
@@ -31,7 +41,7 @@ Each instance type offers different compute, memory, and storage capabilities an
 
 * t - Tiny general (burstable CPU performance)
 
-* m - main choice or general purpose; m3 offer instance stores; m4 uses EBS backed stores
+* m - Main choice or general purpose; m3 offer instance stores; m4 uses EBS backed stores
 
 * c - Compute/processor optimized
 
@@ -41,7 +51,7 @@ Each instance type offers different compute, memory, and storage capabilities an
 
 HVM - Emulates a bare-metal experience for virtualization. Can runs for Windows. 
 
-PV - Short for ParaVirtualization is the previous version of virtualization. Uses a special boot loader called PV-GRUB and does not run Windows.
+PV - Short for ParaVirtualization is the previous version of virtualization. Uses a special boot loader called PV-GRUB and does not run Windows. In general, poor performance is the name of the game.
 
 ## Status Checks
 
@@ -62,7 +72,7 @@ There tons of details about EBS.. so much that I made a separate [post about it]
 There is a ton of meta-data available about each EC2 instance available via this [handy URL: curl http://169.254.169.254/latest/meta-data/](http://169.254.169.254/latest/meta-data/)
 
 ## Placement Groups
-A placement group is a logical group of instances within a single AZ that participate in a low latency 10Gbps network. The name for the group must be unique within your account and only certain types of instances can be launched in a placement group and ideally only ONE type of instance per placement group. You can't merge groups or move instances into a group.
+A placement group is a logical group of instances within a single AZ that participate in a low latency 10Gbps network. The name for the group must be unique within your account and only certain types of instances can be launched in a placement group and ideally only ONE type of instance per placement group. You can't merge groups or move instances into a group or make a placement group span VPC.
 
 ## EC2 API Reference Points
 The EC2 API is huge and covers creating and deploying AMI, instances, instance specifics like EBS, Elastic IP, etc. You can manage dedicated, spot, spot fleet, &amp; reserved instances. You can setup an entire VPC using this API. Amazing stuff.

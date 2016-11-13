@@ -112,11 +112,11 @@ This whitepaper is mostly review yet there are some bigger points:
 
 AWS protects you from:
 
-- DDoS attacks
+- DDoS attacks 
 
 - Man-in-the-Middle-Attacks
 
-- IP Spoofiing
+- IP Spoofing
 
 - Port Scanning
 

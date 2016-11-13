@@ -11,11 +11,11 @@ tags: [aws, sysops, ebs, ec2, solutionsarch]
 They are ephemeral and always get deleted when an EC2 instance is deleted. They can be up to 10Gb and boot slower than EBS volumes.
 
 ## EBS Volumes
-Elastic Block Storage - permanent storage with snapshot capability automatically mounted. There are three different volume types including general purpose, provisioned IOPS SSD which can be striped together for faster performance and magnetic volumes. Generally mapped to /dev/sda1 and can be optionally encrypted. EBS can be sized up to 1 or 2 Tb depending on the OS and they boot faster than instance stores. Each EBS volume initially gets 5.4 million credits for burst performance (3000 IOPS for 30 minutes).
+Elastic Block Storage - permanent storage with snapshot capability automatically mounted. There are three different volume types including general purpose, provisioned IOPS SSD which can be striped together for faster performance and magnetic volumes. Generally mapped to /dev/sda1 and can be optionally encrypted. EBS can be sized up to 1 or 2 Tb depending on the OS and they boot faster than instance stores. Each EBS volume initially gets 5.4 million credits for burst performance (3000 IOPS for 30 minutes).(Linux Academy say max 16TiB; AWS says max 20TiB)
 
 There are three types of EBS:
 
-1. General purpose SSD (gp2) - Minimum of 100 IOPS then 3 IOPS per GB; can burst to 3000 IOPS if less than 1 TB. The max throughput is 160 MiB/s and this can end up being a bottleneck if read size is large. Even though you can boost performance, use if you are after less than 10K IOPS; 3Tb gets you there.
+1. General purpose SSD (gp2) - Minimum of 100 IOPS then 3 IOPS per GB; can burst to 3000 IOPS if less than 1 TB. The max throughput is 160 MiB/s and this can end up being a bottleneck if read size is large. Even though you can boost performance, use if you are after less than 10K IOPS; 3Tb gets you there. 
 
 2. Provisioned IOPS (io1) - 30 IOPS per GB up to 20,000 IOPS; Steady consisten IOPS not really a burstable; The max throughput is 320 MiB/s; Use if you are after over 10k IOPS
 
