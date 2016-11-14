@@ -9,8 +9,8 @@ tags: [aws, ec2, solutionsarch]
 
 # EC2
 
-### Trying to launch 60 new EC2 instances in a single availability zone. 
-For all new AWS accounts there is a soft limit of 20 EC2 instances per region. You should submit the limit increase form and retry the template after your limit has been increased.
+### 60 new EC2 instances in az? 
+soft limit of 20 EC2 instances per region; increase form and retry the template after your limit has been increased.
 
 
 

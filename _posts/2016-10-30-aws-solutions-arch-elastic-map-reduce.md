@@ -15,7 +15,7 @@ The big idea is distribute high volocity, high volume and lots of variety of dat
 
 - Hadoop YARN - Yet Another Resource Negoiator; new in Hadoop 2; enables applications (Pig, Hive, HBase) to be plugged in
 
-- Hadoop Map Reduce - the engine
+- Hadoop Map Reduce - the engine - an implementation of the MapReduce programming model for large scale data processing.
 
 
 ## HDFS Version 2
@@ -51,6 +51,14 @@ Components of Hive include:
 
 ## Pig
 Pig is a language for analyzing large datasets and is more efficient than Java and similiar to SQL. Pig Latin is easily controlled, data agnostic, flexible, and fast. Use Pig when external services are needed for ETL, and you need to debug it... and you don't like Java. It has all the basic data types, complex data types and relations.
+
+## Other Hadoop Projects
+
+* HBase - an open source, non-relational, distributed database modeled after Google's BigTable and is written in Java. It is developed as part of Apache Software Foundation's Apache Hadoop project and runs on top of HDFS (Hadoop Distributed File System), providing BigTable-like capabilities for Hadoop. 
+
+* Phoenix - an open source, massively parallel, relational database engine supporting OLTP for Hadoop using Apache HBase as its backing store.
+
+* Apache Cassandra - a database management system designed to handle large amounts of data across many commodity servers, providing high availability with no single point of failure. 
 
 ## Use Cases
 * Get Data in realtime? Kinesis

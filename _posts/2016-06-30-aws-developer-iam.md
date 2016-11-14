@@ -34,7 +34,15 @@ Federation - creating a trust relationship between an identity store like Amazon
 2. Obtain Temporary Security Credentials - Done by calling STS. In a single sign-on scenarios you would call `AssumeRoleWithSAML` or `AssumeRole` or in the case of a Web Indentify Federation by callsing `AssumeRoleWithWebIdentity`.
 3. Access the AWS resource - now, based the users' role, you have access to AWS Resources.
 
+## Security Rules
+By default, ALL requests to use a resource are denied - *default deny*.
+All *allows* override any default denies.
+All *explicit denies* override allows.
+
 # Resources
+
+## Use Cases
+Limit action to owner (ID and email that created account)? user owner concept
 
 ## Qwik Labs
 [qwiklabs - Introduction to AWS Identity and Access Management (IAM)](https://qwiklabs.com/focuses/2885) - This is a low cost (1 credit) lab that simply walks through the stuff of IAM - policies, users, groups and touches on roles.

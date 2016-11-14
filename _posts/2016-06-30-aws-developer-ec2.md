@@ -30,6 +30,20 @@ You can modify your whole reservation, or just a subset, in one or more of the f
 
 * Change the instance size within the same instance type
 
+## Dedicated Hosts
+
+Launch configuration for instances are as follows:
+
+- Default - shared hardware; can't be changed after launch  
+
+- Dedicated - single tenant hardware; can be changed to Host
+
+- Host - Instance runs on dedicated host; can be changed to Dedicated
+
+So the tenancy of an instance can only be change between variants of dedicated tenancy hosting.
+
+If the VPC is setup dedicated, then all instances are dedicated; can't be changed at launch.
+
 ## Instance Types
 Each instance type offers different compute, memory, and storage capabilities and are grouped in instance families based on these capabilities. DIRTMCG is the mnemonic!
 
@@ -94,6 +108,8 @@ All actions are pretty much plural.
 |DescribeInstances| Describes one or more of your instances.|
 
 # Resources
+
+
 
 ## Qwik Labs
 [Introduction to Amazon Elastic Compute Cloud (EC2)](https://qwiklabs.com/focuses/2921)

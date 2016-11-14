@@ -21,6 +21,8 @@ Bundling your own AMI has several advantages:
 
 - Make ELB possible - you gotta use AMIs to spin up new EC2 Instances!
 
+One key point: AMIs are regional; you can copy AMIs to another region but they get renamed.
+
 ## How to Bundle an AMI
 This is a very straightforward process assuming you have a running instance:
 
@@ -48,6 +50,7 @@ Sharing AMIs is a lovely practice. I might recommend following these steps to se
 
 3. Install Public Key Credentials
 
+Launch permissions, S3 bucket permissions, and user-defined tags must be copied manually to an instance based on an AMI. User data is part of the AMI, itself, and does not need to be copied manually.
 
 ## Resources
 

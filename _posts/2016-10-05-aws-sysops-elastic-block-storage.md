@@ -41,7 +41,19 @@ By default, EBS root volumes are lost when an instance is terminated. That said,
 ## Volumes && Snapshots
 Snapshots are incremental. Encrypted volumes are snapshotted encrypted automatically - and are restored encrypted. Stop instances to snapshots the root devices else EC2 stops it for you.
 
+RAID array snapshots are a pain. You need to freeze the file system, unmount the RAID array= easiest is to stop the instance
+
+## RAID
+
+RAID 0 - striping; good performance; 
+RAID 1 - mirror
+RAID 5 - 4 data; 1 chksum; NEVER on EBS
+RAID 10 - Mirror and stripe
+
+
+
 ## Use Cases
+
 Long term data storage? EBS
 
 data shared between instance fast? memecached or redis
@@ -56,4 +68,5 @@ General purpose = gp2/
 
 Large I/O including EMR, Kafka, log processing and data warehouse ETL = st1 (sequential data reads)
 
+Super high disk IO? either RAID 0 or RAID 10 EBS
 

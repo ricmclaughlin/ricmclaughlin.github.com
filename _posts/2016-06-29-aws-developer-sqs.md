@@ -17,6 +17,8 @@ tags: [aws, developercert, sqs, solutionsarch]
 
 4. `VisibilityTimeout` defines how long a message is INVISIBLE to other workers after being `ReceiveMessage`'d by a worker. It is invisible so the worker who retrieved the message has the opportunity to process the message and remove it from the queue. If the worker is not successfully in processing the message, the `VisibilityTimout` then expires and the message is again available to be accessed by another worker. This ensures that if part of your application fails the message is not lost. Default visibility timeout is 30 seconds and the max is 12 hours and can be changed by the `ChangeMessageVisibility` action.
 
+![visibility timeout](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/images/Visibility_Timeout.png)
+
 ## SQS API Reference Points
 
 ### Messaging
@@ -50,6 +52,8 @@ Workflow longer than 14 days? SWF
 Decrease SQS cost? long poll
 
 Lots of Visibility timeout? up timeout
+
+Enable long poll? `ReceiveMessageWaitTimeSeconds` > 0 
 
 ## Resources
 

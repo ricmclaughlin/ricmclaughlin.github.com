@@ -3,35 +3,60 @@ layout: post
 title: "AWS Solutions Arch - KMS-HSM"
 description: ""
 category: posts
-tags: [aws, kms]
+tags: [aws, kms, soluarch]
 ---
 {% include JB/setup %}
 
 ## Overview
 Encryption Key Management is a major function of online systems that requires lots of organization and no one will ever notice your efforts if things go right. Yet, if you screw it up, the world will come crashing down. Enter, [KMS](https://aws.amazon.com/kms/) and its good buddy [CloudHSM](https://aws.amazon.com/cloudhsm/). 
 
-
 # KMS
-KMS uses asymmetric encryption (2 different keys). Symmetric is not supported.
-Customer Master Key - CMK
-Features:
-Very durable - 
-Quorum-Based Access
-IAM Access controlled
-Low Latency and High Throughput
-Regional Independence - your key can't travel the world...
-Integrated with AWS CloudTrail & Cloud watch
+KMS is a managed service that makes it easy for your to create, control, rotate and use encryption keys. It uses asymmetric encryption (2 different keys). Symmetric is not supported.
+
+## Service Features
+
+* Highly Performant - Very durable, Low Latency and High Throughput
+
+* IAM Access controlled
+
+* Regional Independence - your key can't travel the world...
+
+* Integrated with AWS CloudTrail & Cloud watch
+
+* Full AWS API, CLI and SDK suppot
 
 
 ## Setup
 
 Roles don't need access to 'admin' access the key to USE the key. Role, users and external users can be granted the ability to use the key. Keys can be rotated yearly and KMS magically uses the right key when decrypting data.
 
+# CloudHSM
+CloudHSM is a single tenant hardware security module that you can place in a VPC and integrated with with S3, EBS, EC2, Redshift & RDS. There is very limited integration with AWS services. 
 
+AWS does not have access to the contents of your module.
 
+CloudTrail integration is supported. Syslog is as well.
 
+CloudHSM would be great if you need FIPS 140-2 validation and don't mind fixed cost of $16.5k per moduled. And you are responsible for the HA part so really you need 2 HSM... with a cost of $33k. And a $5k setup fee per region.
 
+However, if you loose the keys, they are lost if you did not have a copy.
 
-https://linuxacademy.com/cp/courses/lesson/course/447/lesson/2/completed/1/module/45
+## HSM or KMS ?
+Overall, KMS is probably adequate unless additional protection is necessary for some applications and data that are subject to strict contractual or regulatory requirements for
+managing cryptographic keys, then HSM should be used.
+
+normal, or moderate security requirements? KMS
+
+Integrate w/ AWS services other than S3, EBS, EC2, Redshift & RDS? KMS
+
+Low variable costs based on usage? KMS 
+
+Centralize Key Management onsite & AWS? HSM
+
+Complete Key Control? HSM
+
+FIPS 140-1 or 140-2? HSM
 
 ## Resources
+[HSM Deep Dive](http://www.slideshare.net/AmazonWebServices/deep-dive-aws-cloudhsm)
+

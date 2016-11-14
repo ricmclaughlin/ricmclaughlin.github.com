@@ -12,9 +12,9 @@ The [AWS Developer Certification - Associate](/posts/aws-developer-certification
 # DyanamoDB Overall
 Here are a couple of notes on what I found important to know about DynamoDB.
 
-Yes, DynamoDB is like MongoDB - but the concepts behind MongoDB have better names. Reads of a DynamoDB table, unless you specify otherwise, are eventually consistent. DynamoDB uses optimistic concurrency control. It stores data in three separate data centers - not AZs. Not sure why there is a distinction.
+Yes, [DynamoDB](https://aws.amazon.com/dynamodb/) is like MongoDB - but the concepts behind MongoDB have better names. Reads of a DynamoDB table, unless you specify otherwise, are eventually consistent. DynamoDB uses optimistic concurrency control. It stores data in three separate data centers - not AZs. Not sure why there is a distinction.
 
-Eventually Consistent Reads - By default, once there is a DynamoDB write you can access data with a second or so - it is eventually consistent. 
+Eventually Consistent Reads - By default, once there is a DynamoDB write you can access data with a second or so it is eventually consistent. 
 
 Strongly Consistent Read - a strongly consistent read reflects all the writes that have been received a successful response prior to the read. 
 
@@ -44,13 +44,13 @@ Secondary Indexes - total of 5 global indexes and 5 secondary indexes for a tota
 * Global Secondary Indexes - uses a different partition key and a different sort key (the partition and sort key *can* be different from those on the table.) - A global secondary index is considered "global" because queries on the index can span all of the data in a table, across all partitions. Global indexes have completely different read/write capacity units.
 
 ## Data types
-
 DynamoDB is hybrid of document and key value pair noSQL database types and features the following mix of data types:
-Scalar types = String, Boolean, Binary and Number
 
-Sets - which are typed, non-ordered arrays including string set, number set, and binary set.
+- Scalar types = String, Boolean, Binary and Number
 
-Document - basically json, much like how MongoDB store data
+- Sets - which are typed, non-ordered arrays including string set, number set, and binary set.
+
+- Document - basically json, much like how MongoDB store data
 
 ## Read capacity unit estimation 
 Formula -> (size per item KB rounded up to nearest mulitple of 4 /4) * read per sec = strongly consistent read; divide by 2 if eventually consistent.
@@ -79,7 +79,7 @@ Read Capacity Units = 2 * 120 = 240 / 2 = 120
 
 ## Write capacity unit estimation
 Formula -> writes per item (size in KB rounded up to the nearest whole number) * writes per second
-write capacity unit - on write per second up to 1KB
+write capacity unit - one write per second up to 1KB
 
 ## DynamoDB Streams
 It's a database log that emits events.
@@ -102,8 +102,11 @@ This is a huge issue because many times users are authenticated by an ID provide
 
 4. STS provides DynamoDB access for a period of 15 minutes to 1 hours. 1 hour is the default.
 
-## Use Cases
+## Use cases
 
+Record size < 400? DynamoDB
+
+Record Size > 400? Pointer to data in S3
 
 ## DynamoDB API Reference points
 
