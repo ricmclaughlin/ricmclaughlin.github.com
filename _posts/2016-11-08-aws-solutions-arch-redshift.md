@@ -11,7 +11,9 @@ Redshift is a data warehouse product that costs about $1000 per terabyte per yea
 
 Data is encrypted in transit and at rest using Redshift managed keys. Key Management through HSM or KMS is possible.
 
-Redshift does not use indexes.
+Redshift does not use indexes because the data is stored in columns.
+
+Free storge for snapshots and backups up the amount of storage in the cluster
 
 ## Configurations
 
