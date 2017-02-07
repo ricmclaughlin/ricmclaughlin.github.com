@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AWS Solutions Arch - Troublshooting"
+title: "AWS Solutions Arch - Troubleshooting"
 description: ""
 category: posts 
 tags: [aws, ec2, solutionsarch]

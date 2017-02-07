@@ -41,6 +41,7 @@ POST / HTTP/1.1
     "UnsubscribeURL" : "https://sns.us-west-2.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:us-west-2:123456789012:MyTopic:c9135db0-26c4-47ec-8998-413945fb5a96"
   }
 ```
+
 ## Mobile Push
 Mobile Push is a primary use case for SNS. You need to setup each mobile platform before you can use it.. makes sense.
 
