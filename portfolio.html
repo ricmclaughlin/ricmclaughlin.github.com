@@ -6,22 +6,18 @@ categories: projects
 {% assign cat = 'projects' %}
 {% assign project_tags = site.array %}
 {% assign skills = site.otherarray %}
-{% assign skills = "frontend,backend,htmlcss,devops-ci,cloud,tdd,fcc,classes" | split: "," %}
+{% assign skills = "frontend,backend,devops-ci,cloud,tdd,fcc,classes" | split: "," %}
 
 
   {% for skill in skills %}
     <div class="category-archive">
       {% if skill == "frontend" %}
-        {% assign project_tags = "reactjs,angularjs,jquery,javascript" | split: "," %}
+        {% assign project_tags = "reactjs,angularjs,jquery,javascript,bootstrap" | split: "," %}
         {% assign skill_full_name = "Front End Development" %}
       {% endif %}
       {% if skill == "backend" %}
         {% assign project_tags = "express,mongodb,node,ruby,rails" | split: "," %}
         {% assign skill_full_name = "Back End Development" %}
-      {% endif %}
-      {% if skill == 'htmlcss' %}
-        {% assign project_tags = "bootstrap,sass,htmlcss" | split: "," %}
-        {% assign skill_full_name = "HTML &amp; CSS Crafting" %}
       {% endif %}
       {% if skill == 'devops-ci' %}
         {% assign project_tags = "git,gulp,travis" | split: "," %}
@@ -51,6 +47,8 @@ categories: projects
           {% assign tag_full_name = "Front End Development" %}
         {% elsif tag == 'basicback' %}
           {% assign tag_full_name = "Backend End Development" %}
+        {% elsif tag == 'tdd' %}
+          {% assign tag_full_name = "Test Driven Development" %}
         {% elsif tag == 'api' %}
           {% assign tag_full_name = "API Development" %}
         {% elsif tag == 'webapp' %}
