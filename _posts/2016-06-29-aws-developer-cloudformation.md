@@ -35,16 +35,21 @@ Intrinsic Functions - Some value that you need to access will not be known until
 
 DependsOn - The CloudFormation template engine is smart enough to figure out many dependencies but in some cases resources require a "DependsOn" attribute. A VPC-gateway, an Auto Scaling group, and IAM roles are all required to include a DependsOn block.
 
+## Nested Templates
+
+The AWS::CloudFormation::Stack resource can be used to call another template from within another template.
+
 # CloudFormation Lifecycle
+
+## Creating
+
+The user running the template must have enough IAM rights to launch the resources in the template.
 
 ## Validating
 
 
-
 ## Rollback
 CloudFormation Rollback - If a CloudFormation template run does not complete successfully then by default it all gets rolled back which feels like something very similiar to a transaction. First you might see a `CREATE_FAILED` message the likely a ROLLBACK_IN_PROGRESS message in the CF log. Rollbacks can be disabled to assist in troubleshooting.
-
-
 
 ## Updates
 Think if the update will cause downtime before you do it. Is the change mutable or immutable? Generally you will see a UPDATE_IN_PROGRESS then an UPDATE_COMPLETE once the update is complete. Resource meta updates are controlled by the cfn-hub daemon, which, by default, runs every 15 minutes.
@@ -53,6 +58,10 @@ Think if the update will cause downtime before you do it. Is the change mutable 
 
 By default after you create a stack, anyone can update the stack and there is no Stack Policy. To restrict access to stack updates, a stack policy can be applied to the stack, which, by default, protects all the resources in the stack. You have to explictly `Allow` updates; only one stack policy per stack; many resources per (Stack Policy)[http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html].
 
+## Deleting
+
+### (DeletionPolicy)[http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html]
+Specify `Delete`, `Retain` or `Snapshot` as an attribute of the resources. Snapshot works for things that might be snapshotted... like EBS, RDS, & Redshift cluster.
 
 ## Troubleshooting
 A couple of troubleshooting tips:
