@@ -6,14 +6,23 @@ category: posts
 tags: [aws, rds, soluarch]
 ---
 {% include JB/setup %}
-
+DB do not require a port number or protocol.
 
 ## RDS
 Transactional Storage Engines are recommended for durability. RDS instances without Multi-AZ don't perform as well as those that are - backups, restores and all housekeeping activities are performed on the secondary instance.  Backups are stored on S3. Restoration only works for the default DB parameter and security groups are associated with the instance you will likely need to setup the DB default parameters and security groups. You maybe can change storage engine - if they are related.
 
 Deleting an RDS instance deletes ALL the automated backups... but not the manual ones. =>>"I acknowledge that upon instance deletion, automated backups, including system snapshots and point-in-time recovery, will no longer be available."
 
-A backup retention period of zero days will disable automated backups for this DB Instance. Restores manifest themselves as a new RDS instance with a new endpoint. Encryption uses KMS. "Restore to point in Time" option allows you to pinpoint a time to restore from. RDS security groups do not require a port number or protocol.
+A backup retention period of zero days will disable automated backups for this DB Instance. Restores manifest themselves as a new RDS instance with a new endpoint. Encryption uses KMS. "Restore to point in Time" option allows you to pinpoint a time to restore from. 
+
+### Security
+
+Encryption at rest must be setup at instance create time and uses KMS keys. Once enabled, EVERYTHING is encrypted which might cause a problem with cross region replications and snapshots seeing that KMS keys are region specific. The keys can't be changed after installation. All RDS instance types support encryption at rest.
+
+Oracle and MS SQL Server support Transparent Data Encryption. Oracle does NOT integrate with KMS but will work with CloudHSM. SQL Server requires a key but that key is managed by RDS after enabling TDE.
+
+Encryption in Transit - every RDS instance includes a SSL Certificate.
+
 
 ### Multi-AZ failover
 A multi-AZ failover process is key in the event of an AZ failure but is NOT a scaling solution.  Multi-AZ systems are setup within the same region - that would be obvious from the name.
@@ -37,12 +46,21 @@ Read Replicas are used to scale RDS by creating a READ ONLY copy of your databas
 
 - Business reporting against almost live data without affecting the performance of the primary instance
 
-A transactional DB engine must be used to support read replicas - so Aurora/MySQL must have InnoDB engine installed. Needs MySQL version 5.6 or later; PostgresSQL requires 9.3.5. In this configuration, the native asynchronous engine is used. There can be a total of 5 read replica per primary instance. MySQL allows multi-region read replicas. DB Snapshots and backups can NOT be taken from read replicas. If not Multi-AZ on setup, expect I/O suspension; Multi-AZ = snapshot from secondary DB. Read-replicas can be promoted. Oracle and SQL Server can't do read replicas.
+A transactional DB engine must be used to support read replicas - so Aurora/MySQL/MariaDB must have InnoDB engine installed. Needs MySQL version 5.6 or later; PostgresSQL requires 9.3.5. In this configuration, the native asynchronous engine is used.  MySQL allows multi-region read replicas.   Read-replicas can be promoted. 
+
+Limits:
+
+- max 5 read replica per primary instance
+
+- DB Snapshots and backups can NOT be taken from read replicas.
+
+- no read replicas fro Oracle and SQL Server
 
 Replica lag is a key metric - keeping the read replica on a similiar, in fact, exact same configuration of instances can help keep this metric inline. 
 
 #### Read Replica Setup
-There are several ways to create Read Replica.
+
+There are several ways to create Read Replica:
 
 1. Restore a snapshot and select Multi-AZ deployment.
 
@@ -50,8 +68,25 @@ There are several ways to create Read Replica.
 
 Replicas can be promoted to a primary but this breaks the replication link.
 
+Replication can also be used as a disaster recovery or data migration mechanism. Start by using mysqldump/mysqlimport and requires MySQL 5.6.13.
+
 ## Aurora
+
 MySQL compatible, relational DB that starts with 10Gb and scales in 10Gb increments to 64 Tb and up to 32 vCPUs and 244 Gb of RAM. It has amazing HA capabilities with 2 copies in 3 AZ so you get 6 copies of your data and it is self-healing through disk and data block data scanning and errors are fixed. You can have up to 15 Aurora read replicas and 5 MySQL read replicas.
+
+## Oracle on RDS
+
+Version of Oracle available include Oracle EE, Oracle SE, and Oracle SE One. Support Multi-AZ & manual snapshots. Oracle does NOT support multi-region replication.
+
+Oracle RAC is not supported on RDS but can be implemented using EC2 placement groups and using Ntop N2n VPN software to tunnel between nodes. In addition Oracle Data Guard can be implemented as well.
+
+Importing uses two different tools... Oracle SQL Developer for small amounts and Oracle Data Pump for large amounts of data. 
+
+Recovery Manager (RMAN) can be used for backup and recovery scenarios including hybrid on-prem/Cloud scenarios and Oracle EC2 instances. Use RDS snapshots for point-in-time snapshots in AWS only solutions.
+
+## MS SQL on RDS
+
+Supports point-in-time backups using snapshots, Multi-AZ deployments using the native MS Mirroring technology but read replicas are not supported. There is no support for multi-region or Cloud to on-prem replication in RDS based MS SQL but native tools can be used. On-prem to Cloud migration is super ugly... create RDS empty tables, disable backups/key contraints, import flat files. In addition, FILESTREAM functions are not supported and there is no ability to restore data from file. 
 
 #Labs
 [Introduction to Amazon Relational Database Service (RDS) (Linux)](https://qwiklabs.com/focuses/2926)

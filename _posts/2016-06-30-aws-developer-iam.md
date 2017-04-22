@@ -26,7 +26,7 @@ When an IAM role is assigned to a resource, the resource takes on that role. As 
 An access key is used to sign requests from outside AWS. AWS SDKs and CLI use access keys. Of course, they can be disabled. Of course, they can be deleted. They can not be retrieved. Access keys do have a temporary nature to them which can be optionally assigned.
 
 ## IAM, STS, SSO &amp; WIF
-The AWS [Security Token Service API]({{ BASE_PATH }}/posts/aws-developer-certification-security-token-service) for you to request temporary security credentials and this is very closely related to IAM. The AWS sign-in endpoint for SAML is https://signin.aws.amazon.com/saml
+The AWS [Security Token Service API]({{ BASE_PATH }}/posts/aws-developer-certification-security-token-service) for you to request temporary security credentials and this is very closely related to IAM. The AWS sign-in endpoint for SAML is ```https://signin.aws.amazon.com/saml```
 
 Federation - creating a trust relationship between an identity store like Amazon, Facebook, Google (also called an Identity Broker), Active Directory, any SAML 2.0 system and AWS. In Identity Access Management, using SAML (Security Assertion Markup Language 2.0) you can give your federated users single sign-on (SSO) access to the AWS Management Console. Users are authenticated with the Federated indentity store FIRST before they hit AWS. The steps are:
 
@@ -38,6 +38,15 @@ Federation - creating a trust relationship between an identity store like Amazon
 By default, ALL requests to use a resource are denied - *default deny*.
 All *allows* override any default denies.
 All *explicit denies* override allows.
+
+## Rotating Credentials
+
+Rotating keys is a big part of security... 
+
+Roles use STS to automatically get access to AWS resources and rotate credentials several times a day. From an EC2 instance you can retrieve the information from the instance meta-data.
+
+## Instance Profiles
+Instance profiles are wrappers around an IAM role that will be passed to an EC2 instance. When an EC2 instance is created from the console the instance profile is created automatically; from the CLI you would need to create this and use it automatically
 
 # Resources
 

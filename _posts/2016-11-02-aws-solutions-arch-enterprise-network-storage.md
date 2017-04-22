@@ -61,28 +61,35 @@ Infrequently access? S3-IA
 
 greater than 4 hours retrieval, cheap? Glacier
 
-Move to S3-IA? anytime
+### Storage Rules
 
-Move to Glacier? if 128k (directlyAfterCreation == true || daysInS3-IA > 30 days) 
+- Can't move from SA-IA -> RRS or S3
+
+- Move to S3-IA? 30 days in current storage class
+
+- Move to Glacier? if 128k (directlyAfterCreation == true || daysInS3-IA > 30 days) 
+
+- Move from Glacier? nope.
 
 ### Direct connect vs VPN Capability
 
-VPN = quick to bring up and easy; slower and sucks Internet bandwidth
+- VPN = quick to bring up and easy; slower and sucks Internet bandwidth
 
-Direct Connect = consistent lower latency and fixed bandwidth; more secure; lower cost
+- Direct Connect = consistent lower latency and fixed bandwidth; more secure; lower cost
 
 ### Gateway Cached vs Gateway Stored vs Virtual Tape Library vs Virtual Tape Shelf vs Import/Export Snowball
-Low end = s3 directly
 
-Gateway Cached = less to maintain local so cheaper outlay, frequently access to small amount of data
+- Low end = S3 directly
 
-Gateway Stored = low latency for ALL data
+- Gateway Cached = less to maintain local so cheaper outlay, frequently access to small amount of data
 
-Virtual Tape Shelf - unlimited storage and OK with a 24 hour turn around time.
+- Gateway Stored = low latency for ALL data
 
-Virtual Tape Library - fast access. 1500 tape..
+- Virtual Tape Shelf - unlimited storage and OK with a 24 hour turn around time.
 
-Snowball - lots of data with a small pipe
+- Virtual Tape Library - fast access. 1500 tape..
+
+- Snowball - lots of data with a small pipe
 
 ## Resources
 [BGP](https://en.wikipedia.org/wiki/Border_Gateway_Protocol#Requirements_of_a_router_for_use_of_BGP_for_Internet_and_backbone-of-backbones_purposes)

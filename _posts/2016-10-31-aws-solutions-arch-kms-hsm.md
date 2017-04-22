@@ -11,7 +11,7 @@ tags: [aws, kms, soluarch]
 Encryption Key Management is a major function of online systems that requires lots of organization and no one will ever notice your efforts if things go right. Yet, if you screw it up, the world will come crashing down. Enter, [KMS](https://aws.amazon.com/kms/) and its good buddy [CloudHSM](https://aws.amazon.com/cloudhsm/). 
 
 # KMS
-KMS is a managed service that makes it easy for your to create, control, rotate and use encryption keys. It uses asymmetric encryption (2 different keys). Symmetric is not supported.
+KMS is a managed service that makes it easy for your to create, control, rotate and use encryption keys. It uses asymmetric encryption (2 different keys). Symmetric is not supported. KMS keys are single region?? 
 
 ## Service Features
 

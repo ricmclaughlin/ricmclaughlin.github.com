@@ -86,9 +86,9 @@ There are three flavors of Server Side Encryption (SSE) Server side encryption c
 ## S3 Storage Classes
 S3 - AWS guarantees 99.99% availability for the S3 Platform and 11 x 9 for durability.
 
-S3-Infrequently Accessed - Less frequently used data that needs rapid access - there is a charge a retrieval fee
+S3-Infrequently Accessed - Less frequently used data that needs rapid access - there is a charge a retrieval fee; 99.9% availability
 
-S3-Reduced Redundancy Storage - 99.99% durability - for files that can be regen'd.
+S3-Reduced Redundancy Storage - 99.99% durability & availablity - for files that can be regen'd.
 
 [glacier](https://aws.amazon.com/glacier/) - an object storage capability that is mostly offline and way, way cheaper than S3. It might take hours (like 3-5 hours) to retrieve an object from glacier so it is mostly suited towards stuff you need to store but will rarely, if ever, need to access.  
 
@@ -104,7 +104,7 @@ Move to S3-IA - must be here for a minimum of 30 days (and be 128kb) before it c
 Move to Glacier - can move here directly after creation if needed
 Permenantly Delete - yep, cool stuff this.
 
-S3 lifecycle Policy - S3 bucket policies require a Principal be defined.
+S3 lifecycle Policy - These are XML documents that are stored as a lifecycle sub-resource attached to the bucket. ```PUT```, ```GET``` and ```DELETE``` actions can be done with the lifecycle policies.
 
 ## Bucket Names &amp; Such
 Bucket names can not start with a '.' or '-' and cannot be formatted like an IP address. Remove public read access and use signed URLs with expiry dates to prevent read access from unauthorized sites. 

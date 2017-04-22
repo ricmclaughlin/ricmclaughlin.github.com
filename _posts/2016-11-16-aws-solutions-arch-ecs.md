@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AWS Solutions Arch ECS"
+title: "AWS Solutions Arch - ECS"
 description: ""
 category: posts
 tags: [aws, solutionsarch]

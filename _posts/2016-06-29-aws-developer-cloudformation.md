@@ -41,27 +41,108 @@ The AWS::CloudFormation::Stack resource can be used to call another template fro
 
 # CloudFormation Lifecycle
 
-## Creating
-
-The user running the template must have enough IAM rights to launch the resources in the template.
-
 ## Validating
 
+From the command line use --template-body or --template-url to validate a template. Dependency errors, insufficient IAM permissions, invalid value/unsupported resource property, Security Group ID does not exist in VPC (you might have used a SG name instead of an ID), wait condition didn't receive the required number of signals (did the cf scripts get installed on the instance?), 
+
+## Creating
+The user running the template must have enough IAM rights to launch the resources in the template.
+
+Bootstrapping - use cfn-* tools to get instances prep'd; there is a trade off between pre-baked images and init scripts; storing sensitive information is key as well - the "NoEcho" attribute of a parameters is an important part of the solution; rolling updates
+
+CloudFormation with Puppet - puppet master holds instruction and definitions; clients connect and follow instructions
+
+CloudFormation with Chef - better for longer deployments; OpsWorks for detailed stuff like configure software, deploy apps, scale on demand and monitor resources for performance, security & cost. CloudFormation supports the following resource types:
+
+- AWS::OpsWorks::App
+
+- AWS::OpsWorks::ElasticLoadBalancerAttachment
+
+- AWS::OpsWorks::Instance
+
+- AWS::OpsWorks::Layer
+
+- AWS::OpsWorks::Stack
+
+CloudFormation with Elastic BeanStalk - Can use CloudFormation to deploy Elastic Beanstalk; less flexible than OpsWorks; better suited to immutable deployments
+
+### Wait Conditions
+Wait conditions should be used when synchronizing resources creation; DependsOn only checks to see if the resource has been created... Should not be used for EC2 instance or autoscaling groups... use creation policies for these resources.
+
+The lifecycle is straightforward - while waiting they are ```CREATE_IN_PROGRESS``` then they are rolled back if they get a ```CREATE_FAILED```. The wait condition has three properties:
+
+- Count - how many signals must be received to make the 
+
+- Handle - a ```Ref``` to the wait handle
+
+- Timeout - the time out period in seconds
+
+#### To setup a wait condition:
+
+First, reate a wait handler (one per wait condition)
+
+```yaml
+myWaitHandler:
+  Type: AWS::CloudFromation::WaitConditionHandle
+  Properties:
+```
+Second, create a ```WaitCondition``` resources using the ```DependsOn``` attribute to start the timeout after that resource has been completed.
+
+```yaml
+myWaitCondition:
+  Type: AWS::CloudFormation::WaitCondition
+  DependsOn: Ec2Instance
+  Properties:
+    Handle:
+      Ref: MyWaitHandler
+```
+
+
+### Creation Policies
+When additional tasks must be completed before the resource meets the CREATE_COMPLETE state, a CreationPolicy can be used. When the resource spins up it signals the stack using helper scripts, the ```SignalResource``` API or an API call.
+
+```yaml
+CreationPolicy:
+  AutoScalingCreationPolicy: #only for autoscaling groups
+    MinSuccessfulInstancesPercent: 
+  ResourceSignal:
+    Count: Integer # default = 1
+    TimeOut: String # ISO8601 format; PT1H30M10S = 1h 30m 10s
+
+```
+
+#### configSets
+
+
+
+## Helper Scripts
+
+### cfn-init
+
+Reads the instance meta-data io install pages, write files and enable/disable software
+
+### cfn-signal
+
+Sends back messages to stack to signal success or failure
+
+cfn-hup
+
+deamon that detects resource metadata change and takes actions on those changes
 
 ## Rollback
-CloudFormation Rollback - If a CloudFormation template run does not complete successfully then by default it all gets rolled back which feels like something very similiar to a transaction. First you might see a `CREATE_FAILED` message the likely a ROLLBACK_IN_PROGRESS message in the CF log. Rollbacks can be disabled to assist in troubleshooting.
+CloudFormation Rollback - If a CloudFormation template run does not complete successfully then by default it all gets rolled back which feels like something very similiar to a transaction. First you might see a ```CREATE_FAILED``` message the likely a ```ROLLBACK_IN_PROGRESS``` message in the CF log. Rollbacks can be disabled to assist in troubleshooting.
 
 ## Updates
-Think if the update will cause downtime before you do it. Is the change mutable or immutable? Generally you will see a UPDATE_IN_PROGRESS then an UPDATE_COMPLETE once the update is complete. Resource meta updates are controlled by the cfn-hub daemon, which, by default, runs every 15 minutes.
+Think if the update will cause downtime before you do it. Is the change mutable or immutable? Generally you will see a ```UPDATE_IN_PROGRESS``` then an ```UPDATE_COMPLETE``` once the update is complete. Resource meta updates are controlled by the cfn-hub daemon, which, by default, runs every 15 minutes.
 
-### (Stack Policies)[http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html]
+### Stack Policy
 
-By default after you create a stack, anyone can update the stack and there is no Stack Policy. To restrict access to stack updates, a stack policy can be applied to the stack, which, by default, protects all the resources in the stack. You have to explictly `Allow` updates; only one stack policy per stack; many resources per (Stack Policy)[http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html].
+By default after you create a stack, anyone can update the stack and there is no (Stack Policies)[http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html]. To restrict access to stack updates, a stack policy can be applied to the stack, which, by default, protects all the resources in the stack. You have to explictly ```Allow``` updates; only one stack policy per stack; many resources per (Stack Policy)[http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html].
 
 ## Deleting
 
-### (DeletionPolicy)[http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html]
-Specify `Delete`, `Retain` or `Snapshot` as an attribute of the resources. Snapshot works for things that might be snapshotted... like EBS, RDS, & Redshift cluster.
+### DeletionPolicy
+When creating a (DeletionPolicy)[http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html] Specify ```Delete```, ```Retain``` or ```Snapshot``` as an attribute of the resources. Snapshot works for things that might be snapshotted... like EBS, RDS, & Redshift cluster.
 
 ## Troubleshooting
 A couple of troubleshooting tips:
