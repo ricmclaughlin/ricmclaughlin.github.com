@@ -125,19 +125,88 @@ Reads the instance meta-data io install pages, write files and enable/disable so
 
 Sends back messages to stack to signal success or failure
 
-cfn-hup
+### cfn-hup
+Used to update in place using a deamon that detects resource metadata change and takes actions on those changes.
 
-deamon that detects resource metadata change and takes actions on those changes
+### cfn-get-metadata
+Gets a metadata block from CloudFormation and prints it out to STDOUT.
+
 
 ## Rollback
 CloudFormation Rollback - If a CloudFormation template run does not complete successfully then by default it all gets rolled back which feels like something very similiar to a transaction. First you might see a ```CREATE_FAILED``` message the likely a ```ROLLBACK_IN_PROGRESS``` message in the CF log. Rollbacks can be disabled to assist in troubleshooting.
 
 ## Updates
+
 Think if the update will cause downtime before you do it. Is the change mutable or immutable? Generally you will see a ```UPDATE_IN_PROGRESS``` then an ```UPDATE_COMPLETE``` once the update is complete. Resource meta updates are controlled by the cfn-hub daemon, which, by default, runs every 15 minutes.
+
+### Update Policies
+
+An (Update Policy)[http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html] handles updates to ```AWS::AutoScaling::AutoScalingGroup``` resources.
+
+AutoScalingReplacingUpdate and AutoScalingRollingUpdate get applied when the AutoScaling group's launch configuration changes, there is a change to the associated subnets (VPCZoneIdentifiers) or when the instances in the ASGroup don't match the current launch configuration.
+
+In addition, if ```WillReplace: true``` and both AutoScalingReplacingUpdate and AutoScalingRollingUpdate are specified AutoScalingReplacingUpdate takes precendents.
+
+#### AutoScalingReplacingUpdate Policy
+
+In the case of AutoScalingReplacingUpdate, if the ```WillReplace``` attribute is true the ASGroup AND the instances in that groups are replaced.  During the update the existing AutoScaling group is used and later destroyed AFTER the update is complete. To make this scenario work well, a ```CreationPolicy``` should also be specified so the new AutoScaling group is prepared prior to cut over. As an example:
+
+```yaml
+UpdatePolicy:
+  AutoScalingReplacingUpdate:
+    WillReplace: true
+  CreationPolicy:
+    AutoScalingCreationPolicy:
+      MinSuccessfulInstancesPercent: 50
+    ResourceSignal:
+      Count: 
+        Ref: ResourcesSignalsOnCreate
+      Timeout: PT10M
+```
+
+#### AutoScalingRollingUpdate Policy
+
+AutoScalingRollingUpdate would be appropriate in the case where the AMI and app both need updates. This is a way better way of updating a fleet instead of using ```cfn-init``` and ```cfn-hub``` because rolling updates can be inconsistent.
+
+#### AutoScalingScheduledAction Policy
+
+In the case where updates to stacks might occur during AutoScaling group policy scheduled actions, you can specify an AutoScalingScheduledAction to prevent changes during an update. In other words, we don't our regularly time scheduled updates to the AutoScaling group's size properties to get overwritten by an update... here is how to do that:
+
+```yaml
+UpdatePolicy:
+  AutoScalingScheduledAction:
+    IgnoreUnmodifiedGroupSizeProperties: true
+```
 
 ### Stack Policy
 
 By default after you create a stack, anyone can update the stack and there is no (Stack Policies)[http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html]. To restrict access to stack updates, a stack policy can be applied to the stack, which, by default, protects all the resources in the stack. You have to explictly ```Allow``` updates; only one stack policy per stack; many resources per (Stack Policy)[http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html].
+
+In addition, there is no fine grain access control in a stack policy... everyone that can run the template in update mode but you must specify a ```Principal:*```. One handy feature is the ```Condition``` block like: 
+
+```json
+"Condition": {
+  "StringEquals" : {
+    "ResourceType": ["AWS::RDS::DBInstance"]
+  },
+  "StringLike" : {
+    "ResourceType" : ["AWS::EC2::*"]
+  }
+
+}
+```
+
+The ```Action``` attribute can be set to:
+
+- Update:Modify
+
+- Update:Replace
+
+- Update:Delete
+
+- Update:*
+
+If you need to update a protected resource you can temporarily replace the policy at update time.
 
 ## Deleting
 
@@ -158,8 +227,6 @@ A couple of troubleshooting tips:
 * If a DELETE_FAILED message comes up you can use the RetainResources parameter to unstick the stack.
 
 * Rollback fail? Nested stacks have dependencies that keep rollbacks from occuring OR the resource has been modified in a way the keeps it from being deleted.  
-
-
 
 # CloudFormation API
 
