@@ -39,6 +39,26 @@ DependsOn - The CloudFormation template engine is smart enough to figure out man
 
 The AWS::CloudFormation::Stack resource can be used to call another template from within another template.
 
+# CloudFormation Policy Overview
+
+There are numerous types of CloudFormation Policies... when do you use what?
+
+### 
+| Name  | Why  | Notes  |
+|:--------------------------:|:--------------------------:|:--------------------------:|
+| Creation    | Signal resource complete   |   Instances, ASGroups & wait conditions only |
+| Stack    | Restrict resource updates   |   Keep important stuff from getting nuked |
+| WaitOnResourceSignals    | describe-stacks   | Stop progress until resources signal  |
+
+### AutoScalingPolicies (Update)
+
+| Name  | Why  | Notes  |
+|:--------------------------:|:--------------------------:|:--------------------------:|
+| AutoScalingRollingUpdate    | Incremental update   |   Replace instances in ASG |
+| AutoScalingReplacingUpdate    | Replace ASGroup   | keep the old ASG around until new one is up|
+| AutoScalingScheduledAction    | Stop scheduled changes   | Keep scheduled AutoScaling actions from occurring |
+
+
 # CloudFormation Lifecycle
 
 ## Validating
@@ -97,7 +117,6 @@ myWaitCondition:
       Ref: MyWaitHandler
 ```
 
-
 ### Creation Policies
 When additional tasks must be completed before the resource meets the CREATE_COMPLETE state, a CreationPolicy can be used. When the resource spins up it signals the stack using helper scripts, the ```SignalResource``` API or an API call.
 
@@ -110,20 +129,44 @@ CreationPolicy:
     TimeOut: String # ISO8601 format; PT1H30M10S = 1h 30m 10s
 
 ```
-
-#### configSets
-
-
-
 ## Helper Scripts
 
 ### cfn-init
 
-Reads the instance meta-data io install pages, write files and enable/disable software
+Reads the instance meta-data io install pages, write files and enable/disable software. 
+
+#### configSets
+
+ConfigSets are used to order config tasks in the template for the cfn-init process. Something like:
+
+```yaml
+AWS::CloudFormation::Init: 
+  configSets: 
+    ascending: 
+      - "config1"
+      - "config2"
+    descending: 
+      - "config2"
+      - "config1"
+  config1: 
+    commands: 
+      test: 
+        command: "echo \"$CFNTEST\" > test.txt"
+        env: 
+          CFNTEST: "I come from config1."
+        cwd: "~"
+  config2: 
+    commands: 
+      test: 
+        command: "echo \"$CFNTEST\" > test.txt"
+        env: 
+          CFNTEST: "I come from config2"
+        cwd: "~" 
+```
 
 ### cfn-signal
 
-Sends back messages to stack to signal success or failure
+Sends back messages to stack to signal success or failure. The cfn-signal helper script signals whether an EC2 instance has been successfully created or updated. This script is used with a CreationPolicy or an Auto Scaling group with a WaitOnResourceSignals update policy. When CloudFormation creates or updates resources with those policies, the rest of the stack pauses until the resource receives the required number of success signals, or until the timeout period is reached. The cfn-signal helper is what sends those signals back - successful or not.
 
 ### cfn-hup
 Used to update in place using a deamon that detects resource metadata change and takes actions on those changes.
@@ -240,14 +283,17 @@ There are two different CLI interfaces to CloudFormation, the older [CloudFormat
 
 # Resources
 
+
+## Reading
+* [AWS CloudFormation User Guide](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)
+
+* [CloudFormation Template Reference](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-reference.html)
+
+* [CloudFormation Troubleshooting Guide](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html)
+
 ## Qwik Labs
 * [Introduction to AWS CloudFormation](https://qwiklabs.com/focuses/2931) - Complete
 
 * [Introduction to AWS CloudFormation Designer](https://qwiklabs.com/focuses/2932) - Complete
 
 * [Working with AWS CloudFormation](https://qwiklabs.com/focuses/2867) - Complete (no love on this one... lab was mostly broken)
-
-## Reading
-* [AWS Cloudformation User Guide](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)
-
-* [Cloud Formation Template Reference](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-reference.html)
