@@ -3,7 +3,7 @@ layout: post
 title: "AWS SysOps - Elastic Load Balancer"
 description: ""
 category: posts
-tags: [aws, sysops, elb, solutionsarch]
+tags: [aws, sysops, elb, solutionsarch, devopspro]
 ---
 {% include JB/setup %}
 
@@ -15,6 +15,7 @@ ELB are NOT free - there is a charge by the hour and per GB of usage.
 Only one SSL Cert per ELB. The max number of requests that can be queued is 1024; it issues a `HTTP 503 Error` when it can process any more requests - call AWS if a huge traffic spike comes!
 
 ### Cookie Stickiness
+
 There are three `Cookie Stickiness`, also know as session affinity, with both enabled options end up with sticky sessions (so all sessions go back to the same server), options: 
 
 * Disable Stickiness - The disable stickiness option is what you want and then you need to implement ElastiCache or an Amazon RDS instance for session.
@@ -24,9 +25,11 @@ There are three `Cookie Stickiness`, also know as session affinity, with both en
 * Enable Application Generated Cookie Stickiness - ELB generates a cookie that correlates to the application cookie - the duration is set by the application cookie; name the cookie in the setting.
 
 ### Health Checks
+
 To enable removing unhealthy instances from the round robin, each ELB can do a health check of the instances in the load balancing group. Can use different ports, including port 80, and set a response timeout, a health check interval, an unhealthy threshold and a healthy threshold.
 
 ### ELB Metrics
+
 SurgeQueueLength - Length of waiting queue - closer to zero the better
 
 SpilloverCount - How many requests are NOT serviced by the load balancer - closer to zero the better
@@ -70,4 +73,47 @@ General Config Problems:
 ### You know the traffic is coming
 Lots of times you will know there is more traffic a-coming. In these cases you can "pre-warm" the ELB by contacting AWS!
 
+## Logging
 
+Strangely [ELB Logging](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/access-log-collection.html) is disabled by default and are generated on a best-case situation so data might be missing; logs are stored in S3 and taken either every hour OR ever 5 minutes.
+
+The log file name includes the end-time, ip address of the ELB and a random generated string. The logs themselves include a timestamp, client:port, backend:port, user_agent and the important:
+
+- request_processing_time - 
+  * for HTTP load balancer = complete request -> send to instance 
+  * for TCP load balancer = TCP connect -> first byte to instance
+
+- backend_processing_time
+  * for HTTP load balancer = completed send to backend server -> start of response 
+  * for TCP load balancer = time until connect to backend server
+
+- response_processing_time
+  * for HTTP load balancer = start of reponse head -> start of send response to client
+  * for TCP load balancer = time until first byte from instance started sending reponse to client
+
+- Request - including verb, protocol version (http 1.1 or 2.0)
+
+## Listeners
+
+Listeners define what ports and protocols the ELB/ALB listens to. 
+
+| Thingy | ELB   |      ALB      |
+|-----------------|:-------------:|:------:|
+| HTTP & HTTP |  Yes | Yes |
+| TCP/SSL |    Yes   |   No |
+| Layer 4 | Yes |    No |
+| Layer 7 | No |    Yes |
+| Websockets | No |    Yes |
+| Path Routing | No |    Yes |
+| Host Routiner | No |    Yes |
+
+ALB can also forward X-Forwarded-For header so logging can occur at the instance layer NOT the ALB (because ALB routing is best effort no complete). To accomplish the same thing with an ELB you need to enable the [Proxy Protocol Headers](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-proxy-protocol.html) which adds a header for the backend to parse but this does not enable sticky session or X-Forward-For header.
+
+## End to End Encryption
+
+Create a public key policy
+Create a back-end instance authentication policy
+
+
+
+ELB can 

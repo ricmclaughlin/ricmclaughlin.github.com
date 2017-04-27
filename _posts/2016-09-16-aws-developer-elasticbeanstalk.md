@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AWS Developer - ElasticBeanstalk"
+title: "AWS - ElasticBeanstalk"
 description: ""
 category: posts
 tags: [aws, developercert, vpc, elasticbeanstalk]

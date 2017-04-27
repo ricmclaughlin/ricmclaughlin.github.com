@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AWS Developer - SNS"
+title: "AWS - SNS"
 description: ""
 category: posts
 tags: [aws, developercert, sns]

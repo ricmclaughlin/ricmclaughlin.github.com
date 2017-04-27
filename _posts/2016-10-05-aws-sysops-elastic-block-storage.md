@@ -3,7 +3,7 @@ layout: post
 title: "AWS SysOps - Elastic Block Storage"
 description: ""
 category: posts
-tags: [aws, sysops, ebs, ec2, solutionsarch]
+tags: [aws, sysops, ebs, ec2, solutionsarch, devopspro]
 ---
 {% include JB/setup %}
 
@@ -39,7 +39,7 @@ By default, EBS root volumes are lost when an instance is terminated. That said,
 3. Attach EBS volumes after instance creation.... this is not exactly a root volume.
 
 ## Volumes && Snapshots
-Snapshots are incremental. Encrypted volumes are snapshotted encrypted automatically - and are restored encrypted. Stop instances to snapshots the root devices else EC2 stops it for you.
+Snapshots are incremental. Encrypted volumes are snap-shotted encrypted automatically - and are restored encrypted. Stop instances to snapshots the root devices else EC2 stops it for you.
 
 RAID array snapshots are a pain. You need to freeze the file system, unmount the RAID array= easiest is to stop the instance
 
@@ -50,7 +50,27 @@ RAID 1 - mirror
 RAID 5 - 4 data; 1 chksum; NEVER on EBS
 RAID 10 - Mirror and stripe
 
+## Backup Strategies
 
+There are several situations to be fimiliar with:
+
+- Restoring by mounting volumes
+
+- Backup using Snapshots (which are object level storage and incremental backups...)
+
+- Application-consistent snapshots are super challenging because they include memory, in-process transations and the data on disk
+
+- AMI "pre-baking" reduces the instance spin-up time and can also serve as a backup strategy
+
+Hot backups are a big case of backup... you can:
+
+- first pausing I/O using xfs_freeze or fsfreeze (ext based filesystems)
+
+- unmount, snapshot and remount
+
+- Use a Logical Volume Manager & backup the LVM snapshots inside the EBS snapshot... then delete the LVM snapshot
+
+- LVM is also a good choice for RAID Volume Snapshots
 
 ## Use Cases
 
@@ -64,7 +84,7 @@ don't care? instance store
 
 DB or INTENSE datawarehouse server = IOPS/io1
 
-General purpose = gp2/
+General purpose = gp2
 
 Large I/O including EMR, Kafka, log processing and data warehouse ETL = st1 (sequential data reads)
 
