@@ -3,7 +3,7 @@ layout: post
 title: "AWS SysOps - CloudWatch"
 description: ""
 category: posts
-tags: [aws, cloudwatch]
+tags: [aws, cloudwatch, sysops, devopspro]
 ---
 {% include JB/setup %}
 
@@ -17,8 +17,37 @@ There are three parts to CloudWatch:
 
 * Dashboard - A super cool way to visualize what is happening on your metrics using the AWS management console.
 
-# Monitoring
-Use the `GetMetricStatistics` API command from the command line. From an analysis perspective, look at SUM and difference between min and max values to get an overall picture.
+## Metrics
+
+Metrics only exist in the region they are created, can't be deleted and expire after 14 days if no additional data is added. All metrics have a Name, a Namespace and one or dimensions. Each namespace is something like AWS/EBS...
+
+Retention Policy - metrics don't expire by default; how long should we keep them?
+
+Log Agent - the EC2 agent; actually a python script
+
+### Metrics Filters
+
+Metric Filters define which log file patterns get turned into metrics AFTER they are developed so, no, they do not retro-actively filter data. They include the following key elements:
+
+ - Filter pattern - what to look for
+
+ - Metric Name - what should we name the metric?
+
+ - Metric Namespace - what section should our new metric appear in?
+
+ - Metric Value - what value do you want to publish?
+
+
+## Logs
+
+Log Event - an event that happened
+
+Log Stream - a series of event from the same source
+
+Log Group - a group of log streams that have the same properties, policies, and access controls. 
+
+# Monitoring Approach
+Use the `GetMetricStatistics` API command from the command line. From an analysis perspective, look at SUM and difference between min and max values to get an overall picture. However, there are 5 statistics total including average, min, max, sum and SampleCount.
 
 ## EC2 Instances
 EC2 instances report CloudWatch metric every 5 minutes; selecting the "Enable CloudWatch detailed monitoring" to see the metrics in 1 minute intervals. The goofy part is that you must enable a CloudWatch Write role on your EC2 instance. Unlike many instance options you can enable this feature after the instance starts.

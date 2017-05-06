@@ -3,7 +3,7 @@ layout: post
 title: "AWS Developer - EC2"
 description: ""
 category: posts 
-tags: [aws, developercert, ec2, solutionsarch]
+tags: [aws, developercert, ec2, solutionsarch, devopspro]
 ---
 {% include JB/setup %}
 
@@ -90,6 +90,35 @@ A placement group is a logical group of instances within a single AZ that partic
 
 ## EC2 API Reference Points
 The EC2 API is huge and covers creating and deploying AMI, instances, instance specifics like EBS, Elastic IP, etc. You can manage dedicated, spot, spot fleet, &amp; reserved instances. You can setup an entire VPC using this API. Amazing stuff.
+
+### EC2 Metrics
+
+CPUUtilization - duh
+
+DiskReadOps & DiskWriteOps - total operations (not bytes) to and from disk (instance store)
+
+DiskReadBytes & DiskWriteBytes - total bytes to and from the disk (instance store)
+
+NetworkIn & NetworkOut - total bytes to and from the instance over the wire
+
+NetworkPacketsIn &amp; NetworkPacketsOut - number of packets in and out instead of bytes
+
+StatusCheckFailed_Instance &amp; StatusCheckFailed_System - has anything failed an instance or system check?
+
+StatusCheckFailed - combination of both status checks... 1 = yes; 0 = no
+
+### EC2 Metric Dimensions &amp; Custom Metrics
+
+These metrics, except for AutoScalingGroupName, are only available with detailed monitoring therefore update every minutes vs the normal 5 minute interval . The metrics include: AutoScalingGroupName, ImageId, InstanceId, InstanceType
+
+The big reason to use custom metrics and to push metrics to cloudwatch in general is the aggregation of data in cloudwatch instead of all over the place.. this requires an EC2 role to be setup.
+
+```bash
+#!/bin/bash
+curl https://s3.amazonaws.com//aws-cloudwatch/downloads/latest/awslogs-agent-setup.py -O
+chmod +x ./awslogs-agent-setup.py
+sudo python ./awslogs-agent-setup.py --region us-east-1 -n -c [bucket-for-log-files]
+```
 
 ### AMI API Highlights
 

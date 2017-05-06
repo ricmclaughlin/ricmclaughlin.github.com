@@ -64,3 +64,36 @@ There are numerous AS processes that can be suspended. Generally, suspending AS 
 ### Custom Health Checks
 
 Using the API a skilled developer can create a custom health check that might give a more accurate picture of instance health.
+
+### AutoScaling Metrics
+
+GroupMinSize
+GroupMaxSize
+GroupDesired
+
+GroupInServiceInstances
+GroupPendingInstances
+GroupTerminatingInstance
+GroupStandbyInstances
+GroupTotalInstances
+
+## Scaling Policies
+
+These little guys change the capacity of an Auto Scaling group using a ScalingAdjustment. There are three different adjustment types:
+
+- ChangeInCapacity - increment or de-increment by a nymber of instances
+
+- ExactCapacity - set a new capacity explicitly
+
+- PercentChangeInCapacity - percentage change
+
+### Scaling Policy Types
+
+Simple Scaling - single scaling adjustment; have cooldown; 
+
+Step Scaling - scale based on size of alarm breach; no cooldown; don't lock group; continuously evaluated; instance warmup
+
+## Auto Scaling Group Properties
+
+
+

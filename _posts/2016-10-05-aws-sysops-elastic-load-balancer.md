@@ -28,17 +28,35 @@ There are three `Cookie Stickiness`, also know as session affinity, with both en
 
 To enable removing unhealthy instances from the round robin, each ELB can do a health check of the instances in the load balancing group. Can use different ports, including port 80, and set a response timeout, a health check interval, an unhealthy threshold and a healthy threshold.
 
-### ELB Metrics
+### ELB Metrics (not ALB)
 
-SurgeQueueLength - Length of waiting queue - closer to zero the better
+These metrics are measured and sent through every minute. There are two useful dimensions the AvailabilityZone Dimension and the LoadBalancerName Dimension.
 
-SpilloverCount - How many requests are NOT serviced by the load balancer - closer to zero the better
+* SurgeQueueLength - Length of waiting queue - closer to zero the better (up to 1024)
 
-Latency - How long a page takes to return
+* SpilloverCount - How many requests are NOT serviced by the load balancer in EXCESS of the QueueLength - closer to zero the better
+
+* Latency - How long a page takes to return
+
+* BackendConnectionErrors - unsuccessful connection to the backend
+
+* HealthyHostCount, UnHealthyHostCount
+
+* HTTPCode_Backend_XXX - response codes from the backend (2XX, 3XX, 4XX)
+
+* HTTPCode_ELB_4XX - malformed on incomplete client requests
+
+* HTTPCode_ELB_5XX - no healthy backend instance or request rate too high
+
+* RequestCount - # of requests over 1 or 5 minute interval
 
 ### External vs Internal Load Balancing
-External = Public; Elastic IP; DNS
-Internal = no public IP or Elastic IP; internal DNS name
+
+Lots of differences between externally and internally facing load balancers:
+
+- External = Public; Elastic IP; DNS
+
+- Internal = no public IP or Elastic IP; internal DNS name
 
 ### SSL on ELB
 One of the key features of ELB is the ability to terminate SSL connections for instances in the load balancing group - SSL is still a highly compute intensive process for webservers. In this configuration, the HTTPS client uses port 443 to communicate with the ELB and the ELB communicates on port 80 to the web server instances in the autoscaling group. 
