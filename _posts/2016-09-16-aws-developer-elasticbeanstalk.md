@@ -7,30 +7,17 @@ tags: [aws, developercert, vpc, elasticbeanstalk, devopspro]
 ---
 {% include JB/setup %}
 
-Lecture: Environment Configurations 5:05
-http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options.html
-
-
-
-[AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) is the way to get started with AWS with a website. Like Cloud Formation, you don't pay to use the tool BUT you do pay for the resources it provisions.
+[AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) is the way to get started with AWS with a website or backend process. Like Cloud Formation, you don't pay to use the tool BUT you do pay for the resources it provisions.
 
 Elastic Beanstalk supports a webserver or worker environments. On the webserver side it supports IIS, Nginx, tomcat, PHP, python, node.js or Ruby. It also includes Docker support.
 
 EB supports Web Server Environment Tiers and Working Environments as well with a SQS queue between the tiers. These are simplified environments yet look quite functional for small to medium sized systems.
 
+EB is appropriate to use when creating quick applications including prototypes that require minimal control and flexibility to power the application. EB is not appropriate when there are lots of additional dependency software and the existing application that does not fit into the EB model.
+
 ## EB components
 
 An Application is the logical collection of environments, versions, environment configurations similiar to a folder that serves as the basic concept behind EB. A configuration template is the starting spot for configuring an application.
-
-
-
-Every environment contains ..
-
-When to use:
-  quick applications including prototypes that require minimal control and flexibility to power the application
-
-When not to use:
-  Lots of additional dependency software, existing application that does not fit into the EB model
 
 managed update - new features that enables updates during a scheduled maintenance window
 

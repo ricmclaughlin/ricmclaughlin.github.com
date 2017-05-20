@@ -3,7 +3,7 @@ layout: post
 title: "AWS Developer - SQS"
 description: ""
 category: posts
-tags: [aws, developercert, sqs, solutionsarch]
+tags: [aws, developercert, sqs, solutionsarch, solutionsarchpro]
 ---
 {% include JB/setup %}
 
@@ -41,7 +41,7 @@ tags: [aws, developercert, sqs, solutionsarch]
 
 ## Use Cases
 
-Message priority? Multiple queues
+Message priority? Multiple queues; more resources on high priority queue; Add DelaySeconds (Delivery Delay in the Console) to the lower priority queue
 
 Bigger than 64kb? More than one message chunk
 
