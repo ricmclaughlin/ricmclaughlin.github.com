@@ -3,7 +3,7 @@ layout: post
 title: "AWS Solutions Arch - Enterprise Network & Storage"
 description: ""
 category: posts
-tags: [aws, soluarch, snowball, directconnect, storagegate, vpn]
+tags: [aws, soluarch, snowball, directconnect, storagegate, vpn, soluarchpro]
 ---
 {% include JB/setup %}
 

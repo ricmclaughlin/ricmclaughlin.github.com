@@ -3,7 +3,7 @@ layout: post
 title: "AWS Developer - DynamoDB"
 description: ""
 category: posts
-tags: [aws, developercert, dynamodb]
+tags: [aws, developercert, dynamodb, devopspro]
 ---
 {% include JB/setup %}
 
@@ -31,7 +31,7 @@ Atomic Counters - The other way to work this is to allows all write requests to 
 Pricing with DyanamoDB is difficult to project. Instead of being priced on just disk storage, pricing is based on disk storage, provisioned throughput, DynamoDB streams and data transfer.
 
 ## Keys and Indexes
-Primary Key  - Like all databases a DynamoDB primary key is a unique identifier for a record in a table. The primary key can be simple (use the partition key) or composite (the primary key and sort key)
+Primary Key  - Like all databases, a DynamoDB primary key is a unique identifier for a record in a table. The primary key can be simple (use the partition key) or composite (the primary key and sort key)
 
 Partition Keys (hash key) - When DynamoDB stores data it uses the partition key to divide the table between partitions/servers. 
 
@@ -39,7 +39,7 @@ Sort Keys (range key) - The table can be sorted as well.. and it should be.
 
 Secondary Indexes - total of 5 global indexes and 5 secondary indexes for a total of 10 per table
 
-* Secondary Local Indexes - same partition key with different sort key defined at table creation ONLY( has the same hash key as the table, but a different range key); consumes tables defined read capacity.
+* Secondary Local Indexes - same partition key with different sort key defined at table creation ONLY (has the same primary key as the table, but a different sort key); consumes tables defined read capacity.
 
 * Global Secondary Indexes - uses a different partition key and a different sort key (the partition and sort key *can* be different from those on the table.) - A global secondary index is considered "global" because queries on the index can span all of the data in a table, across all partitions. Global indexes have completely different read/write capacity units.
 
@@ -78,13 +78,16 @@ Reads per Second = 120
 Read Capacity Units = 2 * 120 = 240 / 2 = 120
 
 ## Write capacity unit estimation
+
 Formula -> writes per item (size in KB rounded up to the nearest whole number) * writes per second
 write capacity unit - one write per second up to 1KB
 
 ## DynamoDB Streams
+
 It's a database log that emits events.
 
 ## Scans vs Queries
+
 Queries - find items based on primary key attribute; optionally provide sort key and value; use a `ProjectionExpress` so the query only returns some of the attributes. Defaults to sorted Ascending by the sort key; use `ScanIndexForward` to false for Descending. 
 
 Scan - examines every item in the table; avoid this. Supports eventually consistent and consistent reads. 1 Mg per scan max.
@@ -94,6 +97,7 @@ Scan vs Query - A query result is an eventually consistent read but you can requ
 Overall, you want to avoid table scans therefore designing tables to use the `Query`, `Get` or `BatchGetItems` APIs. 
 
 ## Web Identity Provider Access to DynamoDB
+
 This is a huge issue because many times users are authenticated by an ID provider then need access to DynamoDB. Steps:
 
 1. Authenticate with ID provider (Receive Token from ID provider)
@@ -139,6 +143,7 @@ Record Size > 400? Pointer to data in S3
 | ProvisionedThroughputExceededException | You exceeded your maximum allowed provisioned throughput for a table, partician, one or more global secondary indexes. |
 
 # Databases in General
+
 Online Transaction processing (OLTP) databases - Database systems like MySQL, PostgreSQL, Oracle, Aurora and MariaDB handle transactions... and transactions are important. Just think about doing an ATM deposit transaction... you want the your money to get credited to your account or fail completely. You want to know for sure. When this is the case you want an OLTP database. In addition, these systems tend to use a normalized data structure.
 
 Online Analytics Processing (OLAP) databases - Databases systems enable data analysis capabilities WITHOUT transactions and don't use a normalized data structure. In general, these systems pull and transform data from an OLTP system and then do reporting. Often called a data warehouse.
@@ -146,12 +151,16 @@ Online Analytics Processing (OLAP) databases - Databases systems enable data ana
 Database Caching - AWS offers Elasticache which provides an in memory caching layer using either the open source Memcached or Redis engines.
 
 # Resources
+
 ## Qwik Labs
+
 * [Introduction to Amazon DynamoDB](https://qwiklabs.com/focuses/2376)
 * [Working with Amazon DynamoDB](https://qwiklabs.com/focuses/2865)
 
 ## Reading
+
 [DynamoDB - How it Works](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.html)
 
 ## Videos
+
 [Deep Dive: Amazon DynamoDB](https://www.youtube.com/watch?v=VuKu23oZp9Q)

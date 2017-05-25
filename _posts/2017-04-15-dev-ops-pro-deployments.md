@@ -15,6 +15,7 @@ In-place deployments are generally faster, good or maybe better for session-less
 
 
 # Deployment types
+
 There are numerous different types of deployments including all instances at one time, rolling, immutable environment, and blue/green. 
 
 ## All at Once
@@ -58,17 +59,17 @@ An Immutable Environment deployment is similiar to a Rolling deployment except w
 
 ## Blue-Green
 
-In a Blue-Green deployment a new identical environment is created then tested and DNS is changed to send the new environment live. This is also called A/B testing.
+In a Blue-Green deployment a new identical environment is created then tested and DNS is changed to send the new environment live. 
 
 * Downtime: None
 
 * Failed Deployment: None
 
-* DNS: Yes, sometimes
+* DNS: Yes, sometimes; this can be a disadvantage because of DNS caching
 
 * Speed: longer; costs more
 
-
+A variation of this is when a portion of traffic is sent to the green environment to test it out; this is called A/B testing. A/B might not be for deployment; it might be just for testing.
 
 
 
