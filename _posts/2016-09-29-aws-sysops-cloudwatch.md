@@ -11,7 +11,7 @@ tags: [aws, cloudwatch, sysops, devopspro]
 
 There are three parts to CloudWatch:
 
-* Metrics - it collects data in a time series. The source of this data can be an AWS service or an application using the `PutMetricData` API action. Namespaces are containers for metrics. Dimensions are a name/value pair that ID a metric BUT only aggregate for EC2 and other AWS defined dimensions. Metrics are not aggregated across regions.
+* Metrics - it collects data in a time series. The source of this data can be an AWS service or an application using the `PutMetricData` API action. Namespaces are containers for metrics. Dimensions are a name/value pair that ID a metric BUT only aggregate for EC2 and other AWS defined dimensions. Metrics are not aggregated across regions but keeps them for 14 days.
 
 * Alarms - a super cool way to alert when something *happens*; think SNS message when your ELB spills overs
 
@@ -25,7 +25,7 @@ Retention Policy - metrics don't expire by default; how long should we keep them
 
 Log Agent - the EC2 agent; can be an RPM package or installed via a python script
 
-Dimensions - a name/value pair that defines a category and a value for that metric. This enables sorting and grouping of metrics.
+Dimensions - a name/value pair that defines a category and a value for that metric. This enables sorting and grouping of metrics. Detailed monitoring enables additional dimensions.
 
 ### Metrics Filters
 
@@ -54,7 +54,7 @@ Use the `GetMetricStatistics` API command from the command line. From an analysi
 
 ## EC2 Instances
 
-EC2 instances report CloudWatch metric every 5 minutes; selecting the "Enable CloudWatch detailed monitoring" to see the metrics in 1 minute intervals. The goofy part is that you must enable a CloudWatch Write role on your EC2 instance. Unlike many instance options you can enable this feature after the instance starts.
+EC2 instances report CloudWatch metric every 5 minutes; selecting the "Enable CloudWatch detailed monitoring" to see the metrics in 1 minute intervals. Even if you have more granular data, cloudwatch rolls the data up into 1 minute intervals. The goofy part is that you must enable a CloudWatch Write role on your EC2 instance. Unlike many instance options you can enable this feature after the instance starts. Autoscaling group metric aggregation is also reportable using detailed monitoring.
 
 CPUUtilization, network (in/out), disk (read/write - ops and bytes) and status checks are reported to CloudWatch by default. RAM & diskspace is a custom metric. 
 

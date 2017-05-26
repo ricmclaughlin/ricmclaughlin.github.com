@@ -14,6 +14,18 @@ tags: [aws, solutionsarch]
 
 ## Components
 
+Docker Image - read only; 
 
+Docker Container - an image plus an application
+
+Layers - each container is full of layers combined on a Union File System
+
+DockerFile - contains Instructions that get run to turn a base image into a Container
+
+Docker Engine - runs the container on the Host OS
+
+Docker Client - the management app
+
+Docker Registry/Docker Hub - contains images; public or private
 
 ## Tasks
