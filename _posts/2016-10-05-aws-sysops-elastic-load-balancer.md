@@ -59,6 +59,7 @@ Lots of differences between externally and internally facing load balancers:
 - Internal = no public IP or Elastic IP; internal DNS name
 
 ### SSL on ELB
+
 One of the key features of ELB is the ability to terminate SSL connections for instances in the load balancing group - SSL is still a highly compute intensive process for webservers. In this configuration, the HTTPS client uses port 443 to communicate with the ELB and the ELB communicates on port 80 to the web server instances in the autoscaling group. 
 
 Managing the certificate on the ELB is always the magic... In fact, managing certs in general is the magic. There are three options. 
@@ -70,6 +71,7 @@ Managing the certificate on the ELB is always the magic... In fact, managing cer
 3. Upload your own.
 
 ## Autoscaling and ELB Problems
+
 General Config Problems:
 
 1. Attempting to create instance in the wrong zone, subnet or security group or with the wrong key pair. 
@@ -132,6 +134,10 @@ ALB can also forward X-Forwarded-For header so logging can occur at the instance
 Create a public key policy
 Create a back-end instance authentication policy
 
+## Patterns 
 
+[Idle timeouts](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/config-idle-timeout.html) - decrease the connection idle timeouts from the front of the system to the back... this defaults to 60 seconds on the ELB. This does not apply to the ALB.
 
-ELB can 
+[More than one AZ]() - always associate an ELB with more than one AZ
+
+[ELB routing results in AZ load in-balance]() - sometimes the lack of DNS servers causes an AZ to get hotter than others because some networks can't service the requests and cached results are used; enable cross zone routing with Route 53

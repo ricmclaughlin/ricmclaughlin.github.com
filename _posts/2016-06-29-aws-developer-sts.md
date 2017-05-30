@@ -1,11 +1,42 @@
 ---
 layout: post
-title: "AWS Developer - STS"
+title: "AWS Developer - Delegation and Federation"
 description: ""
 category: posts
 tags: [aws, developercert, sts]
 ---
 {% include JB/setup %}
+
+7:49 - 
+
+Although basic it is note-worthy that Delegation is when you authorize access to others or other things to resources in your account while Federation when you allow other parties to authorize other on your behalf.
+
+A role is required to do authentication and authorization  
+
+## Corporate and ID Federation
+
+AD and it's hosted version [AWS Directory Service](https://aws.amazon.com/directoryservice/), LDAP and SAML can be integrated into IAM; generally you map groups in the ID provider to IAM roles
+
+login give you session credentials, AKID, Secret Key, Session Token and Expiration
+
+sts:AssumeRole, 15, 1 hour, 1 hour
+GetFederationToken, 15 min, 36 hours, 12 hours
+
+### AssumeRole vs GetFederationToken
+
+Both return permissions
+
+## Web Identity Federation
+
+Use Social Identity Provider, which is an IAM object that holds configuration info about the external provider; 
+
+
+
+## Role Switching &amp; Cross Account Roles
+
+https://aws.amazon.com/blogs/security/enable-a-new-feature-in-the-aws-management-console-cross-account-access/
+
+
 
 AWS [Security Token Service (STS)](http://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html) is a web service that enables you to request temporary, limited-privilege credentials for AWS Identity and Access Management (IAM) users or for users that you authenticate (federated users). 
 
