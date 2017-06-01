@@ -17,7 +17,7 @@ tags: [autoscaling, devopspro]
 
 While instances are ```Pending``` to be added to an ASG or ```Terminating``` out of an ASG there is an opportunity to add a hook into the processes. These hooks can be a CloudWatch event, an SNS or SQS message or launches a script. 
 
-The wait state is how long these hooks have to run before proceeding to the lifecycle stage. By default the wait state is 3600 seconds and can be shortened using the ```complete-lifecycle-action``` or lengthened using ```record-lifecycle-action-heartbeat``` commands.
+The wait state is how long these hooks have to run before proceeding to the lifecycle stage. By default the wait state is 3600 seconds and can changed using the ```heartbeat-timeout``` parameter or be ended using the ```complete-lifecycle-action``` or lengthened using ```record-lifecycle-action-heartbeat``` commands. The max wait state is 48 hours.
 
 ### Scale Out 
 
@@ -36,13 +36,6 @@ If you need to trouble shoot or work with an instance, but still want it managed
 If you need to remove an instance from InService state you call ```DetachInstances``` then the service goes to Detaching through the Detached state and ends up an EC2 instance. Any instance can be attached to the ASG using ```AttachInstances```.
 
 
-
-
-Scale In
-
-Detach
-
-Stand By
 
  
 
