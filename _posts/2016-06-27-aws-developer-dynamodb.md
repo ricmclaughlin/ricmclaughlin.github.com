@@ -21,14 +21,6 @@ Yes, [DynamoDB](https://aws.amazon.com/dynamodb/) is like MongoDB - but the conc
 
 **Exceeding capacity** - If you exceed provisioned throughput, you receive a 400 HTTP status code - ```ProvisionedThroughputExceededException```. With global secondary indexes, if one of the indexes runs low on write capacity, all of the tables indexes might get throttled, even if one or more of the indexes aren't affected. 
 
-## Conditional updates vs Atomic counters
-
-Because record locking isn't an option on a distributed database, app developers have to implement some sort of update concurrency model. There are two ways to approach this:
-
-Conditional updates - When the system applies an update, the record is checked to make sure it has not changed since the record was read, and if it has not then it is updated. If the record has changed the update fails. This is an idempodent change so it can be made many times to see if it will work.
-
-Atomic Counters - The other way to work this is to allows all write requests to be applied in the order they are received by incrementing or decrementing the attribute value. Challenging to figure out how this works. Overall, I'd say this is another case where you mark a record inactive, and insert it as a new record.
-
 ## Pricing 
 
 Pricing with DyanamoDB is difficult to project. Instead of being priced on just disk storage, pricing is based on disk storage, provisioned throughput, DynamoDB streams and data transfer.
@@ -51,7 +43,7 @@ Secondary Indexes - total of 5 global indexes and 5 secondary indexes for a tota
 
 DynamoDB is hybrid of document and key value pair noSQL database types and features the following mix of data types:
 
-- Scalar types = String, Boolean, Binary and Number
+- Scalar types = String, Boolean, Binary, and Number
 
 - Sets - which are typed, non-ordered arrays including string set, number set, and binary set.
 
@@ -70,8 +62,6 @@ A unit of read capactiy is 1 strongly consistent reads per second or 2 eventuall
 1. if eventual consistent divide by 2
 
 A unit of write capacity is 1KB. 
-
-
 
 ### Example read capacity problem #1
 
@@ -98,9 +88,13 @@ Read Capacity Units = 2 * 120 = 240 / 2 = 120
 Formula -> writes per item (size in KB rounded up to the nearest whole number) * writes per second
 write capacity unit - one write per second up to 1KB
 
-## DynamoDB Streams
+## Conditional updates vs Atomic counters
 
-It's a database log that emits events.
+Because record locking isn't an option on a distributed database, app developers have to implement some sort of update concurrency model. There are two ways to approach this:
+
+Conditional updates - When the system applies an update, the record is checked to make sure it has not changed since the record was read, and if it has not then it is updated. If the record has changed the update fails. This is an idempodent change so it can be made many times to see if it will work.
+
+Atomic Counters - The other way to work this is to allows all write requests to be applied in the order they are received by incrementing or decrementing the attribute value. Challenging to figure out how this works. Overall, I'd say this is another case where you mark a record inactive, and insert it as a new record.
 
 ## Scans vs Queries
 
@@ -111,6 +105,13 @@ Scan - examines every item in the table; avoid this. Supports eventually consist
 Scan vs Query - A query result is an eventually consistent read but you can request it to be a strongly consistent read.
 
 Overall, you want to avoid table scans therefore designing tables to use the `Query`, `Get` or `BatchGetItems` APIs. 
+
+
+## DynamoDB Components
+
+Dynamo Logs - It's a database log that emits events.
+
+Partitions - holds 10GB and 3000 RCU / 1000 WCU; when one of those limits is reached the data is then spread by partitian key across many partitians. A single partitian key is therefore limited to 10GB and 3000 RCU and 1000 WCU.
 
 ## Web Identity Provider Access to DynamoDB
 

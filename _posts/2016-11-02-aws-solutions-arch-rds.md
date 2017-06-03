@@ -57,7 +57,7 @@ Limits:
 
 - DB Snapshots and backups can NOT be taken from read replicas.
 
-- no read replicas fro Oracle and SQL Server
+- no read replicas from Oracle and SQL Server
 
 Replica lag is a key metric - keeping the read replica on a similiar, in fact, exact same configuration of instances can help keep this metric inline. 
 
@@ -75,7 +75,13 @@ Replication can also be used as a disaster recovery or data migration mechanism.
 
 ## Aurora
 
-MySQL compatible, relational DB that starts with 10Gb and scales in 10Gb increments to 64 Tb and up to 32 vCPUs and 244 Gb of RAM. It has amazing HA capabilities with 2 copies in 3 AZ so you get 6 copies of your data and it is self-healing through disk and data block data scanning and errors are fixed. You can have up to 15 Aurora read replicas and 5 MySQL read replicas.
+MySQL compatible, relational DB that starts with 10Gb and scales in 10Gb increments to 64 Tb and up to 32 vCPUs and 244 Gb of RAM. 
+
+Security is a good thing; must exist in a VPC, AES-256 for data in transit, use KMS keys or other keys to  encrypt storage, snapshots, backup, and replicas. If a database is created unencrypted you have to create another database.
+
+It has amazing HA capabilities with 2 copies in 3 AZ so you get 6 copies of your data and it is self-healing through disk and data block data scanning and errors are fixed. You can have up to 15 Aurora read replicas and up to 5 MySQL read replicas (large affect on the primary because the transaction log is played against the replica)
+
+There is automatic, continous incremental backups with a point-in-time restore within a second and are stored for 35 days by default.
 
 ## Oracle on RDS
 
