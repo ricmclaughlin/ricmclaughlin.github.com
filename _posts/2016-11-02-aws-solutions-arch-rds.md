@@ -9,6 +9,7 @@ tags: [aws, rds, soluarch]
 DB do not require a port number or protocol.
 
 ## RDS
+
 Transactional Storage Engines are recommended for durability. RDS instances without Multi-AZ don't perform as well as those that are - backups, restores and all housekeeping activities are performed on the secondary instance.  Backups are stored on S3. Restoration only works for the default DB parameter and security groups are associated with the instance you will likely need to setup the DB default parameters and security groups. You maybe can change storage engine - if they are related.
 
 Deleting an RDS instance deletes ALL the automated backups... but not the manual ones. =>>"I acknowledge that upon instance deletion, automated backups, including system snapshots and point-in-time recovery, will no longer be available."
@@ -25,6 +26,7 @@ Encryption in Transit - every RDS instance includes a SSL Certificate.
 
 
 ### Multi-AZ failover
+
 A multi-AZ failover process is key in the event of an AZ failure but is NOT a scaling solution.  Multi-AZ systems are setup within the same region - that would be obvious from the name.
 
 For MySQL, Oracle and PostgreSQL replication from one zone to another causes a lot of higher write and commit latency - this is a synchronous physical replication - provisioned IOPS is recommended. Native replication, called Mirroring, is used for MS SQLServer.
@@ -38,6 +40,7 @@ Failovers are implemented as a DNS change so the application servers have to re-
 Automated backup is done from the backup instances NOT the primary instance so there is no performance hit during backups.
 
 ### RDS Read Replicas
+
 Read Replicas are used to scale RDS by creating a READ ONLY copy of your database in a single AZ. Possible use cases include:
 
 - Scale beyond single instance I/O capabilities
@@ -86,7 +89,10 @@ Recovery Manager (RMAN) can be used for backup and recovery scenarios including 
 
 ## MS SQL on RDS
 
-Supports point-in-time backups using snapshots, Multi-AZ deployments using the native MS Mirroring technology but read replicas are not supported. There is no support for multi-region or Cloud to on-prem replication in RDS based MS SQL but native tools can be used. On-prem to Cloud migration is super ugly... create RDS empty tables, disable backups/key contraints, import flat files. In addition, FILESTREAM functions are not supported and there is no ability to restore data from file. 
+Supports point-in-time backups using snapshots, Multi-AZ deployments using the native MS Mirroring technology but read replicas are not supported. There is no support for multi-region or Cloud to on-prem replication in RDS based MS SQL but native tools can be used. 
+
+On-prem to Cloud migration is super ugly... create RDS empty tables, disable backups/key contraints, import flat files. In addition, FILESTREAM functions are not supported and there is no ability to restore data from file. 
 
 #Labs
+
 [Introduction to Amazon Relational Database Service (RDS) (Linux)](https://qwiklabs.com/focuses/2926)

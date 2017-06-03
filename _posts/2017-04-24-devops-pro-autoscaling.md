@@ -7,9 +7,17 @@ tags: [autoscaling, devopspro]
 ---
 {% include JB/setup %}
 
+An [Auto Scaling Group ](http://docs.aws.amazon.com/autoscaling/latest/userguide/AutoScalingGroup.html) gives you the ability to manage a group of instances as a unit. 
 
+## Auto Scaling Self Healing
 
+In use cases where a single server is needed, and needed all the time, the ability to create an ASG of one is useful.
 
+## ASG Launch Configuration
+
+First, lots of basic stuff... an ASG must specify a launch configuration and only one launch config per ASG. A Launch Config can't be modified after creation.
+
+Launch configs can be made from running EC2 instance but some storage and monitoring settings are not supported. Tags, block devices settings, and load balancer settings including the ```LoadBalancerNames``` attribute is not copied over to the Launch Configuration. Spot instances can't use the same launch config as on-demand instances because they include a bid price.
 
 ## ASG Instance Lifecycle
 
@@ -18,6 +26,10 @@ tags: [autoscaling, devopspro]
 While instances are ```Pending``` to be added to an ASG or ```Terminating``` out of an ASG there is an opportunity to add a hook into the processes. These hooks can be a CloudWatch event, an SNS or SQS message or launches a script. 
 
 The wait state is how long these hooks have to run before proceeding to the lifecycle stage. By default the wait state is 3600 seconds and can changed using the ```heartbeat-timeout``` parameter or be ended using the ```complete-lifecycle-action``` or lengthened using ```record-lifecycle-action-heartbeat``` commands. The max wait state is 48 hours.
+
+At the end of the lifecycle the state will be ```ABANDON``` or ```CONTINUE```. The ASG auto scaling cooldown does not start until the instance enters the InService state.
+
+Lifecycle Hooks can be used with Spot Instances but this does NOT prevent an instance from terminating.
 
 ### Scale Out 
 
