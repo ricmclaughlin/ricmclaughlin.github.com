@@ -35,9 +35,17 @@ Sort Keys (range key) - The table can be sorted as well.. and it should be.
 
 Secondary Indexes - total of 5 global indexes and 5 secondary indexes for a total of 10 per table
 
-* Secondary Local Indexes - same partition key with different sort key defined at table creation ONLY (has the same primary key as the table, but a different sort key); consumes tables defined read capacity but for the size of the items in the projection NOT the size of the item in the table. If you scan or query for attributes NOT in the index project that is bad... When you write a new item or update a NULL attribute projected into secondary index, that costs one write. Change an indexed item? two writes; delete an item? two writes
+## Local Indexes
 
-* Global Secondary Indexes - uses a different partition key and a different sort key (the partition and sort key *can* be different from those on the table.) - A global secondary index is considered "global" because queries on the index can span all of the data in a table, across all partitions and are eventually consistent. Global indexes have completely different read/write capacity units that is calculated on the size of the projection NOT the underlying table. CRD operations consume write capacity.
+Secondary Local Indexes are sparse indexes including the table primary key & sort key, a different sort key and any additional projected attributes; consumes tables defined read capacity but for the size of the items in the projection NOT the size of the item in the table; created asynchronously. 
+
+If you scan or query for attributes NOT in the index project that is bad... and results in a query to the index AND a query from the table. 
+
+When you write a new item or update a NULL attribute projected into secondary index, that costs one write in the LSI. Change an indexed item? two LSI writes; delete an item? two LSI writes
+
+## Global Indexes
+
+Global Secondary Indexes can use a different partition key and a different sort key (the partition and sort key *can* be different from those on the table.) - A global secondary index is considered "global" because queries on the index can span all of the data in a table, across all partitions and are eventually consistent. Global indexes have completely different read/write capacity units that is calculated on the size of the projection NOT the underlying table. CRD operations consume write capacity.
 
 ## Data types
 
@@ -111,7 +119,27 @@ Overall, you want to avoid table scans therefore designing tables to use the `Qu
 
 Dynamo Logs - It's a database log that emits events.
 
-Partitions - holds 10GB and 3000 RCU / 1000 WCU; when one of those limits is reached the data is then spread by partitian key across many partitians. A single partitian key is therefore limited to 10GB and 3000 RCU and 1000 WCU.
+### Partitions
+
+Partitions hold 10GB (including LSI) and 3000 RCU / 1000 WCU; when one of those limits is reached the data is then spread by partitian key across many partitians. A single partitian key is therefore limited to 10GB and 3000 RCU and 1000 WCU.
+
+### Streams
+
+Streams are ordered lists of record updates to a table that is stored for 24 hours with no duplicate entries in near real-time. Streams can be configured four ways:
+
+- ```KEYS_ONLY``` - only the key attributes are written
+
+- ```NEW_IMAGE``` - the entire post is written to the stream
+
+- ```OLD_IMAGE``` - the entire pre update item is written to the stream
+
+- ```NEW_AND_OLD_IMAGES``` - the pre and post item are written to the stream
+
+There are two basic use cases for streams: replication and triggers. Cross region replication is enabled by a [CloudFormation template](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.CrossRegionRepl.html) that has been deprecated. 
+
+## Errors
+
+ItemCollectionSizeLimitExceededException - when a single partitian key (and LSI) are greater than 10GB
 
 ## Web Identity Provider Access to DynamoDB
 
