@@ -23,6 +23,7 @@ In-Memory caching - [ElastiCache](https://aws.amazon.com/elasticache/) (Memcache
 
 
 # S3
+
 S3 is an object, as in file, based storage and is a key-value based - the key is the file name and the data in the file which is the value in addition to other data like the Version ID, access control information and metadata. S3 offers *Read after Write* consistency for `PUT` but **only** *Eventual* consistency for update `PUT` or `DELETE`.
 
 AWS charges you for storage, requests and data transfer.
@@ -32,9 +33,11 @@ Use Multipart upload to stop and resume uploads and ideally for any file over 10
 S3 Limits - the minimium size for a s3 object is 0 bytes; 100 S3 buckets per account; 5Tb object size max.
 
 ## Security
+
 Buckets are private by default but access control you can define a bucket policy and or an access control list. Access logs can also be defined if required. 
 
 ### Bucket Policies
+
 While IAM policies apply to the user level, bucket policies apply to the resource level. Bucket owners can specify what other users can do the contents of the bucket - provided they can log into the console. This includes scenarios where others own the object in the bucket - think cross account PUT of an object.
 
 #### Bucket Policies are:
@@ -48,6 +51,7 @@ While IAM policies apply to the user level, bucket policies apply to the resourc
 1. Possibily conditional - they can use ACL attributes to conditionally grant access to objects
 
 ### S3 ACL
+
 Stored in XML and can be used to manage access to objects NOT owned by the bucket owner. They can not explicitly deny permissions; they grant read and write permissions to other AWS accounts.
 
 #### Elements of an Access Policy include:
@@ -61,6 +65,7 @@ Stored in XML and can be used to manage access to objects NOT owned by the bucke
 1. Resource - the ARN
 
 ### S3 IAM Policies
+
 S3 IAM policies can NOT grant anonymous access. But you can DENY access with IAM Policies. 
 
 The prefix for a bucket policy is "arn:aws:s3:::"
@@ -70,9 +75,11 @@ The star (*) can be used in a policy.
 Template strings can be used too like -> ${aws:username}
 
 ### Data in-Transit
+
 Data in-transit security happens using SSL or TLS (which is SSL v 3.1)
 
 ### Data at-Rest
+
 There are three flavors of Server Side Encryption (SSE) Server side encryption can be enabled using the REST API using x-amz-server-side-encryption header.
 
 * S3 Managed Keys (SSE-S3) - no audit trail. Can't imagine this gets used much.
@@ -84,6 +91,7 @@ There are three flavors of Server Side Encryption (SSE) Server side encryption c
 * Customer encrypted - You could encrypt on the client too. 
 
 ## S3 Storage Classes
+
 S3 - AWS guarantees 99.99% availability for the S3 Platform and 11 x 9 for durability.
 
 S3-Infrequently Accessed - Less frequently used data that needs rapid access - there is a charge a retrieval fee; 99.9% availability
@@ -93,6 +101,7 @@ S3-Reduced Redundancy Storage - 99.99% durability & availablity - for files that
 [glacier](https://aws.amazon.com/glacier/) - an object storage capability that is mostly offline and way, way cheaper than S3. It might take hours (like 3-5 hours) to retrieve an object from glacier so it is mostly suited towards stuff you need to store but will rarely, if ever, need to access.  
 
 ## Versioning
+
 Stores all version of an object; can be suspended but not disabled for bucket; can be used with MFA to provide extra layer of DELETE security. Cross region replication requires versioning and an IAM role setup. ALL version of the file are stored so the amount of spaced required can end up being HUGE. Versioning only starts after it is enable and files have been added - existing files end up with a NULL version.
 
 ## Storage Tiers & Lifecycle Policies
@@ -107,6 +116,7 @@ Permenantly Delete - yep, cool stuff this.
 S3 lifecycle Policy - These are XML documents that are stored as a lifecycle sub-resource attached to the bucket. ```PUT```, ```GET``` and ```DELETE``` actions can be done with the lifecycle policies.
 
 ## Bucket Names &amp; Such
+
 Bucket names can not start with a '.' or '-' and cannot be formatted like an IP address. Remove public read access and use signed URLs with expiry dates to prevent read access from unauthorized sites. 
 
 Files must be stored in buckets and buckets are a universal namespace.
@@ -124,7 +134,8 @@ Edge Location used by CloudFront are not just for download acceleration. S3 Tran
 
 ## S3 API Reference Points
 
-### Bucket API
+### Bucket API (s3api)
+
 Seeing that S3 is a REST API, all the operations... well, they are REST.
 
 | S3 Bucket API Method  | Notes  |
@@ -134,7 +145,8 @@ Seeing that S3 is a REST API, all the operations... well, they are REST.
 |  PUT | Bucket, CORS, website, etc. | 
 |  HEAD | Unsure if you have access and a bucket exist? | 
 
-### Object API
+### Object API (s3)
+
 This section of the API is REST-like. Multi Part upload - Multi-part upload API allows you to upload parts of an object once broken apart. As a file/object is being created, the multi-part upload API will allow you to upload the file to S3. Only after all parts of the object have been uploaded do you execute the CompleteMultipartUpload API call which completes a multi-part upload by assembling previously uploaded parts.
 
 You first initiate the multi-part upload and then upload all parts using the Upload Parts operation (see Upload Part). After successfully uploading all relevant parts of an upload, you call this operation to complete the upload. Upon receiving this request, Amazon S3 concatenates all the parts in ascending order by part number to create a new object. In the Complete Multi-part Upload request, you must provide the parts list. You must ensure the parts list is complete, this operation concatenates the parts you provide in the list. For each part in the list, you must provide the part number and the ETag header value, returned after that part was uploaded.
@@ -145,7 +157,8 @@ You first initiate the multi-part upload and then upload all parts using the Upl
 | GET | Object, Object ACL, Object Torrent |
 | HEAD | get meta data (might returns 404 or 403 error) |
 | POST | writes an object to S3 from a form (can also copy the file) |
-| | |
+| ```mb``` & ```rb``` | make bucket & remove bucket |
+| ```website``` | creates a website |
 
 ### Error Codes from API
 Common Errors - S3 handles error codes with HTTP response codes - which makes sense seeing that we are using a REST API here.

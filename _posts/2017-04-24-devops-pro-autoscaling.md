@@ -47,10 +47,6 @@ If you need to trouble shoot or work with an instance, but still want it managed
 
 If you need to remove an instance from InService state you call ```DetachInstances``` then the service goes to Detaching through the Detached state and ends up an EC2 instance. Any instance can be attached to the ASG using ```AttachInstances```.
 
-
-
- 
-
 ### ASG Termination Policies
 
 ASG (Termination Policies)[http://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-termination.html] determine which instances should be terminated when a scale-in event occurs. In the console, they get setup in the ASG configuration setting and get executed in presentation order. When a scale-in event occurs the AutoScaling feature checks for an imbalance of instances across AZ then runs the termination policy. Some use cases for each type of termination policy includes:
@@ -128,6 +124,22 @@ Simple Scaling - single scaling adjustment; have cooldown;
 Step Scaling - scale based on size of alarm breach; no cooldown; don't lock group; continuously evaluated; instance warmup
 
 ## Auto Scaling Group Properties
+
+## Autoscaling API
+
+| API      | Purpose       |
+|----------|---------------|
+| ```enter-standby``` | Pause the instance for maintenance  |
+| ```exit-standby``` | Unpause the instance for maintenance      |
+| ```create-launch-configuration``` | create |
+| ```delete-launch-configuration``` | delete (there is no modify) |
+| ```update-auto-scaling-group``` | Update ASG |
+| ```put-lifecycle-hook``` | create hook |
+| ```put-scaling-policy``` | create scaling policy |
+
+
+
+
 
 
 

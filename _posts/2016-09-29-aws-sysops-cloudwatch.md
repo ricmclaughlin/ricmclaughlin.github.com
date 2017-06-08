@@ -102,7 +102,7 @@ Instance Status => checks the VM; reboot the machine
 
 There are four status check statuses coming from EBS volumes:
 
- - `ok` - All good.
+- `ok` - All good.
 
 - `warning` = Degraded or Severely Degraded
 
@@ -156,8 +156,17 @@ If you know there is a lot of traffic on the way, call AWS and get them to "pre-
 | SpillOverCount | This is a bad, bad thing. Avoid. ELB reports a `503 - Service Unavailable` |
 | HealthyUnHealthyHostCount | Just like what it says |
 
-## Resources
+## API 
 
-### Documentation
+| **Call**  | **Purpose**  |
+| ```put-metric-data``` | custom metrics | 
+| ```put-metric-alarm``` | creates metric; ```INSUFFICIENT_DATA``` state at first | 
+| ```disable-alarm-actions``` | alarm active; doesn't fire | 
+| ```enable-alarm-actions``` | alarm active; fires | 
+| ```list-metrics``` | lists all the metrics |
+| ```get-metric-statistic``` | get a specific metric |
+
+
+## Documentation
 
 [CloudWatch Dev Doc](https://aws.amazon.com/cloudwatch/developer-resources/)

@@ -7,7 +7,7 @@ tags: [aws, developercert, cloudformation, solutionsarch, devopspro]
 ---
 {% include JB/setup %}
 
-[CloudFormation](https://aws.amazon.com/cloudformation/) templates are JSON documents that build AWS infrastucture. The cool part is that these templates can be version control and run over and over again - this is infrastructure as code in a fleshy-codey sort of way! The only bummer is that you can only have 20 CloudFormation stacks in a region - and of course, you can increase this by contacting AWS. Obviously you can create as many CloudFormation templates as you want.
+[CloudFormation](https://aws.amazon.com/cloudformation/) templates are JSON documents that build AWS infrastucture. The cool part is that these templates can be version control and run over and over again - this is infrastructure as code in a fleshy-codey sort of way! The only bummer is that you can only have 20 CloudFormation stacks in a region - and of course, you can increase this by contacting AWS. Obviously, you can create as many CloudFormation templates as you want.
 
 NOTE: These notes aren't just for the AWS Developer Certification... they also include information on the DevOps Pro Certification as well.
 
@@ -20,7 +20,7 @@ CloudFormation Templates have 8 main sections but only the resources section is 
 
 * Metadata -- as the name suggests, this sets up additional information about each of the resources
 
-* Parameters -- imagine default values and customized template values and stuff you can pass in on the commandline OR when you run the template. Sounds a lot like commander or commander.js functionality!
+* [Parameters](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html) -- imagine default values and customized template values and stuff you can pass in on the commandline OR when you run the template. Sounds a lot like commander or commander.js functionality!
 
 * Mappings -- maps keys to values - imagine a different value for each AWS region!
 

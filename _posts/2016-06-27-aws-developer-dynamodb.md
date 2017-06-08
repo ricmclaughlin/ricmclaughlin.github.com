@@ -29,7 +29,7 @@ Pricing with DyanamoDB is difficult to project. Instead of being priced on just 
 
 Primary Key  - Like all databases, a DynamoDB primary key is a unique identifier for a record in a table. The primary key can be simple (use the partition key) or composite (the primary key and sort key)
 
-Partition Keys (hash key) - When DynamoDB stores data it uses the partition key to divide the table between partitions/servers. 
+Partition Keys (hash key) - When DynamoDB stores data it uses the partition key to divide the table between partitions/servers. The partitian key should be a high-cardinality, composite attributes or perhaps 
 
 Sort Keys (range key) - The table can be sorted as well.. and it should be.
 
@@ -45,7 +45,9 @@ When you write a new item or update a NULL attribute projected into secondary in
 
 ## Global Indexes
 
-Global Secondary Indexes can use a different partition key and a different sort key (the partition and sort key *can* be different from those on the table.) - A global secondary index is considered "global" because queries on the index can span all of the data in a table, across all partitions and are eventually consistent. Global indexes have completely different read/write capacity units that is calculated on the size of the projection NOT the underlying table. CRD operations consume write capacity.
+Global Secondary Indexes can use a different partition key and a different sort key (the partition and sort key *can* be different from those on the table.) - A global secondary index is considered "global" because queries on the index can span all of the data in a table, across all partitions and are eventually consistent. 
+
+Global indexes have completely different read/write capacity units that is calculated on the size of the projection NOT the underlying table. CRD operations consume write capacity.
 
 ## Data types
 
@@ -121,7 +123,13 @@ Dynamo Logs - It's a database log that emits events.
 
 ### Partitions
 
-Partitions hold 10GB (including LSI) and 3000 RCU / 1000 WCU; when one of those limits is reached the data is then spread by partitian key across many partitians. A single partitian key is therefore limited to 10GB and 3000 RCU and 1000 WCU.
+Partitions hold 10GB (including LSI) and 3000 RCU &amp; 1000 WCU; when one of those limits is reached the data is then spread by partitian key across many partitians. A single partitian key is therefore limited to 10GB and 3000 RCU and 1000 WCU.
+
+Figuring out the number of partitians is pretty easy:
+
+NumPartitians = MAX( RoundUp( Desired RCU / 3000 + Desired WCU / 1000), (Data / 10 GB)) 
+
+Minimizing hot partitians is really an issue of proper provisioning and [partitian key design](https://aws.amazon.com/blogs/database/choosing-the-right-dynamodb-partition-key/). The important thing to do is to make sure the primary key is unique. 
 
 ### Streams
 
@@ -207,6 +215,7 @@ Database Caching - AWS offers Elasticache which provides an in memory caching la
 
 [DynamoDB - How it Works](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.html)
 
+[DynamoDB - Best Practices](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/BestPractices.html)
 ## Videos
 
 [Deep Dive: Amazon DynamoDB](https://www.youtube.com/watch?v=VuKu23oZp9Q)
