@@ -11,25 +11,45 @@ Opsworks is [Chef](https://www.chef.io/chef/) a popular devops tool used by Amaz
 
 Currently you can choose from a Chef 12 or Chef 11 Stack.
 
-## OpsWorks Components
+## OpsWorks Glossary
 
-- Stacks - a set of resources you want to manage as a group = dev, stage, pro
+### Stacks
 
-- Layers - A blueprint for a set of instances like web servers, app servers or DB servers; each layer has a series of associated recipes 
+Stacks are a set of resources you want to manage as a group = dev, stage, pro; restricted to a single OS; config changes apply to new instances; can't change region or AZ after creation
 
-- Instances - EC2 Instances; can run 7/24, be load or time based
+You can add additional resources such as ElasticIPs, Volumes or RDS instances
 
-- Apps - code someplace you want to run on instances
+### Layers
 
-## Recipes
+A Layer is a blueprint for a set of instances like web servers, app servers or DB servers; each layer has a series of associated recipes based on lifecycle
 
-Written in ruby based on chef so flow control, and variable and all that sort of stuff are easily implemented. Resources are the building blocks of recipes and take the form of package (like HA proxy), a service (something that needs to be turned on or off) and templates (which are files, typically to configure resources).
+The three types of layers supported are Opsworks layers, ECS stacks, RDS. An RDS instance can only be associated with one Opsworks stack; a stack clone does not copy the RDS instance
+
+### Instances
+
+EC2 Instances; can run 7/24, be load or time based; must have Internet access
+
+To enable load based instances the layer must first be setup to work the scaling configuration. There are numerous redundant settings for scaling - metrics, batch size, alarm condition time, after scaling ignore metric. Each of these configurations is on a per-layer basis but applies to instances.
+
+### Applications
+
+Apps are code someplace you want to run on instances that define the name, root, datasource (like RDS), source, environment variables, domain names and SSL config.
+
+Deployment is as expected: app parameters are passed into the environment from Databags, the app is installed and 4 versions of the app are maintained.
+
+
+
+### Recipes
+
+Recipes are small chunks of reuseable configuration that are run in Lifecycle Events. Resources are the building blocks of recipes and take the form of package (like HA proxy), a service (something that needs to be turned on or off) and templates (which are files, typically to configure resources).
+
+### Lifecycle Events
 
 Recipes can execute in each of the following lifecycle stages:
 
 * setup - setup new instance before first boot
   
-* configure - fired when instance leave or enters online state
+* configure - fires on all instance when any instance leave or enters online state, change associated elastic IP, change associated ELB; this event is commonly used for service discovery
 
 * deploy - occurs when an app is deployed 
 
@@ -37,9 +57,27 @@ Recipes can execute in each of the following lifecycle stages:
 
 * shutdown - occurs when instance starts to shut down
 
-## Cookbooks
+### Cookbooks
 
 There are tons of [built in recipes](https://github.com/aws/opsworks-cookbooks) and you also have the ability to create custom bookselves. Berkshelf is the package manager for cookbooks.
+
+### Databags
+
+
+### BerkShelf
+
+
+### create-deployment command
+
+The [```create-deployment```](https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DeploymentCommand.html) command can be used to create deployments, roll back to previous versions (sequentally one at a time) and issue stack commands. The commands are JSON formatted. Other commands include:
+
+- ```update_custom_cookbooks``` - this updates but does not execute cookbooks
+
+- ```execute_recipes``` - runs individual recipes
+
+- ```setup``` & ```configure``` - run lifecycle actions
+
+- ```update_dependencies``` - linux only
 
 ## Strategies and Work-arounds
 
@@ -61,9 +99,15 @@ There are tons of [built in recipes](https://github.com/aws/opsworks-cookbooks) 
 
 - separate DB - in this approach data is sync'd from the old schema to the new schema
 
-# Hostname Themes
+### Hostname Themes
 
 Just when you thought AWS was hurting... there was no soul, I found something good. Hostname Themes!! Bad news? No cheese theme. No Pokemon theme. Scottish Island theme? lame.
+
+## Technical Components
+
+Agent - the components that sit on the managed servers
+
+automation engine - the AWS engines that make this all happen
 
 ## Resources
 
