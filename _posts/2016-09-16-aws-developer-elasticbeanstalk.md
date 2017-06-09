@@ -7,7 +7,7 @@ tags: [aws, developercert, vpc, elasticbeanstalk, devopspro]
 ---
 {% include JB/setup %}
 
-[AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) is the way to get started with AWS with a website or backend process. Like Cloud Formation, you don't pay to use the tool BUT you do pay for the resources it provisions. In fact, beanstalk is CloudFormation... except with a thin layer of goo on top.
+[AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) is the way to get started with AWS with a website or backend process. Like Cloud Formation, you don't pay to use the tool BUT you do pay for the resources it provisions. In fact, Beanstalk is CloudFormation... except with a thin layer of goo on top.
 
 Elastic Beanstalk supports a webserver or worker environments. On the webserver side it supports IIS, Nginx, tomcat, PHP, python, node.js or Ruby. It also includes Docker support.
 

@@ -30,10 +30,20 @@ CloudFormation Templates have 8 main sections but only the resources section is 
 
 * Outputs -- think `console.log();` you can output stuff like the URL of the website, or other variable.
 
-## Functions
-Intrinsic Functions - Some value that you need to access will not be known until runtime; think IP address or DNS name, anything that might vary each time the CloudFormation template is run. In these cases use the `Fn::GetAtt`, which retrieves the attribute from a resource, or other functions like `Fn:FindInMap` in mappings section. These functions can only be used in the  resource properties, metadata attributes, and update policy attributes.
+## Intrinsic Functions
 
-DependsOn - The CloudFormation template engine is smart enough to figure out many dependencies but in some cases resources require a "DependsOn" attribute. A VPC-gateway, an Auto Scaling group, and IAM roles are all required to include a DependsOn block.
+Intrinsic Functions are functions that run inside a CF template. There are helper functions and conditional logic functions. Some value that you need to access will not be known until runtime; think IP address or DNS name, anything that might vary each time the CloudFormation template is run. These functions can only be used in the resource properties, metadata attributes, and update policy attributes. 
+
+```Fn::Base64``` - encodes string; UserData is a common use of this function
+
+ `Fn::GetAtt`, which retrieves the attribute from a resource
+
+ `Fn::FindInMap` in mappings section. 
+
+Condition Functions
+
+
+DependsOn - The CloudFormation template engine is smart enough to figure out many dependencies but in some cases resources require a "DependsOn" attribute. A VPC-gateway, an Auto Scaling group, and IAM roles are all required to include a DependsOn block. A ```DependsOn``` block can take a single value or an array. 
 
 ## Nested Templates
 
@@ -223,7 +233,7 @@ UpdatePolicy:
 
 ### Stack Policy
 
-By default after you create a stack, anyone can update the stack and there is no (Stack Policies)[http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html]. To restrict access to stack updates, a stack policy can be applied to the stack, which, by default, protects all the resources in the stack. You have to explictly ```Allow``` updates; only one stack policy per stack; many resources per (Stack Policy)[http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html].
+By default after you create a stack, anyone can update the stack and there is no [Stack Policies](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html). To restrict access to stack updates, a stack policy can be applied to the stack, which, by default, protects all the resources in the stack. You have to explictly ```Allow``` updates; only one stack policy per stack; many resources per [Stack Policy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html).
 
 In addition, there is no fine grain access control in a stack policy... everyone that can run the template in update mode but you must specify a ```Principal:*```. One handy feature is the ```Condition``` block like: 
 
@@ -254,7 +264,8 @@ If you need to update a protected resource you can temporarily replace the polic
 ## Deleting
 
 ### DeletionPolicy
-When creating a (DeletionPolicy)[http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html] Specify ```Delete```, ```Retain``` or ```Snapshot``` as an attribute of the resources. Snapshot works for things that might be snapshotted... like EBS, RDS, & Redshift cluster.
+
+By default when a stack is deleted all the resources are deleted. To get aroudn this in various ways you can create a [DeletionPolicy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html) Specify ```Delete```, ```Retain``` or ```Snapshot``` as an attribute of the resources. Snapshot works for things that might be snapshotted... like EBS, RDS (instances and clusters), & Redshift cluster.
 
 ## Troubleshooting
 A couple of troubleshooting tips:
