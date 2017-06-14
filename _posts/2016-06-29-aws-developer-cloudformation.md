@@ -12,6 +12,7 @@ tags: [aws, developercert, cloudformation, solutionsarch, devopspro]
 NOTE: These notes aren't just for the AWS Developer Certification... they also include information on the DevOps Pro Certification as well.
 
 # CloudFormation Templates
+
 CloudFormation Templates have 8 main sections but only the resources section is required.
 
 * AWSTemplateFormatVersion -- this specfies the template version.. duh.
@@ -30,44 +31,54 @@ CloudFormation Templates have 8 main sections but only the resources section is 
 
 * Outputs -- think `console.log();` you can output stuff like the URL of the website, or other variable.
 
+## Nested Templates
+
+The AWS::CloudFormation::Stack resource can be used to call another template from within another template. This is useful if you want break up templates because of size (460k on S3), the number of resources is max'd out (200), or there are more than 100 mappings, 60 parameters or 60 outputs, OR want to reuse components. Parmeters and outputs are shared between the parent and child templates.
+
+```json 
+"myStack" : {
+  "Type" : "AWS::Cloudformation::Stack"
+  "Properties" : {
+    "TemplateURL" : "https://s3.template.json"
+    "Parameters" : {
+      "VPC": {
+        "Name" : "Value"
+      }
+    }
+  }
+}
+```
+
+## Cloudformation Components
+
 ## Intrinsic Functions
 
 Intrinsic Functions are functions that run inside a CF template. There are helper functions and conditional logic functions. Some value that you need to access will not be known until runtime; think IP address or DNS name, anything that might vary each time the CloudFormation template is run. These functions can only be used in the resource properties, metadata attributes, and update policy attributes. 
 
-```Fn::Base64``` - encodes string; UserData is a common use of this function
+- `Fn::Base64` - encodes string; UserData is a common use of this function
 
- `Fn::GetAtt`, which retrieves the attribute from a resource
+- `Fn::GetAtt` -  which retrieves the attribute from a resource
 
- `Fn::FindInMap` in mappings section. 
+- `Fn::FindInMap` in mappings section. 
 
-Condition Functions
+## Condition Functions
 
 
-DependsOn - The CloudFormation template engine is smart enough to figure out many dependencies but in some cases resources require a "DependsOn" attribute. A VPC-gateway, an Auto Scaling group, and IAM roles are all required to include a DependsOn block. A ```DependsOn``` block can take a single value or an array. 
 
-## Nested Templates
 
-The AWS::CloudFormation::Stack resource can be used to call another template from within another template.
 
-# CloudFormation Policy Overview
+## Resource Attributes 
 
-There are numerous types of CloudFormation Policies... when do you use what?
+CF policies aren't really separate documents thet are [resource attributes](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-product-attribute-reference.html). There are numerous types of CloudFormation Policies... when do you use what?
 
-### 
-| Name  | Why  | Notes  |
-|:--------------------------:|:--------------------------:|:--------------------------:|
-| Creation    | Signal resource complete   |   Instances, ASGroups & wait conditions only |
-| Stack    | Restrict resource updates   |   Keep important stuff from getting nuked |
-| WaitOnResourceSignals    | describe-stacks   | Stop progress until resources signal  |
+- CreationPolicy - used to pause resource from going to create complete before success signals or timeout; applies to instances, ASG & wait conditions only
 
-### AutoScalingPolicies (Update)
+- DeletionPolicy - used to keep important stuff from getting nuked; can be `Delete`, (which is the default); `Retain` which is useful for common infrastructure architectures, AD, databases but leaves a mess; `Snapshot` which is for volumes, DBclusters, DBInstance or Redshift
 
-| Name  | Why  | Notes  |
-|:--------------------------:|:--------------------------:|:--------------------------:|
-| AutoScalingRollingUpdate    | Incremental update   |   Replace instances in ASG |
-| AutoScalingReplacingUpdate    | Replace ASGroup   | keep the old ASG around until new one is up|
-| AutoScalingScheduledAction    | Stop scheduled changes   | Keep scheduled AutoScaling actions from occurring |
+- UpdatePolicy - used to dictate how updates to an ASG are handled... AutoScalingRollingUpdate &amp; 
 
+
+DependsOn - The CloudFormation template engine is smart enough to figure out many dependencies but in some cases resources require a "DependsOn" attribute. A VPC-gateway, an Auto Scaling group, and IAM roles are all required to include a DependsOn block. A `DependsOn` block can take a single value or an array. 
 
 # CloudFormation Lifecycle
 
@@ -76,6 +87,7 @@ There are numerous types of CloudFormation Policies... when do you use what?
 From the command line use --template-body or --template-url to validate a template. Dependency errors, insufficient IAM permissions, invalid value/unsupported resource property, Security Group ID does not exist in VPC (you might have used a SG name instead of an ID), wait condition didn't receive the required number of signals (did the cf scripts get installed on the instance?), 
 
 ## Creating
+
 The user running the template must have enough IAM rights to launch the resources in the template.
 
 Bootstrapping - use cfn-* tools to get instances prep'd; there is a trade off between pre-baked images and init scripts; storing sensitive information is key as well - the "NoEcho" attribute of a parameters is an important part of the solution; rolling updates
@@ -97,6 +109,7 @@ CloudFormation with Chef - better for longer deployments; OpsWorks for detailed 
 CloudFormation with Elastic BeanStalk - Can use CloudFormation to deploy Elastic Beanstalk; less flexible than OpsWorks; better suited to immutable deployments
 
 ### Wait Conditions
+
 Wait conditions should be used when synchronizing resources creation; DependsOn only checks to see if the resource has been created... Should not be used for EC2 instance or autoscaling groups... use creation policies for these resources.
 
 The lifecycle is straightforward - while waiting they are ```CREATE_IN_PROGRESS``` then they are rolled back if they get a ```CREATE_FAILED```. The wait condition has three properties:
@@ -109,7 +122,7 @@ The lifecycle is straightforward - while waiting they are ```CREATE_IN_PROGRESS`
 
 #### To setup a wait condition:
 
-First, reate a wait handler (one per wait condition)
+First, create a wait handler (one per wait condition)
 
 ```yaml
 myWaitHandler:
@@ -128,6 +141,7 @@ myWaitCondition:
 ```
 
 ### Creation Policies
+
 When additional tasks must be completed before the resource meets the CREATE_COMPLETE state, a CreationPolicy can be used. When the resource spins up it signals the stack using helper scripts, the ```SignalResource``` API or an API call.
 
 ```yaml
@@ -139,6 +153,7 @@ CreationPolicy:
     TimeOut: String # ISO8601 format; PT1H30M10S = 1h 30m 10s
 
 ```
+
 ## Helper Scripts
 
 ### cfn-init
@@ -179,13 +194,16 @@ AWS::CloudFormation::Init:
 Sends back messages to stack to signal success or failure. The cfn-signal helper script signals whether an EC2 instance has been successfully created or updated. This script is used with a CreationPolicy or an Auto Scaling group with a WaitOnResourceSignals update policy. When CloudFormation creates or updates resources with those policies, the rest of the stack pauses until the resource receives the required number of success signals, or until the timeout period is reached. The cfn-signal helper is what sends those signals back - successful or not.
 
 ### cfn-hup
+
 Used to update in place using a deamon that detects resource metadata change and takes actions on those changes.
 
 ### cfn-get-metadata
+
 Gets a metadata block from CloudFormation and prints it out to STDOUT.
 
 
 ## Rollback
+
 CloudFormation Rollback - If a CloudFormation template run does not complete successfully then by default it all gets rolled back which feels like something very similiar to a transaction. First you might see a ```CREATE_FAILED``` message the likely a ```ROLLBACK_IN_PROGRESS``` message in the CF log. Rollbacks can be disabled to assist in troubleshooting.
 
 ## Updates
@@ -233,23 +251,33 @@ UpdatePolicy:
 
 ### Stack Policy
 
-By default after you create a stack, anyone can update the stack and there is no [Stack Policies](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html). To restrict access to stack updates, a stack policy can be applied to the stack, which, by default, protects all the resources in the stack. You have to explictly ```Allow``` updates; only one stack policy per stack; many resources per [Stack Policy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html).
+By default after you create a stack, anyone can update the stack and there is no [Stack Policy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html). To restrict access to stack updates, a stack policy can be applied to the stack, which, by default, protects all the resources in the stack. You have to explictly `Allow` updates; only one stack policy per stack; many resources per [Stack Policy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html).
 
-In addition, there is no fine grain access control in a stack policy... everyone that can run the template in update mode but you must specify a ```Principal:*```. One handy feature is the ```Condition``` block like: 
+When a resource is updated it might be replaced or have no service interuption, suffer an interuption or be deleted. If you need to update a protected resource you can temporarily replace the policy at update time.
+
+In addition, there is no fine grain access control in a stack policy... everyone that can run the template in update mode but you must specify a `Principal:*`. One handy feature is the `Condition` block like: 
 
 ```json
-"Condition": {
-  "StringEquals" : {
-    "ResourceType": ["AWS::RDS::DBInstance"]
-  },
-  "StringLike" : {
-    "ResourceType" : ["AWS::EC2::*"]
-  }
-
+{
+  "Statement": [
+    {
+      "Condition" : {
+        "ResourceType" : [
+          "AWS::EC2::*"
+        ]
+      } 
+    },
+    {
+      "Effect" : "Allow",
+      "Action" : "Update",
+      "Principle" : "*",
+      "Resource" : "*"
+    }
+  ]
 }
 ```
 
-The ```Action``` attribute can be set to:
+The `Action` attribute can be set to:
 
 - Update:Modify
 
@@ -259,7 +287,6 @@ The ```Action``` attribute can be set to:
 
 - Update:*
 
-If you need to update a protected resource you can temporarily replace the policy at update time.
 
 ## Deleting
 
@@ -268,6 +295,7 @@ If you need to update a protected resource you can temporarily replace the polic
 By default when a stack is deleted all the resources are deleted. To get aroudn this in various ways you can create a [DeletionPolicy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html) Specify ```Delete```, ```Retain``` or ```Snapshot``` as an attribute of the resources. Snapshot works for things that might be snapshotted... like EBS, RDS (instances and clusters), & Redshift cluster.
 
 ## Troubleshooting
+
 A couple of troubleshooting tips:
 
 * You can't stop and start an instance to modify its AMI; you must replace the instance; CF deals with instance ID changes.
