@@ -71,14 +71,16 @@ Intrinsic Functions are functions that run inside a CF template. There are helpe
 
 CF policies aren't really separate documents thet are [resource attributes](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-product-attribute-reference.html). There are numerous types of CloudFormation Policies... when do you use what?
 
-- CreationPolicy - used to pause resource from going to create complete before success signals or timeout; applies to instances, ASG & wait conditions only
+- `CreationPolicy` - used to pause resource from going to create complete before success signals or timeout; applies to instances, ASG & wait conditions only
 
-- DeletionPolicy - used to keep important stuff from getting nuked; can be `Delete`, (which is the default); `Retain` which is useful for common infrastructure architectures, AD, databases but leaves a mess; `Snapshot` which is for volumes, DBclusters, DBInstance or Redshift
+- `DeletionPolicy` - used to keep important stuff from getting nuked; can be `Delete`, (which is the default); `Retain` which is useful for common infrastructure architectures, AD, databases but leaves a mess; `Snapshot` which is for volumes, DBclusters, DBInstance or Redshift
 
-- UpdatePolicy - used to dictate how updates to an ASG are handled... AutoScalingRollingUpdate &amp; 
+- `UpdatePolicy` - used to dictate how updates to an ASG are handled... AutoScalingRollingUpdate &amp; 
 
+## Custom Resources
 
-DependsOn - The CloudFormation template engine is smart enough to figure out many dependencies but in some cases resources require a "DependsOn" attribute. A VPC-gateway, an Auto Scaling group, and IAM roles are all required to include a DependsOn block. A `DependsOn` block can take a single value or an array. 
+[Custom Resources](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-custom-resources.html) enable you to support AWS Products that lack CF support, operate on non-AWS resources and perform advanced logic is limited. A custom resource directly runs a lambda function or creates and SNS message when the resource is created, updated, or deleted. 
+
 
 # CloudFormation Lifecycle
 
@@ -110,17 +112,22 @@ CloudFormation with Elastic BeanStalk - Can use CloudFormation to deploy Elastic
 
 ### Wait Conditions
 
-Wait conditions should be used when synchronizing resources creation; DependsOn only checks to see if the resource has been created... Should not be used for EC2 instance or autoscaling groups... use creation policies for these resources.
+Wait conditions should be used when synchronizing resources creation; DependsOn is the CloudFormation template engine is smart enough to figure out many dependencies but in some cases resources require a `DependsOn` attribute. A VPC-gateway, an Auto Scaling group, and IAM roles are all required to include a DependsOn block. A `DependsOn` block can take a single value or an array.  The problem is that `DependsOn` only checks to see if the resource has been created NOT if it is operationally complete... One nifty features of wait conditions is the ability to pass data to and from the created resource.
 
-The lifecycle is straightforward - while waiting they are ```CREATE_IN_PROGRESS``` then they are rolled back if they get a ```CREATE_FAILED```. The wait condition has three properties:
+The lifecycle is straightforward - while waiting they are `CREATE_IN_PROGRESS` then they are rolled back if they get a `CREATE_FAILED`. The wait condition has three properties:
 
 - Count - how many signals must be received to make the 
 
-- Handle - a ```Ref``` to the wait handle
+- Handle - a `Ref` to the wait handle
 
 - Timeout - the time out period in seconds
 
+Should not be used for EC2 instance or autoscaling groups... use creation policies or wait conditions for these resources and use cases.
+
 #### To setup a wait condition:
+
+For resources other than EC2 instances OR Auto Scaling groups, a wait condition is what you want. The resource must signal the start and end of the wait time out period. 
+
 
 First, create a wait handler (one per wait condition)
 
@@ -129,20 +136,35 @@ myWaitHandler:
   Type: AWS::CloudFromation::WaitConditionHandle
   Properties:
 ```
-Second, create a ```WaitCondition``` resources using the ```DependsOn``` attribute to start the timeout after that resource has been completed.
+Second, create a `WaitCondition` resources using the `DependsOn` attribute to start the timeout after that resource has been completed.
 
 ```yaml
 myWaitCondition:
   Type: AWS::CloudFormation::WaitCondition
-  DependsOn: Ec2Instance
+  DependsOn: myEc2Instance
   Properties:
     Handle:
       Ref: MyWaitHandler
+        Timeout: 4500
+        Count: 2
 ```
+
+Third, signal the start of the wait condition.
+
+```yaml
+myEc2Instance:
+  Properties:
+    UserData:
+      fn::Base64
+      # more stuff...
+```
+
+Fourth, signal the end of the wait condition or failure.
+
 
 ### Creation Policies
 
-When additional tasks must be completed before the resource meets the CREATE_COMPLETE state, a CreationPolicy can be used. When the resource spins up it signals the stack using helper scripts, the ```SignalResource``` API or an API call.
+When waiting for an EC2 instance or ASG to setup, a `CreationPolicy` should be used. When the resource spins up it signals the stack using helper scripts, the `SignalResource` API or an API call.
 
 ```yaml
 CreationPolicy:
