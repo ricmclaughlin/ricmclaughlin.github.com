@@ -37,8 +37,6 @@ Apps are code someplace you want to run on instances that define the name, root,
 
 Deployment is as expected: app parameters are passed into the environment from Databags, the app is installed and 4 versions of the app are maintained.
 
-
-
 ### Recipes
 
 Recipes are small chunks of reuseable configuration that are run in Lifecycle Events. Resources are the building blocks of recipes and take the form of package (like HA proxy), a service (something that needs to be turned on or off) and templates (which are files, typically to configure resources).
@@ -63,21 +61,23 @@ There are tons of [built in recipes](https://github.com/aws/opsworks-cookbooks) 
 
 ### Databags
 
+[Databags](https://docs.chef.io/data_bags.html) are global JSON objects which can be defined on the stack, layer, app and instance.  Because there is no Chef server they are defined at the commandline OR using the CUSTOM_JSON field.
 
 ### BerkShelf
 
+[BerkShelf](https://docs.chef.io/berkshelf.html) over comes a signifigant short coming in older versions of Chef; only allows one cookbook so community recipes had to be copied into the local repository. This feature was added in the 11.10 version of Chef. Components of berkshelf include the Chef Supermarket, the Berksfile, and the berks package manager. To enable berkshelf enable custom Chef cookbooks on the stack and create a `Berksfile`. 
 
 ### create-deployment command
 
-The [```create-deployment```](https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DeploymentCommand.html) command can be used to create deployments, roll back to previous versions (sequentally one at a time) and issue stack commands. The commands are JSON formatted. Other commands include:
+The [`create-deployment`](https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DeploymentCommand.html) command can be used to create deployments, roll back to previous versions (sequentally one at a time) and issue stack commands. The commands are JSON formatted. Other commands include:
 
-- ```update_custom_cookbooks``` - this updates but does not execute cookbooks
+- `update_custom_cookbooks` - this updates but does not execute cookbooks
 
-- ```execute_recipes``` - runs individual recipes
+- `execute_recipes` - runs individual recipes
 
-- ```setup``` & ```configure``` - run lifecycle actions
+- `setup` & `configure` - run lifecycle actions
 
-- ```update_dependencies``` - linux only
+- `update_dependencies` - linux only
 
 ## Strategies and Work-arounds
 
@@ -98,6 +98,8 @@ The [```create-deployment```](https://docs.aws.amazon.com/opsworks/latest/APIRef
 - upgrade DB - in this approach both versions access the same db; old app is denied access?
 
 - separate DB - in this approach data is sync'd from the old schema to the new schema
+
+**Instance Auto-Healing** - when the Chef agent loses communication with the automation engine, the engine tries to fix it. EBS backed instances are stopped and started; instance store backed instances are terminated and relaunched. In both scenarios, the configure event is run. If the auto-healing process does not recover it gets marked `start_failed`, which requires manual intervention to fix. The OS of the instances will not be changed even if the default OS is has been changed at the stack level. Auto-heal is not performance based, only agent->automation engine based.
 
 ### Hostname Themes
 
