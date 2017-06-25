@@ -113,7 +113,7 @@ Move to S3-IA - must be here for a minimum of 30 days (and be 128kb) before it c
 Move to Glacier - can move here directly after creation if needed
 Permenantly Delete - yep, cool stuff this.
 
-S3 lifecycle Policy - These are XML documents that are stored as a lifecycle sub-resource attached to the bucket. ```PUT```, ```GET``` and ```DELETE``` actions can be done with the lifecycle policies.
+S3 lifecycle Policy - These are XML documents that are stored as a lifecycle sub-resource attached to the bucket. `PUT`, `GET` and `DELETE` actions can be done with the lifecycle policies.
 
 ## Bucket Names &amp; Such
 
@@ -157,8 +157,8 @@ You first initiate the multi-part upload and then upload all parts using the Upl
 | GET | Object, Object ACL, Object Torrent |
 | HEAD | get meta data (might returns 404 or 403 error) |
 | POST | writes an object to S3 from a form (can also copy the file) |
-| ```mb``` & ```rb``` | make bucket & remove bucket |
-| ```website``` | creates a website |
+| `mb` & `rb` | make bucket & remove bucket |
+| `website` | creates a website |
 
 ### Error Codes from API
 Common Errors - S3 handles error codes with HTTP response codes - which makes sense seeing that we are using a REST API here.

@@ -9,7 +9,7 @@ tags: []
 
 
 Getting started with flex as a layout tool is easy - create a flex container - using `display` 
-```css
+`css
 .container {
   display: flex;
   /* By default flex uses rows, and puts items left to right: */
@@ -17,7 +17,7 @@ Getting started with flex as a layout tool is easy - create a flex container - u
   /* By default flex does NOT wrap: */
   flex-wrap: nowrap;
 }
-```
+`
 
 flex direction
 

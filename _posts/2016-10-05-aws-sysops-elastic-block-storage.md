@@ -107,4 +107,4 @@ Super high disk IO? either RAID 0 or RAID 10 EBS
 ## API 
 
 | **Call**  | **Purpose**  |
-| ```create-volume``` | custom metrics | 
+| `create-volume` | custom metrics | 

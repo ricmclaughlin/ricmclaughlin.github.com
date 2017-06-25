@@ -35,7 +35,7 @@ CloudFormation Templates have 8 main sections but only the resources section is 
 
 The AWS::CloudFormation::Stack resource can be used to call another template from within another template. This is useful if you want break up templates because of size (460k on S3), the number of resources is max'd out (200), or there are more than 100 mappings, 60 parameters or 60 outputs, OR want to reuse components. Parmeters and outputs are shared between the parent and child templates.
 
-```json 
+`json 
 "myStack" : {
   "Type" : "AWS::Cloudformation::Stack"
   "Properties" : {
@@ -47,7 +47,7 @@ The AWS::CloudFormation::Stack resource can be used to call another template fro
     }
   }
 }
-```
+`
 
 ## Cloudformation Components
 
@@ -131,14 +131,14 @@ For resources other than EC2 instances OR Auto Scaling groups, a wait condition 
 
 First, create a wait handler (one per wait condition)
 
-```yaml
+`yaml
 myWaitHandler:
   Type: AWS::CloudFromation::WaitConditionHandle
   Properties:
-```
+`
 Second, create a `WaitCondition` resources using the `DependsOn` attribute to start the timeout after that resource has been completed.
 
-```yaml
+`yaml
 myWaitCondition:
   Type: AWS::CloudFormation::WaitCondition
   DependsOn: myEc2Instance
@@ -147,17 +147,17 @@ myWaitCondition:
       Ref: MyWaitHandler
         Timeout: 4500
         Count: 2
-```
+`
 
 Third, signal the start of the wait condition.
 
-```yaml
+`yaml
 myEc2Instance:
   Properties:
     UserData:
       fn::Base64
       # more stuff...
-```
+`
 
 Fourth, signal the end of the wait condition or failure.
 
@@ -166,7 +166,7 @@ Fourth, signal the end of the wait condition or failure.
 
 When waiting for an EC2 instance or ASG to setup, a `CreationPolicy` should be used. When the resource spins up it signals the stack using helper scripts, the `SignalResource` API or an API call.
 
-```yaml
+`yaml
 CreationPolicy:
   AutoScalingCreationPolicy: #only for autoscaling groups
     MinSuccessfulInstancesPercent: 
@@ -174,7 +174,7 @@ CreationPolicy:
     Count: Integer # default = 1
     TimeOut: String # ISO8601 format; PT1H30M10S = 1h 30m 10s
 
-```
+`
 
 ## Helper Scripts
 
@@ -186,7 +186,7 @@ Reads the instance meta-data io install pages, write files and enable/disable so
 
 ConfigSets are used to order config tasks in the template for the cfn-init process. Something like:
 
-```yaml
+`yaml
 AWS::CloudFormation::Init: 
   configSets: 
     ascending: 
@@ -209,7 +209,7 @@ AWS::CloudFormation::Init:
         env: 
           CFNTEST: "I come from config2"
         cwd: "~" 
-```
+`
 
 ### cfn-signal
 
@@ -226,25 +226,25 @@ Gets a metadata block from CloudFormation and prints it out to STDOUT.
 
 ## Rollback
 
-CloudFormation Rollback - If a CloudFormation template run does not complete successfully then by default it all gets rolled back which feels like something very similiar to a transaction. First you might see a ```CREATE_FAILED``` message the likely a ```ROLLBACK_IN_PROGRESS``` message in the CF log. Rollbacks can be disabled to assist in troubleshooting.
+CloudFormation Rollback - If a CloudFormation template run does not complete successfully then by default it all gets rolled back which feels like something very similiar to a transaction. First you might see a `CREATE_FAILED` message the likely a `ROLLBACK_IN_PROGRESS` message in the CF log. Rollbacks can be disabled to assist in troubleshooting.
 
 ## Updates
 
-Think if the update will cause downtime before you do it. Is the change mutable or immutable? Generally you will see a ```UPDATE_IN_PROGRESS``` then an ```UPDATE_COMPLETE``` once the update is complete. Resource meta updates are controlled by the cfn-hub daemon, which, by default, runs every 15 minutes.
+Think if the update will cause downtime before you do it. Is the change mutable or immutable? Generally you will see a `UPDATE_IN_PROGRESS` then an `UPDATE_COMPLETE` once the update is complete. Resource meta updates are controlled by the cfn-hub daemon, which, by default, runs every 15 minutes.
 
 ### Update Policies
 
-An (Update Policy)[http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html] handles updates to ```AWS::AutoScaling::AutoScalingGroup``` resources.
+An (Update Policy)[http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html] handles updates to `AWS::AutoScaling::AutoScalingGroup` resources.
 
 AutoScalingReplacingUpdate and AutoScalingRollingUpdate get applied when the AutoScaling group's launch configuration changes, there is a change to the associated subnets (VPCZoneIdentifiers) or when the instances in the ASGroup don't match the current launch configuration.
 
-In addition, if ```WillReplace: true``` and both AutoScalingReplacingUpdate and AutoScalingRollingUpdate are specified AutoScalingReplacingUpdate takes precendents.
+In addition, if `WillReplace: true` and both AutoScalingReplacingUpdate and AutoScalingRollingUpdate are specified AutoScalingReplacingUpdate takes precendents.
 
 #### AutoScalingReplacingUpdate Policy
 
-In the case of AutoScalingReplacingUpdate, if the ```WillReplace``` attribute is true the ASGroup AND the instances in that groups are replaced.  During the update the existing AutoScaling group is used and later destroyed AFTER the update is complete. To make this scenario work well, a ```CreationPolicy``` should also be specified so the new AutoScaling group is prepared prior to cut over. As an example:
+In the case of AutoScalingReplacingUpdate, if the `WillReplace` attribute is true the ASGroup AND the instances in that groups are replaced.  During the update the existing AutoScaling group is used and later destroyed AFTER the update is complete. To make this scenario work well, a `CreationPolicy` should also be specified so the new AutoScaling group is prepared prior to cut over. As an example:
 
-```yaml
+`yaml
 UpdatePolicy:
   AutoScalingReplacingUpdate:
     WillReplace: true
@@ -255,21 +255,21 @@ UpdatePolicy:
       Count: 
         Ref: ResourcesSignalsOnCreate
       Timeout: PT10M
-```
+`
 
 #### AutoScalingRollingUpdate Policy
 
-AutoScalingRollingUpdate would be appropriate in the case where the AMI and app both need updates. This is a way better way of updating a fleet instead of using ```cfn-init``` and ```cfn-hub``` because rolling updates can be inconsistent.
+AutoScalingRollingUpdate would be appropriate in the case where the AMI and app both need updates. This is a way better way of updating a fleet instead of using `cfn-init` and `cfn-hub` because rolling updates can be inconsistent.
 
 #### AutoScalingScheduledAction Policy
 
 In the case where updates to stacks might occur during AutoScaling group policy scheduled actions, you can specify an AutoScalingScheduledAction to prevent changes during an update. In other words, we don't our regularly time scheduled updates to the AutoScaling group's size properties to get overwritten by an update... here is how to do that:
 
-```yaml
+`yaml
 UpdatePolicy:
   AutoScalingScheduledAction:
     IgnoreUnmodifiedGroupSizeProperties: true
-```
+`
 
 ### Stack Policy
 
@@ -279,7 +279,7 @@ When a resource is updated it might be replaced or have no service interuption, 
 
 In addition, there is no fine grain access control in a stack policy... everyone that can run the template in update mode but you must specify a `Principal:*`. One handy feature is the `Condition` block like: 
 
-```json
+`json
 {
   "Statement": [
     {
@@ -297,7 +297,7 @@ In addition, there is no fine grain access control in a stack policy... everyone
     }
   ]
 }
-```
+`
 
 The `Action` attribute can be set to:
 
@@ -314,7 +314,7 @@ The `Action` attribute can be set to:
 
 ### DeletionPolicy
 
-By default when a stack is deleted all the resources are deleted. To get aroudn this in various ways you can create a [DeletionPolicy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html) Specify ```Delete```, ```Retain``` or ```Snapshot``` as an attribute of the resources. Snapshot works for things that might be snapshotted... like EBS, RDS (instances and clusters), & Redshift cluster.
+By default when a stack is deleted all the resources are deleted. To get aroudn this in various ways you can create a [DeletionPolicy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html) Specify `Delete`, `Retain` or `Snapshot` as an attribute of the resources. Snapshot works for things that might be snapshotted... like EBS, RDS (instances and clusters), & Redshift cluster.
 
 ## Troubleshooting
 

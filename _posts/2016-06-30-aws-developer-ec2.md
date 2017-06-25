@@ -128,12 +128,12 @@ These metrics, except for AutoScalingGroupName, are only available with detailed
 
 The big reason to use custom metrics and to push metrics to cloudwatch in general is the aggregation of data in cloudwatch instead of all over the place.. this requires an EC2 role to be setup.
 
-```bash
+`bash
 #!/bin/bash
 curl https://s3.amazonaws.com//aws-cloudwatch/downloads/latest/awslogs-agent-setup.py -O
 chmod +x ./awslogs-agent-setup.py
 sudo python ./awslogs-agent-setup.py --region us-east-1 -n -c [bucket-for-log-files]
-```
+`
 
 ### AMI API Highlights
 

@@ -87,7 +87,7 @@ The [`create-deployment`](https://docs.aws.amazon.com/opsworks/latest/APIReferen
 
 - package the source and place it on s3; connect that to the deploy model
 
-**Manual Deploy** - manual deployment takes the form of the ```deploy``` command for apps and "Update Custom Cookbooks" for cookbooks. This is super fast, but updates all instances at the same time, and a failed deployment is difficult to recover from. Rolling back can be done with the last four versions using the ```Rollback``` command, or you can ```undeploy``` which will remove the entire application. 
+**Manual Deploy** - manual deployment takes the form of the `deploy` command for apps and "Update Custom Cookbooks" for cookbooks. This is super fast, but updates all instances at the same time, and a failed deployment is difficult to recover from. Rolling back can be done with the last four versions using the `Rollback` command, or you can `undeploy` which will remove the entire application. 
 
 **Rolling Deployments** - by instance groups, proceeds with more instances after success, continues until all instances are complete. To make this work, deregister the instance from ELB, deploy app; IF successful according to monitoring and health checks, re-register with ELB, ELSE rollback; continue until done. Connection draining is a good idea in this scenario.
 

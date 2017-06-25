@@ -33,7 +33,7 @@ Namespaces - containers for metrics. Each namespace is something like AWS/EBS...
 
 ## Alarms
 
-; actions the alarms take must be in same region as the alarm; have three states ```OK```, ```ALARM```, and ```INSUFFICIENT_DATA```.
+; actions the alarms take must be in same region as the alarm; have three states `OK`, `ALARM`, and `INSUFFICIENT_DATA`.
 
 5000 alarms per account
 
@@ -159,12 +159,12 @@ If you know there is a lot of traffic on the way, call AWS and get them to "pre-
 ## API 
 
 | **Call**  | **Purpose**  |
-| ```put-metric-data``` | custom metrics | 
-| ```put-metric-alarm``` | creates metric; ```INSUFFICIENT_DATA``` state at first | 
-| ```disable-alarm-actions``` | alarm active; doesn't fire | 
-| ```enable-alarm-actions``` | alarm active; fires | 
-| ```list-metrics``` | lists all the metrics |
-| ```get-metric-statistic``` | get a specific metric |
+| `put-metric-data` | custom metrics | 
+| `put-metric-alarm` | creates metric; `INSUFFICIENT_DATA` state at first | 
+| `disable-alarm-actions` | alarm active; doesn't fire | 
+| `enable-alarm-actions` | alarm active; fires | 
+| `list-metrics` | lists all the metrics |
+| `get-metric-statistic` | get a specific metric |
 
 
 ## Documentation

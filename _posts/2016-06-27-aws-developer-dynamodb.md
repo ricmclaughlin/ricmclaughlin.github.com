@@ -19,7 +19,7 @@ Yes, [DynamoDB](https://aws.amazon.com/dynamodb/) is like MongoDB - but the conc
 
 **DynamoDB limits** - DynamoDB limits the tables per region to 256 but this can be increased by contacting AWS. The maximum size of a DynamoDB range primary key attribute value is 1024 bytes. If you need more than 10,000 writes/second or 10,000 reads/second you need to contact AWS directly. 
 
-**Exceeding capacity** - If you exceed provisioned throughput, you receive a 400 HTTP status code - ```ProvisionedThroughputExceededException```. With global secondary indexes, if one of the indexes runs low on write capacity, all of the tables indexes might get throttled, even if one or more of the indexes aren't affected. 
+**Exceeding capacity** - If you exceed provisioned throughput, you receive a 400 HTTP status code - `ProvisionedThroughputExceededException`. With global secondary indexes, if one of the indexes runs low on write capacity, all of the tables indexes might get throttled, even if one or more of the indexes aren't affected. 
 
 ## Pricing 
 
@@ -135,13 +135,13 @@ Minimizing hot partitians is really an issue of proper provisioning and [partiti
 
 Streams are ordered lists of record updates to a table that is stored for 24 hours with no duplicate entries in near real-time. Streams can be configured four ways:
 
-- ```KEYS_ONLY``` - only the key attributes are written
+- `KEYS_ONLY` - only the key attributes are written
 
-- ```NEW_IMAGE``` - the entire post is written to the stream
+- `NEW_IMAGE` - the entire post is written to the stream
 
-- ```OLD_IMAGE``` - the entire pre update item is written to the stream
+- `OLD_IMAGE` - the entire pre update item is written to the stream
 
-- ```NEW_AND_OLD_IMAGES``` - the pre and post item are written to the stream
+- `NEW_AND_OLD_IMAGES` - the pre and post item are written to the stream
 
 There are two basic use cases for streams: replication and triggers. Cross region replication is enabled by a [CloudFormation template](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.CrossRegionRepl.html) that has been deprecated. 
 

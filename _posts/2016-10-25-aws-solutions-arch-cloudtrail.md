@@ -11,7 +11,7 @@ AWS CloudTrail is a fully managed web service that records AWS API calls for you
 
 ## Log Contents 
 
-The logs contain the user ID, time, source IP, req and res. CloudTrail records the API calls by a user OR on behalf of an AWS service; use the ```invokedBy``` field in the request to figure that out.
+The logs contain the user ID, time, source IP, req and res. CloudTrail records the API calls by a user OR on behalf of an AWS service; use the `invokedBy` field in the request to figure that out.
 
 ## Configuration
 
