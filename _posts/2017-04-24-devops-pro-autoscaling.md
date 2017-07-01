@@ -31,7 +31,7 @@ At a minimium you are going to need at least 2 scaling plans.
 
 ## Dynamic Scaling Policies
 
-Scaling policies implement dynamic scaling. Scaling adjustment types change the capacity of an Auto Scaling group using a `ScalingAdjustment`. There are three different adjustment types:
+Scaling policies implement dynamic scaling. Alarms fire the scaling policies. Scaling adjustment types change the capacity of an Auto Scaling group using a `ScalingAdjustment`. There are three different adjustment types:
 
 - `ChangeInCapacity` - increment or de-increment by a number of instances
 
@@ -41,7 +41,7 @@ Scaling policies implement dynamic scaling. Scaling adjustment types change the 
 
 ### Scaling Policy Types
 
-Simple Scaling - single scaling adjustment; have cooldown; 
+Simple Scaling - single scaling adjustment; have cooldown; default of 300
 
 Step Scaling - scale based on size of alarm breach; no cooldown; don't lock group; continuously evaluated; instance warmup
 
@@ -77,7 +77,7 @@ If you need to remove an instance from InService state you call `DetachInstances
 
 ### ASG Termination Policies
 
-ASG (Termination Policies)[http://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-termination.html] determine which instances should be terminated when a scale-in event occurs. In the console, they get setup in the ASG configuration setting and get executed in presentation order. When a scale-in event occurs the AutoScaling feature checks for an imbalance of instances across AZ then runs the termination policy. Some use cases for each type of termination policy includes:
+ASG [Termination Policies](http://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-termination.html) determine which instances should be terminated when a scale-in event occurs. In the console, they get setup in the ASG configuration setting and get executed in presentation order. When a scale-in event occurs the AutoScaling feature checks for an imbalance of instances across AZ then runs the termination policy. Some use cases for each type of termination policy includes:
 
 - OldestInstance - gradually replace an old instance type
 
@@ -123,15 +123,15 @@ There are numerous AS processes that can be suspended. Generally, suspending AS 
 
 
 | metric      | Purpose       |
-|----------|---------------|
-| GroupMinSize | min size |
-| GroupMaxSize | max size |
-| GroupDesiredCapacity | attempts to maintain this number  |
-| GroupInServiceInstances | in-service and not pending or terminating  |
-| GroupPendingInstances | pending instances |
-| GroupTerminatingInstance | terminating instances  |
-| GroupStandbyInstances | instances in stand-by state  |
-| GroupTotalInstances | in-service, pending, &amp; terminating  |
+|--------------------|---------------|
+| `GroupMinSize` | min size |
+| `GroupMaxSize` | max size |
+| `GroupDesiredCapacity` | attempts to maintain this number  |
+| `GroupInServiceInstances` | in-service and not pending or terminating  |
+| `GroupPendingInstances` | pending instances |
+| `GroupTerminatingInstance` | terminating instances  |
+| `GroupStandbyInstances` | instances in stand-by state  |
+| `GroupTotalInstances` | in-service, pending, &amp; terminating  |
 
 
 ## Autoscaling API

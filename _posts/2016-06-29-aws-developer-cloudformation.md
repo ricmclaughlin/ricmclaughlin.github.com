@@ -61,6 +61,8 @@ Intrinsic Functions are functions that run inside a CF template. There are helpe
 
 - `Fn::FindInMap` in mappings section. 
 
+- `Ref` - reference the ID of a resources; can be written as `!Ref` or `Ref:`
+
 ## Condition Functions
 
 
