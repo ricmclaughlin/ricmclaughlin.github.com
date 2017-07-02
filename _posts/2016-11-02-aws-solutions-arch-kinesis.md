@@ -32,7 +32,7 @@ The max size of a datablob is 1 MB.
 
 ## Why && When
 
-In the past realtime process of massive amounts of data was hard... very hard in fact.  Kinesis is quite useful when you need to do multi-stage processing of data, partition the data then load the data. Tons of application in realtime gaming, IoT & mobile app analytics, monitoring app or system logs in real-time.
+In the past realtime process of massive amounts of data was hard... very hard, in fact.  Kinesis is quite useful when you need to do multi-stage processing of data, partition the data then load the data. Tons of application in realtime gaming, IoT & mobile app analytics, monitoring app or system logs in real-time.
 
 ## Resources
 

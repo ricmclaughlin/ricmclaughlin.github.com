@@ -68,7 +68,6 @@ Intrinsic Functions are functions that run inside a CF template. There are helpe
 
 
 
-
 ## Resource Attributes 
 
 CF policies aren't really separate documents thet are [resource attributes](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-product-attribute-reference.html). There are numerous types of CloudFormation Policies... when do you use what?
@@ -81,7 +80,16 @@ CF policies aren't really separate documents thet are [resource attributes](http
 
 ## Custom Resources
 
-[Custom Resources](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-custom-resources.html) enable you to support AWS Products that lack CF support, operate on non-AWS resources and perform advanced logic is limited. A custom resource directly runs a lambda function or creates and SNS message when the resource is created, updated, or deleted. 
+[Custom Resources](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-custom-resources.html) enable you to support AWS Products that lack CF support, operate on non-AWS resources and perform advanced logic is limited. A custom resource directly runs a lambda function or creates and SNS message when the resource is created, updated, or deleted. This can be specfied like `Custom::MyCustomThingy` or ` AWS::CloudFormation::CustomResource`.
+
+Here is a quick summary of how to make a [Custom Resources](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-custom-resources.html):
+
+0. Define the service token, which is a URL that must be in the same region, in a template.
+
+1. The template is used to create, update or delete a custom resource and the engine calls the service token.
+
+2. The custom resource provider processes the cloudformation request and returns a response of `SUCCESS` or 
+
 
 
 # CloudFormation Lifecycle
