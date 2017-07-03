@@ -7,6 +7,8 @@ tags: [aws, soluarch]
 ---
 {% include JB/setup %}
 
+## EMR Overview
+
 The big idea is distribute high volocity, high volume and lots of variety of data across tons of servers... using Hadoop. Tasks include Log analysis, web indexing, machine learning, financial analysis, scientific simulation, and bioinformatics. Hadoop is a data storage and batch processing framework that is comprized of four major components:
 
 - Hadoop Common - the utilities and libraries part
@@ -18,22 +20,24 @@ The big idea is distribute high volocity, high volume and lots of variety of dat
 - Hadoop Map Reduce - the engine - an implementation of the MapReduce programming model for large scale data processing.
 
 
-## HDFS Version 2
+## EMR
 
-HDFS includes the following components:
+EMR includes the following components:
 
-- Name Node - copies data to passive name node; not a single point of failure; manage container lifecycle
+- Master node - Manages data distribution to core and slave nods
 
-- Passive Name Node - backup name node; passive as the names suggests
+- Core Nodes - store data on HDFS; managed by master node
 
-- Secondary Name Node - store another copy of the name node data for redundancy.
+- Task Nodes - Performs data tasks
 
-- Data Nodes - where the data lives
+Storage can use regular good old fashioned HDFS or EMRFS which is storage on S3.
 
 ## Map Reduce
+
 Parallel processing framework that works with Hadoop. It moves data out to processing location which essentially scales-out the architecture; fault tolerant; runs on commodity hardware; many different langauges are supported; works with Hive in V2 and Pig (V1 & V2)
 
 ## Hive
+
 Data warehouse based on Hadoop (Petabyte scale; distributed on commodity hardware; highly latent queries) Hive uses HQL so you can leverage your SQL skills and works on structed and unstructured data and has the nifty feature of defining a schema on read.
 Components of Hive include:
 
@@ -50,6 +54,7 @@ Components of Hive include:
 - Hive Metastore - stores information about partitions, schemas, tables & locations, and columns/column types
 
 ## Pig
+
 Pig is a language for analyzing large datasets and is more efficient than Java and similiar to SQL. Pig Latin is easily controlled, data agnostic, flexible, and fast. Use Pig when external services are needed for ETL, and you need to debug it... and you don't like Java. It has all the basic data types, complex data types and relations.
 
 ## Other Hadoop Projects
@@ -61,6 +66,7 @@ Pig is a language for analyzing large datasets and is more efficient than Java a
 * Apache Cassandra - a database management system designed to handle large amounts of data across many commodity servers, providing high availability with no single point of failure. 
 
 ## Use Cases
+
 * Get Data in realtime? Kinesis
 
 * Import Data? Snowball or Import export
@@ -79,5 +85,8 @@ Pig is a language for analyzing large datasets and is more efficient than Java a
 
 * Real-time analytics? Redshift
 
+* Spot instances? Can it handle termination in the middle of the job, is it critical, is cost important are big questions.
+
 ## Resources
+
 [All about Hadoop](https://en.wikipedia.org/wiki/Apache_Hadoop)

@@ -9,31 +9,25 @@ tags: [aws, developercert, cloudfront, solutionsarch]
 
 ## What 
 
-CloudFront uses edge locations and regions as a CDN point of presence. isn't just for ALL the content on a Static website anymore and an Adobe STMP stream distributions. 
-
-custom origins and custom origin rules determine which part of website requests go where
-
-GET, HEAD, OPTIONS can be cached; PUT, POST, PATCH, DELETE are not cached and do not invalidate objects in the cache
-
-Edge Location - Completely different than an availability zone - this is a location near a large population of Internet users that serves as a cache for content from the Origin which is likely some sort of AWS resource (S3 or EC2). Objects are cached for the life of the TTL; you can clear the cache but it costs.
-
-A Distribution is the name for the CDN you create - essentially a collection of Edge Locations. Two types of distributions: RTMP (for a Adobe Flash server???) and Web Distribution.
+CloudFront uses edge locations and regions as a CDN point of presence. It isn't just for ALL the content on a static website anymore and an Adobe STMP stream distributions. 
 
 One gotcha is that CloudFront will wait for first request to resolve before processing the second request.  Uploading via CDN is faster but does not cache. You have to disable the distribution before you can delete it!
 
 ## Distributions
 
+A Distribution is the name for the CDN you create - essentially a collection of Edge Locations. Two types of distributions: RTMP (for a Adobe Flash server???) and Web Distribution.
+
+GET, HEAD, OPTIONS can be cached; PUT, POST, PATCH, DELETE are not cached and do not invalidate objects in the cache
 
 ### Improving Performance
 
 Increase cache hit percentage is the #1 way to increase CloudFront performance. Increasing min and max TTL helps improve this metric.
 
-costs money to invalidate distribution object
-
+Custom origins and custom origin rules determine which part of website requests go where.
 
 ### Web Distributions
 
-A 0 TTL forces CloudFront to check the `If-Modified-Since` header to see if the origin has changed
+A 0 TTL forces CloudFront to check the `If-Modified-Since` header to see if the origin has changed.
 
 ### Video Distributions
 
@@ -51,11 +45,13 @@ Unlike these file based options RTMP Distributions is an actual streaming of vid
 
 ## Working with Objects
 
-### Invalidation Techniques - 
+### Invalidation Techniques
 
-use route53 CNAME to point new distribution
+Objects are cached for the life of the TTL; you can clear the cache but it costs.
 
-Dyanamic content ? custom origin; enable forwarding query string; TTL 0; 
+Instead of invalidating the cache use route53 CNAME to point new distribution
+
+If it is dyanamic content use a custom origin; enable forwarding query string; TTL 0; 
 
 TTL = 0 enables a pull through caching mechanism where CloudFront sends a GET request to the origin with an "If-Modified-Since" header.
 
@@ -69,8 +65,6 @@ Security files can be done using signed URLs or using signed Cookies using the R
 
 CloudFront has many, many configuration options including:
 
-ntries but not both.
-
 * Device detection - Redirect or serve different content based on user agent
 
 configure custom SSL Cert - work with Certification SSL?
@@ -78,7 +72,7 @@ Generic SSL Cert
 
 #### HTTPS
 
- If the origin is S3 all requests are made to the distribution will stay the same... request in HTTPS then it will be forwarded via HTTPS. Custom Origins can be configured to use HTTP only or to match viewer, which will match the user agent protocol.
+If the origin is S3 all requests are made to the distribution will stay the same... request in HTTPS then it will be forwarded via HTTPS. Custom Origins can be configured to use HTTP only or to match viewer, which will match the user agent protocol.
 
 ### Cloudfront Reports
 
@@ -94,8 +88,6 @@ As a protip, don't cache credit card information in CloudFront edge caches. For 
 
 Redirect HTTP to HTTPS is a common security feature which can be enable on Cloudfront.
 
-
-
 ## When
 
 It is going viral baby! = Whole site CDN; push to CloudFront
@@ -103,14 +95,6 @@ It is going viral baby! = Whole site CDN; push to CloudFront
 Control access to section of site or type of media on site = signed cookie
 
 Control access to a URL for a period of time = signed URL
-
-
-
-Increase performance of site?
-  push content to cloudfront
-  Increase TTL
-
-increase streaming performance
 
 # Resources
 
