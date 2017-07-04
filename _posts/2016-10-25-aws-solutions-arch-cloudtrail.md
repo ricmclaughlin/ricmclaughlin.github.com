@@ -21,13 +21,25 @@ Because so much, should-be-secured-data is stored in these logs, a security admi
 
 An important feature to consider is how to configure logs to notify in the event of misconfiguration.
 
-There is a log file validation feature which signs the log making them very difficult to forge or modify and the CLI can validate the logs afterwards.
+There is a log file validation feature which creates a digest of log files and the CLI can validate the logs afterwards. This feature makes sure that all the log files are present and unmodified.
 
 ## Operation
 
 I'd recommend creating an SNS notification for when log file delivery has occurred. Use this notification to trigger loading the data into a login analysis tool. 
 
 In the past CloudTrail data was really only good for figuring out what happened in the past. Now you can use the CloudWatch Logs feature and monitor the CloudTrails data in semi-real time by filtering the log for events and creating an event then an alarm for the event. Very useful. Logs are delivered within 15 minutes of an API call.
+
+Popular events to monitor for include: 
+
+1. Creation, deletion and modification of security groups and VPC
+
+1. Changes to IAM or S3 Bucket Policies
+
+1. Failed Console Logins
+
+1. Authorization failures
+
+1. Doing anything to an EC2 instance
 
 
 ## Analysis
@@ -37,3 +49,4 @@ There are tons of options to analyze cloud trail data. You can use external sour
 ## Resources
 
 [Cloud Trail Analysis with Apache Spark on EMR Deep Dive](https://www.youtube.com/watch?v=oZ8HswQSbNQ)
+[CloudTrail Deep Dive](https://www.youtube.com/watch?v=t0e-mz_I2OU)

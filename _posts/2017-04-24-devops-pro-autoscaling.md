@@ -7,9 +7,11 @@ tags: [autoscaling, devopspro]
 ---
 {% include JB/setup %}
 
+# Overall
+
 An [Auto Scaling Group ](http://docs.aws.amazon.com/autoscaling/latest/userguide/AutoScalingGroup.html) gives you the ability to manage a group of instances as a unit. 
 
-## ASG Launch Configuration
+## Launch Configurations
 
 First, lots of basic stuff... an ASG must specify a launch configuration and only one launch config per ASG. A Launch Config can't be modified after creation.
 
@@ -17,19 +19,25 @@ Launch configs can be made from running EC2 instance but some storage and monito
 
 Spot instances can be used in an ASG but include a bid price. ASG will balance across AZ using bid prices. Spot instances can't use the same launch config as on-demand instances because they include a bid price.
 
+## Scaling
+
 ## Scaling Plans
 
-At a minimium you are going to need at least 2 scaling plans. 
+There are four types of scaling plans
 
-- Maintain current instance Levels - or Auto Scaling Self Healing is the use cases where a single server is needed, and needed all the time, the ability to create an ASG of one is useful.
+- Maintain current instance Levels - (Auto Scaling Self Healing) the use cases where a single server is needed, and needed all the time, the ability to create an ASG of one is useful.
 
 - Manual Scaling - manually change max, min and desired capacity
 
 - Scheduled Scaling - at a time, the scaling group will do something... cooldown periods are not supported; can't have more than one action happen at a specific time.
 
-- Dynamic Scaling - scale based changing demand using alarms and scaling policies. 
+- Dynamic Scaling - scale based changing demand using alarms and scaling policies. At a minimium you are going to need at least 2 scaling plans. 
 
-## Dynamic Scaling Policies
+###  Manual Scaling
+
+Simply put, this is when you change the max, min and desired capacity of the group using the CLI or console.
+
+### Dynamic Scaling
 
 Scaling policies implement dynamic scaling. Alarms fire the scaling policies. Scaling adjustment types change the capacity of an Auto Scaling group using a `ScalingAdjustment`. There are three different adjustment types:
 
@@ -39,17 +47,15 @@ Scaling policies implement dynamic scaling. Alarms fire the scaling policies. Sc
 
 - `PercentChangeInCapacity` - percentage change
 
-### Scaling Policy Types
+#### Scaling Policy Types
 
-Simple Scaling - single scaling adjustment; have cooldown; default of 300
+Simple Scaling - single scaling adjustment; have cooldown; default of 300 seconds
 
 Step Scaling - scale based on size of alarm breach; no cooldown; don't lock group; continuously evaluated; instance warmup
 
-## ASG Instance Lifecycle
+#### ASG Instance Lifecycle &amp; Lifecycle Hooks
 
-### Lifecycle Hooks
-
-While instances are `Pending` to be added to an ASG or `Terminating` out of an ASG there is an opportunity to add a hook into the processes. These hooks can be a CloudWatch event, an SNS or SQS message or launches a script. 
+While instances are `Pending` to be added to an ASG or `Terminating` out of an ASG there is an opportunity to add a hook into the processes. These hooks can be a CloudWatch event, an SNS or SQS message or launches a script. In the case of Simple Scaling the cooldown period does not begin until after the instance moves out of the wait state or in the case of spot instances the cooldown period begins when the bid is successful.
 
 The wait state is how long these hooks have to run before proceeding to the lifecycle stage. By default the wait state is 3600 seconds and can changed using the `heartbeat-timeout` parameter or be ended using the `complete-lifecycle-action` or lengthened using `record-lifecycle-action-heartbeat` commands. The max wait state is 48 hours.
 
@@ -57,25 +63,19 @@ At the end of the lifecycle the state will be `ABANDON` or `CONTINUE`. The ASG a
 
 Lifecycle Hooks can be used with Spot Instances but this does NOT prevent an instance from terminating.
 
-### Scale Out 
+- Scale Out - Whenever an ASG starts to scale out the instances moves from the `Pending` state through the EC2_INSTANCE_LAUNCHING hook `Pending: Wait` state and `Pending:Proceed` state then to the `InService` state.
 
-Whenever an ASG starts to scale out the instances moves from the `Pending` state through the EC2_INSTANCE_LAUNCHING hook `Pending: Wait` state and `Pending:Proceed` state then to the `InService` state.
+- Scale In (or Health Check Failure) - Whenever an ASG starts to scale in the instance moves from the `InService` to `Terminating` then into the EC2_INSTANCE_TERMINATING hook `Terminating: Wait` and `Terminating: Proceed` and finally to `Terminated`
 
-### Scale In (or Health Check Failure)
+- Stand By - If you need to trouble shoot or work with an instance, but still want it managed by the ASG then the instance goes from InService to EnteringStandby to Standby. When returned to service, the instance goes through the `EC2_INSTANCE_LAUNCHING` hook process. By default, Auto Scaling decrements the desired capacity of your Auto Scaling group when you put an instance on standby and increments your desired capacity when you add instances and does NOT perform health checks on it.
 
-Whenever an ASG starts to scale in the instance moves from the `InService` to `Terminating` then into the EC2_INSTANCE_TERMINATING hook `Terminating: Wait` and `Terminating: Proceed` and finally to `Terminated`
+- DetachInstances - If you need to remove an instance from InService state you call `DetachInstances` then the service goes to `Detaching` through the `Detached` state and ends up an EC2 instance. Any instance can be attached to the ASG using `AttachInstances`.
 
-### Stand By
+### Update Policies
 
-If you need to trouble shoot or work with an instance, but still want it managed by the ASG then the instance goes from InService to EnteringStandby to Standby. When returned to service, the instance goes through the `EC2_INSTANCE_LAUNCHING` hook process.
+Although a [Cloudformation feature](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html), Update Policies applies to how CloudFormation deals with changes to a Launch Configuration or VPC or changes to an ASG that contains instances that don't match the current launch configuration by issuing a `AutoScalingRollingUpdate`, whihc sets batch sizes or all-at-once configuration or a `AutoScalingReplacingUpdate`, where the instance must signal completion.
 
-By default, Auto Scaling decrements the desired capacity of your Auto Scaling group when you put an instance on standby and increments your desired capacity when you add instances.
-
-### DetachInstances
-
-If you need to remove an instance from InService state you call `DetachInstances` then the service goes to `Detaching` through the `Detached` state and ends up an EC2 instance. Any instance can be attached to the ASG using `AttachInstances`.
-
-### ASG Termination Policies
+### Termination Policies
 
 ASG [Termination Policies](http://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-termination.html) determine which instances should be terminated when a scale-in event occurs. In the console, they get setup in the ASG configuration setting and get executed in presentation order. When a scale-in event occurs the AutoScaling feature checks for an imbalance of instances across AZ then runs the termination policy. Some use cases for each type of termination policy includes:
 
@@ -119,8 +119,9 @@ There are numerous AS processes that can be suspended. Generally, suspending AS 
 
 - AddToLoadBalancer - Don't add new instance to the load balancer... useful for testing instances in the ASG before traffic gets to them; when re-enabled instances do NOT get added to the load balancer automatically
 
-### AutoScaling Metrics
+## Monitoring and Controlling
 
+### AutoScaling Metrics
 
 | metric      | Purpose       |
 |--------------------|---------------|
@@ -133,6 +134,15 @@ There are numerous AS processes that can be suspended. Generally, suspending AS 
 | `GroupStandbyInstances` | instances in stand-by state  |
 | `GroupTotalInstances` | in-service, pending, &amp; terminating  |
 
+### Health Checks
+
+There are three types of healthchecks that can be preformed in an ASG. 
+
+Status checks - good old fashioned system &amp; instance status checks
+
+ELB Health checks - the ELB/ALB will check the health of the instance
+
+Custom Health Checks - based on a check from within the instance send a message to the ASG... Really this wonky and should be done at the ELB/ALB level
 
 ## Autoscaling API
 
@@ -145,3 +155,5 @@ There are numerous AS processes that can be suspended. Generally, suspending AS 
 | `update-auto-scaling-group` | Update ASG |
 | `put-lifecycle-hook` | create hook |
 | `put-scaling-policy` | create scaling policy |
+
+

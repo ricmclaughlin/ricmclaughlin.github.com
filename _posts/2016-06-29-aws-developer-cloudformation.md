@@ -63,10 +63,6 @@ Intrinsic Functions are functions that run inside a CF template. There are helpe
 
 - `Ref` - reference the ID of a resources; can be written as `!Ref` or `Ref:`
 
-## Condition Functions
-
-
-
 
 ## Resource Attributes 
 
@@ -89,7 +85,6 @@ Here is a quick summary of how to make a [Custom Resources](http://docs.aws.amaz
 1. The template is used to create, update or delete a custom resource and the engine calls the service token.
 
 2. The custom resource provider processes the cloudformation request and returns a response of `SUCCESS` or 
-
 
 
 # CloudFormation Lifecycle
@@ -122,7 +117,18 @@ CloudFormation with Elastic BeanStalk - Can use CloudFormation to deploy Elastic
 
 ### Wait Conditions
 
-Wait conditions should be used when synchronizing resources creation; DependsOn is the CloudFormation template engine is smart enough to figure out many dependencies but in some cases resources require a `DependsOn` attribute. A VPC-gateway, an Auto Scaling group, and IAM roles are all required to include a DependsOn block. A `DependsOn` block can take a single value or an array.  The problem is that `DependsOn` only checks to see if the resource has been created NOT if it is operationally complete... One nifty features of wait conditions is the ability to pass data to and from the created resource.
+Wait conditions should be used when synchronizing resources creation and there several different forms:
+
+
+
+`DependsOn` - for the simple cases of ordering
+
+WaitConditions - resources must signal the start and end wait period
+
+
+
+#### `DependsOn`
+DependsOn is the CloudFormation template engine is smart enough to figure out many dependencies but in some cases resources require a `DependsOn` attribute. A VPC-gateway, an Auto Scaling group, and IAM roles are all required to include a DependsOn block. A `DependsOn` block can take a single value or an array.  The problem is that `DependsOn` only checks to see if the resource has been created NOT if it is operationally complete... One nifty features of wait conditions is the ability to pass data to and from the created resource.
 
 The lifecycle is straightforward - while waiting they are `CREATE_IN_PROGRESS` then they are rolled back if they get a `CREATE_FAILED`. The wait condition has three properties:
 
@@ -158,7 +164,6 @@ myWaitCondition:
         Timeout: 4500
         Count: 2
 `
-
 Third, signal the start of the wait condition.
 
 `yaml
@@ -171,7 +176,6 @@ myEc2Instance:
 
 Fourth, signal the end of the wait condition or failure.
 
-
 ### Creation Policies
 
 When waiting for an EC2 instance or ASG to setup, a `CreationPolicy` should be used. When the resource spins up it signals the stack using helper scripts, the `SignalResource` API or an API call.
@@ -183,7 +187,6 @@ CreationPolicy:
   ResourceSignal:
     Count: Integer # default = 1
     TimeOut: String # ISO8601 format; PT1H30M10S = 1h 30m 10s
-
 `
 
 ## Helper Scripts
