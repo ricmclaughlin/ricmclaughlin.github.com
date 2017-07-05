@@ -11,37 +11,42 @@ Opsworks is [Chef](https://www.chef.io/chef/) a popular devops tool used by Amaz
 
 Currently you can choose from a Chef 12 or Chef 11 Stack.
 
-## OpsWorks Glossary
+## OpsWorks Concepts
 
 ### Stacks
 
-Stacks are a set of resources you want to manage as a group = dev, stage, pro; restricted to a single OS; config changes apply to new instances; can't change region or AZ after creation
+Stacks are a set of resources you want to logically manage as a group. Restricted to a single OS; config changes apply to new instances; can't change region or AZ after creation; You can add additional resources such as ElasticIPs, Volumes or RDS instances to a stack.
 
-You can add additional resources such as ElasticIPs, Volumes or RDS instances
+Stacks must be created in an existing VPC because OpsWorks does not have the ability to create one. Using VPC endpoints are painful and require additional permissions to access other the Agent, Asset, Log and DNA buckes on S3 in the associated region from the instance.
+
+An RDS instance can only be associated with one Opsworks stack; a stack clone does not copy the RDS instance
+
+Updates to the stack don't propagate to existing instances. Cloning works great except instances are not started by default and you can't change regions. Stack commands allow you to run commands against the entire stack doing things like excute recipes, run a lifecycle event like `Setup` or `Configure` among other things. 
 
 ### Layers
 
-A Layer is a blueprint for a set of instances like web servers, app servers or DB servers; each layer has a series of associated recipes based on lifecycle
+A Layer is a blueprint for a set of instances like web servers, app servers or DB servers; each layer has a series of associated recipes based on lifecycle; AWS services can also be layers; an instance must be in a layer; instances can be in more than one layer. If an instance is a member of multiple layers, you must add it to all of them before you start the instance. You cannot add an online instance to a layer.
 
-The three types of layers supported are Opsworks layers, ECS stacks, RDS. An RDS instance can only be associated with one Opsworks stack; a stack clone does not copy the RDS instance
+Layers define which recipes are installed, networking (ELB, Public IP address), EBS Volumes, security groups, EC2 instance profile and tags.
 
-### Instances
+**Instance Auto-Healing** - when the Chef agent loses communication with the automation engine, the engine tries to fix it. EBS backed instances are stopped and started; instance store backed instances are terminated and relaunched. In both scenarios, the configure event is run. If the auto-healing process does not recover it gets marked `start_failed`, which requires manual intervention to fix. The OS of the instances will not be changed even if the default OS is has been changed at the stack level. Auto-heal is not performance based, only agent->automation engine based. To make this feature work properly, use OpsWorks to stop instances else they get auto healed and only use EBS volume types.
 
-EC2 Instances; can run 7/24, be load or time based; must have Internet access
-
-To enable load based instances the layer must first be setup to work the scaling configuration. There are numerous redundant settings for scaling - metrics, batch size, alarm condition time, after scaling ignore metric. Each of these configurations is on a per-layer basis but applies to instances.
-
-### Applications
-
-Apps are code someplace you want to run on instances that define the name, root, datasource (like RDS), source, environment variables, domain names and SSL config.
-
-Deployment is as expected: app parameters are passed into the environment from Databags, the app is installed and 4 versions of the app are maintained.
 
 ### Recipes
 
 Recipes are small chunks of reuseable configuration that are run in Lifecycle Events. Resources are the building blocks of recipes and take the form of package (like HA proxy), a service (something that needs to be turned on or off) and templates (which are files, typically to configure resources).
 
-### Lifecycle Events
+#### Cookbooks
+
+There are tons of [built in recipes](https://github.com/aws/opsworks-cookbooks) and you also have the ability to create custom bookselves. Berkshelf is the package manager for cookbooks.
+
+[BerkShelf](https://docs.chef.io/berkshelf.html) over comes a signifigant short coming in older versions of Chef; only allows one cookbook so community recipes had to be copied into the local repository. This feature was added in the 11.10 version of Chef. Components of berkshelf include the Chef Supermarket, the Berksfile, and the berks package manager. To enable berkshelf enable custom Chef cookbooks on the stack and create a `Berksfile`. 
+
+#### Databags
+
+[Databags](https://docs.chef.io/data_bags.html) are global JSON objects which can be defined on the stack, layer, app and instance.  Because there is no Chef server they are defined at the commandline OR using the CUSTOM_JSON field.
+
+#### Lifecycle Events
 
 Recipes can execute in each of the following lifecycle stages:
 
@@ -55,17 +60,17 @@ Recipes can execute in each of the following lifecycle stages:
 
 * shutdown - occurs when instance starts to shut down
 
-### Cookbooks
+### Instances
 
-There are tons of [built in recipes](https://github.com/aws/opsworks-cookbooks) and you also have the ability to create custom bookselves. Berkshelf is the package manager for cookbooks.
+EC2 Instances; can run 7/24, be load or time based; must have Internet access; can be part of more than one stack
 
-### Databags
+To enable load based instances the layer must first be setup to work the scaling configuration. There are numerous redundant settings for scaling - metrics, batch size, alarm condition time, after scaling ignore metric. Each of these configurations is on a per-layer basis but applies to instances.
 
-[Databags](https://docs.chef.io/data_bags.html) are global JSON objects which can be defined on the stack, layer, app and instance.  Because there is no Chef server they are defined at the commandline OR using the CUSTOM_JSON field.
+### Applications
 
-### BerkShelf
+Apps are code someplace you want to run on instances that define the name, root, datasource (like RDS), source, environment variables, domain names and SSL config. They can be deployed manually or automatically.
 
-[BerkShelf](https://docs.chef.io/berkshelf.html) over comes a signifigant short coming in older versions of Chef; only allows one cookbook so community recipes had to be copied into the local repository. This feature was added in the 11.10 version of Chef. Components of berkshelf include the Chef Supermarket, the Berksfile, and the berks package manager. To enable berkshelf enable custom Chef cookbooks on the stack and create a `Berksfile`. 
+Deployment is as expected: app parameters are passed into the environment from Databags, the app is installed and 4 versions of the app are maintained.
 
 ### create-deployment command
 
@@ -79,7 +84,7 @@ The [`create-deployment`](https://docs.aws.amazon.com/opsworks/latest/APIReferen
 
 - `update_dependencies` - linux only
 
-## Strategies and Work-arounds
+## Strategies, Work-arounds and Best Practices
 
 **Updates to master branch** - assuming (lots of stuff), when the master branch of the source repo is updated, Opsworks uses the new version of the source for new instances but does NOT automatically update instances in service. To avoid this:
 
@@ -99,7 +104,14 @@ The [`create-deployment`](https://docs.aws.amazon.com/opsworks/latest/APIReferen
 
 - separate DB - in this approach data is sync'd from the old schema to the new schema
 
-**Instance Auto-Healing** - when the Chef agent loses communication with the automation engine, the engine tries to fix it. EBS backed instances are stopped and started; instance store backed instances are terminated and relaunched. In both scenarios, the configure event is run. If the auto-healing process does not recover it gets marked `start_failed`, which requires manual intervention to fix. The OS of the instances will not be changed even if the default OS is has been changed at the stack level. Auto-heal is not performance based, only agent->automation engine based.
+**Use [EBS based volumes](http://docs.aws.amazon.com/opsworks/latest/userguide/best-practices-storage.html)** for instances instead of instance storage (no duh)
+
+**[Mix 24/7, time based & load based instances](http://docs.aws.amazon.com/opsworks/latest/userguide/best-practices-autoscale.html)**  to achieve max cost performance.
+
+**[Stack level permissions](http://docs.aws.amazon.com/opsworks/latest/userguide/best-practices-permissions.html)** first before getting all wacky and granular.
+
+**[Custom JSON](http://docs.aws.amazon.com/opsworks/latest/userguide/workinglayers-basics-edit.html)**, which is limited to 80KB, enables the ability to pass chunks of well organized arguments to an instance when ever a recipe is run, can be defined at the deployment, layer and stack level. Deployment level Custom JSON overrides layer and stack level settings.
+
 
 ### Hostname Themes
 
@@ -110,6 +122,7 @@ Just when you thought AWS was hurting... there was no soul, I found something go
 Agent - the components that sit on the managed servers
 
 automation engine - the AWS engines that make this all happen
+
 
 ## Resources
 

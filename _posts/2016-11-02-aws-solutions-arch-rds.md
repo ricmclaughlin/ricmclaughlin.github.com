@@ -12,18 +12,33 @@ DB do not require a port number or protocol.
 
 Transactional Storage Engines are recommended for durability. RDS instances without Multi-AZ don't perform as well as those that are - backups, restores and all housekeeping activities are performed on the secondary instance.  Backups are stored on S3. Restoration only works for the default DB parameter and security groups are associated with the instance you will likely need to setup the DB default parameters and security groups. You maybe can change storage engine - if they are related.
 
+### Backups
+
+By default, backups are enabled and have a max retention of 35 days. A backup retention period of zero days will disable automated backups for this DB Instance. Restores manifest themselves as a new RDS instance with a new endpoint. 
+
 Deleting an RDS instance deletes ALL the automated backups... but not the manual ones. =>>"I acknowledge that upon instance deletion, automated backups, including system snapshots and point-in-time recovery, will no longer be available."
 
-A backup retention period of zero days will disable automated backups for this DB Instance. Restores manifest themselves as a new RDS instance with a new endpoint. Encryption uses KMS. "Restore to point in Time" option allows you to pinpoint a time to restore from. 
+In a multi-AZ configuration, backups are done from the standby. 
 
-### Security
+Every 5 minutes RDS backs up the transaction log. Combined with regular backups the "Latest Restore Time" is computed and "Restore to point in Time" option allows you to pinpoint a time to restore from.
 
-Encryption at rest must be setup at instance create time and uses KMS keys. Once enabled, EVERYTHING is encrypted which might cause a problem with cross region replications and snapshots seeing that KMS keys are region specific. The keys can't be changed after installation. All RDS instance types support encryption at rest.
+#### Snapshots
 
-Oracle and MS SQL Server support Transparent Data Encryption. Oracle does NOT integrate with KMS but will work with CloudHSM. SQL Server requires a key but that key is managed by RDS after enabling TDE.
+Snapshots are a full copy of RDS database that are independent of scheduled backups. In a multi-AZ configuration, snapshots are done from the standby.  
 
-Encryption in Transit - every RDS instance includes a SSL Certificate.
+### Encryption
 
+Encryption at rest must be setup at instance create time and uses KMS to generate Master keys then use envelope encryption to generate data keys for the RDS instance. Once enabled, EVERYTHING is encrypted including read replicas and snapshots. The keys can't be changed after installation. All RDS instance types support encryption at rest and every RDS instance also includes a SSL Certificate for data encryption in flight.
+
+As a result of this encryption, several limitations are introduced:
+
+- Can't copy read replicas and snapshots
+
+- Can't restore from one RDS engine to another
+
+- Can't do cross region replications and snapshots seeing that KMS keys are region specific
+
+Oracle and MS SQL Server support Transparent Data Encryption. Oracle does NOT integrate with KMS but will work with CloudHSM and the Oracle Wallet. SQL Server requires a key but that key is managed by RDS after enabling TDE.
 
 ### Multi-AZ failover
 
@@ -99,6 +114,8 @@ Supports point-in-time backups using snapshots, Multi-AZ deployments using the n
 
 On-prem to Cloud migration is super ugly... create RDS empty tables, disable backups/key contraints, import flat files. In addition, FILESTREAM functions are not supported and there is no ability to restore data from file. 
 
-#Labs
+## Troubleshooting
 
-[Introduction to Amazon Relational Database Service (RDS) (Linux)](https://qwiklabs.com/focuses/2926)
+Scaling the instance can happen immediately, if the checkbox is checked, or will happen in your maintenance window. 
+
+Resizing will result in downtime if in a single AZ configuration. In a multi-az, the standby gets resized, there is a fail-over then the master is resized.
