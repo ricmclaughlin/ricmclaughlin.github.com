@@ -21,7 +21,7 @@ There are three types of EBS:
 
 2. Provisioned IOPS (io1) - 30 IOPS per GB up to 20,000 IOPS to a maxiuim of 320 MiB/s; Steady consisten IOPS not really a burstable; Use if you are after over 10k IOPS
 
-3. Magnetic - Cheap and slow EBS volumes can also be Cold HDD (sc1) and Throughput Optimized HDD (st1). Can not specify IOPS with this storage type and it is not burstable; not recommended for 
+3. Magnetic - Cheap and slow EBS volumes can also be Cold HDD (sc1) and Throughput Optimized HDD (st1). Can not specify IOPS with this storage type and it is not burstable; not recommended for smaller read sizes using random access
 
 ### Initializing EBS Volumes (pre-warm)
 
@@ -48,7 +48,7 @@ By default, EBS root volumes are lost when an instance is terminated. That said,
 
 3. Attach EBS volumes after instance creation.... this is not exactly a root volume.
 
-## Volumes && Snapshots
+## Volumes &amp; Snapshots
 
 Snapshots are incremental. Encrypted volumes are snap-shotted encrypted automatically - and are restored encrypted. Stop instances to snapshots the root devices else EC2 stops it for you. Frequent snap shots improve RPO and RTO and don't cost much as they are deltas.
 
@@ -92,7 +92,7 @@ Long term data storage? EBS
 
 data shared between instance fast? memecached or redis
 
-persist data shared between instances ? EFS
+persist data shared between instances? EFS
 
 don't care? instance store
 

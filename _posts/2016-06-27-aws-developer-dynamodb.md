@@ -98,7 +98,7 @@ Read Capacity Units = 2 * 120 = 240 / 2 = 120
 Formula -> writes per item (size in KB rounded up to the nearest whole number) * writes per second
 write capacity unit - one write per second up to 1KB
 
-## Conditional updates vs Atomic counters
+## Conditional Updates vs Atomic counters
 
 Because record locking isn't an option on a distributed database, app developers have to implement some sort of update concurrency model. There are two ways to approach this:
 
@@ -161,9 +161,23 @@ This is a huge issue because many times users are authenticated by an ID provide
 
 ## Use cases
 
-Record size < 400? DynamoDB
+- Record size < 400? DynamoDB
 
-Record Size > 400? Pointer to data in S3
+- Record Size > 400? Pointer to data in S3; OR vertically partition large data into separate table
+
+- Write Heavy Partitions ([two candidates in voting app](https://youtu.be/bCW3lhsJKfw?t=31m25s)) - add random value to candidateID then create lambda to aggregate
+
+- Static Time Series Table - time series with no updates with a fixed "interest" TTL -> pipe data into hot table with lots of RCU and WCU; colder table with less RCU & WCU; cold table in glacier or S3 
+
+- Dynamic Time Series Table - updates to TTL in a "delete after 30 days of last touch sort of scenario"; create write sharded GSI to  query expired items; Lambda stored procedure to delete items; use streams to migrate data to cold storage; or use the new [TTL Timestamps](https://aws.amazon.com/blogs/aws/new-manage-dynamodb-items-using-time-to-live-ttl/) feature.
+
+- Product Catalog Hot Item - cache hot items; pull through cache or move cache building to backend process using Lambda
+
+- Transactions - Manage versioning across items with metadata by tagging attributes with multiple versions; like ACID code app to deal with updates in progress, error handling, recovery logic
+
+- query filters vs composite key indexes - filtering only removes items from the found set AFTER they are read; instead, create a composite index (likely using a GSI) with the key and the filter attribute
+
+- query for item that contains an attribute that does NOT exist in other items? - DynamoDB indexes are sparse
 
 ## DynamoDB API Reference points
 

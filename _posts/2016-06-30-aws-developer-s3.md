@@ -125,11 +125,13 @@ Using a sequential prefix, such as time-stamp or an alphabetical sequence, incre
 
 
 ## S3 Website Hosting
+
 To make a website on S3 at a minimium upload an index document to your S3 bucket, enable static website hosting in your S3 bucket properties, select the 'Make Public' permission for your bucket’s objects or apply a bucket permission script. The only allowed domain prefix when creating Route 53 Aliases for S3 static websites is the 'www' prefix. S3 buckets do not have https!
 
 CORS rules - The bucket hosting the assets needs CORS configuration - add the domain of the "static" site to fix this up.
 
 ## S3 Transfer Acceleration
+
 Edge Location used by CloudFront are not just for download acceleration. S3 Transfer Acceleration uses the AWS backbone to speed up uploads. This costs more money. There is a distinct URL that syncs from the CloudFront edge locations to S3 bucket.
 
 ## S3 API Reference Points
@@ -147,9 +149,7 @@ Seeing that S3 is a REST API, all the operations... well, they are REST.
 
 ### Object API (s3)
 
-This section of the API is REST-like. Multi Part upload - Multi-part upload API allows you to upload parts of an object once broken apart. As a file/object is being created, the multi-part upload API will allow you to upload the file to S3. Only after all parts of the object have been uploaded do you execute the CompleteMultipartUpload API call which completes a multi-part upload by assembling previously uploaded parts.
-
-You first initiate the multi-part upload and then upload all parts using the Upload Parts operation (see Upload Part). After successfully uploading all relevant parts of an upload, you call this operation to complete the upload. Upon receiving this request, Amazon S3 concatenates all the parts in ascending order by part number to create a new object. In the Complete Multi-part Upload request, you must provide the parts list. You must ensure the parts list is complete, this operation concatenates the parts you provide in the list. For each part in the list, you must provide the part number and the ETag header value, returned after that part was uploaded.
+This section of the API is REST-like and almost mirrors the linux command line.
 
 | S3 Object API  | Notes  |
 |:--------------------------------------:|:----------------------------------------:|
@@ -160,7 +160,16 @@ You first initiate the multi-part upload and then upload all parts using the Upl
 | `mb` & `rb` | make bucket & remove bucket |
 | `website` | creates a website |
 
+#### Multi Part upload
+
+Multi-part upload API allows you to upload parts of an object once broken apart. As a file/object is being created, the multi-part upload API will allow you to upload the file to S3. Only after all parts of the object have been uploaded do you execute the CompleteMultipartUpload API call which completes a multi-part upload by assembling previously uploaded parts.
+
+You first initiate the multi-part upload and then upload all parts using the Upload Parts operation (see Upload Part). After successfully uploading all relevant parts of an upload, you call this operation to complete the upload. Upon receiving this request, Amazon S3 concatenates all the parts in ascending order by part number to create a new object. In the Complete Multi-part Upload request, you must provide the parts list. You must ensure the parts list is complete, this operation concatenates the parts you provide in the list. For each part in the list, you must provide the part number and the ETag header value, returned after that part was uploaded.
+
+
+
 ### Error Codes from API
+
 Common Errors - S3 handles error codes with HTTP response codes - which makes sense seeing that we are using a REST API here.
 
 | S3 API HTTP Responses  | Notes  |
@@ -175,13 +184,15 @@ Common Errors - S3 handles error codes with HTTP response codes - which makes se
 # Resources
 
 ## Qwik Labs
+
 [Introduction to Amazon Simple Storage Service (S3)](https://qwiklabs.com/focuses/2355)
 [Introduction to AWS Key Management Service](https://qwiklabs.com/focuses/2367) - yeah, this is about Key Management Service but under-the-covers this is about S3.
 
 ## Reading
-[s3 Developer Guide](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html)
 
+[s3 Developer Guide](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html)
 [AWS Storage Services Overview](https://d0.awsstatic.com/whitepapers/AWS%20Storage%20Services%20Whitepaper-v9.pdf)
 
 ## Videos
+
 [AWS S3 Deep Drive and Best Practices](https://www.youtube.com/watch?v=1TvJCLl9NNg)
