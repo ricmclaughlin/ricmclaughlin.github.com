@@ -23,13 +23,15 @@ Elastic Beanstalk supports a webserver or worker environments. On the webserver 
 
 Overall, it is a bad idea to create a RDS instance in Elastic Bean stalk.... a RDS instance can not be used in more than one environment and a clone of an environment does NOT clone the database.
 
-### Application Versions
+### Versions
 
 Each source code upload is a version and each upload must be a single zip file or WAR file less than 512 with no top level directory. You can include multiple WAR files in a single zip file as well. The word "deployment" is associated with versions. Both updates, which are changes to teh configuration of an environment, and deployments use healthchecks.
 
 Application Version Lifecycle settings controls how many version of the app to keep around. Once enabled (it is an optional setting), the policy can be configured to keep a number of versions around OR to delete after the version is a particular age.
 
 ## Deployment Policies
+
+Each deployment has an ID that increments each deployment and instance configuration change. You can ignore healthchecks which determines if the deployment wait until the instance comes up healthy or simply continue... If an app is created from console or eb cli it will default to a rolling deployment but if created from SDK or AWS CLI it will default to an all-at-once deployment.
 
 There are five different [deployment policies](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.deploy-existing-version.html). 
 
@@ -41,11 +43,9 @@ There are five different [deployment policies](http://docs.aws.amazon.com/elasti
   
 - immutable - no downtime; add ASG with new version to test; easy rollback; doubles number of instances temporarily which may bump up against EC2 region limits and costs money; updates during maintenance window use this method (not available for Windows platforms)
 
-- Blue/Green - no downtime; just like immutable but with a new ELB as well; switch DNS to change from blue to green; Database layer gets replaced too so you will need to run RDS outside of Elastic Beanstalk.
+- Blue/Green - no downtime; just like immutable but with a new ELB as well; switch DNS to change from blue to green; Database layer gets replaced to so you will need to run RDS outside of Elastic Beanstalk.
 
-Each deployment has an ID that increments each deployment and instance configuration change. You can ignore healthchecks which determines if the deployment wait until the instance comes up healthy or simply continue... If an app is created from console or eb cli it will default to a rolling deployment but if created from SDK or AWS CLI it will default to an all-at-once deployment
-
-## EB Configuration Settings
+## Environment Configurations
 
 The EB environment has many settings that are evaluated from higher to lower in precendent. Config changes are processed separate from deployments. If you modify the underlying resource between environment changes they get overwritten. The word "update" is associated with configuration change applied to an environment. 
 
@@ -90,15 +90,8 @@ Docker containers are a good option on EB when the application has many funky de
 `.dockercfg` - includes authentication info for the private docker registry store on S3 in the SAME region. Use the `docker login registry-url` to generate.
 
 
-# Resources
+## command line setup
 
-## Qwik Labs
-
-* [Introduction to AWS Elastic Beanstalk](https://qwiklabs.com/focuses/2935) - This is a low cost (1 credit) lab that simply walks through the basic stuff of ElasticBeanStalk.
-
-* [Working with AWS Elastic Beanstalk](https://qwiklabs.com/focuses/2559)
-
-* [Building Scalable Web Applications with AWS Elastic Beanstalk](https://qwiklabs.com/focuses/2597)
 
 ## Reading
 
