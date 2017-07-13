@@ -6,13 +6,13 @@ categories: delivery
 {% assign cat = 'delivery' %}
 {% assign project_tags = site.array %}
 {% assign skills = site.otherarray %}
-{% assign skills = "specialsauce,scrum,kanban,leanux" | split: "," %}
+{% assign skills = "special-sauce,scrum,kanban,leanux" | split: "," %}
 
 
   {% for skill in skills %}
     <div class="category-archive">
-      {% if skill == "specialsauce" %}
-        {% assign project_tags = "specialsauce" | split: "," %}
+      {% if skill == "special-sauce" %}
+        {% assign project_tags = "special-sauce" | split: "," %}
         {% assign skill_full_name = "Ric's Special Sauce" %}
       {% endif %}
       {% if skill == "scrum" %}
@@ -36,7 +36,7 @@ categories: delivery
       
       
       {% for tag in project_tags %}
-        {% if tag == 'specialsauce' %}
+        {% if tag == 'special-sauce' %}
           {% assign tag_full_name = "Ric's Special Sauce" %}
         {% elsif tag == 'scrum' %}
           {% assign tag_full_name = "Scrum" %}

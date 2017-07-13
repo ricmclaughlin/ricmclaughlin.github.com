@@ -23,11 +23,8 @@ Elastic Beanstalk supports a webserver or worker environments. On the webserver 
 
 Overall, it is a bad idea to create a RDS instance in Elastic Bean stalk.... a RDS instance can not be used in more than one environment and a clone of an environment does NOT clone the database.
 
-### Versions
+#### platforms
 
-Each source code upload is a version and each upload must be a single zip file or WAR file less than 512 with no top level directory. You can include multiple WAR files in a single zip file as well. The word "deployment" is associated with versions. Both updates, which are changes to teh configuration of an environment, and deployments use healthchecks.
-
-Application Version Lifecycle settings controls how many version of the app to keep around. Once enabled (it is an optional setting), the policy can be configured to keep a number of versions around OR to delete after the version is a particular age.
 
 ## Deployment Policies
 

@@ -3,7 +3,7 @@ layout: post
 title: "Timebox Your Project. Now!"
 description: ""
 category: posts
-tags: [specialsauce]
+tags: [special-sauce, project-delivery]
 ---
 {% include JB/setup %}
 
