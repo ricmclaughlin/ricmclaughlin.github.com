@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "AWS SysOps - OpsWorks"
+title: "AWS - OpsWorks"
 description: ""
 category: posts 
-tags: [aws, sysops, opsworks, solutionsarch, devopspro]
+tags: [aws, devops, opsworks, aws-dev-ops-pro, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

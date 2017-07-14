@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "AWS Developer - CloudFormation"
+title: "AWS - CloudFormation"
 description: ""
 category: posts 
-tags: [aws, developercert, cloudformation, solutionsarch, devopspro]
+tags: [aws, devops, cloudformation, aws-dev-ops-pro, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
