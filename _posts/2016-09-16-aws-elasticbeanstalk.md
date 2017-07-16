@@ -82,8 +82,6 @@ The environment components run on platforms - the underlying OS, middleware and 
 
 [Managed platform updates](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-platform-update-managed.html#environment-platform-update-managed-window) enable minor and patch to during the weekly scheduled maintenance window. Major updates must be done manually.
 
-
-
 ### Docker with EB
 
 Docker containers are a good option on EB when the application has many funky dependencies which makes packaging it on Docker a good choice. All the config files are stored in the application source bundle. Docker comes in three flavors:

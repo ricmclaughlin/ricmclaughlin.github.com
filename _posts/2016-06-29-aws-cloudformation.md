@@ -9,27 +9,27 @@ tags: [aws, devops, cloudformation, aws-dev-ops-pro, aws-solutions-arch-pro]
 
 [CloudFormation](https://aws.amazon.com/cloudformation/) templates are JSON documents that build AWS infrastucture. The cool part is that these templates can be version control and run over and over again - this is infrastructure as code in a fleshy-codey sort of way! The only bummer is that you can only have 20 CloudFormation stacks in a region - and of course, you can increase this by contacting AWS. Obviously, you can create as many CloudFormation templates as you want.
 
-NOTE: These notes aren't just for the AWS Developer Certification... they also include information on the DevOps Pro Certification as well.
-
 # CloudFormation Templates
 
 CloudFormation Templates have 8 main sections but only the resources section is required.
 
-* AWSTemplateFormatVersion -- this specfies the template version.. duh.
+* AWSTemplateFormatVersion - this specfies the template version.. duh.
 
-* Description -- this specifies what the heck the template does. Where can you stamp the version of the file you are creating?? A Description block requires an `AWSTemplateFormatVersion` block.
+* Description - this specifies what the heck the template does. Where can you stamp the version of the file you are creating?? A Description block requires an `AWSTemplateFormatVersion` block.
 
-* Metadata -- as the name suggests, this sets up additional information about each of the resources
+* Metadata - as the name suggests, this sets up additional information about each of the resources
 
-* [Parameters](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html) -- imagine default values and customized template values and stuff you can pass in on the commandline OR when you run the template. Sounds a lot like commander or commander.js functionality!
+* [Parameters](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html) - imagine default values and customized template values and stuff you can pass in on the commandline OR when you run the template. Sounds a lot like commander or commander.js functionality!
 
-* Mappings -- maps keys to values - imagine a different value for each AWS region!
+* Transform - used for the [Serverless](https://github.com/awslabs/serverless-application-model) definition
 
-* Conditions -- imagine the ability to conditionally do stuff. For instance, you can create slightly different configurations for a production or development environments 
+* Mappings - maps keys to values - imagine a different value for each AWS region!
 
-* Resources -- create different resources like S3 buckets, EC2 Instances; this is the only required section of the template
+* Conditions - imagine the ability to conditionally do stuff. For instance, you can create slightly different configurations for a production or development environments 
 
-* Outputs -- think `console.log();` you can output stuff like the URL of the website, or other variable.
+* Resources - create different resources like S3 buckets, EC2 Instances; this is the only required section of the template
+
+* Outputs - think `console.log();` you can output stuff like the URL of the website, or other variable.
 
 ## Nested Templates
 
@@ -66,7 +66,7 @@ Intrinsic Functions are functions that run inside a CF template. There are helpe
 
 ## Resource Attributes 
 
-CF policies aren't really separate documents thet are [resource attributes](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-product-attribute-reference.html). There are numerous types of CloudFormation Policies... when do you use what?
+CF policies aren't really separate documents that are [resource attributes](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-product-attribute-reference.html). There are numerous types of CloudFormation Policies... when do you use what?
 
 - `CreationPolicy` - used to pause resource from going to create complete before success signals or timeout; applies to instances, ASG & wait conditions only
 
@@ -119,15 +119,12 @@ CloudFormation with Elastic BeanStalk - Can use CloudFormation to deploy Elastic
 
 Wait conditions should be used when synchronizing resources creation and there several different forms:
 
-
-
 `DependsOn` - for the simple cases of ordering
 
 WaitConditions - resources must signal the start and end wait period
 
-
-
 #### `DependsOn`
+
 DependsOn is the CloudFormation template engine is smart enough to figure out many dependencies but in some cases resources require a `DependsOn` attribute. A VPC-gateway, an Auto Scaling group, and IAM roles are all required to include a DependsOn block. A `DependsOn` block can take a single value or an array.  The problem is that `DependsOn` only checks to see if the resource has been created NOT if it is operationally complete... One nifty features of wait conditions is the ability to pass data to and from the created resource.
 
 The lifecycle is straightforward - while waiting they are `CREATE_IN_PROGRESS` then they are rolled back if they get a `CREATE_FAILED`. The wait condition has three properties:
@@ -140,10 +137,9 @@ The lifecycle is straightforward - while waiting they are `CREATE_IN_PROGRESS` t
 
 Should not be used for EC2 instance or autoscaling groups... use creation policies or wait conditions for these resources and use cases.
 
-#### To setup a wait condition:
+#### Wait Condition Setup
 
 For resources other than EC2 instances OR Auto Scaling groups, a wait condition is what you want. The resource must signal the start and end of the wait time out period. 
-
 
 First, create a wait handler (one per wait condition)
 
@@ -189,15 +185,71 @@ CreationPolicy:
     TimeOut: String # ISO8601 format; PT1H30M10S = 1h 30m 10s
 `
 
-## Helper Scripts
+## Rollback
+
+If a CloudFormation template run does not complete successfully then by default it all gets rolled back which feels like something very similiar to a transaction. First you might see a `CREATE_FAILED` message the likely a `ROLLBACK_IN_PROGRESS` message in the CF log. Rollbacks can be disabled to assist in troubleshooting.
+
+## Updates
+
+Think if the update will cause downtime before you do it. Is the change mutable or immutable? Generally you will see a `UPDATE_IN_PROGRESS` then an `UPDATE_COMPLETE` once the update is complete. Resource meta updates are controlled by the cfn-hub daemon, which, by default, runs every 15 minutes.
+
+Change sets are incremental changes to an existing stack. This allows you to preview the changes to the infrastructure from a template change.
+
+### Stack Policy
+
+how do you apply a stack policy??
+
+After you create a stack, by default anyone can update the stack. A [Stack Policy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html) can be used restrict access to stack updates, a stack policy can be applied, which, by default, protects all the resources in the stack. You have to explictly `Allow` updates; only one stack policy per stack; many resources per [Stack Policy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html).
+
+When a resource is updated it might be replaced or have no service interuption, suffer an interuption or be deleted. If you need to update a protected resource you can temporarily replace the policy at update time.
+
+In addition, there is no fine grain access control in a stack policy... everyone that can run the template in update mode but you must specify a `Principal:*`. One handy feature is the `Condition` block like: 
+
+`json
+{
+  "Statement": [
+    {
+      "Condition" : {
+        "ResourceType" : [
+          "AWS::EC2::*"
+        ]
+      } 
+    },
+    {
+      "Effect" : "Allow",
+      "Action" : "Update",
+      "Principle" : "*",
+      "Resource" : "*"
+    }
+  ]
+}
+`
+
+The `Action` attribute can be set to:
+
+- Update:Modify
+
+- Update:Replace
+
+- Update:Delete
+
+- Update:*
+
+## Deleting
+
+By default when a stack is deleted all the resources are deleted. To get around this you can create a [DeletionPolicy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html) Specify `Delete`, `Retain` or `Snapshot` as an attribute of the resources. Snapshot works for things that might be snapshotted... like EBS, RDS (instances and clusters), & Redshift cluster.
+
+## EC2 Instances
+
+To deploy and update applications and other required system components on EC2 instances easily there are a number of help scripts that can be used.
 
 ### cfn-init
 
-Reads the instance meta-data io install pages, write files and enable/disable software. 
+cfn-init reads teh template metadata from the `AWS::CloudFormation::Init` key and installs packages, writes files, and enables/disable and start/stop services.
 
 #### configSets
 
-ConfigSets are used to order config tasks in the template for the cfn-init process. Something like:
+Inside the instance meta-data section use `AWS::CloudFormation::Init` to set config that the cfn-init process will use to configure packages, groups, users, sources, commands and enable/disable service. To add additional flexibility, use `ConfigSets` to order config tasks in the template for the cfn-init process. Something like:
 
 `yaml
 AWS::CloudFormation::Init: 
@@ -230,20 +282,17 @@ Sends back messages to stack to signal success or failure. The cfn-signal helper
 
 ### cfn-hup
 
-Used to update in place using a deamon that detects resource metadata change and takes actions on those changes.
+Used to update in place using a deamon that detects resource metadata change and takes actions on those changes. Not useful in updating autoscaling groups because there is no synchronization between the instances update timing leaving the ASG fleet in an odd configuration.
 
 ### cfn-get-metadata
 
 Gets a metadata block from CloudFormation and prints it out to STDOUT.
 
 
-## Rollback
+## Auto Scaling Groups
 
-CloudFormation Rollback - If a CloudFormation template run does not complete successfully then by default it all gets rolled back which feels like something very similiar to a transaction. First you might see a `CREATE_FAILED` message the likely a `ROLLBACK_IN_PROGRESS` message in the CF log. Rollbacks can be disabled to assist in troubleshooting.
+To create a wait condition for an ASG, you can use a [`CreationPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-creationpolicy.html). On the instance side, you have to signal the start and end of the wait time.
 
-## Updates
-
-Think if the update will cause downtime before you do it. Is the change mutable or immutable? Generally you will see a `UPDATE_IN_PROGRESS` then an `UPDATE_COMPLETE` once the update is complete. Resource meta updates are controlled by the cfn-hub daemon, which, by default, runs every 15 minutes.
 
 ### Update Policies
 
@@ -283,52 +332,6 @@ UpdatePolicy:
   AutoScalingScheduledAction:
     IgnoreUnmodifiedGroupSizeProperties: true
 `
-
-### Stack Policy
-
-By default after you create a stack, anyone can update the stack and there is no [Stack Policy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html). To restrict access to stack updates, a stack policy can be applied to the stack, which, by default, protects all the resources in the stack. You have to explictly `Allow` updates; only one stack policy per stack; many resources per [Stack Policy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html).
-
-When a resource is updated it might be replaced or have no service interuption, suffer an interuption or be deleted. If you need to update a protected resource you can temporarily replace the policy at update time.
-
-In addition, there is no fine grain access control in a stack policy... everyone that can run the template in update mode but you must specify a `Principal:*`. One handy feature is the `Condition` block like: 
-
-`json
-{
-  "Statement": [
-    {
-      "Condition" : {
-        "ResourceType" : [
-          "AWS::EC2::*"
-        ]
-      } 
-    },
-    {
-      "Effect" : "Allow",
-      "Action" : "Update",
-      "Principle" : "*",
-      "Resource" : "*"
-    }
-  ]
-}
-`
-
-The `Action` attribute can be set to:
-
-- Update:Modify
-
-- Update:Replace
-
-- Update:Delete
-
-- Update:*
-
-
-## Deleting
-
-### DeletionPolicy
-
-By default when a stack is deleted all the resources are deleted. To get aroudn this in various ways you can create a [DeletionPolicy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html) Specify `Delete`, `Retain` or `Snapshot` as an attribute of the resources. Snapshot works for things that might be snapshotted... like EBS, RDS (instances and clusters), & Redshift cluster.
-
 ## Troubleshooting
 
 A couple of troubleshooting tips:
@@ -345,7 +348,7 @@ A couple of troubleshooting tips:
 
 * Rollback fail? Nested stacks have dependencies that keep rollbacks from occuring OR the resource has been modified in a way the keeps it from being deleted.  
 
-# CloudFormation API
+# CloudFormation CLI
 
 There are two different CLI interfaces to CloudFormation, the older [CloudFormation CLI](https://s3.amazonaws.com/awsdocs/AWSCloudFormation/2010-05-15/cfn-ug-cli-ref-09172013.pdf) and the newer [AWS CLI](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-using-cli.html). This test covers the older version so here a little table comparing the two:
 
@@ -355,10 +358,9 @@ There are two different CLI interfaces to CloudFormation, the older [CloudFormat
 |  cfn-list-stacks |   list-stacks  |   lists all stacks over last 90 |
 | ?? | ListStackResources | list all the stack resources |
 
-# Resources
-
 
 ## Reading
+
 * [AWS CloudFormation User Guide](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)
 
 * [CloudFormation Template Reference](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-reference.html)
@@ -366,8 +368,9 @@ There are two different CLI interfaces to CloudFormation, the older [CloudFormat
 * [CloudFormation Troubleshooting Guide](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html)
 
 ## Qwik Labs
+
 * [Introduction to AWS CloudFormation](https://qwiklabs.com/focuses/2931) - Complete
 
 * [Introduction to AWS CloudFormation Designer](https://qwiklabs.com/focuses/2932) - Complete
 
-* [Working with AWS CloudFormation](https://qwiklabs.com/focuses/2867) - Complete (no love on this one... lab was mostly broken)
+* [Working with AWS CloudFormation](https://qwiklabs.com/focuses/2867) - Complete (no love on this one... lab was mostly broken)  
