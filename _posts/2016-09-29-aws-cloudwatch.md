@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "AWS SysOps - CloudWatch"
+title: "AWS - CloudWatch"
 description: ""
 category: posts
-tags: [aws, cloudwatch, sysops, devopspro]
+tags: [cloudwatch, aws, devops, aws-dev-ops-pro, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

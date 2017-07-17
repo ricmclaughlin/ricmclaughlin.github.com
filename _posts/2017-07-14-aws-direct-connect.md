@@ -2,7 +2,7 @@
 layout: post
 title: "AWS - Direct Connect"
 description: ""
-category: 
+category: posts
 tags: [aws, direct-connect, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}

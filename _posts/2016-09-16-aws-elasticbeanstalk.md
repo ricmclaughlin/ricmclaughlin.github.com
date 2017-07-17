@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Elastic Beanstalk"
 description: ""
 category: posts
-tags: [aws, developercert, vpc, elasticbeanstalk, devopspro]
+tags: [aws, devops, elastic-beanstalk, aws-dev-ops-pro, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
@@ -68,7 +68,7 @@ Because there are many different ways of configuring EB, these different types o
 
 `.ebextensions` are evaluated in alphabetical order and can set environment variables, autoscaling, and custom resources as well. In configuration files you can setup many sections that are about the envionrment including `option_settings`, `users`, `sources` (where the app is), and the `commands` section. In addition, you can add CloudFormation to the mix as well. 
 
-Some configuration elements like `container_commands` setup the EC2 instance. The `leader_only` directive can be used within the `container_comments` section to run a section only once. 
+Some configuration elements like `container_commands` setup the EC2 instance after the servers are setup and source has been extracted but before deployment. The `leader_only` directive can be used within the `container_comments` section to run a section only once. This is the eb version of `cfn-init` pretty much.
 
 There is an Elastic Beanstalk specific intrinsic function called `Fn::GetOptionSetting` which references a variable from the configuration options in the main environment. Both `Ref` and `Fn::GetAtt` from CloudFormation also work in .ebextensions.
 

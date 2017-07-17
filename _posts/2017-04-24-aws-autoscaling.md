@@ -3,7 +3,7 @@ layout: post
 title: "DevOps Pro - Autoscaling"
 description: ""
 category: posts
-tags: [autoscaling, devopspro]
+tags: [autoscaling, aws, aws-dev-ops-pro, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
@@ -81,13 +81,19 @@ There are also two other states:
 
 ### Update Policies
 
-Although a [Cloudformation feature](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html), Update Policies applies to how CloudFormation deals with changes to a Launch Configuration or VPC or changes to an ASG that contains instances that don't match the current launch configuration by issuing a `AutoScalingRollingUpdate`, whihc sets batch sizes or all-at-once configuration or a `AutoScalingReplacingUpdate`, where the instance must signal completion.
+Although a [Cloudformation feature](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html), Update Policies applies to how CloudFormation deals with a Launch Configuration change, VPC change or changes to an ASG that contains instances that don't match the current launch configuration. There are two options:
+
+- `AutoScalingReplacingUpdate` - if `WillReplace` is true the ASG and its instance are replaced and go in service when the `MinSuccessfulInstancesPercent` of the creation policy is met; until then the old one stays around
+
+- `AutoScalingRollingUpdate` - which sets batch sizes or all-at-once configuration with a minimum number of instances online; use the `SuspendProcesses` property to keep the ASG from running during update.
+
+Closely related is the `AutoScalingScheduledAction` which is for updating a group that has scheduled actions.
 
 ### Termination Policies
 
-ASG [Termination Policies](http://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-termination.html) determine which instances should be terminated when a scale-in event occurs. In the console, they get setup in the ASG configuration setting and get executed in presentation order. When a scale-in event occurs the AutoScaling feature checks for an imbalance of instances across AZ then runs the termination policy. Some use cases for each type of termination policy includes:
+ASG [Termination Policies](http://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-termination.html#custom-termination-policy) determine which instances should be terminated when a scale-in event occurs. In the console, they get setup in the ASG configuration setting and get executed in presentation order. When a scale-in event occurs the AutoScaling feature checks for an imbalance of instances across AZ **then** runs the termination policy. Some use cases for each type of termination policy includes:
 
-- OldestInstance - gradually replace an old instance type
+- OldestInstance - gradually update instances with a new instance type
 
 - NewestInstance - test out a new launch configuration
 
@@ -95,15 +101,15 @@ ASG [Termination Policies](http://docs.aws.amazon.com/autoscaling/latest/usergui
 
 - ClosestToNextInstanceHour - save money
 
-- Default - why add anything about default??? just because!
+- Default - balances across AZs then oldest launch config then closet to billing hour; 
 
 #### Scale-in Protection
 
-Scale-in protection can be applied to an ASG or an instance in the ASG and starts once the instance is `InService`. Instance protection does not prevent termination in the following cases:
+Scale-in protection can be applied to an ASG or an instance in the ASG and starts once the instance is `InService` and this keeps the instance from being terminated during scaling operations. Detaching instances loose their scale-in protection. Instance protection does not prevent termination in the following cases:
 
-- Manual Termination
+- Manual termination
 
-- Health Check Replacement
+- Health check replacement
 
 - Spot instance interuption
 
@@ -144,13 +150,13 @@ There are numerous AS processes that can be suspended. Generally, suspending AS 
 
 ### Health Checks
 
-There are three types of healthchecks that can be preformed in an ASG. 
+There are three types of [health checks](http://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html) that can be preformed in an ASG. Unhealthy instances are terminated almost immediately so never recover to healthy typically or be in a situation where `SetInstanceHealth` can set them to healthy. EIP and EBS volumes are detached and not re-attached to new instances.
 
 Status checks - good old fashioned system &amp; instance status checks
 
-ELB Health checks - the ELB/ALB will check the health of the instance
+ELB Health checks - the ELB/ALB will check the health of the instance; if an instance is in more than one ELB, all must report healthy else instance gets replaced.
 
-Custom Health Checks - based on a check from within the instance send a message to the ASG... Really this wonky and should be done at the ELB/ALB level
+Custom Health Checks - based on a check from within the instance send a message to the ASG using the 'set-instance-health' command; Not sure why it works this way it should be done at the ELB/ALB level.
 
 ## Autoscaling API
 
@@ -164,4 +170,8 @@ Custom Health Checks - based on a check from within the instance send a message 
 | `put-lifecycle-hook` | create hook |
 | `put-scaling-policy` | create scaling policy |
 
+
+## Troubleshooting
+
+Least efficient way of solving problems? raise minimum number of instances
 

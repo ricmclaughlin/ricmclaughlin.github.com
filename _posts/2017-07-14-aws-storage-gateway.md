@@ -2,7 +2,7 @@
 layout: post
 title: "AWS Storage Gateway"
 description: ""
-category: 
+category: posts
 tags: [aws, storage-gateway, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}

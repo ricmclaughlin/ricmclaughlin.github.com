@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "AWS SysOps - Elastic Load Balancer"
+title: "AWS - Elastic Load Balancer"
 description: ""
 category: posts
-tags: [aws, sysops, elb, solutionsarch, devopspro]
+tags: [aws, devops, elastic-load-balancer, aws-dev-ops-pro]
 ---
 {% include JB/setup %}
 
@@ -23,7 +23,7 @@ Lots of times you will know there is more traffic a-coming. In these cases you c
 
 ## SSL on ELB
 
-One of the key features of ELB is the ability to terminate SSL connections for instances in the load balancing group - SSL is still a highly compute intensive process for webservers. In this configuration, the HTTPS client uses port 443 to communicate with the ELB and the ELB communicates on port 80 to the web server instances in the autoscaling group. 
+One of the key features of ELB is the ability to terminate SSL connections for instances in the load balancing group - SSL is still a highly compute intensive process for webservers. In this configuration, the HTTPS client uses port 443 to communicate with the ELB and the ELB communicates on port 80 to the web server instances in the autoscaling group. Although a great feature, end to end encryption is an important aspect to consider in system design.
 
 Managing the certificate on the ELB is always the magic... In fact, managing certs in general is the magic. There are three options. 
 
@@ -38,6 +38,8 @@ In addition to a cert, you need to define an SSL Negotiation configuration, call
 ## Health Checks
 
 To enable removing unhealthy instances from the round robin, each ELB can do a health check of the instances in the load balancing group. Can use different ports, including port 80, and set a response timeout, a health check interval, an unhealthy threshold and a healthy threshold. 
+
+[Health checks](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-healthchecks.html) only determine if the instance will get traffic routed to it; optionally, an ASG can use ELB health checks in addition to the EC2 status checks it uses.
 
 ## Monitoring
 

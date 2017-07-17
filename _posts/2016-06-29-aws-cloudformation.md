@@ -11,7 +11,7 @@ tags: [aws, devops, cloudformation, aws-dev-ops-pro, aws-solutions-arch-pro]
 
 # CloudFormation Templates
 
-CloudFormation Templates have 8 main sections but only the resources section is required.
+CloudFormation Templates have 8 main sections but only the resources section is required. All sections are independent of each other. 
 
 * AWSTemplateFormatVersion - this specfies the template version.. duh.
 
@@ -51,7 +51,21 @@ The AWS::CloudFormation::Stack resource can be used to call another template fro
 
 ## Cloudformation Components
 
-## Intrinsic Functions
+### Resource Types
+
+Sets the [type of resource](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html) you want to create... for example, 
+
+`yaml
+  Type: "AWS::EC2::Instance"
+  Properties: 
+`
+
+### Resource Properties Types
+
+Within resources, there are numerous different data structures that must be built to set options - essentially, you are creating an embedded object in a resource. And these embedded objects have types which can be set using the `Type` property sets the possible properties available as documented the [resource specification](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html). 
+
+
+### Intrinsic Functions
 
 Intrinsic Functions are functions that run inside a CF template. There are helper functions and conditional logic functions. Some value that you need to access will not be known until runtime; think IP address or DNS name, anything that might vary each time the CloudFormation template is run. These functions can only be used in the resource properties, metadata attributes, and update policy attributes. 
 
@@ -63,8 +77,9 @@ Intrinsic Functions are functions that run inside a CF template. There are helpe
 
 - `Ref` - reference the ID of a resources; can be written as `!Ref` or `Ref:`
 
+- `Fn::ImportValue` - imports a value from another stack exported using the `Export` attribute in the `Outputs` section of a template
 
-## Resource Attributes 
+### Resource Attributes 
 
 CF policies aren't really separate documents that are [resource attributes](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-product-attribute-reference.html). There are numerous types of CloudFormation Policies... when do you use what?
 
@@ -74,7 +89,7 @@ CF policies aren't really separate documents that are [resource attributes](http
 
 - `UpdatePolicy` - used to dictate how updates to an ASG are handled... AutoScalingRollingUpdate &amp; 
 
-## Custom Resources
+### Custom Resources
 
 [Custom Resources](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-custom-resources.html) enable you to support AWS Products that lack CF support, operate on non-AWS resources and perform advanced logic is limited. A custom resource directly runs a lambda function or creates and SNS message when the resource is created, updated, or deleted. This can be specfied like `Custom::MyCustomThingy` or ` AWS::CloudFormation::CustomResource`.
 
@@ -191,7 +206,7 @@ If a CloudFormation template run does not complete successfully then by default 
 
 ## Updates
 
-Think if the update will cause downtime before you do it. Is the change mutable or immutable? Generally you will see a `UPDATE_IN_PROGRESS` then an `UPDATE_COMPLETE` once the update is complete. Resource meta updates are controlled by the cfn-hub daemon, which, by default, runs every 15 minutes.
+Think if the update will cause downtime before you do it. Is the change mutable or immutable? Generally you will see a `UPDATE_IN_PROGRESS` then an `UPDATE_COMPLETE` once the update is complete. Resource meta updates are controlled by the cfn-hub daemon, which runs every 15 minutes by default.
 
 Change sets are incremental changes to an existing stack. This allows you to preview the changes to the infrastructure from a template change.
 
@@ -237,7 +252,7 @@ The `Action` attribute can be set to:
 
 ## Deleting
 
-By default when a stack is deleted all the resources are deleted. To get around this you can create a [DeletionPolicy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html) Specify `Delete`, `Retain` or `Snapshot` as an attribute of the resources. Snapshot works for things that might be snapshotted... like EBS, RDS (instances and clusters), & Redshift cluster.
+By default when a stack is deleted all the resources are deleted. To get around this you can create a [DeletionPolicy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html) Specify `Delete`, `Retain` or `Snapshot` as an attribute of the resources. Snapshot works for things that might be snapshotted... like EBS, RDS (instances and clusters), &amp; Redshift cluster.
 
 ## EC2 Instances
 
@@ -245,7 +260,7 @@ To deploy and update applications and other required system components on EC2 in
 
 ### cfn-init
 
-cfn-init reads teh template metadata from the `AWS::CloudFormation::Init` key and installs packages, writes files, and enables/disable and start/stop services.
+cfn-init reads the template metadata from the `AWS::CloudFormation::Init` key, which is a declarative configuration block, then installs packages, writes files, and enables/disable and start/stop services.
 
 #### configSets
 
@@ -278,7 +293,7 @@ AWS::CloudFormation::Init:
 
 ### cfn-signal
 
-Sends back messages to stack to signal success or failure. The cfn-signal helper script signals whether an EC2 instance has been successfully created or updated. This script is used with a CreationPolicy or an Auto Scaling group with a WaitOnResourceSignals update policy. When CloudFormation creates or updates resources with those policies, the rest of the stack pauses until the resource receives the required number of success signals, or until the timeout period is reached. The cfn-signal helper is what sends those signals back - successful or not.
+Sends back messages to stack to signal success or failure. The cfn-signal helper script signals whether an EC2 instance has been successfully created or updated. This script is used with a `CreationPolicy` or an Auto Scaling group with a `WaitOnResourceSignals` update policy. When CloudFormation creates or updates resources with those policies, the rest of the stack pauses until the resource receives the required number of success signals, or until the timeout period is reached. The cfn-signal helper is what sends those signals back - successful or not.
 
 ### cfn-hup
 
@@ -293,10 +308,9 @@ Gets a metadata block from CloudFormation and prints it out to STDOUT.
 
 To create a wait condition for an ASG, you can use a [`CreationPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-creationpolicy.html). On the instance side, you have to signal the start and end of the wait time.
 
-
 ### Update Policies
 
-An (Update Policy)[http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html] handles updates to `AWS::AutoScaling::AutoScalingGroup` resources.
+An [Update Policy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html) handles updates to `AWS::AutoScaling::AutoScalingGroup` resources.
 
 AutoScalingReplacingUpdate and AutoScalingRollingUpdate get applied when the AutoScaling group's launch configuration changes, there is a change to the associated subnets (VPCZoneIdentifiers) or when the instances in the ASGroup don't match the current launch configuration.
 
@@ -332,7 +346,12 @@ UpdatePolicy:
   AutoScalingScheduledAction:
     IgnoreUnmodifiedGroupSizeProperties: true
 `
-## Troubleshooting
+
+## Triage
+
+### Troubleshooting
+
+http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html
 
 A couple of troubleshooting tips:
 
@@ -340,13 +359,31 @@ A couple of troubleshooting tips:
 
 * S3 buckets must be empty before they can be deleted by CF
 
-* Resource dependencies must be addressed in the reverse order of create... so delete the EC2 instance prior to deleting the VPC. 
+* Dependency error - can happen in both create and delete scenarios - and generally can be resolved using the `DependsOn` attribute... so delete the EC2 instance prior to deleting the VPC and add the IGW before adding the IEP
 
 * User permissions apply when deleting stuff.
 
-* If a DELETE_FAILED message comes up you can use the RetainResources parameter to unstick the stack.
+* If a `DELETE_FAILED` message comes up you can use the RetainResources parameter to unstick the stack.
 
 * Rollback fail? Nested stacks have dependencies that keep rollbacks from occuring OR the resource has been modified in a way the keeps it from being deleted.  
+
+* Invalid Value or Unsupported Resource Property - use parameter types to eliminate this problem with parameters
+
+### Wait Conditions
+
+
+| Wait for  | Use  | Notes  |
+|:--------------------------:|:--------------------------:|:--------------------------:|
+| ASG Completion    |  CreationPolicy  | requires use of `cfn-signal`   |
+| EC2 (standalone)    |  CreationPolicy  | requires use of `cfn-signal`   |
+| VPC Gateway Attachment      |  `DependsOn`  | anything with a public IP requires attachment  |
+| ECS Service      |  `DependsOn`  | autoscaling group or container instances required first |
+| Ordering |  `DependsOn`  | but not for ASG or EC2; requires use of `cfn-signal`   |
+
+
+### Policies
+
+
 
 # CloudFormation CLI
 
@@ -366,11 +403,3 @@ There are two different CLI interfaces to CloudFormation, the older [CloudFormat
 * [CloudFormation Template Reference](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-reference.html)
 
 * [CloudFormation Troubleshooting Guide](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html)
-
-## Qwik Labs
-
-* [Introduction to AWS CloudFormation](https://qwiklabs.com/focuses/2931) - Complete
-
-* [Introduction to AWS CloudFormation Designer](https://qwiklabs.com/focuses/2932) - Complete
-
-* [Working with AWS CloudFormation](https://qwiklabs.com/focuses/2867) - Complete (no love on this one... lab was mostly broken)  

@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "AWS SysOps - Elastic Block Storage"
+title: "AWS - Elastic Block Storage"
 description: ""
 category: posts
-tags: [aws, sysops, ebs, ec2, solutionsarch, devopspro]
+tags: [elastic-block-storage, aws, aws-dev-ops-pro, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
@@ -50,7 +50,7 @@ By default, EBS root volumes are lost when an instance is terminated. That said,
 
 ## Volumes &amp; Snapshots
 
-Snapshots are incremental. Encrypted volumes are snap-shotted encrypted automatically - and are restored encrypted. Stop instances to snapshots the root devices else EC2 stops it for you. Frequent snap shots improve RPO and RTO and don't cost much as they are deltas.
+Snapshots are incremental. Stop instances to snapshots the root devices else EC2 stops it for you. Frequent snap shots improve RPO and RTO and don't cost much as they are deltas.
 
 RAID array snapshots are a pain. You need to freeze the file system, unmount the RAID array although it is easiest is to stop the instance.
 
@@ -63,6 +63,10 @@ RAID array snapshots are a pain. You need to freeze the file system, unmount the
 - RAID 5 - 4 data; 1 chksum; NEVER on EBS
 
 - RAID 10 - Mirror and stripe
+
+## Encryption
+
+EBS Volumes are only encryptable at creation and can't be un-encrypted by any means. Encrypted volumes are snap-shotted encrypted automatically - and are restored encrypted. Unencrypted snapshots can be encrypted during copy using the any key you specify.
 
 ## Backup Strategies
 
