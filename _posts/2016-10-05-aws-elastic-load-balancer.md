@@ -45,15 +45,15 @@ To enable removing unhealthy instances from the round robin, each ELB can do a h
 
 ### Metrics
 
-These metrics are measured and sent through every minute. There are two useful dimensions the AvailabilityZone and LoadBalancerName for the ELB and the the ALB adds a `TargetGroup` dimension.
+Metrics are reported every 60 seconds - no traffic = no metric. There are two useful dimensions the AvailabilityZone and LoadBalancerName for the ELB and the the ALB adds a `TargetGroup` dimension.
 
 * SurgeQueueLength - Length of waiting queue - closer to zero the better (up to 1024)
 
-* SpilloverCount - How many requests are NOT serviced by the load balancer in EXCESS of the QueueLength - closer to zero the better
+* SpilloverCount - How many requests are NOT serviced by the load balancer in EXCESS of the QueueLength - closer to zero the better; This is a bad, bad thing. Avoid. ELB reports a `503 - Service Unavailable`
 
 * Latency - How long a page takes to return
 
-* BackendConnectionErrors - unsuccessful connection to the backend
+* BackendConnectionErrors - unsuccessful connection to the backend; Look at SUM and difference between min and max values
 
 * HealthyHostCount, UnHealthyHostCount
 
@@ -64,6 +64,13 @@ These metrics are measured and sent through every minute. There are two useful d
 * HTTPCode_ELB_5XX - no healthy backend instance or request rate too high
 
 * RequestCount - # of requests over 1 or 5 minute interval
+
+## Elastic Load Balancing Service
+
+If you know there is a lot of traffic on the way, call AWS and get them to "pre-warm" your ELB. 
+
+
+
 
 ### Logging
 

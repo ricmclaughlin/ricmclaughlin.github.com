@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AWS Storage Gateway"
+title: "AWS - Storage Gateway"
 description: ""
 category: posts
 tags: [aws, storage-gateway, aws-solutions-arch-pro]

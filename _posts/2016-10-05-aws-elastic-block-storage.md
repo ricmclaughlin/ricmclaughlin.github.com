@@ -23,6 +23,18 @@ There are three types of EBS:
 
 3. Magnetic - Cheap and slow EBS volumes can also be Cold HDD (sc1) and Throughput Optimized HDD (st1). Can not specify IOPS with this storage type and it is not burstable; not recommended for smaller read sizes using random access
 
+### EBS Monitoring
+
+There are four status check statuses coming from EBS volumes:
+
+- `ok` - All good.
+
+- `warning` = Degraded or Severely Degraded
+
+- `impaired` = Stalled or Not Available 
+
+- `insufficient-data` = not enough data!
+
 ### Initializing EBS Volumes (pre-warm)
 
 This is no longer required for new volumes.
@@ -108,7 +120,18 @@ Large I/O including EMR, Kafka, log processing and data warehouse ETL = st1 (seq
 
 Super high disk IO? either RAID 0 or RAID 10 EBS
 
-## API 
+## Monitoring
 
-| **Call**  | **Purpose**  |
-| `create-volume` | custom metrics | 
+### gp2 volumes
+
+`VolumeReadBytes` & `VolumeWriteBytes` - throughput measurements can be reported in SUM or more importantly AVERAGE. Average should tell you if you are ending up with a bottleneck or excess throughput.
+
+`VolumeReadOps` & `VolumeWriteBytes` - This tells up the number of IOPS
+
+`VolumeTotalReadTime` & `VolumeTotalWriteTime` - Looking a trend line of this metric can show what the future requirements might be.
+
+`VolumeQueueLength` - How long the queue is can determine usage patterns. 
+
+#### io1 volumes
+
+The `VolumeThroughputPercentage` & `VolumeConsumedReadWriteOps` metrics show how much of the provisioned throughput you are using. 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AWS - Autoscaling"
+title: "AWS - Auto Scaling"
 description: ""
 category: posts
 tags: [autoscaling, aws, devops, aws-dev-ops-pro, aws-solutions-arch-pro]

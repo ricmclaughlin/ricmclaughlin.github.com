@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AWS Snowball
+title: "AWS - Snowball
 "
 description: ""
 category: posts

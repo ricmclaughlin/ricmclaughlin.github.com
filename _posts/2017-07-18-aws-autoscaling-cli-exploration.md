@@ -1,12 +1,11 @@
 ---
 layout: post
-title: "aws autoscaling cli exploration"
+title: "AWS - Auto Scaling CLI Exploration"
 description: ""
 category: projects
 tags: [aws, autoscaling, aws-dev-ops-pro, aws-solutions-arch-pro, cli-exploration]
 ---
 {% include JB/setup %}
-
 
 This is a very simple exploration of [AWS Auto Scaling](https://aws.amazon.com/autoscaling/) from the [AWS CLI](https://aws.amazon.com/cli/). To get started with the CLI first [install it](http://docs.aws.amazon.com/cli/latest/userguide/installing.html), then use `aws configure` to [configure it](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html) for your account and region. 
 

@@ -119,3 +119,20 @@ On-prem to Cloud migration is super ugly... create RDS empty tables, disable bac
 Scaling the instance can happen immediately, if the checkbox is checked, or will happen in your maintenance window. 
 
 Resizing will result in downtime if in a single AZ configuration. In a multi-az, the standby gets resized, there is a fail-over then the master is resized.
+
+## RDS Monitoring
+
+There are some non-critical metrics that can be monitored like `CPUUtilization`, `DatabaseConnections`, `DiskQueueDepth`, `FreeableMemory` and `FreeStorageSpace`.
+
+More critical metrics and their solutions include:
+
+| **Metric**  | **Solution**  |
+|:-----------------------------------------|:--------------------------------------------------------| 
+| SwapUsage | Increase RAM |
+|ReadIOPS/WroteIOPS| Increase IOPS |
+|ReadLatency/WriteLatency| Increase IOPS |
+|ReadThroughPut/WriteThroughPut| Increase IOPS |
+|FreeStorageSpace| Increase disk space |
+|ReplicaLag | Increase IOPS or instance size |
+
+In addition to CloudWatch you can use the RDS service console to monitor RDS events. Event Subscriptions can be created as well. 
