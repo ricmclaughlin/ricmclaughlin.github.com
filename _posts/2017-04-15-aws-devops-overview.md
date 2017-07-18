@@ -30,7 +30,6 @@ In this scenario, all instances at one time regardless of how many instances the
 
  * Speed: fast
 
-
 ## Rolling Deployment
 
 In a Rolling Deployment deployment only some instances at a time are upgraded in place. In many scenarios, a minimium number of instances stays in service.

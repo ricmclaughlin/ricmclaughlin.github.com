@@ -158,23 +158,6 @@ ELB Health checks - the ELB/ALB will check the health of the instance; if an ins
 
 Custom Health Checks - based on a check from within the instance send a message to the ASG using the 'set-instance-health' command; Not sure why it works this way it should be done at the ELB/ALB level.
 
-## Autoscaling API
-
-| API      |  Action     |  Purpose|
-|----------|---------------|---------------|
-| `enter-standby` | puts instance in standby | Pause the instance for maintenance  |
-| `exit-standby` | takes instance out of standby |  Unpause the instance for maintenance      |
-| `--should-decrement-desired-capacity` | decrement desired ASG instances | make ASG capacity smaller enter/exit standby|
-
-| `create-launch-configuration` | create one | like UI make this first   |
-| `--block-device-mappings` | creates EBS mapping | mount existing EBS volume |
-
-| `delete-launch-configuration` | create one  | delete (there is no modify) |
-| `update-auto-scaling-group` | update an existing ASG  | Update ASG |
-| `put-lifecycle-hook` | add hook to pending or termination | event hook |
-| `put-scaling-policy` | adds an autoscaling policy | create scaling policy |
-
-
 ## Troubleshooting
 
 Least efficient way of solving problems? raise minimum number of instances

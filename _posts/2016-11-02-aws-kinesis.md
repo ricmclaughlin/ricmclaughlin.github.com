@@ -39,29 +39,3 @@ The number of partition keys should typically be much greater than the number of
 
 In the past realtime process of massive amounts of data was hard... very hard, in fact.  Kinesis is quite useful when you need to do multi-stage processing of data, partition the data then load the data. Tons of application in realtime gaming, IoT & mobile app analytics, monitoring app or system logs in real-time.
 
-## CLI Example
-
-```bash
-# Create stream
-aws kinesis create-stream --stream-name mySillyStream --shard-count 1
-
-# List the streams to see if it worked
-aws kinesis list-streams
-
-# what sort of data is in the stream description? (table output format rocks)
-aws kinesis describe-stream --stream-name mySillyStream
-
-# add a little data
-aws kinesis put-record --stream-name mySillyStream --partition-key 123 --data testdata
-
-# get an iterator 
-aws kinesis get-shard-iterator --shard-id shardId-000000000000 --shard-iterator-type TRIM_HORIZON --stream-
-name mySillyStream
-
-# use the iterator to read the stream
-aws kinesis get-records --shard-iterator <insert the long shard iterator here>
-
-# enough of this - delete the stream
-aws kinesis delete-stream --stream-name mySillyStream
-
-```
