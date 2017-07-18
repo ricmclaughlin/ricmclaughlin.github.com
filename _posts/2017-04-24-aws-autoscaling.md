@@ -101,7 +101,7 @@ ASG [Termination Policies](http://docs.aws.amazon.com/autoscaling/latest/usergui
 
 - ClosestToNextInstanceHour - save money
 
-- Default - balances across AZs then oldest launch config then closet to billing hour; 
+- Default - balances across AZs then oldest launch config then closet to billing hour
 
 #### Scale-in Protection
 
@@ -161,4 +161,8 @@ Custom Health Checks - based on a check from within the instance send a message 
 ## Troubleshooting
 
 Least efficient way of solving problems? raise minimum number of instances
+
+
+
+
 
