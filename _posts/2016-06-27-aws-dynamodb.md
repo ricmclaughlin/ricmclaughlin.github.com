@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "AWS Developer - DynamoDB"
+title: "AWS - DynamoDB"
 description: ""
 category: posts
-tags: [aws, developercert, dynamodb, devopspro]
+tags: [dynamodb, aws, aws-dev-ops-pro, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

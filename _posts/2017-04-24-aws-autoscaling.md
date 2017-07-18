@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "DevOps Pro - Autoscaling"
+title: "AWS - Autoscaling"
 description: ""
 category: posts
-tags: [autoscaling, aws, aws-dev-ops-pro, aws-solutions-arch-pro]
+tags: [autoscaling, aws, devops, aws-dev-ops-pro, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
@@ -160,15 +160,19 @@ Custom Health Checks - based on a check from within the instance send a message 
 
 ## Autoscaling API
 
-| API      | Purpose       |
-|----------|---------------|
-| `enter-standby` | Pause the instance for maintenance  |
-| `exit-standby` | Unpause the instance for maintenance      |
-| `create-launch-configuration` | create |
-| `delete-launch-configuration` | delete (there is no modify) |
-| `update-auto-scaling-group` | Update ASG |
-| `put-lifecycle-hook` | create hook |
-| `put-scaling-policy` | create scaling policy |
+| API      |  Action     |  Purpose|
+|----------|---------------|---------------|
+| `enter-standby` | puts instance in standby | Pause the instance for maintenance  |
+| `exit-standby` | takes instance out of standby |  Unpause the instance for maintenance      |
+| `--should-decrement-desired-capacity` | decrement desired ASG instances | make ASG capacity smaller enter/exit standby|
+
+| `create-launch-configuration` | create one | like UI make this first   |
+| `--block-device-mappings` | creates EBS mapping | mount existing EBS volume |
+
+| `delete-launch-configuration` | create one  | delete (there is no modify) |
+| `update-auto-scaling-group` | update an existing ASG  | Update ASG |
+| `put-lifecycle-hook` | add hook to pending or termination | event hook |
+| `put-scaling-policy` | adds an autoscaling policy | create scaling policy |
 
 
 ## Troubleshooting

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Dev Ops Pro - Deployments"
+title: "AWS - Devops Overview"
 description: ""
 category: posts
 tags: [aws, devops, opsworks, cloudformation, elastic-beanstalk, aws-dev-ops-pro, aws-solutions-arch-pro]

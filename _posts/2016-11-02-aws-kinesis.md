@@ -1,16 +1,15 @@
 ---
 layout: post
-title: "AWS Solutions Arch - Kinesis"
+title: "AWS - Kinesis"
 description: ""
 category: posts
-tags: [aws, soluarch]
+tags: [aws, kinesis, aws-dev-ops-pro, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
-
 ## What is Kinesis
 
-Real-time data processing, which is actually near-real time when you parse all the marketing, captures and stores large amounts of data to power dashboard and analytics.
+Real-time data processing that captures and stores large amounts of data to power dashboard and analytics.
 
 And it is not just one app at time... there can be multiple incoming data streams working concurrently. And it is durable, with data being written to three AZ yet not long lived with data living 24 hours and up to 7 days. 
 
@@ -30,13 +29,39 @@ A stream is made of up of shards and a shard is 1MB per second write and 2MB per
 
 The max size of a datablob is 1 MB.
 
+You can calculate the initial number of shards (number_of_shards) that your stream will need by using the input values in the following formula:
+
+number_of_shards = max(incoming_write_bandwidth_in_KB/1000, outgoing_read_bandwidth_in_KB/2000)
+
+The number of partition keys should typically be much greater than the number of shards. This is because the partition key is used to determine how to map a data record to a particular shard. If you have enough partition keys, the data can be evenly distributed across the shards in a stream.
+
 ## Why && When
 
 In the past realtime process of massive amounts of data was hard... very hard, in fact.  Kinesis is quite useful when you need to do multi-stage processing of data, partition the data then load the data. Tons of application in realtime gaming, IoT & mobile app analytics, monitoring app or system logs in real-time.
 
-## Resources
+## CLI Example
 
-[Introduction to Amazon Kinesis Firehose](https://qwiklabs.com/focuses/2988) 
+```bash
+# Create stream
+aws kinesis create-stream --stream-name mySillyStream --shard-count 1
 
-[Building Real-Time Dashboards with Amazon Kinesis Dynamic Aggregators](https://qwiklabs.com/focuses/2596)
+# List the streams to see if it worked
+aws kinesis list-streams
 
+# what sort of data is in the stream description? (table output format rocks)
+aws kinesis describe-stream --stream-name mySillyStream
+
+# add a little data
+aws kinesis put-record --stream-name mySillyStream --partition-key 123 --data testdata
+
+# get an iterator 
+aws kinesis get-shard-iterator --shard-id shardId-000000000000 --shard-iterator-type TRIM_HORIZON --stream-
+name mySillyStream
+
+# use the iterator to read the stream
+aws kinesis get-records --shard-iterator <insert the long shard iterator here>
+
+# enough of this - delete the stream
+aws kinesis delete-stream --stream-name mySillyStream
+
+```
