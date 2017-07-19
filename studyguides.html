@@ -6,13 +6,16 @@ categories: projects
 {% assign cat = 'projects' %}
 {% assign project_tags = site.array %}
 {% assign skills = site.otherarray %}
-{% assign skills = "aws-dev-ops-pro" | split: "," %}
+{% assign skills = "aws-dev-ops-pro,aws-solutions-arch-pro" | split: "," %}
 
   {% for skill in skills %}
     <div class="category-archive">
      
       {% if skill == 'aws-dev-ops-pro' %}
         {% assign project_tags = "cloudformation,opsworks,elastic-beanstalk,cloudwatch,kinesis" | split: "," %}
+        {% assign skill_full_name = "AWS DevOps Professional Study Guides" %}
+      {% elsif skill == 'aws-solutions-arch-pro' %}
+        {% assign project_tags = "kinesis,cloudformation,opsworks,elastic-beanstalk,cloudwatch,dynamodb" | split: "," %}
         {% assign skill_full_name = "AWS DevOps Professional Study Guides" %}
       {% endif %}
      

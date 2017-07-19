@@ -37,7 +37,13 @@ Namespaces - containers for metrics. Each namespace is something like AWS/EBS...
 
 ### Metric Filters
 
-Turning log data into metrics is done through the use of [metric filters](http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/MonitoringLogData.html). 
+Turning log data into metrics is done through the use of [metric filters](http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/MonitoringLogData.html). A couple of interesting facts about Metric Filters:
+
+- only work on data after they have been created
+
+- only return the first 50 results
+
+- must include a metric name, name space and value
 
 ## Alarms
 

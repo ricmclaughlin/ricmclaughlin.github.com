@@ -7,47 +7,16 @@ tags: [dynamodb, aws, aws-dev-ops-pro, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
-The [AWS Developer Certification - Associate](/posts/aws-developer-certification) has a some stuff about databases in general.
 
 # DyanamoDB Overall
 
-Yes, [DynamoDB](https://aws.amazon.com/dynamodb/) is like MongoDB - but the concepts behind MongoDB have better names. Reads of a DynamoDB table, unless you specify otherwise, are eventually consistent. DynamoDB uses optimistic concurrency control. It stores data in three separate data centers - not AZs. Not sure why there is a distinction.
+Yes, [DynamoDB](https://aws.amazon.com/dynamodb/) is like MongoDB - but the concepts behind MongoDB have better names. Reads of a DynamoDB table, unless you specify otherwise, are eventually consistent. DynamoDB uses optimistic concurrency control. It stores data in three separate data centers - not AZs. 
 
-**Eventually Consistent Reads** - By default, once there is a DynamoDB write you can access data with a second or so it is eventually consistent. 
 
-**Strongly Consistent Read** - a strongly consistent read reflects all the writes that have been received a successful response prior to the read. 
 
 **DynamoDB limits** - DynamoDB limits the tables per region to 256 but this can be increased by contacting AWS. The maximum size of a DynamoDB range primary key attribute value is 1024 bytes. If you need more than 10,000 writes/second or 10,000 reads/second you need to contact AWS directly. 
 
-**Exceeding capacity** - If you exceed provisioned throughput, you receive a 400 HTTP status code - `ProvisionedThroughputExceededException`. With global secondary indexes, if one of the indexes runs low on write capacity, all of the tables indexes might get throttled, even if one or more of the indexes aren't affected. 
 
-## Pricing 
-
-Pricing with DyanamoDB is difficult to project. Instead of being priced on just disk storage, pricing is based on disk storage, provisioned throughput, DynamoDB streams and data transfer.
-
-## Keys and Indexes
-
-Primary Key  - Like all databases, a DynamoDB primary key is a unique identifier for a record in a table. The primary key can be simple (use the partition key) or composite (the primary key and sort key)
-
-Partition Keys (hash key) - When DynamoDB stores data it uses the partition key to divide the table between partitions/servers. The partitian key should be a high-cardinality, composite attributes or perhaps 
-
-Sort Keys (range key) - The table can be sorted as well.. and it should be.
-
-Secondary Indexes - total of 5 global indexes and 5 secondary indexes for a total of 10 per table
-
-## Local Indexes
-
-Secondary Local Indexes are sparse indexes including the table primary key & sort key, a different sort key and any additional projected attributes; consumes tables defined read capacity but for the size of the items in the projection NOT the size of the item in the table; created asynchronously. 
-
-If you scan or query for attributes NOT in the index project that is bad... and results in a query to the index AND a query from the table. 
-
-When you write a new item or update a NULL attribute projected into secondary index, that costs one write in the LSI. Change an indexed item? two LSI writes; delete an item? two LSI writes
-
-## Global Indexes
-
-Global Secondary Indexes can use a different partition key and a different sort key (the partition and sort key *can* be different from those on the table.) - A global secondary index is considered "global" because queries on the index can span all of the data in a table, across all partitions and are eventually consistent. 
-
-Global indexes have completely different read/write capacity units that is calculated on the size of the projection NOT the underlying table. CRD operations consume write capacity.
 
 ## Data types
 
@@ -59,7 +28,45 @@ DynamoDB is hybrid of document and key value pair noSQL database types and featu
 
 - Document - basically json, much like how MongoDB store data
 
-## Read capacity unit estimation 
+
+## Pricing 
+
+Pricing with DyanamoDB is difficult to project. Instead of being priced on just disk storage, pricing is based on disk storage, provisioned throughput, DynamoDB streams and data transfer.
+
+## Keys and Indexes
+
+Primary Key - Like all databases, a DynamoDB primary key is a unique identifier for a record in a table. The primary key can be simple (use the partition key) or composite (the primary key and sort key)
+
+Partition Keys (hash key) - When DynamoDB stores data it uses the partition key to divide the table between partitions/servers. The partitian key should be a high-cardinality, composite attributes or perhaps 
+
+Sort Keys (range key) - The table can be sorted as well.. and it should be.
+
+Secondary Indexes - total of 5 global indexes and 5 secondary indexes for a total of 10 per table
+
+DynamoDB indexes are sparse so if a record does not have the value required to be indexed it will NOT appear in the index.
+
+### Local Secondary Indexes
+
+Secondary Local Indexes are sparse indexes including the table primary key & sort key, a different sort key and any additional projected attributes; consumes tables defined read capacity but for the size of the items in the projection NOT the size of the item in the table; created asynchronously. 
+
+If you scan or query for attributes NOT in the index project that is bad... and results in a query to the index AND a query from the table. 
+
+When you write a new item or update a NULL attribute projected into secondary index, that costs one write in the LSI. Change an indexed item? two LSI writes; delete an item? two LSI writes
+
+### Global Secondary Indexes
+
+Global Secondary Indexes can use a different partition key and a different sort key (the partition and sort key *can* be different from those on the table.) - A global secondary index is considered "global" because queries on the index can span all of the data in a table, across all partitions and are eventually consistent. 
+
+Global indexes have completely different read/write capacity units that is calculated on the size of the projection NOT the underlying table. CRD operations consume write capacity.
+
+
+## RCU &amp; WCU 
+
+**Eventually Consistent Reads** - By default, once there is a DynamoDB write you can access data with a second or so it is eventually consistent. 
+
+**Strongly Consistent Read** - a strongly consistent read reflects all the writes that have been received a successful response prior to the read. 
+
+### Read capacity unit estimation 
 
 A unit of read capactiy is 1 strongly consistent reads per second or 2 eventually consistent reads per second for items up to 4KB. Calculation algorithm:
 
@@ -73,7 +80,7 @@ A unit of read capactiy is 1 strongly consistent reads per second or 2 eventuall
 
 A unit of write capacity is 1KB. 
 
-### Example read capacity problem #1
+#### Example read capacity problem #1
 
 Strongly consistent reads; 3KB item size; 80 reads per sec;
 
@@ -83,7 +90,7 @@ Reads per Second = 80
 
 Read Capacity Units = 1 * 80 = 80
 
-### Example read capacity problem #2
+#### Example read capacity problem #2
 
 Weakly consistent reads; 6KB item size; 120 reads per sec;
 
@@ -145,20 +152,6 @@ Streams are ordered lists of record updates to a table that is stored for 24 hou
 
 There are two basic use cases for streams: replication and triggers. Cross region replication is enabled by a [CloudFormation template](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.CrossRegionRepl.html) that has been deprecated. 
 
-## Errors
-
-ItemCollectionSizeLimitExceededException - when a single partitian key (and LSI) are greater than 10GB
-
-## Web Identity Provider Access to DynamoDB
-
-This is a huge issue because many times users are authenticated by an ID provider then need access to DynamoDB. Steps:
-
-1. Authenticate with ID provider (Receive Token from ID provider)
-
-3. App calls STS with `AssumeRoleWithWebIdentity` &amp; passes in provider token and ARN for IAM role.
-
-4. STS provides DynamoDB access for a period of 15 minutes to 1 hours. 1 hour is the default.
-
 ## Use cases
 
 - Record size < 400? DynamoDB
@@ -169,7 +162,7 @@ This is a huge issue because many times users are authenticated by an ID provide
 
 - Static Time Series Table - time series with no updates with a fixed "interest" TTL -> pipe data into hot table with lots of RCU and WCU; colder table with less RCU & WCU; cold table in glacier or S3 
 
-- Dynamic Time Series Table - updates to TTL in a "delete after 30 days of last touch sort of scenario"; create write sharded GSI to  query expired items; Lambda stored procedure to delete items; use streams to migrate data to cold storage; or use the new [TTL Timestamps](https://aws.amazon.com/blogs/aws/new-manage-dynamodb-items-using-time-to-live-ttl/) feature.
+- Dynamic Time Series Table - updates to TTL in a "delete after 30 days of last touch sort of scenario"; create write sharded GSI to query expired items; Lambda stored procedure to delete items; use streams to migrate data to cold storage; or use the new [TTL Timestamps](https://aws.amazon.com/blogs/aws/new-manage-dynamodb-items-using-time-to-live-ttl/) feature.
 
 - Product Catalog Hot Item - cache hot items; pull through cache or move cache building to backend process using Lambda
 
@@ -177,53 +170,17 @@ This is a huge issue because many times users are authenticated by an ID provide
 
 - query filters vs composite key indexes - filtering only removes items from the found set AFTER they are read; instead, create a composite index (likely using a GSI) with the key and the filter attribute
 
-- query for item that contains an attribute that does NOT exist in other items? - DynamoDB indexes are sparse
-
-## DynamoDB API Reference points
-
-### Table
-
-| **DynamoDB API (Table)**  | **Notes**  |
-|:-----------------------------------------|:--------------------------------------------------------|
-| CreateTable | Creates a new table. Optionally, you can create one or more secondary indexes, and enable DynamoDB Streams for the table. |
-| DescribeTable | Returns information about a table, such as its primary key schema, throughput settings, index information, and so on. |
-| ListTables | Returns the names of all of your tables in a list. |
-| UpdateTable | Modifies the settings of a table or its indexes, creates or remove new indexes on a table, or modifies DynamoDB Streams settings for a table.(used to change the required provisioned throughput capacity.) |
-| DeleteTable | Removes a table and all of its dependent objects from DynamoDB. |
- 
-## Item
-
-| **DynamoDB API (CRUD)**  | **Notes**  |
-|:-----------------------------------------|:--------------------------------------------------------|
-| PutItem | Writes a single item to a table. You must specify the primary key attributes, but you don't have to specify other attributes. |
-| BatchWriteItem | Can write to one table or delete from one or more tables  |
-| GetItem | You must specify the primary key for the item that you want. You can retrieve the entire item, or just a subset of its attributes - charged for the entire record. |
-| BatchGetItem | Retrieves up to 100 items from one or more tables. This is more efficient than calling GetItem multiple times because your application only needs a single network round trip to read the items. |
-| UpdateItem | You can also perform conditional updates, so that the update is only successful when a user-defined condition is met. Optionally, you can implement an atomic counter, which increments or decrements a numeric attribute without interfering with other write requests.|
-
+- query for item that contains an attribute that does NOT exist in other items? 
 
 ## Error
 
-| **DynamoDB API (HTTP 400)**  | **Notes**  |
-|:-----------------------------------------|:--------------------------------------------------------|
-| LimitExceededException | There are too many concurrent control plane operations. The cumulative number of tables and indexes in the CREATING, DELETING or UPDATING state cannot exceed 10. You can create global and local secondary indexes at the same time you create a table, but you must wait for the first table with a secondary index to become active before creating the next one.|
-| ProvisionedThroughputExceededException | You exceeded your maximum allowed provisioned throughput for a table, partician, one or more global secondary indexes. |
+All of these error return HTTP 400.
 
-# Databases in General
+- `LimitExceededException` - There are too many concurrent control plane operations. The cumulative number of tables and indexes in the CREATING, DELETING or UPDATING state cannot exceed 10. You can create global and local secondary indexes at the same time you create a table, but you must wait for the first table with a secondary index to become active before creating the next one.
 
-Online Transaction processing (OLTP) databases - Database systems like MySQL, PostgreSQL, Oracle, Aurora and MariaDB handle transactions... and transactions are important. Just think about doing an ATM deposit transaction... you want the your money to get credited to your account or fail completely. You want to know for sure. When this is the case you want an OLTP database. In addition, these systems tend to use a normalized data structure.
+- `ProvisionedThroughputExceededException` - You exceeded your maximum allowed provisioned throughput for a table, partician, one or more global secondary indexes. With global secondary indexes, if one of the indexes runs low on write capacity, all of the tables indexes might get throttled, even if one or more of the indexes aren't affected. 
 
-Online Analytics Processing (OLAP) databases - Databases systems enable data analysis capabilities WITHOUT transactions and don't use a normalized data structure. In general, these systems pull and transform data from an OLTP system and then do reporting. Often called a data warehouse.
-
-Database Caching - AWS offers Elasticache which provides an in memory caching layer using either the open source Memcached or Redis engines.
-
-# Resources
-
-## Qwik Labs
-
-[Introduction to Amazon DynamoDB](https://qwiklabs.com/focuses/2376)
-
-[Working with Amazon DynamoDB](https://qwiklabs.com/focuses/2865)
+- ItemCollectionSizeLimitExceededException - When a single partitian key (and LSI) are greater than 10GB 
 
 ## Reading
 

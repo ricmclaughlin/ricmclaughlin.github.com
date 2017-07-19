@@ -89,6 +89,7 @@ Presto, you have a multi-AZ DB subnet!
 Like Elastic IP addresses are independent of instances, Elastic Network Interfaces are independent of instances. The nifty trick here is that Elastic IP addresses can be associated with Elastic Network Interfaces.... which can be associated with EC2 instances. 
 
 ## VPN
+
 To connect securely with your VPC on AWS you can create a Virtual Public Gateway and connect that to a Customer Gateway forming a VPN. Dual VPN tunnels provide higher availability. Limits on VPN include:
 
 - 5 Virtual Private Gateways per region
@@ -98,3 +99,11 @@ To connect securely with your VPC on AWS you can create a Virtual Public Gateway
 - 50 Customer Gateways per Region
 
 If you traffic is in excess of 4 Ggps, you need AWS Direct Connect which can provide up to 10Ggps. Direct Connect uses BGP and an Autonomous System Number (ASN) and IP prefixes. 
+
+# Databases in General
+
+Online Transaction processing (OLTP) databases - Database systems like MySQL, PostgreSQL, Oracle, Aurora and MariaDB handle transactions... and transactions are important. Just think about doing an ATM deposit transaction... you want the your money to get credited to your account or fail completely. You want to know for sure. When this is the case you want an OLTP database. In addition, these systems tend to use a normalized data structure.
+
+Online Analytics Processing (OLAP) databases - Databases systems enable data analysis capabilities WITHOUT transactions and don't use a normalized data structure. In general, these systems pull and transform data from an OLTP system and then do reporting. Often called a data warehouse.
+
+Database Caching - AWS offers Elasticache which provides an in memory caching layer using either the open source Memcached or Redis engines.
