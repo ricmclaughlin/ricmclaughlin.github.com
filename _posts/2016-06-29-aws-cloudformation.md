@@ -101,7 +101,6 @@ Here is a quick summary of how to make a [Custom Resources](http://docs.aws.amaz
 
 2. The custom resource provider processes the cloudformation request and returns a response of `SUCCESS` or 
 
-
 # CloudFormation Lifecycle
 
 ## Validating
