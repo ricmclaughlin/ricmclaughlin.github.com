@@ -47,8 +47,7 @@ Configuration updates can be implemented several different ways. If an app is cr
 
 - [Rolling update based on time](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rollingupdates.html?icmpid=docs_elasticbeanstalk_console) - you can set the pause time to wait between batches 
 
-- immutable - Immutable deployments perform an immutable update to launch a full set of new instances running the new version of the application in a separate Auto Scaling group alongside the instances running the old version. Immutable deployments can prevent issues caused by partially completed rolling deployments. If the new instances don't pass health checks, Elastic Beanstalk terminates them, leaving the original instances untouched.
-
+- Immutable - Immutable deployments perform an immutable update to launch a full set of new instances running the new version of the application in a separate Auto Scaling group alongside the instances running the old version. Immutable deployments can prevent issues caused by partially completed rolling deployments. If the new instances don't pass health checks, Elastic Beanstalk terminates them, leaving the original instances untouched.
  
 Because there are many different ways of configuring EB, these different types of ways are evaluated from higher to lower in precendent. The order of precendent is as follows:
 
