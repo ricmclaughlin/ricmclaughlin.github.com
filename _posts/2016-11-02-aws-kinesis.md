@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Kinesis"
 description: ""
 category: posts
-tags: [aws, kinesis, aws-dev-ops-pro, aws-solutions-arch-pro]
+tags: [aws, kinesis, aws-dev-ops-pro, aws-solutions-arch-pro, aws-services]
 ---
 {% include JB/setup %}
 

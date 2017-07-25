@@ -3,11 +3,13 @@ layout: post
 title: "AWS - Cloudtrail"
 description: ""
 category: posts
-tags: [aws, cloudtrail, aws-dev-ops-pro, aws-solutions-arch-pro]
+tags: [aws, cloudtrail, aws-dev-ops-pro, aws-solutions-arch-pro, aws-services]
 ---
 {% include JB/setup %}
 
-AWS CloudTrail is a fully managed web service that records AWS API calls for your account and delivers log files to you in an s3 bucket. This is a key component for auditing and compliance needs - both HIPAA and PCI require 6 years of access logs to be stored and without CloudTrail that just isn't possible! CloudTrail stores log data in JSON format.
+AWS [CloudTrail](https://aws.amazon.com/documentation/cloudtrail/) is a fully managed web service that records AWS API calls for your account and delivers log files to you encypted in an s3 bucket. This is a key component for auditing and compliance needs - both HIPAA and PCI require 6 years of access logs to be stored and without CloudTrail that just isn't possible! CloudTrail stores log data in JSON format. CloudTrail adds value to logging is not a replacement for other system or AWS service logs.
+
+You can have a total of 5 trails per region.
 
 ## Log Contents 
 
@@ -15,19 +17,19 @@ The logs contain the user ID, time, source IP, req and res. CloudTrail records t
 
 ## Configuration
 
-Cloud trail is configured regionally and can optionally be configured to be enabled for all regions. The logs it generates are delivered to an S3 Bucket and can be aggregated across regions.
+CloudTrail is configured regionally and can optionally be configured to be enabled for all regions. The logs it generates are delivered to an S3 Bucket and can be aggregated across regions. World wide events are recorded to any trail that is configured for all regions. 
 
-Because so much, should-be-secured-data is stored in these logs, a security administrator can create a trail that applies to all regions and encrypt the log files with one KMS key. In addition, creating a bucket policy to restrict access to the logs is a good idea as well.
+By default CloudTrail uses SSE-S3. KMS keys can be used; key and S3 bucket must be in the same region. Because so much, should-be-secured-data is stored in these logs, a security administrator can create a trail that applies to all regions and encrypt the log files with one a single KMS key. In addition, creating a bucket policy to restrict access to the logs is a good idea as well.
 
 An important feature to consider is how to configure logs to notify in the event of misconfiguration.
 
-There is a log file validation feature which creates a digest of log files and the CLI can validate the logs afterwards. This feature makes sure that all the log files are present and unmodified.
+The log file validation feature creates a digest of log files and the CLI can validate the logs afterwards. This feature makes sure that all the log files are present and unmodified by hashing the data using SHA-256 then signing them. 
 
 ## Operation
 
-I'd recommend creating an SNS notification for when log file delivery has occurred. Use this notification to trigger loading the data into a login analysis tool. 
+I'd recommend creating an SNS notification for when log file delivery has occurred. Use this notification to trigger loading the data into an analysis tool. 
 
-In the past CloudTrail data was really only good for figuring out what happened in the past. Now you can use the CloudWatch Logs feature and monitor the CloudTrails data in semi-real time by filtering the log for events and creating an event then an alarm for the event. Very useful. Logs are delivered within 15 minutes of an API call.
+In the past CloudTrail data was really only good for figuring out what happened in the past. Now you can use the CloudWatch Logs feature and monitor the CloudTrails data in semi-real time by filtering the log for events and creating an event then an alarm for the event. Logs are delivered within 15 minutes of an API call and delivery of the logs is timed about every 5 minutes.
 
 Popular events to monitor for include: 
 

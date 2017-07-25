@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "AWS EC2 CLI Exploration"
+title: "AWS - EC2 CLI Exploration"
 description: ""
 category: projects
-tags: [aws, kinesis, aws-dev-ops-pro, aws-solutions-arch-pro, cli-exploration]
+tags: [aws, ec2, aws-dev-ops-pro, aws-solutions-arch-pro, cli-exploration]
 ---
 {% include JB/setup %}
 
