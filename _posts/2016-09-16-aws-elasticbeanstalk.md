@@ -9,11 +9,11 @@ tags: [aws, devops, elastic-beanstalk, aws-dev-ops-pro, aws-solutions-arch-pro]
 
 [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) is the way to get started with AWS with a website or backend process. Like Cloud Formation, you don't pay to use the tool BUT you do pay for the resources it provisions. In fact, Beanstalk is CloudFormation... except with a thin layer of goo on top.
 
-EB is appropriate to use when creating quick applications including prototypes that require minimal control and flexibility to power the application. EB is not appropriate when there are lots of additional dependency software and the existing application that does not fit into the EB model. EB supports Web Server Environment Tiers and Working Environments as well with a SQS queue between the tiers. These are simplified environments yet look quite functional for small to medium sized systems.
+EB is appropriate to use when creating quick applications including prototypes that require minimal control and flexibility to power the application. EB is not appropriate when there are lots of additional dependency software and the existing application that does not fit into the EB model. EB supports Web Server Environment Tiers and Working Environments as well with a SQS queue between the tiers. These are simplified environments yet look quite functional for small to medium sized systems and up to 75 applications and 1,000 application versions can be created. 
 
 # Applications
 
-An Application is the logical collection of environments, versions, environment configurations similiar to a folder that serves as the basic concept behind EB. A configuration template is the starting spot for configuring an application.
+An Application is the logical collection of environments, versions, environment configurations similiar to a folder that serves as the basic concept behind EB. A configuration template is the starting spot for configuring an application. User applications are not in a VPC by default.
 
 ## Versions
 
@@ -29,7 +29,7 @@ Versions are distinct releases into an environment and is associated with a Vers
 
 ## Environments 
 
-Elastic Beanstalk supports a webserver or worker environments. On the webserver side, EB supports IIS, Nginx, tomcat, PHP, python, node.js or Ruby plaforms. It also includes Docker support. There are two environment types - load balancing and autoscaling and single instance and you can change between the two. A worker environment tier for a web application processes background tasks and does not include a load balancer.
+Elastic Beanstalk supports a webserver or worker environments. On the webserver side, EB supports IIS, Nginx, tomcat, PHP, python, node.js or Ruby plaforms. It also includes Docker support. There are two environment types - load balancing and autoscaling and single instance (using an EIP) and you can change between the two. A worker environment tier for a web application processes background tasks and does not include a load balancer.
 
 Environment variables can be set - which is a lot like heroku.
 
@@ -79,7 +79,7 @@ Swap Environment URLs - no downtime; just like immutable updates but these happe
 
 The environment components run on platforms - the underlying OS, middleware and server software  You can not change platforms; Linux based platforms use semantic versioning and can be updated; Windows does not and can not be updated. A custom platform can be created using a platform.yaml file and setting the "flavor" attribute.
 
-[Managed platform updates](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-platform-update-managed.html#environment-platform-update-managed-window) enable minor and patch to during the weekly scheduled maintenance window. Major updates must be done manually.
+Opt-in to [managed platform updates](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-platform-update-managed.html#environment-platform-update-managed-window) which enable minor and patch updates during the weekly scheduled maintenance window using an immutable deployment mechanism. Major updates must be done manually.
 
 ### Docker with EB
 
@@ -92,15 +92,3 @@ Docker containers are a good option on EB when the application has many funky de
 - preconfigured - generic configured container for Java with Glassfish 
 
 `.dockercfg` - includes authentication info for the private docker registry store on S3 in the SAME region. Use the `docker login registry-url` to generate.
-
-
-## eb Command Line Tool
-
-To setup an Elastic Bean Stalk environment from the command line:
-
-`eb init` - this configures the environment for use with the eb including region, credentials, platform, and keypair. Use a `.ebignore` file like a `.gitignore` file
-
-
-## Reading
-
-[AWS Elastic Beanstalk Developers Guide](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html)

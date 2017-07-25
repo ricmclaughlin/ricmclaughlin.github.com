@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "AWS Solutions Arch - Cloudtrail"
+title: "AWS - Cloudtrail"
 description: ""
 category: posts
-tags: [aws, solutionsarch, devopspro]
+tags: [aws, cloudtrail, aws-dev-ops-pro, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

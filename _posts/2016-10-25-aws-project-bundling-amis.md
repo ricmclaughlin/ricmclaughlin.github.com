@@ -1,18 +1,20 @@
 ---
 layout: post
-title: "AWS Project - Bundling AMIs"
+title: "AWS - Bundling AMIs"
 description: ""
 category: projects
-tags: [aws, how-to]
+tags: [aws, ec2, aws-dev-ops-pro]
 ---
 {% include JB/setup %}
 
 ## What is "Bundling an AMI"
+
 An AMI is a computer image configured for a specific purpose. Using an AMI you can easily create a new EC2 instance. The AMI includes a template for the root volume, launch permissions and a block device mapping.
 
  - AMI:EC2 Instances::blueprint:Sky Scraper
 
 ## Why Would You Bundle an AMI?
+
 Bundling your own AMI has several advantages:
 
 - Decreases time from launch to "running state"
@@ -24,7 +26,8 @@ Bundling your own AMI has several advantages:
 One key point: AMIs are regional; you can copy AMIs to another region but they get renamed.
 
 ## How to Bundle an AMI
-This is a very straightforward process assuming you have a running instance:
+
+Bundling an instance into an AMI is a very straightforward process from the AWS Web Console assuming you have a running instance:
 
 1. Configured the instance just how you like it.
 
@@ -55,5 +58,3 @@ Launch permissions, S3 bucket permissions, and user-defined tags must be copied 
 ## Resources
 
 [A Friendly guide for AMI Bundling](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sharing-amis.html)
-
-[QwikLab: Bundling Amazon EBS-Backed AMIs](https://qwiklabs.com/focuses/2547)

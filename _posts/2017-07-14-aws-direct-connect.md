@@ -6,9 +6,12 @@ category: posts
 tags: [aws, direct-connect, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
+
 # Direct Connect
 
-[Direct Connect](https://aws.amazon.com/directconnect/) makes it easy to connect an on-premise data center with AWS. Instead of running AWS bound traffic out your regular Intenet connection, Direct Connect enables a 1 or 10 GB dedicated connections to be setup using industry standard 802.1 VLANS to your VPC - provided you remembered to subnet and address your VPC correctly! There are lower bandwidths of connection available through partners but no SLA available. You can use BGP to have multiple direct connects in either an active-active (recommended) or active-failover setup. Overall, Direct Connect gives you some great benefits:
+[Direct Connect](https://aws.amazon.com/directconnect/) makes it easy to connect an on-premise data center with AWS. Instead of running AWS bound traffic out your regular Intenet connection, Direct Connect enables a 1 or 10 GB dedicated connections to be setup using industry standard 802.1 VLANS to your VPC - provided you remembered to subnet and address your VPC correctly! There are lower bandwidths of connection available through partners but no SLA available. You can use BGP to have multiple direct connects in either an active-active (recommended) or active-failover setup. 
+
+Overall, Direct Connect gives you some great benefits:
 
 1. Reduce your Internet Bandwidth cost - you are probably paying a lot of money to an ISP and could get a cheaper connection directly to AWS
 

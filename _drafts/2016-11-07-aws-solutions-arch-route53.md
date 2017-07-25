@@ -20,6 +20,7 @@ Route53 Supports:
 - A record - points to an IP address
 
 ## Routing Policies
+
 Simple - Default; only one resource; no intelligences
 
 Weighted - percentages between 2 or targets
@@ -31,6 +32,7 @@ Failover - active/passive setup; when a site goes does it redirects to the passi
 Geolocation - pick which state/country routes to a particular location
 
 ### Use Cases
+
 Minimize costs? CNAME = $; Alias = free
 
 naked Domain? = A record or Alias record

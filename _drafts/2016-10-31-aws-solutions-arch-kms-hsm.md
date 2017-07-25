@@ -8,9 +8,11 @@ tags: [aws, kms, soluarch]
 {% include JB/setup %}
 
 ## Overview
+
 Encryption Key Management is a major function of online systems that requires lots of organization and no one will ever notice your efforts if things go right. Yet, if you screw it up, the world will come crashing down. Enter, [KMS](https://aws.amazon.com/kms/) and its good buddy [CloudHSM](https://aws.amazon.com/cloudhsm/). 
 
 # KMS
+
 KMS is a managed service that makes it easy for your to create, control, rotate and use encryption keys. It uses asymmetric encryption (2 different keys). Symmetric is not supported. KMS keys are single region?? 
 
 ## Service Features
@@ -31,6 +33,7 @@ KMS is a managed service that makes it easy for your to create, control, rotate 
 Roles don't need access to 'admin' access the key to USE the key. Role, users and external users can be granted the ability to use the key. Keys can be rotated yearly and KMS magically uses the right key when decrypting data.
 
 # CloudHSM
+
 CloudHSM is a single tenant hardware security module that you can place in a VPC and integrated with with S3, EBS, EC2, Redshift & RDS. There is very limited integration with AWS services. 
 
 AWS does not have access to the contents of your module.
@@ -42,8 +45,8 @@ CloudHSM would be great if you need FIPS 140-2 validation and don't mind fixed c
 However, if you loose the keys, they are lost if you did not have a copy.
 
 ## HSM or KMS ?
-Overall, KMS is probably adequate unless additional protection is necessary for some applications and data that are subject to strict contractual or regulatory requirements for
-managing cryptographic keys, then HSM should be used.
+
+Overall, KMS is probably adequate unless additional protection is necessary for some applications and data that are subject to strict contractual or regulatory requirements for managing cryptographic keys, then HSM should be used.
 
 normal, or moderate security requirements? KMS
 
