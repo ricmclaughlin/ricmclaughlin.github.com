@@ -70,8 +70,6 @@ Metrics are reported every 60 seconds - no traffic = no metric. There are two us
 If you know there is a lot of traffic on the way, call AWS and get them to "pre-warm" your ELB. 
 
 
-
-
 ### Logging
 
 Strangely [ELB Logging](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/access-log-collection.html) is disabled by default and are generated on a best-case situation so data might be missing; logs are stored in S3 and taken either every hour OR ever 5 minutes.

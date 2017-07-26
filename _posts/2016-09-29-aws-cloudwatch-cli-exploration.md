@@ -11,10 +11,6 @@ This is a very simple exploration of [AWS CloudWatch](http://docs.aws.amazon.com
 
 There are numerous areas to explore with CloudWatch and I'm doing my work in us-west-2.
 
-
-
-aws cloudwatch list-metrics
-
 ## Alarms
 
 ##### Did it work? What is out there?

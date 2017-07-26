@@ -9,7 +9,7 @@ tags: [aws, devops, opsworks, cloudformation, elastic-beanstalk, aws-dev-ops-pro
 
 There are several different deployment models and tools to implement those models... 
 
-One important way to classify deployments is in-place, where instances are upgraded, or disposable, where instances are treated as immutable and new instances are created and old instances are destroyed. 
+One important way to classify deployments is in-place, where instances are upgraded making for a faster upgrade, or disposable, where instances are treated as immutable and new instances are created and old instances are destroyed which makes it safer, slower and a bit more expensive.
 
 Another way to classify deployments is bootstraping, where code is installed to a running instance at launch, versus pre-baking where the application is loaded on the image. 
 
@@ -111,15 +111,17 @@ Consistent or lots of deployments? in-place
 
 No DNS change? all-at-once, rolling, immutable, blue/green with launch config change OR ASG swap
 
-No downtime? Blue/Green
+No downtime? Blue/Green or rolling
 
 Pre-baked AMI? Cloudformation &amp; OpsWorks
 
-Canary Analysis = Route53; not well supported with Elastic Beanstalk
+Canary Analysis = Route53 or an ELB; not well supported with Elastic Beanstalk
 
 ### Hybrid Deployment Models
 
-Use CloudFormation to deploy EB apps
+* CloudFormation with Puppet - puppet master holds instruction and definitions; clients connect and follow instructions
 
-Use CloudFormation to deploy OpsWorks stacks
+* CloudFormation with Chef - better for longer deployments
+
+* CloudFormation with Elastic BeanStalk - less flexible than OpsWorks; better with immutable deployments
 

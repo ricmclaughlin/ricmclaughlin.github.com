@@ -19,7 +19,7 @@ CloudFormation Templates have 8 main sections but only the resources section is 
 
 * Metadata - as the name suggests, this sets up additional information about each of the resources
 
-* [Parameters](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html) - imagine default values and customized template values and stuff you can pass in on the commandline OR when you run the template. Sounds a lot like commander or commander.js functionality!
+* [Parameters](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html) - imagine default values and customized template values and stuff you can pass in on the commandline OR when you run the template. 
 
 * Transform - used for the [Serverless](https://github.com/awslabs/serverless-application-model) definition
 
@@ -64,6 +64,10 @@ Sets the [type of resource](http://docs.aws.amazon.com/AWSCloudFormation/latest/
 
 Within resources, there are numerous different data structures that must be built to set options - essentially, you are creating an embedded object in a resource. And these embedded objects have types which can be set using the `Type` property sets the possible properties available as documented the [resource specification](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html). 
 
+### Pseudo Parameters
+
+Pseudo parameter are predefined template parameters for values like `AWS::AccountId`, `AWS::NotificationARNs`, `AWS::Region`, `AWS::StackId` and `AWS::StackName`.
+
 
 ### Intrinsic Functions
 
@@ -74,6 +78,8 @@ Intrinsic Functions are functions that run inside a CF template. There are helpe
 - `Fn::GetAtt` -  which retrieves the attribute from a resource
 
 - `Fn::FindInMap` in mappings section. 
+
+- `Fn::Sub` - variable subsitution using a litteral block like ${varName}
 
 - `Ref` - reference the ID of a resources; can be written as `!Ref` or `Ref:`
 
@@ -91,7 +97,7 @@ CF policies aren't really separate documents that are [resource attributes](http
 
 ### Custom Resources
 
-[Custom Resources](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-custom-resources.html) enable you to support AWS Products that lack CF support, operate on non-AWS resources and perform advanced logic is limited. A custom resource directly runs a lambda function or creates and SNS message when the resource is created, updated, or deleted. This can be specfied like `Custom::MyCustomThingy` or ` AWS::CloudFormation::CustomResource`.
+[Custom Resources](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-custom-resources.html) enable you to support AWS Products that lack CF support, operate on non-AWS resources and perform advanced logic is limited. A custom resource directly runs a lambda function or creates then sends SNS message when the resource is created, updated, or deleted. This can be specfied like `Custom::MyCustomThingy` or `AWS::CloudFormation::CustomResource`.
 
 Here is a quick summary of how to make a [Custom Resources](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-custom-resources.html):
 
@@ -99,13 +105,13 @@ Here is a quick summary of how to make a [Custom Resources](http://docs.aws.amaz
 
 1. The template is used to create, update or delete a custom resource and the engine calls the service token.
 
-2. The custom resource provider processes the cloudformation request and returns a response of `SUCCESS` or 
+2. The custom resource provider processes the cloudformation request and returns a response of `SUCCESS` or `FAILURE`
 
 # CloudFormation Lifecycle
 
 ## Validating
 
-From the command line use --template-body or --template-url to validate a template. Dependency errors, insufficient IAM permissions, invalid value/unsupported resource property, Security Group ID does not exist in VPC (you might have used a SG name instead of an ID), wait condition didn't receive the required number of signals (did the cf scripts get installed on the instance?), 
+From the command line use `--template-body` or `--template-url` to validate a template. Dependency errors, insufficient IAM permissions, invalid value/unsupported resource property, Security Group ID does not exist in VPC (you might have used a SG name instead of an ID), wait condition didn't receive the required number of signals (did the cf scripts get installed on the instance?), 
 
 ## Creating
 
@@ -115,17 +121,7 @@ Bootstrapping - use cfn-* tools to get instances prep'd; there is a trade off be
 
 CloudFormation with Puppet - puppet master holds instruction and definitions; clients connect and follow instructions
 
-CloudFormation with Chef - better for longer deployments; OpsWorks for detailed stuff like configure software, deploy apps, scale on demand and monitor resources for performance, security & cost. CloudFormation supports the following resource types:
-
-- AWS::OpsWorks::App
-
-- AWS::OpsWorks::ElasticLoadBalancerAttachment
-
-- AWS::OpsWorks::Instance
-
-- AWS::OpsWorks::Layer
-
-- AWS::OpsWorks::Stack
+CloudFormation with Chef - better for longer deployments; OpsWorks for detailed stuff like configure software, deploy apps, scale on demand and monitor resources for performance, security & cost. CloudFormation supports the following resource types: App, ElasticLoadBalancerAttachment, Instance, Layer & Stack.
 
 CloudFormation with Elastic BeanStalk - Can use CloudFormation to deploy Elastic Beanstalk; less flexible than OpsWorks; better suited to immutable deployments
 
@@ -157,14 +153,14 @@ For resources other than EC2 instances OR Auto Scaling groups, a wait condition 
 
 First, create a wait handler (one per wait condition)
 
-`yaml
+```yaml
 myWaitHandler:
   Type: AWS::CloudFromation::WaitConditionHandle
   Properties:
-`
+```
 Second, create a `WaitCondition` resources using the `DependsOn` attribute to start the timeout after that resource has been completed.
 
-`yaml
+```yaml
 myWaitCondition:
   Type: AWS::CloudFormation::WaitCondition
   DependsOn: myEc2Instance
@@ -173,16 +169,16 @@ myWaitCondition:
       Ref: MyWaitHandler
         Timeout: 4500
         Count: 2
-`
+```
 Third, signal the start of the wait condition.
 
-`yaml
+```yaml
 myEc2Instance:
   Properties:
     UserData:
       fn::Base64
       # more stuff...
-`
+```
 
 Fourth, signal the end of the wait condition or failure.
 
@@ -190,18 +186,26 @@ Fourth, signal the end of the wait condition or failure.
 
 When waiting for an EC2 instance or ASG to setup, a `CreationPolicy` should be used. When the resource spins up it signals the stack using helper scripts, the `SignalResource` API or an API call.
 
-`yaml
+```yaml
 CreationPolicy:
-  AutoScalingCreationPolicy: #only for autoscaling groups
-    MinSuccessfulInstancesPercent: 
+  AutoScalingCreationPolicy: #only for autoscaling groups or EC2 instances
+    MinSuccessfulInstancesPercent: 22
   ResourceSignal:
     Count: Integer # default = 1
     TimeOut: String # ISO8601 format; PT1H30M10S = 1h 30m 10s
-`
+```
 
 ## Rollback
 
-If a CloudFormation template run does not complete successfully then by default it all gets rolled back which feels like something very similiar to a transaction. First you might see a `CREATE_FAILED` message the likely a `ROLLBACK_IN_PROGRESS` message in the CF log. Rollbacks can be disabled to assist in troubleshooting.
+If a CloudFormation template run does not complete successfully then by default it all gets rolled back which feels like something very similiar to a transaction. In a nested stacks scenario, a parent stack roll-back will roll-back child stacks as well. 
+
+First you might see a `CREATE_FAILED` message the likely a `ROLLBACK_IN_PROGRESS` message in the CF log. Rollbacks can be disabled to assist in troubleshooting.
+
+### Rollback Failure
+
+When a dependent resource cannot be returned to its original state the rollback will fail and report `UPDATE_ROLLBACK_FAILED`. This sort of thing can be causes by resource signals failing, changes to resources created by the stack, insufficient premissions, system limits (like max EC2 instances) or security problem (insufficient permissions or security token).
+
+To fix this failed rollback, either fix and continue rolling back using the `continue-update-rollback` as documented [here](http://docs.aws.amazon.com/cli/latest/reference/cloudformation/continue-update-rollback.html) or [skip the resources](http://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ContinueUpdateRollback.html) using the `ResourcesToSkip` parameter of `continue-update-rollback`
 
 ## Updates
 
@@ -211,15 +215,13 @@ Change sets are incremental changes to an existing stack. This allows you to pre
 
 ### Stack Policy
 
-how do you apply a stack policy??
-
 After you create a stack, by default anyone can update the stack. A [Stack Policy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html) can be used restrict access to stack updates, a stack policy can be applied, which, by default, protects all the resources in the stack. You have to explictly `Allow` updates; only one stack policy per stack; many resources per [Stack Policy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html).
 
-When a resource is updated it might be replaced or have no service interuption, suffer an interuption or be deleted. If you need to update a protected resource you can temporarily replace the policy at update time.
+When a resource is updated it might be replaced or have no service interuption, suffer an interuption or be deleted. If you need to update a protected resource, you can temporarily replace the policy at update time.
 
 In addition, there is no fine grain access control in a stack policy... everyone that can run the template in update mode but you must specify a `Principal:*`. One handy feature is the `Condition` block like: 
 
-`json
+```json
 {
   "Statement": [
     {
@@ -237,17 +239,11 @@ In addition, there is no fine grain access control in a stack policy... everyone
     }
   ]
 }
-`
+```
 
-The `Action` attribute can be set to:
+The `Action` attribute can be set to `Update:Modify`, `Update:Replace`, `Update:Delete` or `Update:*`.
 
-- Update:Modify
-
-- Update:Replace
-
-- Update:Delete
-
-- Update:*
+Stack policices can be applied at stack creation or updated to contain the policy.
 
 ## Deleting
 
@@ -255,17 +251,19 @@ By default when a stack is deleted all the resources are deleted. To get around 
 
 ## EC2 Instances
 
+Some aspects of EC2 instances are mutable... which is basically the instance type and other aspects of instance that allow it to continue on the same host. Change the AMI or the virtualization type and we are in mutable land and the instance must be fully replaced. 
+
 To deploy and update applications and other required system components on EC2 instances easily there are a number of help scripts that can be used.
 
 ### cfn-init
 
-cfn-init reads the template metadata from the `AWS::CloudFormation::Init` key, which is a declarative configuration block, then installs packages, writes files, and enables/disable and start/stop services.
+cfn-init get run in the user data section of an instance, where it reads the template metadata from the `AWS::CloudFormation::Init` key, which is a declarative configuration block, then installs packages, writes files, enables/disable and start/stop services, creates users/groups and sources (for app code from git or s3). Files are backed up prior to overwrite. 
 
 #### configSets
 
 Inside the instance meta-data section use `AWS::CloudFormation::Init` to set config that the cfn-init process will use to configure packages, groups, users, sources, commands and enable/disable service. To add additional flexibility, use `ConfigSets` to order config tasks in the template for the cfn-init process. Something like:
 
-`yaml
+```yaml
 AWS::CloudFormation::Init: 
   configSets: 
     ascending: 
@@ -288,7 +286,7 @@ AWS::CloudFormation::Init:
         env: 
           CFNTEST: "I come from config2"
         cwd: "~" 
-`
+```
 
 ### cfn-signal
 
@@ -296,12 +294,11 @@ Sends back messages to stack to signal success or failure. The cfn-signal helper
 
 ### cfn-hup
 
-Used to update in place using a deamon that detects resource metadata change and takes actions on those changes. Not useful in updating autoscaling groups because there is no synchronization between the instances update timing leaving the ASG fleet in an odd configuration.
+Used to update in place using a deamon that detects resource metadata change and takes actions on those changes. A common use case has cfn-hup Not useful in updating autoscaling groups because there is no synchronization between the instances update timing leaving the ASG fleet in an odd configuration.
 
 ### cfn-get-metadata
 
 Gets a metadata block from CloudFormation and prints it out to STDOUT.
-
 
 ## Auto Scaling Groups
 
@@ -319,7 +316,7 @@ In addition, if `WillReplace: true` and both AutoScalingReplacingUpdate and Auto
 
 In the case of AutoScalingReplacingUpdate, if the `WillReplace` attribute is true the ASGroup AND the instances in that groups are replaced.  During the update the existing AutoScaling group is used and later destroyed AFTER the update is complete. To make this scenario work well, a `CreationPolicy` should also be specified so the new AutoScaling group is prepared prior to cut over. As an example:
 
-`yaml
+```yaml
 UpdatePolicy:
   AutoScalingReplacingUpdate:
     WillReplace: true
@@ -330,7 +327,7 @@ UpdatePolicy:
       Count: 
         Ref: ResourcesSignalsOnCreate
       Timeout: PT10M
-`
+```
 
 #### AutoScalingRollingUpdate Policy
 
@@ -340,31 +337,25 @@ AutoScalingRollingUpdate would be appropriate in the case where the AMI and app 
 
 In the case where updates to stacks might occur during AutoScaling group policy scheduled actions, you can specify an AutoScalingScheduledAction to prevent changes during an update. In other words, we don't our regularly time scheduled updates to the AutoScaling group's size properties to get overwritten by an update... here is how to do that:
 
-`yaml
+```yaml
 UpdatePolicy:
   AutoScalingScheduledAction:
     IgnoreUnmodifiedGroupSizeProperties: true
-`
+```
 
 ## Triage
 
 ### Troubleshooting
 
-http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html
-
-A couple of troubleshooting tips:
-
-* You can't stop and start an instance to modify its AMI; you must replace the instance; CF deals with instance ID changes.
-
-* S3 buckets must be empty before they can be deleted by CF
+* `DELETE_FAILED` - lack permissions, S3 buckets must be empty before they can be deleted by CF, can use the RetainResources parameter to unstick the stack.
 
 * Dependency error - can happen in both create and delete scenarios - and generally can be resolved using the `DependsOn` attribute... so delete the EC2 instance prior to deleting the VPC and add the IGW before adding the IEP
 
-* User permissions apply when deleting stuff.
+* Insufficient IAM permissions - need permissions to run CF and the resources it creates, modifies or deletes.
 
-* If a `DELETE_FAILED` message comes up you can use the RetainResources parameter to unstick the stack.
+* Rollback fail? Nested stacks have dependencies that keep rollbacks from occuring OR might not be getting signals on resource creation OR the resource has been modified in a way the keeps it from being deleted.  
 
-* Rollback fail? Nested stacks have dependencies that keep rollbacks from occuring OR the resource has been modified in a way the keeps it from being deleted.  
+* You can't stop and start an instance to modify its AMI; you must replace the instance; CF deals with instance ID changes.
 
 * Invalid Value or Unsupported Resource Property - use parameter types to eliminate this problem with parameters
 
@@ -373,26 +364,12 @@ A couple of troubleshooting tips:
 
 | Wait for  | Use  | Notes  |
 |:--------------------------:|:--------------------------:|:--------------------------:|
-| ASG Completion    |  CreationPolicy  | requires use of `cfn-signal`   |
+| ASG Completion    |  CreationPolicy  | requires use of `cfn-signal` or 'SignalResource'  |
 | EC2 (standalone)    |  CreationPolicy  | requires use of `cfn-signal`   |
 | VPC Gateway Attachment      |  `DependsOn`  | anything with a public IP requires attachment  |
 | ECS Service      |  `DependsOn`  | autoscaling group or container instances required first |
 | Ordering |  `DependsOn`  | but not for ASG or EC2; requires use of `cfn-signal`   |
-
-
-### Policies
-
-
-
-# CloudFormation CLI
-
-There are two different CLI interfaces to CloudFormation, the older [CloudFormation CLI](https://s3.amazonaws.com/awsdocs/AWSCloudFormation/2010-05-15/cfn-ug-cli-ref-09172013.pdf) and the newer [AWS CLI](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-using-cli.html). This test covers the older version so here a little table comparing the two:
-
-| CloudFormation CLI  | AWS CLI API  | Notes  |
-|:--------------------------:|:--------------------------:|:--------------------------:|
-| cfn-describe-stacks    | describe-stacks   |   only list stacks that are running |
-|  cfn-list-stacks |   list-stacks  |   lists all stacks over last 90 |
-| ?? | ListStackResources | list all the stack resources |
+| More than one resource type | `WaitCondition` | Anything not an AST or EC2 instance |
 
 
 ## Reading
