@@ -37,13 +37,13 @@ Overall, it is a bad idea to create a RDS instance in an Elastic Beanstalk envir
 
 ### Configuration Updates
 
-The EB environment has many settings that can be changed after the environment has been setup. The word "update" is associated with configuration change applied to an environment. Config changes are processed separate from deployments and probably require replacing/restarting the instances if applicable. If there is a change to health reporting, a full refresh of the instances is likely required... just like you need to restart an instance to change this in the EC2 console. 
+The EB environment has many settings that can be changed after the environment has been setup. The word "update" is associated with configuration change applied to an environment. Config updates are processed separate from deployments and probably require replacing/restarting the instances. If there is a change to health reporting, a full refresh of the instances is likely required... just like you need to restart an instance to change this in the EC2 console. 
 
 If you modify the underlying resource between environment changes they get overwritten. Changing from a single instance to load balancing replaces all your current instances. 
 
 Configuration updates can be implemented several different ways. If an app is created from console or eb cli it will default to a rolling deployment but if created from SDK or AWS CLI it will default to an all-at-once deployment. Both rolling updates can set a minimum batch size and number of instances in service. Types of configuration updates include:
 
-- [Rolling update based on health](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rollingupdates.html?icmpid=docs_elasticbeanstalk_console) - based on health or delay; if based on health based on health AND enhanced health reporting is enabled every instance must pass. Health checks are part of the configuration rollout too. You can ignore healthchecks which determines if the deployment wait until the instance comes up healthy or simply continue... 
+- [Rolling update based on health](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rollingupdates.html?icmpid=docs_elasticbeanstalk_console) - based on health; if based on health based on health AND enhanced health reporting is enabled every instance must pass. Health checks are part of the configuration rollout too. You can ignore healthchecks which determines if the deployment wait until the instance comes up healthy or simply continue... 
 
 - [Rolling update based on time](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rollingupdates.html?icmpid=docs_elasticbeanstalk_console) - you can set the pause time to wait between batches 
 
@@ -85,7 +85,7 @@ Opt-in to [managed platform updates](http://docs.aws.amazon.com/elasticbeanstalk
 
 Docker containers are a good option on EB when the application has many funky dependencies which makes packaging it on Docker a good choice. All the config files are stored in the application source bundle. Docker comes in three flavors:
 
-- single container - one container per instance; requires a `dockerfile`; does not require a `Dockerrun.aws.json`
+- single container - one container per instance; requires a `Dockerfile`; does not require a `Dockerrun.aws.json`
 
 - multicontainer - several containers per instance; during deployment you can't build a custom image, ya gotta build it beforehand; requires a `Dockerrun.aws.json` which contains either how to use the container [setup configuration](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker_v2config.html) using "AWSEBDockerrunVersion": 1 = single container; 2 = multicontainer image OR where the public or private registry is. 
 

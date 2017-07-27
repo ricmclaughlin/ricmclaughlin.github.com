@@ -93,7 +93,7 @@ Disposable is generally slower because new instances must be created and tools t
 
 ### Product Strengths and Weaknesses
 
-* EB - fastest and simpliest way to deploy code; Beanstalk doesn’t allow as much flexibility for some configurations and deployments and is more suitable for shorter application lifecycles where an environment can be thrown away with each deploy. 
+* EB - fastest and simpliest way to deploy code; Beanstalk doesn’t allow as much flexibility for some configurations and deployments and is more suitable for shorter application lifecycles where an environment can be thrown away with each deploy; not good for lots of dependencies with more than apt-get functionality or heavy configuration
 
 * Opsworks - more focused on application management; can't do rolling batch with Opsworks...
 
