@@ -7,6 +7,54 @@ tags: [aws, aws-dev-ops-pro, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
+# [Strategies for Managing Access to AWS Resources in AWS Marketplace](https://d0.awsstatic.com/whitepapers/strategies-for-managing-access-to-aws-resources-in-aws-marketplace.pdf)
+
+EC2 Instance Roles - this is nothing more than creating an instance profile "container" for a role so it can be applied to an instance.
+
+Access Resources in different account on behalf of users - IAM role that trusts the other account root using `sts:ExternalId` condition; and provides access to resource; use `sts:AssumeRole` in other account
+
+Account Switching Roles - create sts parameters using `AWS.STS()`, then `AWS.TemporaryCredentials`, then use temp credentials to access service
+
+# [Encrypting Data at Rest](http://d0.awsstatic.com/whitepapers/AWS_Securing_Data_at_Rest_with_Encryption.pdf)
+
+Key Management Infrastructure is comprised of a key storage and key management function wich work together to secure data at rest. THere are three models to how this works:
+
+* Customer controls encryption method and KMI = Client side encryption and HSM
+
+* Customer controls encryption method, KMI storage while AWS controls KMI management = HSM
+
+* AWS controls encryption method, KMI Storage and management functions = KMS
+
+# [Migrating AWS Resources to a New AWS Region](http://d0.awsstatic.com/whitepapers/aws-migrate-resources-to-new-region.pdf)
+
+IAM, CloudWatch and the management console are operate outside of regions so don't require a move.
+
+Lots of resources are region specific and won't move, including:
+
+- Key Pairs
+
+- SG (actually VPC Specific)
+
+- AMI (copying to a new region does NOT copy tags or permissions)
+
+- EIP (must change address with DNS because EIP won't move)
+
+- Reserved Instances 
+
+Many resources must be re-established:
+
+- networking stuff like VPC, ELB, ASG, Direct connect
+
+- Cloudfront
+
+Many resources must be copied and re-established
+
+- S3/Glacier = new name for bucket
+
+- RDS (using dumps), DynamoDB (using streams, table copy or import export)
+
+- EMR, ElasticSearch, Redshift, ElasticCache = dump and load sort of stuff
+
 # [AWS Well-Architected Framework](https://d0.awsstatic.com/whitepapers/architecture/AWS_Well-Architected_Framework.pdf)
 
 This whitepaper is pretty much the AWS Solutions Architect Bible... overall, it preaches:
@@ -103,11 +151,9 @@ Detective Controls - logging with CloudTrail, CloudWatch, AWS Config
 
 * Stop Spending Money on Data Center Operations - duh.
 
-## Resources
 
+# [Amazon Web Services: Overview of Security Processes](https://d0.awsstatic.com/whitepapers/aws-security-whitepaper.pdf)
 
-
-# Amazon Web Services: Overview of Security Processes
 This whitepaper is mostly review yet there are some bigger points:
 
 - Amazon's corporate network is separate from the AWS network; 
@@ -126,12 +172,16 @@ AWS protects you from:
 
 - Packet Sniffing
 
-## Resources
-[Amazon Web Services: Overview of Security Processes](https://d0.awsstatic.com/whitepapers/aws-security-whitepaper.pdf)
+# [Security at Scale: Governance in AWS](https://d0.awsstatic.com/whitepapers/compliance/AWS_Security_at_Scale_Governance_in_AWS_Whitepaper.pdf)
 
-[Amazon Web Services: Risk and Compliance](https://d0.awsstatic.com/whitepapers/compliance/AWS_Risk_and_Compliance_Whitepaper.pdf) - this one is amalogomation of the [Overview of Security Processes](https://d0.awsstatic.com/whitepapers/aws-security-whitepaper.pdf) and [Well-Architected Framework](https://d0.awsstatic.com/whitepapers/architecture/AWS_Well-Architected_Framework.pdf)
+There are tons of ways that AWS enhances and improves on-prem management by managing IT resources, security and performance. Overall, there is little here new...
 
-[Architecting for the Cloud](https://d0.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf) - nothing too new here...
+
+## Not very useful whitepapers
+
+* [Amazon Web Services: Risk and Compliance](https://d0.awsstatic.com/whitepapers/compliance/AWS_Risk_and_Compliance_Whitepaper.pdf) - this one is amalogomation of the [Overview of Security Processes](https://d0.awsstatic.com/whitepapers/aws-security-whitepaper.pdf) and [Well-Architected Framework](https://d0.awsstatic.com/whitepapers/architecture/AWS_Well-Architected_Framework.pdf)
+
+* [Architecting for the Cloud](https://d0.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf) - nothing too new here...
 
 
 
