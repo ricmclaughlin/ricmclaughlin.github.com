@@ -3,11 +3,12 @@ layout: post
 title: "AWS Solutions Arch - Whitepapers"
 description: ""
 category: posts
-tags: [aws, soluarch]
+tags: [aws, aws-dev-ops-pro, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
-# Well Architected Framework Overall
+# [AWS Well-Architected Framework](https://d0.awsstatic.com/whitepapers/architecture/AWS_Well-Architected_Framework.pdf)
+
 This whitepaper is pretty much the AWS Solutions Architect Bible... overall, it preaches:
 
 * Stop guessing your capacity needs - make it scalable from the onset
@@ -70,6 +71,7 @@ Detective Controls - logging with CloudTrail, CloudWatch, AWS Config
 
 
 #### Performance Efficiency - Best Practices
+
 * Democratize Advanced Technologies - instead of developing expertise USE a service with embedded expertise
 
 * Go Global in Minutes - when global needs arise address them
@@ -90,6 +92,7 @@ Detective Controls - logging with CloudTrail, CloudWatch, AWS Config
 
 
 #### Cost Optimization - Best Practices
+
 * Transparently Attribute Costs - you business has cost centers for a reason
 
 * Use Managed Services - services are efficient with cost, performance and reliability built in
@@ -101,7 +104,8 @@ Detective Controls - logging with CloudTrail, CloudWatch, AWS Config
 * Stop Spending Money on Data Center Operations - duh.
 
 ## Resources
-[AWS Well-Architected Framework](https://d0.awsstatic.com/whitepapers/architecture/AWS_Well-Architected_Framework.pdf)
+
+
 
 # Amazon Web Services: Overview of Security Processes
 This whitepaper is mostly review yet there are some bigger points:
