@@ -9,7 +9,7 @@ tags: [aws, devops, elastic-load-balancer, aws-dev-ops-pro]
 
 # Elastic Load Balancers (ELB) 
 
-ELB distributes traffic to instances that belong to the ELB group - this can be in a single region or multiple regions. One nifty features it that it allows us to offload SSL certs to load balancers instead of webservers! ELB configuration requires a protocol, a front end port, and a back end port. ELB are NOT free - there is a charge by the hour and per GB of usage. Only one SSL Cert per ELB. The max number of requests that can be queued is 1024, can only use one subnet per AZ; can use up to 5 Security groups and also use deletion protection.
+ELB distributes traffic to instances that belong to the ELB group - this can be in a single AZ or multiple AZs. One nifty features it that it allows us to offload SSL certs to load balancers instead of webservers! ELB configuration requires a protocol, a front end port, and a back end port. ELB are NOT free - there is a charge by the hour and per GB of usage. Only one SSL Cert per ELB. The max number of requests that can be queued is 1024, can only use one subnet per AZ; can use up to 5 Security groups and also use deletion protection.
 
 There are two version of ELB - Classic Load Balancer (only a few ports + TCP, HTTP, HTTPS, SSL; layer 4) and Application Load Balancer (any port - just HTTP, HTTPS; layer 7). ELBs do not have a defined IPV4 address.
 
@@ -23,11 +23,11 @@ Lots of times you will know there is more traffic a-coming. In these cases you c
 
 ## SSL on ELB
 
-One of the key features of ELB is the ability to terminate SSL connections for instances in the load balancing group - SSL is still a highly compute intensive process for webservers. In this configuration, the HTTPS client uses port 443 to communicate with the ELB and the ELB communicates on port 80 to the web server instances in the autoscaling group. Although a great feature, end to end encryption is an important aspect to consider in system design.
+One of the key features of ELB is the ability to terminate SSL connections for instances in the load balancing group - SSL is still a highly compute intensive process for webservers. In this configuration, the HTTPS client uses port 443 to communicate with the ELB and the ELB communicates on port 80 to the web server instances in the autoscaling group. Although a great feature, end-to-end encryption is an important aspect to consider in system design.
 
-Managing the certificate on the ELB is always the magic... In fact, managing certs in general is the magic. There are three options. 
+Managing the certificate on the ELB is always the magic... In fact, managing certs in general, is the magic. There are three options. 
 
-1. Use the new AWS Certificate Manager service. Especially cool now that it is integrated with Elastic Bean Stalk - nifty and FREE! 
+1. Use the new AWS Certificate Manager service. Especially cool now that it is integrated with Elastic Beanstalk - nifty and FREE! 
 
 2. Use a certificate from IAM. 
 
@@ -37,15 +37,13 @@ In addition to a cert, you need to define an SSL Negotiation configuration, call
 
 ## Health Checks
 
-To enable removing unhealthy instances from the round robin, each ELB can do a health check of the instances in the load balancing group. Can use different ports, including port 80, and set a response timeout, a health check interval, an unhealthy threshold and a healthy threshold. 
+To enable removing unhealthy instances from the round robin, each ELB can do a health check of the instances in the load balancing group. The health check can use different ports, including port 80, and set a response timeout, a health check interval, an unhealthy threshold and a healthy threshold. 
 
-[Health checks](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-healthchecks.html) only determine if the instance will get traffic routed to it; optionally, an ASG can use ELB health checks in addition to the EC2 status checks it uses.
+ELB [health checks](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-healthchecks.html) only determine if the instance will get traffic routed to it; optionally, an ASG can use ELB health checks in addition to the EC2 status checks it uses.
 
-## Monitoring
+## Metrics
 
-### Metrics
-
-Metrics are reported every 60 seconds - no traffic = no metric. There are two useful dimensions the AvailabilityZone and LoadBalancerName for the ELB and the the ALB adds a `TargetGroup` dimension.
+Metrics are reported every 60 seconds but if there is no traffic, no metric will be reported. For the ELB there are two useful dimensions the `AvailabilityZone` and `LoadBalancerName`; the ALB adds a `TargetGroup` dimension.
 
 * SurgeQueueLength - Length of waiting queue - closer to zero the better (up to 1024)
 
@@ -55,7 +53,7 @@ Metrics are reported every 60 seconds - no traffic = no metric. There are two us
 
 * BackendConnectionErrors - unsuccessful connection to the backend; Look at SUM and difference between min and max values
 
-* HealthyHostCount, UnHealthyHostCount
+* HealthyHostCount, UnHealthyHostCount - how well the backend instances are holding up
 
 * HTTPCode_Backend_XXX - response codes from the backend (2XX, 3XX, 4XX)
 
@@ -65,14 +63,9 @@ Metrics are reported every 60 seconds - no traffic = no metric. There are two us
 
 * RequestCount - # of requests over 1 or 5 minute interval
 
-## Elastic Load Balancing Service
+## Logging
 
-If you know there is a lot of traffic on the way, call AWS and get them to "pre-warm" your ELB. 
-
-
-### Logging
-
-Strangely [ELB Logging](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/access-log-collection.html) is disabled by default and are generated on a best-case situation so data might be missing; logs are stored in S3 and taken either every hour OR ever 5 minutes.
+Strangely [ELB Logging](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/access-log-collection.html) is disabled by default and are generated on a best-case situation so data might be missing; logs are stored in S3 and delivered every hour OR every 5 minutes.
 
 The log file name includes the end-time, ip address of the ELB and a random generated string. The logs themselves include a timestamp, client:port, backend:port, user_agent and the important:
 
@@ -90,7 +83,7 @@ The log file name includes the end-time, ip address of the ELB and a random gene
 
 - Request - including verb, protocol version (http 1.1 or 2.0)
 
-ALB can also forward X-Forwarded-For header so logging can occur at the instance layer NOT the ALB (because ALB routing is best effort no complete). To accomplish the same thing with an ELB you need to enable the [Proxy Protocol Headers](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-proxy-protocol.html) which adds a header for the backend to parse but this does not enable sticky session or X-Forward-For header.
+ALB can also forward X-Forwarded-For header so logging can occur at the instance layer NOT the ALB (because ALB routing is best effort to complete). To accomplish the same thing with an ELB you need to enable the [Proxy Protocol Headers](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-proxy-protocol.html) which adds a header for the backend to parse but this does not enable sticky session or X-Forward-For header.
 
 ## Differences between ELB &amp; ALB
 
@@ -131,7 +124,6 @@ There are three `Cookie Stickiness`, also know as session affinity, with both en
 * Enable Load Balancer Generated Cookies - the ELB generates the cookie and manages the distribution of traffic;  also know as "duration based"; can set the duration of the distribution with zero seconds disabling cookie expiration
 
 * Enable Application Generated Cookie Stickiness - ELB generates a cookie that correlates to the application cookie - the duration is set by the application cookie; name the cookie in the setting.
-
 
 ## Autoscaling and ELB Trouble Shooting
 

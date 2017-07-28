@@ -12,10 +12,7 @@ tags: [dynamodb, aws, aws-dev-ops-pro, aws-solutions-arch-pro]
 
 Yes, [DynamoDB](https://aws.amazon.com/dynamodb/) is like MongoDB - but the concepts behind MongoDB have better names. Reads of a DynamoDB table, unless you specify otherwise, are eventually consistent. DynamoDB uses optimistic concurrency control. It stores data in three separate data centers - not AZs. 
 
-
-
 **DynamoDB limits** - DynamoDB limits the tables per region to 256 but this can be increased by contacting AWS. The maximum size of a DynamoDB range primary key attribute value is 1024 bytes. If you need more than 10,000 writes/second or 10,000 reads/second you need to contact AWS directly. 
-
 
 
 ## Data types
@@ -28,7 +25,6 @@ DynamoDB is hybrid of document and key value pair noSQL database types and featu
 
 - Document - basically json, much like how MongoDB store data
 
-
 ## Pricing 
 
 Pricing with DyanamoDB is difficult to project. Instead of being priced on just disk storage, pricing is based on disk storage, provisioned throughput, DynamoDB streams and data transfer.
@@ -37,13 +33,13 @@ Pricing with DyanamoDB is difficult to project. Instead of being priced on just 
 
 Primary Key - Like all databases, a DynamoDB primary key is a unique identifier for a record in a table. The primary key can be simple (use the partition key) or composite (the primary key and sort key)
 
-Partition Keys (hash key) - When DynamoDB stores data it uses the partition key to divide the table between partitions/servers. The partitian key should be a high-cardinality, composite attributes or perhaps 
+Partition Keys (hash key) - When DynamoDB stores data it uses the partition key to divide the table between partitions. The partitian key should be a high-cardinality, or composite attribute. 
 
 Sort Keys (range key) - The table can be sorted as well.. and it should be.
 
-Secondary Indexes - total of 5 global indexes and 5 secondary indexes for a total of 10 per table
+DynamoDB indexes are sparse so if a record does not have the value required to be indexed it will NOT appear in the index. 
 
-DynamoDB indexes are sparse so if a record does not have the value required to be indexed it will NOT appear in the index.
+10 indexes per table = 5 global indexes + 5 local 
 
 ### Local Secondary Indexes
 
@@ -68,17 +64,15 @@ Global indexes have completely different read/write capacity units that is calcu
 
 ### Read capacity unit estimation 
 
-A unit of read capactiy is 1 strongly consistent reads per second or 2 eventually consistent reads per second for items up to 4KB. Calculation algorithm:
+A unit of read capacity is 1 strongly consistent reads per second or 2 eventually consistent reads per second for items up to 4KB. Calculation algorithm:
 
 1. Round read size up to nearest multiple of 4
 
 1. divide by 4
 
-1. Times reads per section
+1. Times reads per second
 
 1. if eventual consistent divide by 2
-
-A unit of write capacity is 1KB. 
 
 #### Example read capacity problem #1
 
@@ -123,10 +117,9 @@ Scan vs Query - A query result is an eventually consistent read but you can requ
 
 Overall, you want to avoid table scans therefore designing tables to use the `Query`, `Get` or `BatchGetItems` APIs. 
 
-
 ## DynamoDB Components
 
-Dynamo Logs - It's a database log that emits events.
+Dynamo Logs - It's a database log that emits events. 
 
 ### Partitions
 
@@ -158,9 +151,9 @@ There are two basic use cases for streams: replication and triggers. Cross regio
 
 - Record Size > 400? Pointer to data in S3; OR vertically partition large data into separate table
 
-- Write Heavy Partitions ([two candidates in voting app](https://youtu.be/bCW3lhsJKfw?t=31m25s)) - add random value to candidateID then create lambda to aggregate
+- Write Heavy Partitions ( the [two candidates in voting app](https://youtu.be/bCW3lhsJKfw?t=31m25s) is a great example of this) - add random value to candidateID then create lambda to aggregate
 
-- Static Time Series Table - time series with no updates with a fixed "interest" TTL -> pipe data into hot table with lots of RCU and WCU; colder table with less RCU & WCU; cold table in glacier or S3 
+- Static Time Series Table - time series with no updates with a fixed "interest" TTL -> pipe data into hot table with lots of RCU and WCU; warm table with less RCU & WCU; cold table in glacier or S3 
 
 - Dynamic Time Series Table - updates to TTL in a "delete after 30 days of last touch sort of scenario"; create write sharded GSI to query expired items; Lambda stored procedure to delete items; use streams to migrate data to cold storage; or use the new [TTL Timestamps](https://aws.amazon.com/blogs/aws/new-manage-dynamodb-items-using-time-to-live-ttl/) feature.
 
@@ -170,7 +163,7 @@ There are two basic use cases for streams: replication and triggers. Cross regio
 
 - query filters vs composite key indexes - filtering only removes items from the found set AFTER they are read; instead, create a composite index (likely using a GSI) with the key and the filter attribute
 
-- query for item that contains an attribute that does NOT exist in other items? 
+- query for item that contains an attribute that does NOT exist in other items? Global secondary on attribute because of sparse indexes
 
 ## Error
 
@@ -180,13 +173,4 @@ All of these error return HTTP 400.
 
 - `ProvisionedThroughputExceededException` - You exceeded your maximum allowed provisioned throughput for a table, partician, one or more global secondary indexes. With global secondary indexes, if one of the indexes runs low on write capacity, all of the tables indexes might get throttled, even if one or more of the indexes aren't affected. 
 
-- ItemCollectionSizeLimitExceededException - When a single partitian key (and LSI) are greater than 10GB 
-
-## Reading
-
-[DynamoDB - How it Works](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.html)
-
-[DynamoDB - Best Practices](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/BestPractices.html)
-## Videos
-
-[Deep Dive: Amazon DynamoDB](https://www.youtube.com/watch?v=VuKu23oZp9Q)
+- `ItemCollectionSizeLimitExceededException` - When a single partitian key (and LSI) are greater than 10GB 

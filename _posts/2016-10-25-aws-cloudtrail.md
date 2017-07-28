@@ -50,5 +50,6 @@ There are tons of options to analyze cloud trail data. You can use external sour
 
 ## Resources
 
-[Cloud Trail Analysis with Apache Spark on EMR Deep Dive](https://www.youtube.com/watch?v=oZ8HswQSbNQ)
-[CloudTrail Deep Dive](https://www.youtube.com/watch?v=t0e-mz_I2OU)
+- [Cloud Trail Analysis with Apache Spark on EMR Deep Dive](https://www.youtube.com/watch?v=oZ8HswQSbNQ)
+
+- [CloudTrail Deep Dive](https://www.youtube.com/watch?v=t0e-mz_I2OU)
