@@ -47,7 +47,7 @@ Turning log data into metrics is done through the use of [metric filters](http:/
 
 ## Alarms
 
-Alarms take must be in same region as the data; have three states `OK`, `ALARM`, and `INSUFFICIENT_DATA`. Metrics are for 1 or 5 minutes so alarms have to be equal to or higher frequency. You can use the `mon-put-metric-alarm` command to create or update an alarm.
+Alarms take must be in same region as the data; have three states `OK`, `ALARM`, and `INSUFFICIENT_DATA`. Metrics are for 1 or 5 minutes so alarms have to be equal to or higher frequency. You can use the `mon-put-metric-alarm` command to create or update an alarm using the ancient Java command line tool. There is a max of 5000 alarms per AWS account.
 
 ## Logs
 
@@ -61,7 +61,7 @@ Using CloudWatch logs, you can monitor logs from any source in AWS, like EC2 or 
 
 ### Exporting, Subscriptions & Streaming
 
-Once the data is in Cloudwatch logs, it is pretty straightforward to send it elsewhere for processsing. Subscriptions are closely related to filters... except the output of them is to a different service such as 
+Once the data is in Cloudwatch logs, it is pretty straightforward to send it elsewhere for processsing. Subscriptions are closely related to filters... except the output of them is to a different service such as Kinesis Streams, Lambda or Kinesis Firehose.
 
 Logs can be exported to S3 or ElasticSearch directly from CloudWatch.
 

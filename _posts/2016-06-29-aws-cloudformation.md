@@ -17,25 +17,25 @@ CloudFormation Templates have 8 main sections but only the resources section is 
 
 * Description - this specifies what the heck the template does. Where can you stamp the version of the file you are creating?? A Description block requires an `AWSTemplateFormatVersion` block.
 
-* Metadata - as the name suggests, this sets up additional information about each of the resources
-
-* [Parameters](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html) - imagine default values and customized template values and stuff you can pass in on the commandline OR when you run the template. 
-
-* Transform - used for the [Serverless](https://github.com/awslabs/serverless-application-model) definition
+* [Parameters](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html) - imagine default values and customized template values and stuff you can pass in on the command line OR when you run the template. 
 
 * Mappings - maps keys to values - imagine a different value for each AWS region!
-
-* Conditions - imagine the ability to conditionally do stuff. For instance, you can create slightly different configurations for a production or development environments 
 
 * Resources - create different resources like S3 buckets, EC2 Instances; this is the only required section of the template
 
 * Outputs - think `console.log();` you can output stuff like the URL of the website, or other variable.
 
+* Metadata - as the name suggests, this sets up additional information about each of the resources
+
+* Transform - used for the [Serverless](https://github.com/awslabs/serverless-application-model) definition
+
+* Conditions - imagine the ability to conditionally do stuff. For instance, you can create slightly different configurations for a production or development environments 
+
 ## Nested Templates
 
-The AWS::CloudFormation::Stack resource can be used to call another template from within another template. This is useful if you want break up templates because of size (460k on S3), the number of resources is max'd out (200), or there are more than 100 mappings, 60 parameters or 60 outputs, OR want to reuse components. Parmeters and outputs are shared between the parent and child templates.
+The AWS::CloudFormation::Stack resource can be used to call another template from within another template. This is useful if you want break up templates because of size (460k on S3), the number of resources is max'd out (200), or there are more than 100 mappings, 60 parameters or 60 outputs, OR want to reuse components. Parameters and outputs are shared between the parent and child templates.
 
-`json 
+```json 
 "myStack" : {
   "Type" : "AWS::Cloudformation::Stack"
   "Properties" : {
@@ -47,7 +47,7 @@ The AWS::CloudFormation::Stack resource can be used to call another template fro
     }
   }
 }
-`
+```
 
 ## Cloudformation Components
 
@@ -55,10 +55,10 @@ The AWS::CloudFormation::Stack resource can be used to call another template fro
 
 Sets the [type of resource](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html) you want to create... for example, 
 
-`yaml
+```yaml
   Type: "AWS::EC2::Instance"
   Properties: 
-`
+```
 
 ### Resource Properties Types
 
@@ -68,7 +68,6 @@ Within resources, there are numerous different data structures that must be buil
 
 Pseudo parameter are predefined template parameters for values like `AWS::AccountId`, `AWS::NotificationARNs`, `AWS::Region`, `AWS::StackId` and `AWS::StackName`.
 
-
 ### Intrinsic Functions
 
 Intrinsic Functions are functions that run inside a CF template. There are helper functions and conditional logic functions. Some value that you need to access will not be known until runtime; think IP address or DNS name, anything that might vary each time the CloudFormation template is run. These functions can only be used in the resource properties, metadata attributes, and update policy attributes. 
@@ -77,13 +76,21 @@ Intrinsic Functions are functions that run inside a CF template. There are helpe
 
 - `Fn::GetAtt` -  which retrieves the attribute from a resource
 
-- `Fn::FindInMap` in mappings section. 
+- `Fn::FindInMap` - finds something in the mappings section 
 
 - `Fn::Sub` - variable subsitution using a litteral block like ${varName}
 
 - `Ref` - reference the ID of a resources; can be written as `!Ref` or `Ref:`
 
 - `Fn::ImportValue` - imports a value from another stack exported using the `Export` attribute in the `Outputs` section of a template
+
+- `Fn::Join` - join strings together
+
+- `Fn::Select` - select an item from an array
+
+#### Condition Function
+
+Normal programming conditional logic can be addressed using `Fn::And`, `Fn::Equals`, `Fn::If`, `Fn::Not` and `Fn::Or`.
 
 ### Resource Attributes 
 
@@ -93,11 +100,11 @@ CF policies aren't really separate documents that are [resource attributes](http
 
 - `DeletionPolicy` - used to keep important stuff from getting nuked; can be `Delete`, (which is the default); `Retain` which is useful for common infrastructure architectures, AD, databases but leaves a mess; `Snapshot` which is for volumes, DBclusters, DBInstance or Redshift
 
-- `UpdatePolicy` - used to dictate how updates to an ASG are handled... AutoScalingRollingUpdate &amp; 
+- `UpdatePolicy` - used to dictate how updates to an ASG are handled... 
 
 ### Custom Resources
 
-[Custom Resources](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-custom-resources.html) enable you to support AWS Products that lack CF support, operate on non-AWS resources and perform advanced logic is limited. A custom resource directly runs a lambda function or creates then sends SNS message when the resource is created, updated, or deleted. This can be specfied like `Custom::MyCustomThingy` or `AWS::CloudFormation::CustomResource`.
+[Custom Resources](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-custom-resources.html) enable you to support AWS Products that lack CF support, operate on non-AWS resources and perform advanced logic is limited. A custom resource directly runs a Lambda function or creates then sends SNS message when the resource is created, updated, or deleted. This can be specfied like `Custom::MyCustomThingy` or `AWS::CloudFormation::CustomResource`.
 
 Here is a quick summary of how to make a [Custom Resources](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-custom-resources.html):
 
@@ -131,7 +138,9 @@ Wait conditions should be used when synchronizing resources creation and there s
 
 `DependsOn` - for the simple cases of ordering
 
-WaitConditions - resources must signal the start and end wait period
+`WaitConditions` - resources must signal the start and end wait period
+
+`CreationPolicy` - simplified `WaitConditions` for EC2 instances and ASG
 
 #### `DependsOn`
 
@@ -146,6 +155,19 @@ The lifecycle is straightforward - while waiting they are `CREATE_IN_PROGRESS` t
 - Timeout - the time out period in seconds
 
 Should not be used for EC2 instance or autoscaling groups... use creation policies or wait conditions for these resources and use cases.
+
+### Creation Policies
+
+When waiting for an EC2 instance or ASG to setup, a `CreationPolicy` should be used. Creation policies are essentially simplified wait conditions. When the resource spins up it signals the stack using helper scripts, the `SignalResource` API or an API call.
+
+```yaml
+CreationPolicy:
+  AutoScalingCreationPolicy: #only for autoscaling groups or EC2 instances
+    MinSuccessfulInstancesPercent: 22
+  ResourceSignal:
+    Count: Integer # default = 1
+    TimeOut: String # ISO8601 format; PT1H30M10S = 1h 30m 10s
+```
 
 #### Wait Condition Setup
 
@@ -180,26 +202,13 @@ myEc2Instance:
       # more stuff...
 ```
 
-Fourth, signal the end of the wait condition or failure.
-
-### Creation Policies
-
-When waiting for an EC2 instance or ASG to setup, a `CreationPolicy` should be used. When the resource spins up it signals the stack using helper scripts, the `SignalResource` API or an API call.
-
-```yaml
-CreationPolicy:
-  AutoScalingCreationPolicy: #only for autoscaling groups or EC2 instances
-    MinSuccessfulInstancesPercent: 22
-  ResourceSignal:
-    Count: Integer # default = 1
-    TimeOut: String # ISO8601 format; PT1H30M10S = 1h 30m 10s
-```
+Fourth, signal the end of the wait condition or failure from the EC2.
 
 ## Rollback
 
-If a CloudFormation template run does not complete successfully then by default it all gets rolled back which feels like something very similiar to a transaction. In a nested stacks scenario, a parent stack roll-back will roll-back child stacks as well. 
+If a CloudFormation template run does not complete successfully then by default it all gets rolled back, which feels like something very similiar to a transaction. In a nested stacks scenario, a parent stack roll-back will triggger a roll-back child stacks as well. 
 
-First you might see a `CREATE_FAILED` message the likely a `ROLLBACK_IN_PROGRESS` message in the CF log. Rollbacks can be disabled to assist in troubleshooting.
+When a roll back occurs first you might see a `CREATE_FAILED` message the likely a `ROLLBACK_IN_PROGRESS` message in the CF log. Rollbacks can be disabled to assist in troubleshooting.
 
 ### Rollback Failure
 
@@ -217,7 +226,7 @@ Change sets are incremental changes to an existing stack. This allows you to pre
 
 After you create a stack, by default anyone can update the stack. A [Stack Policy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html) can be used restrict access to stack updates, a stack policy can be applied, which, by default, protects all the resources in the stack. You have to explictly `Allow` updates; only one stack policy per stack; many resources per [Stack Policy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html).
 
-When a resource is updated it might be replaced or have no service interuption, suffer an interuption or be deleted. If you need to update a protected resource, you can temporarily replace the policy at update time.
+Stack policices can be applied at stack creation or updated to contain the policy. When a resource is updated it might be replaced or have no service interuption, suffer an interuption or be deleted. If you need to update a protected resource, you can temporarily replace the policy at update time.
 
 In addition, there is no fine grain access control in a stack policy... everyone that can run the template in update mode but you must specify a `Principal:*`. One handy feature is the `Condition` block like: 
 
@@ -241,13 +250,11 @@ In addition, there is no fine grain access control in a stack policy... everyone
 }
 ```
 
-The `Action` attribute can be set to `Update:Modify`, `Update:Replace`, `Update:Delete` or `Update:*`.
-
-Stack policices can be applied at stack creation or updated to contain the policy.
+The `Action` attribute can be set to `Update:Modify`, `Update:Replace`, `Update:Delete` or `Update:*` and the resource can use the `NotResource` for inverted logic.
 
 ## Deleting
 
-By default when a stack is deleted all the resources are deleted. To get around this you can create a [DeletionPolicy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html) Specify `Delete`, `Retain` or `Snapshot` as an attribute of the resources. Snapshot works for things that might be snapshotted... like EBS, RDS (instances and clusters), &amp; Redshift cluster.
+By default when a stack is deleted all the resources are deleted. To get around this you can create a [DeletionPolicy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html). See above.delet 
 
 ## EC2 Instances
 
@@ -345,11 +352,17 @@ UpdatePolicy:
 
 ## Triage
 
+### Best Practices
+
+* Don't hardcode names, passwords or usernames in template as this causes portability issues; use parameters and `!Ref`  
+
+* When using the `Fn::GetAZs` use `0` or `1` or `3` to maximize portability
+
 ### Troubleshooting
 
 * `DELETE_FAILED` - lack permissions, S3 buckets must be empty before they can be deleted by CF, can use the RetainResources parameter to unstick the stack.
 
-* Dependency error - can happen in both create and delete scenarios - and generally can be resolved using the `DependsOn` attribute... so delete the EC2 instance prior to deleting the VPC and add the IGW before adding the IEP
+* Dependency error - can happen in both create and delete scenarios - and generally can be resolved using the `DependsOn` attribute... so delete the EC2 instance prior to deleting the VPC and add the IGW before adding the IEP; CF will error if there is a recursive or cross reference
 
 * Insufficient IAM permissions - need permissions to run CF and the resources it creates, modifies or deletes.
 

@@ -9,7 +9,7 @@ tags: [aws, devops, elastic-beanstalk, aws-dev-ops-pro, aws-solutions-arch-pro]
 
 [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) is the way to get started with AWS with a website or backend process. Like Cloud Formation, you don't pay to use the tool BUT you do pay for the resources it provisions. In fact, Beanstalk is CloudFormation... except with a thin layer of goo on top.
 
-EB is appropriate to use when creating quick applications including prototypes that require minimal control and flexibility to power the application. EB is not appropriate when there are lots of additional dependency software and the existing application that does not fit into the EB model. EB supports Web Server Environment Tiers and Working Environments as well with a SQS queue between the tiers. These are simplified environments yet look quite functional for small to medium sized systems and up to 75 applications and 1,000 application versions can be created. 
+EB is appropriate to use when creating quick applications including prototypes that require minimal control and flexibility to power the application. EB is not appropriate when there are lots of additional dependency software and the existing application that does not fit into the EB model. EB supports Web Server Environments and Worker Environments as well with a SQS queue between the tiers. These are simplified environments yet look quite functional for small to medium sized systems and up to 75 applications and 1,000 application versions can be created. 
 
 # Applications
 
@@ -37,7 +37,9 @@ Overall, it is a bad idea to create a RDS instance in an Elastic Beanstalk envir
 
 ### Configuration Updates
 
-The EB environment has many settings that can be changed after the environment has been setup. The word "update" is associated with configuration change applied to an environment. Config updates are processed separate from deployments and probably require replacing/restarting the instances. If there is a change to health reporting, a full refresh of the instances is likely required... just like you need to restart an instance to change this in the EC2 console. 
+The EB environment has many settings that can be changed after the environment has been setup. The word "update" is associated with configuration change applied to an environment. Config updates are processed separate from deployments and probably require replacing/restarting the instances. 
+
+If there is a change to health reporting, from standard to enhanced, a full refresh of the instances is likely required... just like you need to restart an instance to change this in the EC2 console. 
 
 If you modify the underlying resource between environment changes they get overwritten. Changing from a single instance to load balancing replaces all your current instances. 
 
@@ -85,10 +87,10 @@ Opt-in to [managed platform updates](http://docs.aws.amazon.com/elasticbeanstalk
 
 Docker containers are a good option on EB when the application has many funky dependencies which makes packaging it on Docker a good choice. All the config files are stored in the application source bundle. Docker comes in three flavors:
 
-- single container - one container per instance; requires a `Dockerfile`; does not require a `Dockerrun.aws.json`
+- Preconfigured - generic configured container for Java with Glassfish, python or node; does not require a `Dockerfile`;
 
-- multicontainer - several containers per instance; during deployment you can't build a custom image, ya gotta build it beforehand; requires a `Dockerrun.aws.json` which contains either how to use the container [setup configuration](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker_v2config.html) using "AWSEBDockerrunVersion": 1 = single container; 2 = multicontainer image OR where the public or private registry is. 
+- Single container - one container per instance; requires a `Dockerfile`; does not require a `Dockerrun.aws.json`
 
-- preconfigured - generic configured container for Java with Glassfish 
+- Multicontainer - several containers per instance; during deployment you can't build a custom image, ya gotta build it beforehand; requires a `Dockerrun.aws.json` which contains either how to use the container [setup configuration](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker_v2config.html) using "AWSEBDockerrunVersion": 1 = single container; 2 = multicontainer image OR where the public or private registry is. A `.dockercfg` file includes authentication info for the private docker registry store on S3 in the SAME region. Use the `docker login registry-url` to generate.
 
-`.dockercfg` - includes authentication info for the private docker registry store on S3 in the SAME region. Use the `docker login registry-url` to generate.
+

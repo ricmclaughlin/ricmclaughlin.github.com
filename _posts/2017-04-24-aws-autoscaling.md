@@ -15,7 +15,7 @@ An [Auto Scaling Group ](http://docs.aws.amazon.com/autoscaling/latest/userguide
 
 First, lots of basic stuff... an ASG must specify a launch configuration and only one launch config per ASG. A Launch Config can't be modified after creation.
 
-Launch configs can be made from running EC2 instance but some storage and monitoring settings are not supported. Tags, block devices settings, userdata, and load balancer settings including the `LoadBalancerNames` attribute is not copied over to the Launch Configuration. 
+Launch configs can be made from running EC2 instance but some storage and monitoring settings are not supported. Tags, block devices settings, userdata, and load balancer settings including the `LoadBalancerNames` attribute are not copied over to the Launch Configuration. 
 
 Spot instances can be used in an ASG but include a bid price. ASG will balance across AZ using bid prices. Spot instances can't use the same launch config as on-demand instances because they include a bid price.
 
@@ -71,7 +71,7 @@ At the end of the lifecycle the state will be `ABANDON` or `CONTINUE`. The ASG a
 |----------|---------------|
 | `put-lifecycle-hook` | create hook |
 | `complete-lifecycle-action` | complete the hook with `ABANDON` or `CONTINUE` |
-|`record-lifecycle-action-heartbeat`| extend the lifecycle |
+| `record-lifecycle-action-heartbeat` | amount of additional time to extend the lifecycle hook timeout|
 
 There are also two other states:
 

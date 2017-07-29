@@ -90,4 +90,13 @@ aws cloudwatch get-metric-statistics --namespace GetStarted --metric-name Reques
 
 ```
 
+There is also a funky CloudWatch Java app... where you can do things like:
 
+```bash
+mon-put-metric-alarm
+mon-enable-alarm
+mon-describe-alarms
+
+```
+
+You can even create an alarm before you have created the metric!!
