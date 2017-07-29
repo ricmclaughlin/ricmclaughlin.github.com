@@ -23,7 +23,7 @@ There are numerous commands with in the EB CLI, and this walkthrough isn't going
 
 * `eb platform` - manages platforms and environments
 
-* `eb restores` - fire up terminated environment
+* `eb restore` - fire up terminated environment
 
 * `eb scale` - adjust scaling for an environment
 
@@ -40,10 +40,9 @@ Now we have the less-than-super-smart options... seriously, who uses a CLI and n
 * `eb ssh` - ssh into a running instance... 
 
 
-
 # Preconfigured Container 
 
-during this scenario we are going to create a Docker hosted application using a preconfigured container and deploy it in us-west-2. You will need to [install docker](https://docs.docker.com/engine/installation/) and have the daemon running.
+During this scenario we are going to create a Docker hosted application using a preconfigured container and deploy it in us-west-2. You will need to [install Docker](https://docs.docker.com/engine/installation/) and have the daemon running.
 
 ## Application Setup
 
@@ -106,7 +105,7 @@ $ cd flask-app
 $ eb init
 ```
 
-Annoyingly, there is no way to confirm application creation worked from the CLI... assume it did. 
+Annoyingly, there is no way to confirm application creation worked from the CLI... assume it did. Or look in the Console.
 
 Now to create the environment. By default, the `eb create <my-environment-name>` command makes a load balanced with t2.micro instances. That is close to what we want... but let's customize it with a single instance and confirm we are using a t2.micro to avoid charges as much as possible:
 
@@ -122,7 +121,7 @@ Now, let's update the application by changing the application.py file text like:
 # application.py
 ---snip---
 def hello_world():
-    return 'yo, baby, yo baby, yo, docker!'
+    return 'yo, baby, yo baby, yo. Docker, yeah!'
 ---snip---
 ```
 
@@ -150,6 +149,3 @@ then delete the application... wait, there is NO way to delete an app using the 
 ```bash
 aws elasticbeanstalk delete-application --application-name flask-app
 ```
-
-
-

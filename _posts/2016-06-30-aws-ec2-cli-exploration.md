@@ -81,29 +81,32 @@ aws ec2 create-image \
 ```
 
 --block-device-mappings can be specified for the image as well...
+
 --no-reboot | --reboot (to insure file system integrity)
 
 ### Copy AMI to Another Region
 
 ```bash
-aws ec2 copy-image --source-image-id ami-e0b3ab99  --source-region us-west-2 --region us-east-1 --name "mygoodness-v2"
+aws ec2 copy-image --source-image-id ami-e0b3ab99 --source-region us-west-2 --region us-east-1 --name "mygoodness-v2"
 ```
 
 Use --kms-key-id <key arn> to encrypt...
 
 ## Snapshot volumes
 
+Encrypted volumes -> encrypted snapshots
+
 ```bash
 aws ec2 create-snapshot --volume-id vol-08bf38a3b26ac47a4 
 ```
 
-Can't encrypt a NON-encrypted volume
+
+encrypted snapshots -> encrypted snapshot
+unencrypted snapshot + `--encrypted` -> encrypted snapshot
 
 ```bash
 aws ec2 copy-snapshot --source-region us-west-2 --source-snapshot-id snap-066877671789bd71b --description "This is my copied snapshot." --region us-east-1 
 ```
-
---encrypted to encrypt on the destination; 
 
 ```bash
   delete-snapshot

@@ -97,7 +97,6 @@ Read Capacity Units = 2 * 120 = 240 / 2 = 120
 ## Write capacity unit estimation
 
 Formula -> writes per item (size in KB rounded up to the nearest whole number) * writes per second
-write capacity unit - one write per second up to 1KB
 
 ## Conditional Updates vs Atomic counters
 

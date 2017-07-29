@@ -35,9 +35,9 @@ A Layer is a blueprint for a set of instances like web servers, app servers or D
 
 Layers define which recipes are installed, networking (ELB, Public IP address/EIP), EBS Volumes, security groups, EC2 instance profile and tags. There is also a shutdown timeout associated to layers.
 
-ELB - Opsworks can't create an ELB you have to attach an existing ELB to a layer which triggers a `Configure` lifecycle event; only one ELB V1 per layer and one layer per ELB; ALB is not supported; can support connection draining if enable on the layer and ELB; Can use custom layers to support more than one ELB connecting to instances
+Opsworks can't create an ELB you have to attach an existing ELB to a layer but when you add one it triggers a `Configure` lifecycle event; only one ELB V1 per layer and one layer per ELB; ALB is not supported; can support connection draining if enable on the layer and ELB; Can use custom layers to support more than one ELB connecting to instances
 
-**Instance Auto-Healing** - when the Chef agent loses communication with the automation engine, the engine tries to fix it. EBS backed instances are stopped and started; instance store backed instances are terminated and relaunched. In both scenarios, the configure event is run. If the auto-healing process does not recover it gets marked `start_failed`, which requires manual intervention to fix. If autohealed, the OS of the instances will not be changed even if the default OS is has been changed at the stack level. To make this feature work properly, use OpsWorks to stop instances else they get auto healed and only use EBS volume types.
+To enable load-balanced instances, the layer must first be setup with a scaling configuration. There are numerous redundant settings for scaling - metrics, batch size, alarm condition time, after scaling ignore metric. Each of these configurations is on a per-layer basis but applies to instances.
 
 ### Special "Layers"
 
@@ -53,7 +53,7 @@ Recipes are small chunks of reuseable configuration that are run in Lifecycle Ev
 
 There are tons of [built in recipes](https://github.com/aws/opsworks-cookbooks) and you also have the ability to create custom bookselves. Berkshelf is the package manager for cookbooks.
 
-[BerkShelf](https://docs.chef.io/berkshelf.html) over comes a signifigant short coming in older versions of Chef; only allows one cookbook so community recipes had to be copied into the local repository. This feature was added in the 11.10 version of Chef. Components of berkshelf include the Chef Supermarket, the Berksfile, and the berks package manager. To enable berkshelf enable custom Chef cookbooks on the stack and create a `Berksfile`. The Berksfile format is something like:
+[BerkShelf](https://docs.chef.io/berkshelf.html) over comes a signifigant short coming in older versions of Chef; only allows one cookbook so community recipes had to be copied into the local repository. This feature was added in the 11.10 version of Chef. Components of berkshelf include the Chef Supermarket, the Berksfile, and the berks package manager. To enable berkshelf enable custom Chef cookbooks on the stack and create a `Berksfile`. The `Berksfile` format is something like:
 
 ```ruby
 # sets the default cookbook source
@@ -71,7 +71,7 @@ cookbook 'yeah', git: `git://my-awesome-location` # and could include other opti
 
 EC2 Instances; can run 7/24, be load or time based; must have Internet access; can be part of more than one stack; Instances are stopped when added and can not be editing when running. You can attach volumes - including RAID 0, 1 and 10 - to all instances in a layer.
 
-To enable load-balanced instances, the layer must first be setup to work the scaling configuration. There are numerous redundant settings for scaling - metrics, batch size, alarm condition time, after scaling ignore metric. Each of these configurations is on a per-layer basis but applies to instances.
+Instance Auto-Healing happens when the Chef agent loses communication with the automation engine and the engine tries to fix it. EBS backed instances are stopped and started; instance store backed instances are terminated and relaunched. In both scenarios, the `configure` event is run. If the auto-healing process does not recover it gets marked `start_failed`, which requires manual intervention to fix. If autohealed, the OS of the instances will not be changed even if the default OS is has been changed at the stack level. To make this feature work properly, use OpsWorks to stop instances else they get auto healed and only use EBS volume types.
 
 ### Lifecycle Events
 
@@ -103,9 +103,9 @@ One gotcha is that load based scaling does not create new instances; it starts a
 
 ## Applications
 
-Apps are code someplace you want to run on instances that define the name, root documen setting, datasource (like RDS), source code repo, environment variables, domain names and SSL config. They can be deployed manually or automatically. 
+Apps are code someplace you want to run on instances that define the name, root document setting, datasource (like RDS), source code repo, environment variables, domain names and SSL config. They can be deployed manually or automatically. 
 
-Deployment is as expected: app parameters, including application-id, are passed into the environment from Databags the the app is installed and a total of 5 version of the application are kept around - the current version and 4 older versions of the app.
+Deployment is as expected: app parameters, including application-id, are passed into the environment from Databags the the app is installed and a total of 5 version of the application are kept around - the current version and 4 older versions of the app. Blue/green and rolling deployments are not natively supported.
 
 ## create-deployment command
 

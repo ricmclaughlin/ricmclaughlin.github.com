@@ -31,9 +31,9 @@ CloudFormation Templates have 8 main sections but only the resources section is 
 
 * Conditions - imagine the ability to conditionally do stuff. For instance, you can create slightly different configurations for a production or development environments 
 
-## Nested Templates
+## Nested Stacks
 
-The AWS::CloudFormation::Stack resource can be used to call another template from within another template. This is useful if you want break up templates because of size (460k on S3), the number of resources is max'd out (200), or there are more than 100 mappings, 60 parameters or 60 outputs, OR want to reuse components. Parameters and outputs are shared between the parent and child templates.
+The `AWS::CloudFormation::Stack` resource can be used to call another template from within another template. This is useful if you want break up templates because of size (460k on S3), the number of resources is max'd out (200), or there are more than 100 mappings, 60 parameters or 60 outputs, OR want to reuse components. Parameters and outputs are shared between the parent and child templates.
 
 ```json 
 "myStack" : {
@@ -118,7 +118,9 @@ Here is a quick summary of how to make a [Custom Resources](http://docs.aws.amaz
 
 ## Validating
 
-From the command line use `--template-body` or `--template-url` to validate a template. Dependency errors, insufficient IAM permissions, invalid value/unsupported resource property, Security Group ID does not exist in VPC (you might have used a SG name instead of an ID), wait condition didn't receive the required number of signals (did the cf scripts get installed on the instance?), 
+From the command line use `validate-template` to check if the template is valid JSON or YAML. No additional checks are performed.
+
+When creating a stack, CF checks for dependency errors, insufficient IAM permissions, invalid value/unsupported resource property, Security Group ID does not exist in VPC (you might have used a SG name instead of an ID), wait condition didn't receive the required number of signals (did the cf scripts get installed on the instance?).
 
 ## Creating
 

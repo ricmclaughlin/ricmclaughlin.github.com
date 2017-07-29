@@ -77,12 +77,8 @@ Targets - Where events are processed including Lambda, Kinesis, SNS or built-in 
 
 ## Monitoring Approach
 
-At test time, which is way far in the past, here are 5 statistics total including average, min, max, sum and SampleCount. Use the `GetMetricStatistics` API command from the command line. 
+At the time this course I was taking was written, which is way far in the past, here are 5 statistics total including average, min, max, sum and SampleCount. Use the `GetMetricStatistics` API command from the command line. 
 
 Overall picture - compare SUM and difference between min and max values to get an overview of the data
 
 Time Frames - alarms should be equal to or greater than the metric frequency
-
-## Documentation
-
-[CloudWatch Dev Doc](https://aws.amazon.com/cloudwatch/developer-resources/)

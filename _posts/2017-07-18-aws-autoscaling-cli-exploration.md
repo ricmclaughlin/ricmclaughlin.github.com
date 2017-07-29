@@ -51,7 +51,6 @@ aws autoscaling create-launch-configuration --launch-configuration-name my-spot-
 aws autoscaling create-launch-configuration --launch-configuration-name my-launch-config --key-name my-key-pair --security-groups sg-eb2af88e   --instance-monitoring Enabled=true --no-ebs-optimized --user-data file://myuserdata.txt --no-associate-public-ip-address --placement-tenancy dedicated --iam-instance-profile my-amazing-role --image-id ami-835b4efa --instance-type g2.8xlarge 
 ```
 
-
 ## Creating ASG
 
 ##### Examine all launch configurations
@@ -63,13 +62,13 @@ aws autoscaling describe-auto-scaling-groups
 ##### Delete a Launch Configuration (by name)
 
 ```bash
-aws autoscaling  delete-auto-scaling-group --auto-scaling-group-name simple-asg
+aws autoscaling delete-auto-scaling-group --auto-scaling-group-name simple-asg
 ```
 
 #### Create a simple ASG (single AZ)
 
 ```bash
-aws autoscaling  create-auto-scaling-group --min-size 1 --max-size 2 --launch-configuration-name my-super-launch-config --auto-scaling-group-name simple-asg --vpc-zone-identifier subnet-08199041
+aws autoscaling create-auto-scaling-group --min-size 1 --max-size 2 --launch-configuration-name my-super-launch-config --auto-scaling-group-name simple-asg --vpc-zone-identifier subnet-08199041
 ```
 
 ## Modifying ASG
@@ -77,13 +76,13 @@ aws autoscaling  create-auto-scaling-group --min-size 1 --max-size 2 --launch-co
 #### Adjust the size of the ASG... to very small
 
 ```bash
-aws autoscaling  update-auto-scaling-group --min-size 0 --max-size 0  --auto-scaling-group-name simple-asg 
+aws autoscaling update-auto-scaling-group --min-size 0 --max-size 0 --auto-scaling-group-name simple-asg 
 ```
 
 #### protect the new instances from scale-ing
 
 ```bash
-aws autoscaling  update-auto-scaling-group --auto-scaling-group-name simple-asg --new-instances-protected-from-scale-in
+aws autoscaling update-auto-scaling-group --auto-scaling-group-name simple-asg --new-instances-protected-from-scale-in
 ```
 
 ## Termination policies
@@ -98,7 +97,7 @@ aws autoscaling  update-auto-scaling-group --auto-scaling-group-name simple-asg 
 
 ##### OldestLaunchConfiguration
 
-Scenario: Change in launch configuration so replace the `OldestLaunchConfiguration` first
+Scenario: Change in launch configuration to replace the `OldestLaunchConfiguration` first
 
 ```bash
 aws autoscaling  update-auto-scaling-group --auto-scaling-group-name simple-asg --termination-policies OldestLaunchConfiguration
@@ -152,6 +151,7 @@ aws autoscaling describe-lifecycle-hooks --auto-scaling-group-name simple-asg
 
 ```bash
 aws autoscaling describe-lifecycle-hooks --auto-scaling-group-name simple-asg
+
 --------------------------------------------
 |        DescribeLifecycleHookTypes        |
 +------------------------------------------+
@@ -160,12 +160,11 @@ aws autoscaling describe-lifecycle-hooks --auto-scaling-group-name simple-asg
 ||  autoscaling:EC2_INSTANCE_LAUNCHING    ||
 ||  autoscaling:EC2_INSTANCE_TERMINATING  ||
 |+----------------------------------------+|
-
 ```
 
 #### Create a Launching Hook
 
-Note: The role use here should use the "AutoScaling Notification Access" type and the `AutoScalingNotificationAccessRole` policy.
+Note: The role used here should include the "AutoScaling Notification Access" type and the `AutoScalingNotificationAccessRole` policy.
 
 ```bash
 aws autoscaling put-lifecycle-hook --lifecycle-hook-name my-lifecycle-hook --auto-scaling-group-name simple-asg --lifecycle-transition autoscaling:EC2_INSTANCE_LAUNCHING \
@@ -176,7 +175,7 @@ aws autoscaling put-lifecycle-hook --lifecycle-hook-name my-lifecycle-hook --aut
 #### Trigger Launch
 
 ```bash
-aws autoscaling  update-auto-scaling-group --min-size 1 --max-size 1  --auto-scaling-group-name simple-asg 
+aws autoscaling update-auto-scaling-group --min-size 1 --max-size 1 --auto-scaling-group-name simple-asg 
 ```
 
 #### Send Heartbeat
@@ -218,8 +217,6 @@ aws autoscaling enter-standby --auto-scaling-group-name simple-asg \
 --instance-id i-0b563cfeb586c3cec
 ```
 
-
-
 #### Exit Standby
 
 ```bash
@@ -242,6 +239,3 @@ then, kill the group:
 ```bash
 aws autoscaling delete-auto-scaling-group --auto-scaling-group-name simple-asg
 ```
-
-
-

@@ -87,7 +87,7 @@ Opt-in to [managed platform updates](http://docs.aws.amazon.com/elasticbeanstalk
 
 Docker containers are a good option on EB when the application has many funky dependencies which makes packaging it on Docker a good choice. All the config files are stored in the application source bundle. Docker comes in three flavors:
 
-- Preconfigured - generic configured container for Java with Glassfish, python or node; does not require a `Dockerfile`;
+- Preconfigured - generic configured container for Java Glassfish/JavaSE/Tomcat, IIS, node, php, python, ruby; does not require a `Dockerfile`;
 
 - Single container - one container per instance; requires a `Dockerfile`; does not require a `Dockerrun.aws.json`
 
