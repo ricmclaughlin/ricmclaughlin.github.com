@@ -7,11 +7,9 @@ tags: [aws, kinesis, aws-dev-ops-pro, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
-## What is Kinesis
+[Kinesis](https://aws.amazon.com/kinesis/) is a real-time data processing service that captures and stores large amounts of data to power dashboard and analytics.
 
-Real-time data processing that captures and stores large amounts of data to power dashboard and analytics.
-
-And it is not just one app at time... there can be multiple incoming data streams working concurrently. And it is durable, with data being written to three AZ yet not long lived with data living 24 hours and up to 7 days. 
+And it is not just one app at time... there can be multiple incoming data streams working concurrently. And it is durable, with data being written to three AZ yet not long lived with data living 24 hours by default and up to 7 days. 
 
 There are three components to the [Kinesis](https://aws.amazon.com/kinesis/) products:
 
@@ -23,7 +21,13 @@ There are three components to the [Kinesis](https://aws.amazon.com/kinesis/) pro
 
 As a complete side note, Kinesis is the best marketed product in the AWS line. 
 
-### Details
+## Components
+
+Data producers add records to the stream.
+
+Each Record 
+
+### Streams &amp; Shards
 
 A stream is made of up of shards and a shard is 1MB per second write and 2MB per second read capacity. There are tons of connectors, libraries and tools [available](https://aws.amazon.com/kinesis/streams/developer-resources/). 
 
@@ -37,5 +41,5 @@ The number of partition keys should typically be much greater than the number of
 
 ## Why && When
 
-In the past realtime process of massive amounts of data was hard... very hard, in fact.  Kinesis is quite useful when you need to do multi-stage processing of data, partition the data then load the data. Tons of application in realtime gaming, IoT & mobile app analytics, monitoring app or system logs in real-time.
+In the past realtime process of massive amounts of data was hard... very hard, in fact. Kinesis is quite useful when you need to do multi-stage processing of data, partition the data then load the data. Tons of application in realtime gaming, IoT & mobile app analytics, monitoring app or system logs in real-time.
 

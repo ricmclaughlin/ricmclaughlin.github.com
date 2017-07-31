@@ -13,6 +13,19 @@ tags: [aws, elasticache, aws-services, aws-solutions-arch-pro]
 
 ElastiCache only backs up Redis clusters. Snapshots backup the data for the entire cluster at a specific time and probably cause a performance degradation. Try to backup read replicas! Multi-AZ friendly.
 
+| Thingy | memecache | Reddis |
+|--------|-----------|--------|
+| Use case complexity | low | high  |
+| Threading | multi  | single |
+| Scaling | horizontal | vertical |
+| AZs  | single | multi  |
+| replication? | nope | yep |
+| fail-over | nope | yep |
+| persist it | nope | yep |
+| pub\sub | nope | yep |
+
+
+
 ## Monitoring
 
 [What Elasticache Metrics to Monitor](http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheMetrics.WhichShouldIMonitor.html) is a giant question and largely based on which caching engine is in use. 
@@ -45,9 +58,11 @@ Single threaded; generally scale UP with larger instances OR scale out with more
 You have enabled a CloudWatch metric on your Redis ElastiCache cluster. Your alarm is triggered due to an increased amount of evictions. How might you go about solving the increased eviction errors from the ElastiCache cluster?
 
 
-## Resources
+## Triage
 
+- Simple use case, horizontal scaling (shard), multi-threaded? Memecache
 
+- Complex? Redis
 
 
 
