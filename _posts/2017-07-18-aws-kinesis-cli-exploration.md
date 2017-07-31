@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Kinesis CLI Exploration"
 description: ""
 category: projects
-tags: [aws, kinesis, aws-dev-ops-pro, aws-solutions-arch-pro, cli-exploration, aws-services]
+tags: [aws, kinesis, aws-dev-ops-pro, aws-solutions-arch-pro, cli-exploration]
 ---
 {% include JB/setup %}
 

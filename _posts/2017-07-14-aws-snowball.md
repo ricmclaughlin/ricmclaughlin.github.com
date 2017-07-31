@@ -4,7 +4,7 @@ title: "AWS - Snowball
 "
 description: ""
 category: posts
-tags: [aws, snowball, aws-solutions-arch-pro]
+tags: [aws, snowball, aws-services, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

@@ -1,15 +1,13 @@
 ---
 layout: post
-title: "AWS Developer - CloudFront"
+title: "AWS - CloudFront"
 description: ""
 category: posts
-tags: [aws, developercert, cloudfront, solutionsarch]
+tags: [cloudfront, aws, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
-## What 
-
-CloudFront uses edge locations and regions as a CDN point of presence. It isn't just for ALL the content on a static website anymore and an Adobe STMP stream distributions. 
+[CloudFront](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html) uses edge locations and regions as a CDN point of presence. It isn't just for ALL the content on a static website anymore and an Adobe STMP stream distributions. 
 
 One gotcha is that CloudFront will wait for first request to resolve before processing the second request.  Uploading via CDN is faster but does not cache. You have to disable the distribution before you can delete it!
 
@@ -19,9 +17,7 @@ A Distribution is the name for the CDN you create - essentially a collection of 
 
 GET, HEAD, OPTIONS can be cached; PUT, POST, PATCH, DELETE are not cached and do not invalidate objects in the cache
 
-### Improving Performance
 
-Increase cache hit percentage is the #1 way to increase CloudFront performance. Increasing min and max TTL helps improve this metric.
 
 Custom origins and custom origin rules determine which part of website requests go where.
 
@@ -45,17 +41,20 @@ Unlike these file based options RTMP Distributions is an actual streaming of vid
 
 ## Working with Objects
 
-### Invalidation Techniques
-
-Objects are cached for the life of the TTL; you can clear the cache but it costs.
-
-Instead of invalidating the cache use route53 CNAME to point new distribution
-
 If it is dyanamic content use a custom origin; enable forwarding query string; TTL 0; 
 
 TTL = 0 enables a pull through caching mechanism where CloudFront sends a GET request to the origin with an "If-Modified-Since" header.
 
-### Proxying
+### Invalidation Techniques
+
+Objects are cached for the life of the TTL
+
+Delete origin file; wait for TTL to expire
+
+Use Invalidation API to remove object from edge location
+
+use route53 CNAME to point new distribution as an alternative
+
 
 ### Private Content
 
@@ -67,12 +66,14 @@ CloudFront has many, many configuration options including:
 
 * Device detection - Redirect or serve different content based on user agent
 
+* CNAMEs - supports wildcard CNAMES and up to 10 CNAMES total
+
 configure custom SSL Cert - work with Certification SSL?
 Generic SSL Cert
 
 #### HTTPS
 
-If the origin is S3 all requests are made to the distribution will stay the same... request in HTTPS then it will be forwarded via HTTPS. Custom Origins can be configured to use HTTP only or to match viewer, which will match the user agent protocol.
+If the origin is S3 all requests are made to the distribution will stay the same protocol... so a request in HTTPS then it will be forwarded via HTTPS. Custom Origins can be configured to use HTTP only or to match viewer, which will match the user agent protocol.
 
 ### Cloudfront Reports
 
@@ -82,11 +83,19 @@ CloudFront generates metrics to CloudWatch, CloudTrail and HTTP access logs.
 
 ### CloudFront Security
 
-Geographic Restrictions - by default this is disabled; you can either disable (blacklist) or enable (whitelist) but not both
+Geo Restrictions - by default this is disabled; you can either disable (blacklist) or enable (whitelist); restricted viewers get a `403` and yes, you can create custom error pages
 
 As a protip, don't cache credit card information in CloudFront edge caches. For example, you can configure your origin to include a Cache-Control:no-cache="field-name" header in responses that contain credit card information, such as the last four digits of a credit card number and the card owner's contact information.
 
 Redirect HTTP to HTTPS is a common security feature which can be enable on Cloudfront.
+
+There are two different ways to configure SSL:
+
+Dedicated IP Custom SSL - expensive; limited support from ancient browsers
+
+SNU Custom SNL - multiple domains to serve SSL over same IP address; good support overall browsers
+
+
 
 ## When
 
@@ -96,16 +105,33 @@ Control access to section of site or type of media on site = signed cookie
 
 Control access to a URL for a period of time = signed URL
 
-# Resources
+SSL configuration
 
-## Qwik Labs
-
-[Introduction to Amazon CloudFront](https://qwiklabs.com/focuses/2362)
-
-## Reading
+## Troubleshooting
 
 [Serving Private Content through CloudFront](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
 
-[CloudFront Developer Guide](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html)
-
 [Increase cache hits](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cache-hit-ratio.html)
+
+reporting
+
+invalidation
+
+streaming media
+
+support zone apex - use Route53 to alias to CloudFront distribution; no charge for alias record lookup (Queries to Alias records that are mapped to Elastic Load Balancers, Amazon CloudFront distributions, AWS Elastic Beanstalk environments, and Amazon S3 website buckets are free.)
+
+edge caching
+
+Redirect HTTP to HTTPS is a common security feature which can be enable on Cloudfront.
+
+Need multiple Geo Restrictions? create multiple distributions
+
+If your web server is not connected to a load balancer, we recommend that you use web server variables instead of the X-Forwarded-For header to avoid IP address spoofing.
+
+configure PUT to edge location and forward to S3
+
+Increase cache hit percentage is the #1 way to increase CloudFront performance. Increasing min and max TTL helps improve this metric.
+
+Dynamic content personalization with cookies
+

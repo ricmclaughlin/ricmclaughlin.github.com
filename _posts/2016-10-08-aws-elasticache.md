@@ -3,16 +3,23 @@ layout: post
 title: "AWS SysOps - ElastiCache"
 description: ""
 category: posts
-tags: [aws, sysops, solutionsarch]
+tags: [aws, elasticache, aws-services, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
-# Overview
-ElastiCache is a managed service the provides caching services for apps. There are two engines available from ElastiCache: Redis and memecached. The signifigant differences between memcached and redis make for differences in monitoring and scaling.
+
+
+[ElastiCache ](https://aws.amazon.com/elasticache/) is a managed service the provides caching services for apps. There are two engines available from ElastiCache: Redis and memecached. The signifigant differences between memcached and redis make for differences in monitoring and scaling.
 
 ElastiCache only backs up Redis clusters. Snapshots backup the data for the entire cluster at a specific time and probably cause a performance degradation. Try to backup read replicas! Multi-AZ friendly.
 
+## Monitoring
+
+[What Elasticache Metrics to Monitor](http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheMetrics.WhichShouldIMonitor.html) is a giant question and largely based on which caching engine is in use. 
+
+
 ## memcached
+
 multithreaded; and performs well up to 90% utilization then increase size of node or # of nodes
 
 | **Metric**  | **Description**  |**Solution**  |
@@ -24,6 +31,7 @@ multithreaded; and performs well up to 90% utilization then increase size of nod
 
 
 ## Redis
+
 Single threaded; generally scale UP with larger instances OR scale out with more READ replicas
 
 | **Metric**  | **Description**  |**Solution**  |
@@ -33,16 +41,15 @@ Single threaded; generally scale UP with larger instances OR scale out with more
 | CurrConnections | # app to memcached connections| likely an application problem with no closing connections |
 
 ## Simple Question
-You have enabled a CloudWatch metric on your Redis ElastiCache cluster. Your alarm is
-triggered due to an increased amount of evictions. How might you go about solving the increased
-eviction errors from the ElastiCache cluster?
+
+You have enabled a CloudWatch metric on your Redis ElastiCache cluster. Your alarm is triggered due to an increased amount of evictions. How might you go about solving the increased eviction errors from the ElastiCache cluster?
 
 
 ## Resources
-[ElastiCacche Guide](https://aws.amazon.com/elasticache/)
-[What Elasticache Metrics to Monitor](http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheMetrics.WhichShouldIMonitor.html)
 
-## QwikLab 
-[Introduction to Amazon ElastiCache](https://qwiklabs.com/focuses/2923)
+
+
+
+
 
 
