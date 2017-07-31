@@ -1,18 +1,17 @@
 ---
 layout: post
-title: "AWS Solutions Arch - Troubleshooting"
+title: "AWS - Troubleshooting"
 description: ""
 category: posts 
-tags: [aws, ec2, solutionsarch]
+tags: [aws, aws-dev-ops-pro, aws-solutions-arch-pro, aws-services]
 ---
 {% include JB/setup %}
 
 # EC2
 
 ### 60 new EC2 instances in az? 
+
 soft limit of 20 EC2 instances per region; increase form and retry the template after your limit has been increased.
-
-
 
 ### Can't connect
 

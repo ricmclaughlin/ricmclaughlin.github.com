@@ -9,6 +9,7 @@ tags: [aws, sysops, cost]
 
 
 ## Consolidated Billing
+
 Billing starts being consolidated the day the account signs up for consolidated billing. Consolidated billing does not give the payer access to the linked account. There is a soft limitof 20 consolidated accounts.
 
 One big reason why to consolidate account is volume discounts. These apply!
@@ -18,6 +19,7 @@ In some cases excess EC2 Reserved Instances can rollover to consolidate accounts
 The paying account is independent of the other accounts; the paying account cannot access the resources of the other accounts. 
 
 ## Cloud Watch
+
 When the "Receive Billing Alerts" option is enabled in the billing preferences, and you access the North Virginia region, you can access billing data in CloudWatch. Alarms and metrics are nifty.
 
 ## Difference Cost Optimization Ideas
@@ -29,11 +31,13 @@ In addition, looking for low utilization EC2 instances and unused load balancers
 RDS is expensive so finding idle RDS instances, in other words ones with 0 connections, is another way to avoid wasting money.
 
 ## Price Explorer & Price List API
+
 You have to enable the Price Explorer, then wait for 24 hours before things will work for you. 
 
 The Price List API is a series of JSON documents that outline the amazingly huge task of billing for AWS services. Think a complicated list with a megaton of detail.
 
 ## Reserved Instances
+
 EC2 offers several different reserved instance types.
 
 * Standard Reserved Instances - 

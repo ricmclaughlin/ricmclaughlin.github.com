@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AWS Solutions Arch - Whitepapers"
+title: "AWS - Whitepapers"
 description: ""
 category: posts
 tags: [aws, aws-dev-ops-pro, aws-solutions-arch-pro]

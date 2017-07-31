@@ -17,8 +17,6 @@ A Distribution is the name for the CDN you create - essentially a collection of 
 
 GET, HEAD, OPTIONS can be cached; PUT, POST, PATCH, DELETE are not cached and do not invalidate objects in the cache
 
-
-
 Custom origins and custom origin rules determine which part of website requests go where.
 
 ### Web Distributions
@@ -54,7 +52,6 @@ Delete origin file; wait for TTL to expire
 Use Invalidation API to remove object from edge location
 
 use route53 CNAME to point new distribution as an alternative
-
 
 ### Private Content
 

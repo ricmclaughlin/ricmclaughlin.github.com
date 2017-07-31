@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Direct Connect"
 description: ""
 category: posts
-tags: [aws, direct-connect, aws-solutions-arch-pro]
+tags: [aws, direct-connect, aws-solutions-arch-pro, networking]
 ---
 {% include JB/setup %}
 
@@ -30,6 +30,19 @@ Virtual Interfaces (VIF) - the connection. They come in two flavors:
 - public VIF - allows public connections to EC2 or S3 or public subnet; requires a public CIDR block range 
 
 In the US, a single direct connect connections can access all 4 US regions provided you use a public VIF, BGP and VPN.
+
+
+## VPN
+
+To connect securely with your VPC on AWS you can create a Virtual Public Gateway and connect that to a Customer Gateway forming a VPN. Dual VPN tunnels provide higher availability. Limits on VPN include:
+
+- 5 Virtual Private Gateways per region
+
+- 1 Virtual Private Gateways per VPC
+
+- 50 Customer Gateways per Region
+
+If you traffic is in excess of 4 Ggps, you need AWS Direct Connect which can provide up to 10Ggps. Direct Connect uses BGP and an Autonomous System Number (ASN) and IP prefixes. 
 
 ### Direct connect vs VPN Capability
 

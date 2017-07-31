@@ -1,7 +1,6 @@
 ---
 layout: post
-title: "AWS - Snowball
-"
+title: "AWS - Snowball"
 description: ""
 category: posts
 tags: [aws, snowball, aws-services, aws-solutions-arch-pro]

@@ -114,6 +114,20 @@ Supports point-in-time backups using snapshots, Multi-AZ deployments using the n
 
 On-prem to Cloud migration is super ugly... create RDS empty tables, disable backups/key contraints, import flat files. In addition, FILESTREAM functions are not supported and there is no ability to restore data from file. 
 
+### DB Subnet
+
+A DB subnet defines the regions for a multi-AZ RDS setup. The high level steps to create a DB subnet are as follows:
+
+1. Create 2 new subnets in a VPC
+
+1. In RDS Dashboard create subnet group & add the subnets you just created
+
+1. Now launch an RDS instance and  select Multi-AZ Deployment
+
+1. In "configure advanced settings" select subnet group you created
+
+Presto, you have a multi-AZ DB subnet!
+
 ## Troubleshooting
 
 Scaling the instance can happen immediately, if the checkbox is checked, or will happen in your maintenance window. 

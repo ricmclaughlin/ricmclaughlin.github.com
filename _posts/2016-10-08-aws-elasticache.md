@@ -1,13 +1,11 @@
 ---
 layout: post
-title: "AWS SysOps - ElastiCache"
+title: "AWS - ElastiCache"
 description: ""
 category: posts
 tags: [aws, elasticache, aws-services, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
-
-
 
 [ElastiCache ](https://aws.amazon.com/elasticache/) is a managed service the provides caching services for apps. There are two engines available from ElastiCache: Redis and memecached. The signifigant differences between memcached and redis make for differences in monitoring and scaling.
 
@@ -22,14 +20,11 @@ ElastiCache only backs up Redis clusters. Snapshots backup the data for the enti
 | replication? | nope | yep |
 | fail-over | nope | yep |
 | persist it | nope | yep |
-| pub\sub | nope | yep |
-
-
+| pub-sub | nope | yep |
 
 ## Monitoring
 
 [What Elasticache Metrics to Monitor](http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheMetrics.WhichShouldIMonitor.html) is a giant question and largely based on which caching engine is in use. 
-
 
 ## memcached
 
@@ -37,11 +32,10 @@ multithreaded; and performs well up to 90% utilization then increase size of nod
 
 | **Metric**  | **Description**  |**Solution**  |
 |:-----------------------------------------|:--------------------------------------------------------|:----------------------| 
-|CPU utilization | good up to 90% utilization | increase size of node or # of nodes|
-| evictions | # records ejected from cache | larger instances and # of nodes|
+|CPU utilization | good up to 90% utilization | increase size of node or # of nodes |
+| evictions | # records ejected from cache | larger instances and # of nodes |
 | CurrConnections | # app to memcached connections | likely an application problem with no closing connections |
 | SwapUsage | should be 0-50MB |  increase node size; increase ConnectionOverhead (decrease memory for caching data) |
-
 
 ## Redis
 
@@ -63,8 +57,4 @@ You have enabled a CloudWatch metric on your Redis ElastiCache cluster. Your ala
 - Simple use case, horizontal scaling (shard), multi-threaded? Memecache
 
 - Complex? Redis
-
-
-
-
 
