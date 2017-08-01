@@ -83,7 +83,7 @@ The log file name includes the end-time, ip address of the ELB and a random gene
 
 - Request - including verb, protocol version (http 1.1 or 2.0)
 
-ALB can also forward X-Forwarded-For header so logging can occur at the instance layer NOT the ALB (because ALB routing is best effort to complete). To accomplish the same thing with an ELB you need to enable the [Proxy Protocol Headers](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-proxy-protocol.html) which adds a header for the backend to parse but this does not enable sticky session or X-Forward-For header.
+ALB can also forward X-Forwarded-For header so logging can occur at the instance layer NOT the ALB (because ALB routing is best effort to complete). To accomplish the same thing with an ELB you need to enable the [Proxy Protocol Headers](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-proxy-protocol.html) which adds a header for the backend to parse but this does not enable sticky session or `X-Forward-For` header.
 
 ## Differences between ELB &amp; ALB
 
@@ -92,8 +92,8 @@ Listeners define what ports and protocols the ELB/ALB listens to. Which is suppo
 | Thingy | ELB   |      ALB      |
 |-----------------|:-------------:|:------:|
 | HTTP & HTTP | Yes | Yes |
-| TCP/SSL | Yes | No |
-| Layer? | 4 | 7 |
+| TCP/SSL (Layer 4) | Yes | No |
+| Layer? | 4 (forwards request) | 7 (terminates; parses header; new request) |
 | Layer 7 | No | Yes |
 | Websockets | No | Yes |
 | Path Routing | No | Yes |
@@ -129,11 +129,15 @@ There are three `Cookie Stickiness`, also know as session affinity, with both en
 
 ### Improving Operations
 
-1. Install a web server on each instance, so the default health checks work well.
+- Install a web server on each instance, so the default health checks work well.
 
-1. Enable keep-alive timeout.
+- Enable keep-alive timeout so the ELB to backend connection stays open
 
-1. Enable Path MTU Discovery
+- Enable Path MTU Discovery
+
+- Use TCP if your application does NOT use common HTTP codes
+
+- When using TCP 
 
 ### General Config Problems
 
@@ -154,11 +158,6 @@ There are three `Cookie Stickiness`, also know as session affinity, with both en
 2. Autoscaling config is not working correctly. ie. there is a bug.
 
 3. Autoscaling is in a "suspended state"
-
-## End to End Encryption
-
-Create a public key policy
-Create a back-end instance authentication policy
 
 ## Patterns 
 

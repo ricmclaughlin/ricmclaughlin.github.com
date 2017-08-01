@@ -12,11 +12,11 @@ categories: projects
     <div class="category-archive">
      
       {% if skill == 'aws-dev-ops-pro' %}
-        {% assign project_tags = "cloudfront,kinesis,cloudformation,opsworks,elastic-beanstalk,cloudwatch,aws-services" | split: "," %}
+        {% assign project_tags = "cloudformation,opsworks,elastic-beanstalk,cloudwatch" | split: "," %}
         {% assign skill_full_name = "AWS DevOps Professional Study Guides" %}
       {% elsif skill == 'aws-solutions-arch-pro' %}
-        {% assign project_tags = "kinesis,cloudformation,opsworks,elastic-beanstalk,cloudwatch,dynamodb,cloudsearch" | split: "," %}
-        {% assign skill_full_name = "AWS DevOps Professional Study Guides" %}
+        {% assign project_tags = "cloudfront,kinesis,iam,cloudformation,opsworks,elastic-beanstalk,cloudwatch,dynamodb,cloudsearch,aws-services" | split: "," %}
+        {% assign skill_full_name = "AWS Solutions Architect Professional Study Guides" %}
       {% endif %}
      
       {% assign includer = "tags/" | append: skill | append: ".html" %}
