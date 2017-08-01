@@ -44,12 +44,10 @@ Popular events to monitor for include:
 1. Doing anything to an EC2 instance
 
 
-## Analysis
+## CloudTrail Log Analysis
 
 There are tons of options to analyze cloud trail data. You can use external sources like [AlertLogic](https://www.alertlogic.com/solutions/log-correlation-and-analysis/), [Loggly](https://www.loggly.com/intro-to-log-management/), [Splunk](https://www.splunk.com/) OR Sumologic or perhaps use the ubquitous [ELK stack](https://www.elastic.co/webinars/introduction-elk-stack). You can also add Apache Spark on EMR to analyze these logs.
 
-## Resources
+## Cross Account Consolidated CloudTrail
 
-- [Cloud Trail Analysis with Apache Spark on EMR Deep Dive](https://www.youtube.com/watch?v=oZ8HswQSbNQ)
-
-- [CloudTrail Deep Dive](https://www.youtube.com/watch?v=t0e-mz_I2OU)
+In cases where there are numerous accounts, cross account Consolidated CloudTrail logs are a handy feature. To make this work you need a role that enables other account to place logs in the paying account S3 bucket.

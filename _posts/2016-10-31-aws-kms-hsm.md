@@ -3,11 +3,9 @@ layout: post
 title: "AWS Solutions Arch - KMS-HSM"
 description: ""
 category: posts
-tags: [aws, kms, soluarch]
+tags: [aws, kms, aws-solutions-arch-pro, aws-services]
 ---
 {% include JB/setup %}
-
-## Overview
 
 Encryption Key Management is a major function of online systems that requires lots of organization and no one will ever notice your efforts if things go right. Yet, if you screw it up, the world will come crashing down. Enter, [KMS](https://aws.amazon.com/kms/) and its good buddy [CloudHSM](https://aws.amazon.com/cloudhsm/). 
 
@@ -59,7 +57,3 @@ Centralize Key Management onsite & AWS? HSM
 Complete Key Control? HSM
 
 FIPS 140-1 or 140-2? HSM
-
-## Resources
-[HSM Deep Dive](http://www.slideshare.net/AmazonWebServices/deep-dive-aws-cloudhsm)
-
