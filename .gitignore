@@ -4,7 +4,7 @@ _node_modules/*
 
 Thumbs.db
 .DS_Store
-
+.jekyll-metadata
 !.gitkeep
 
 .rbenv-version
