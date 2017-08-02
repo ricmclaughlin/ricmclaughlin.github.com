@@ -7,7 +7,7 @@ tags: [aws, cloudtrail, aws-dev-ops-pro, aws-solutions-arch-pro, aws-services]
 ---
 {% include JB/setup %}
 
-AWS [CloudTrail](https://aws.amazon.com/documentation/cloudtrail/) is a fully managed web service that records AWS API calls for your account and delivers log files to you encypted in an s3 bucket. This is a key component for auditing and compliance needs - both HIPAA and PCI require 6 years of access logs to be stored and without CloudTrail that just isn't possible! CloudTrail stores log data in JSON format. CloudTrail adds value to logging is not a replacement for other system or AWS service logs.
+AWS [CloudTrail](https://aws.amazon.com/documentation/cloudtrail/) is a fully managed web service that records an auditing of AWS API calls for your account and delivers log files to you encypted in an s3 bucket. This is a key component for auditing and compliance needs - both HIPAA and PCI require 6 years of access logs to be stored and without CloudTrail that just isn't possible! CloudTrail stores log data in JSON format. CloudTrail adds value to logging is not a replacement for other system or AWS service logs.
 
 You can have a total of 5 trails per region.
 

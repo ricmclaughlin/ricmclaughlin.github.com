@@ -12,14 +12,13 @@
     <link rel="shortcut icon" type="image/png" href="/favicon.png">
     
     <link href="{{ ASSET_PATH }}/css/style.css" rel="stylesheet">
-  
-    <!--[if lt IE 9]>
-      <script src="{{ ASSET_PATH }}/resources/respond/Respond.min.js"></script>
-    <![endif]-->
-
     <link href="{{ BASE_PATH }}{{ site.JB.atom_path }}" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
     <link href="{{ BASE_PATH }}{{ site.JB.rss_path }}" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
-
+    <script
+  src="http://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   </head>
 
   <body>
@@ -67,8 +66,7 @@
       
     </div>  
     {% include JB/analytics %}
-    <script src="{{ ASSET_PATH }}/resources/jquery/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
 
   </body>
 </html>

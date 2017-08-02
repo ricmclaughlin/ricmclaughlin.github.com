@@ -21,6 +21,8 @@ There are numerous main parts to CloudWatch:
 
 * Events - simplified, event streams processing
 
+Pricing is based on GB ingested per month, GB archived per month and alarms per month... and it MIGHT be cheaper to store logs in S3.
+
 ## Metrics
 
 Metrics are time-ordered set of data points. Metrics only exist in the region they are created, can't be deleted and expire after 14 days if no additional data is added. All metrics have a Name, a Namespace and one or dimensions. Metrics for things like non-associated EBS volumes are not reported.
@@ -47,11 +49,11 @@ Turning log data into metrics is done through the use of [metric filters](http:/
 
 ## Alarms
 
-Alarms take must be in same region as the data; have three states `OK`, `ALARM`, and `INSUFFICIENT_DATA`. Metrics are for 1 or 5 minutes so alarms have to be equal to or higher frequency. You can use the `mon-put-metric-alarm` command to create or update an alarm using the ancient Java command line tool. There is a max of 5000 alarms per AWS account.
+Alarms take must be in same region as the data; have three states `OK`, `ALARM`, and `INSUFFICIENT_DATA`. Metrics are for 1 or 5 minutes so alarms have to be equal to or higher frequency. You can use the `mon-put-metric-alarm` command to create or update an alarm using the ancient Java command line tool. There is a max of 5000 alarms per AWS account. Alarm history is stored for 14 days.
 
 ## Logs
 
-Using CloudWatch logs, you can monitor logs from any source in AWS, like EC2 or CloudTrail, and then archive that data. It's an aggregation tool. 
+Using CloudWatch logs, you can monitor logs from any source in AWS, like EC2 or CloudTrail, and then archive that data. It's an aggregation tool that will indefinitely store your logs. 
 
 - Log Group - a group of log streams that have the same properties, policies, and access controls. Retention settings specify how long to keep logs from 1 day to 10 years and all streams in the group inherit this setting. 
 

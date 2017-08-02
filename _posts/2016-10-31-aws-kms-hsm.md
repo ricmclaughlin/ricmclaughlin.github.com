@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AWS Solutions Arch - KMS-HSM"
+title: "AWS - KMS-HSM"
 description: ""
 category: posts
 tags: [aws, kms, aws-solutions-arch-pro, aws-services]
@@ -32,15 +32,16 @@ Roles don't need access to 'admin' access the key to USE the key. Role, users an
 
 # CloudHSM
 
-CloudHSM is a single tenant hardware security module that you can place in a VPC and integrated with with S3, EBS, EC2, Redshift & RDS. There is very limited integration with AWS services. 
+CloudHSM is a single tenant hardware security module that you can place in a VPC. There is very limited integration with AWS services with only Oracle, MS SQL and Redshift well supported; S3, KMS and EBS encryption are possible but integration applications must be written.
 
-AWS does not have access to the contents of your module.
+AWS does not have access to the contents of your module. If you loose the keys, they are lost if you did not have a copy.
 
 CloudTrail integration is supported. Syslog is as well.
 
-CloudHSM would be great if you need FIPS 140-2 validation and don't mind fixed cost of $16.5k per moduled. And you are responsible for the HA part so really you need 2 HSM... with a cost of $33k. And a $5k setup fee per region.
+CloudHSM would be great if you need FIPS 140-2 validation and don't mind fixed cost of $5k per module. And you are responsible for the HA part so really you need 2 HSM... with a cost of $10k. And a $5k setup fee per region plus an hourly fee.
 
-However, if you loose the keys, they are lost if you did not have a copy.
+The HSM does work with peered VPC as well.
+
 
 ## HSM or KMS ?
 
