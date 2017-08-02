@@ -150,7 +150,15 @@ There are two basic use cases for streams: replication and triggers. Cross regio
 
 - Record Size > 400? Pointer to data in S3; OR vertically partition large data into separate table
 
-- Write Heavy Partitions ( the [two candidates in voting app](https://youtu.be/bCW3lhsJKfw?t=31m25s) is a great example of this) - add random value to candidateID then create lambda to aggregate
+- Prewritten App Tied to RDMBS? RDS
+
+- Joins/Transactions? RDS
+
+- BLOBS? store file metdata and pointer to data in S3
+
+- Low I/O rate? better to store data in S3
+
+- Write Heavy Partitions ( the [two candidates in voting app](https://youtu.be/bCW3lhsJKfw?t=31m25s) is a great example of this) - add random value to candidateID then create Lambda to aggregate
 
 - Static Time Series Table - time series with no updates with a fixed "interest" TTL -> pipe data into hot table with lots of RCU and WCU; warm table with less RCU & WCU; cold table in glacier or S3 
 
