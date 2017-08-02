@@ -7,11 +7,9 @@ tags: [aws, devops, elastic-load-balancer, aws-dev-ops-pro]
 ---
 {% include JB/setup %}
 
-# Elastic Load Balancers (ELB) 
+[Elastic Load Balancer](https://aws.amazon.com/documentation/elastic-load-balancing/) distributes traffic to instances that belong to the ELB group - this can be in a single AZ or multiple AZs. One nifty features it that it allows us to offload SSL certs to load balancers instead of webservers! ELB configuration requires a protocol, a front end port, and a back end port. ELB are NOT free - there is a charge by the hour and per GB of usage. Only one SSL Cert per ELB. The max number of requests that can be queued is 1024, can only use one subnet per AZ; can use up to 5 Security groups and also use deletion protection.
 
-ELB distributes traffic to instances that belong to the ELB group - this can be in a single AZ or multiple AZs. One nifty features it that it allows us to offload SSL certs to load balancers instead of webservers! ELB configuration requires a protocol, a front end port, and a back end port. ELB are NOT free - there is a charge by the hour and per GB of usage. Only one SSL Cert per ELB. The max number of requests that can be queued is 1024, can only use one subnet per AZ; can use up to 5 Security groups and also use deletion protection.
-
-There are two version of ELB - Classic Load Balancer (only a few ports + TCP, HTTP, HTTPS, SSL; layer 4) and Application Load Balancer (any port - just HTTP, HTTPS; layer 7). ELBs do not have a defined IPV4 address.
+There are two version of ELB - Classic Load Balancer (only a few ports + TCP, HTTP, HTTPS, SSL; layer 4) and Application Load Balancer (any port - just HTTP, HTTPS; layer 7). ELBs do not have a defined IPV4 address but do support both IPV4 & IPV6.
 
 Lots of differences between externally and internally facing load balancers:
 
@@ -85,9 +83,9 @@ The log file name includes the end-time, ip address of the ELB and a random gene
 
 ALB can also forward X-Forwarded-For header so logging can occur at the instance layer NOT the ALB (because ALB routing is best effort to complete). To accomplish the same thing with an ELB you need to enable the [Proxy Protocol Headers](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-proxy-protocol.html) which adds a header for the backend to parse but this does not enable sticky session or `X-Forward-For` header.
 
-## Differences between ELB &amp; ALB
+The ALB can also add the custom "X-Amzn-Trace-Id" HTTP header on all requests to improve tracability. 
 
-Listeners define what ports and protocols the ELB/ALB listens to. Which is supported is a big difference between ELB/ALB 
+## Differences between ELB &amp; ALB
 
 | Thingy | ELB   |      ALB      |
 |-----------------|:-------------:|:------:|
@@ -100,6 +98,7 @@ Listeners define what ports and protocols the ELB/ALB listens to. Which is suppo
 | Host Routing | No | Yes |
 | Cookie Stickiness | Yes | ELB Cookies only (called AWSALB) |
 | Health Check | TCP, ICMP, HTTP, HTTPS| HTTP, HTTPS |
+| Require MultiAZ? | No | Yes |
 
 # ALB
 
@@ -111,11 +110,11 @@ Target groups are EC2 instances or containers managed as an entity and checks th
 
 ALB listeners supports HTTP & HTTPS only. Rules determine where the traffic gets forwarded. The default rule has no conditions and runs if no other rules are matched. Each rule has a priority, host and path and can only `Forward` to a target group. 
 
-# ELB
+## ELB Facts
 
-Cross-zone load balancing must be enabled. 
+In a EC2-Classic situation, an ELB support ports, 25, 80, 443, 465, 587 and 1024-65535 (how is this on the test???) while in an EC2-VPC it support ports 1-65535. An Elastic IP can no be assigned to a ELB. DNS apex zone support is in the house while multiple non-wild card SSL certs will require multiple ELB.
 
-## Cookie Stickiness
+## ELB Cookie Stickiness
 
 There are three `Cookie Stickiness`, also know as session affinity, with both enabled options end up with sticky sessions (so all sessions go back to the same server), options: 
 
