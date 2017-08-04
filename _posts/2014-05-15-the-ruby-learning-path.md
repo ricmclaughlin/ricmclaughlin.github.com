@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "The Ruby Learning Path"
-modified: 2015-05-15 13:48:55 +0200
-tags: [ruby, beginner, intermediate, advanced]
-categories: posts
-
+description: ""
+category: posts
+tags: [ruby, langauges]
 ---
+{% include JB/setup %}
 I love [Ruby](https://www.ruby-lang.org/en/). It is terse and compact. Powerful yet easy to read. Accessible but profound. The perfect language to create devops scripts, command line app, web apps or iOS apps. Oh, and if you want to learn [Rails]( http://rubyonrails.org/) you will need to know it well. It is soooo much better to master what you are doing instead of muddling through). 
 
 And there are tons of great ways to learn [Ruby](http://iwanttolearnruby.com/). [Ruby e-books](http://readwrite.com/2011/04/08/10-free-e-books-on-ruby-for-be#awesm=~oEkvfUKfy6OBZW) abound and [Ruby website resources](http://rubylearning.com/) are plentiful. There are so many [Ruby methods](http://ruby.learncodethehardway.org/), [resources websites](http://ruby.bastardsbook.com/resources/), and tons of [advanced Ruby articles](http://yehudakatz.com/2009/11/15/metaprogramming-in-ruby-its-all-about-the-self/) that it is really difficult to chart a path to learning Ruby. It is simply overwelming.

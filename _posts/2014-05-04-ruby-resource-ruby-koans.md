@@ -1,10 +1,11 @@
 ---
 layout: post
 title: "Ruby Resource - Ruby Koans"
-modified: 2014-05-04 18:49:32 +0200
-tags: [ruby]
-categories: posts
+description: ""
+category: posts
+tags: [ruby, langauges]
 ---
+{% include JB/setup %}
 One of the first really good [Ruby](https://www.ruby-lang.org/en/ "Title") activities I did was [Ruby Koans](http://rubykoans.com "Title"). This is a highly recommended learning tool from beginners to master level Rubyists. Here is the rundown:
 
 **What is it?** A super cool way of learning Ruby by doing thought provoking exercises seasoned with a dash of [TDD](http://en.wikipedia.org/wiki/Test-driven_development "Title").

@@ -1,14 +1,15 @@
 ---
 layout: post
 title: "Ruby Resource - tryruby.org"
-modified: 2014-05-05 10:43:03 +0200
-tags: [ruby, beginner]
-categories: posts
+description: ""
+category: posts
+tags: [ruby, langauges]
 ---
+{% include JB/setup %}
+
 One of the first significant figures in the lore of Ruby after [matz](http://en.wikipedia.org/wiki/Yukihiro_Matsumoto) - the originator of ruby and [dhh](http://en.wikipedia.org/wiki/David_Heinemeier_Hansson) - the originator of ruby on rails is _why the lucky stiff.   
 
-_why the lucky stiff was, using the past tense here because he no 
-longer using this pseudonym, an artist, poet, and ruby developer of great renown. Among other things he wrote a browser based implementation of ruby  which served as the genesis of numerous learn-to-program-in-a-browser startups and a way-out-there, semi-rational introduction to Ruby called [Poignant Guide to Ruby](http://tryruby.org). 
+_why the lucky stiff was, using the past tense here because he no longer using this pseudonym, an artist, poet, and ruby developer of great renown. Among other things he wrote a browser based implementation of ruby  which served as the genesis of numerous learn-to-program-in-a-browser startups and a way-out-there, semi-rational introduction to Ruby called [Poignant Guide to Ruby](http://tryruby.org). 
 
 The Poignant Guide to Ruby serves as the inspiration for the [try ruby](http://tryruby.org) online course. Here is the rundown:
 

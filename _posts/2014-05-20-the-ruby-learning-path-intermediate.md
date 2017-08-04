@@ -2,7 +2,7 @@
 layout: post
 title: "The Ruby Learning Path - Intermediate"
 modified: 2014-05-15 14:13:34 +0200
-tags: [ruby, intermediate]
+tags: [ruby]
 categories: posts
 ---
 Your second step down [The Ruby Learning Path]({{ BASE_PATH }}/posts/the-ruby-learning-path) is the [Intermediate path]({{ BASE_PATH }}/posts/the-ruby-learning-path-intermediate) which includes the courses listed here. Again, these resources are free, easy to access and well regarded. Ideal for the beginning coder that is up and running a bit with Ruby or the programmer simply new to [Ruby](https://www.ruby-lang.org/en/).
