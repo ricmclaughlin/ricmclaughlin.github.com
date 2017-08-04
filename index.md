@@ -13,7 +13,7 @@ tagline: Damn, that's good stuff!
   <div id="about-me" class="col-md-6">
     <h2>Hi! I'm Ric McLaughlin!</h2>
     <h2>I'm focused like-a-laser on implementing AWS technologies. </h2> 
-    <h2>I architect solutions, code, teach and lead teams.</h2>
+    <h2>I architect solutions, code, teach, and lead teams.</h2>
    </div>
   </div>
 </div>
@@ -27,19 +27,19 @@ tagline: Damn, that's good stuff!
         </thead>
         <tbody>
           <tr>
-            <td><a href="/portfolio#web-dev">Full Stack Web Dev</a></td>
-            <td>HTML &amp; CSS </a> | Reactjs | Node &amp Express</td>
+            <td><a href="/portfolio?t=web-dev">Full Stack Web Dev</a></td>
+            <td><a href="/portfolio?t=web-dev&c=html-css">HTML & CSS </a> | Reactjs | Node &amp Express</td>
           </tr>
           <tr>
-            <td><a href="/portfolio#devops">DevOps &amp; CI/CD</a> </td>
+            <td><a href="/portfolio?t=devops">DevOps &amp; CI/CD</a> </td>
             <td>Git, Travis, CloudFormation, Chef/OpsWorks</td>
           </tr>
           <tr>
-            <td><a href="/portfolio#data">Data</a> </td>
+            <td><a href="/portfolio?t=data">Data</a> </td>
             <td>MongoDB, DynamoDB, RDS/Aurora, Data Pipeline</td>
           </tr>
           <tr>
-            <td><a href="/portfolio#languages">Languages</a></td>
+            <td><a href="/portfolio?t=languages">Languages</a></td>
             <td>JavaScript, Ruby, Python</td>  
           </tr>
           <tr>
@@ -47,14 +47,14 @@ tagline: Damn, that's good stuff!
             <td><a href="/projectdelivery#scrum-ref">Scrum</a>, <a href="/projectdelivery#kanban-ref">Kanban</a>, <a href="/projectdelivery#leanux-ref">LeanUX</a>, <a href="/projectdelivery#specialsauce-ref">Ric's Special Sauce</a></td>  
           </tr>
           <tr>
-            <td><a href="/portfolio#curriculum-dev">Curriculum Development</a> </td>
+            <td><a href="/portfolio?t=curriculum-dev">Curriculum Development</a> </td>
             <td>
             Portfolio Dev, AWS IoT, Data Structures
 
             </td> 
           </tr>
           <tr>
-            <td><a href="/portfolio">Certified Skills</a> </td>
+            <td><a href="/studyguides">Certified Skills</a> </td>
             <td>
             AWS Solutions Architecture Pro
             | AWS DevOps Pro</a>

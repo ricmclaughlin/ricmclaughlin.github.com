@@ -4,11 +4,10 @@ title: Portfolio
 categories: projects
 ---
 
-
 {% assign cat = 'delivery' %}
 {% assign project_tags = site.array %}
 {% assign skills = site.otherarray %}
-{% assign skills = "aws,web-dev,devops,data,languages,curriculum-dev" | split: "," %}
+{% assign skills = "aws,web-dev,devops,data,languages,project-delivery,curriculum-dev" | split: "," %}
 
 <div>
   <!-- Nav tabs -->
@@ -26,6 +25,8 @@ categories: projects
         {% assign skill_full_name = "Languages" %}
       {% elsif skill == 'curriculum-dev' %}
         {% assign skill_full_name = "Curriculum Development" %}
+      {% elsif skill == 'project-delivery' %}
+        {% assign skill_full_name = "Project Delivery" %}
       {% endif %}
 
       <li role="presentation">
@@ -40,17 +41,19 @@ categories: projects
       <div role="tabpanel" class="tab-pane" id="{{skill}}">
         <div class="category-archive">
           {% if skill == "web-dev" %}
-            {% assign project_tags = "mongodb,node,express,reactjs,html-css" | split: "," %}
+            {% assign project_tags = "node,express,reactjs,html-css,mongodb" | split: "," %}
           {% elsif skill == "devops" %}
-            {% assign project_tags = "git,travis,cloudformation,opsworks,elastic-beanstalk" | split: "," %}
+            {% assign project_tags = "cloudformation,git,travis,opsworks,elastic-beanstalk" | split: "," %}
           {% elsif skill == 'data' %}
-            {% assign project_tags = "git,gulp,travis" | split: "," %}
+            {% assign project_tags = "dynamodb,redshift,elasticache,rds,mongodb" | split: "," %}
           {% elsif skill == 'languages' %}
-            {% assign project_tags = "jasmine,chai,protractor" | split: "," %}
+            {% assign project_tags = "javascript,ruby" | split: "," %}
           {% elsif skill == 'classes' %}
             {% assign project_tags = "portfoliodev,htmlcssclass,javascriptclass,c9" | split: "," %}
           {% elsif skill == 'curriculum-dev' %}
             {% assign project_tags = "" | split: "," %}
+          {% elsif skill == 'project-delivery' %}
+            {% assign project_tags = "special-sauce,scrum,kanban,leanux" | split: "," %}
           {% elsif skill == 'aws' %}
             {% assign project_tags = "aws" | split: "," %}
           {% endif %}
@@ -80,8 +83,8 @@ categories: projects
 
             {% assign image_url = "/assets/themes/ricify/images/" | append: tag | append: ".png" %}
             {% assign includer = "tags/" | append: tag | append: ".html" %}
-            {% assign tag_page_ref = "/tags.html#" | append: tag | append: "-ref" %}
-            {% assign portfolio_tag_ref = tag | append: "-ref" %}
+            {% assign tag_page_ref = "/tags.html#" | append: tag %}
+            
             <div class="media" id="{{portfolio_tag_ref}}">
               <div class="media-left">
                 <a href="{{tag_page_ref}}">
@@ -93,35 +96,44 @@ categories: projects
                 {% if tag != skill %}
                   <p>{% include {{includer}} %}</p>
                 {% endif %}
-                <p>{{tag_full_name }} Projects:</p>
-                <ul class="posts">
-                {% assign cat = 'projects' %}
-                {% for post in site.categories[cat] %}
-                  {% if post.tags contains tag %}
-                      <li><a href="{{ post.url }}">{{ post.title }}</a></li>  
-                  {% endif %}
-                {% endfor %}
-                </ul>
                 {% assign cat = 'posts' %}
-                {% for post in site.categories[cat] %}
-                  {% if post.tags contains tag %}
-                    {% assign counter = 1 %}
-
-                  {% endif %}
-                {% endfor %}
-                
-                {% if counter == 1%}
-                  <p>{{tag_full_name }} Blog Posts:</p>
-                  <ul class="posts">
                   {% for post in site.categories[cat] %}
                     {% if post.tags contains tag %}
-                      <li><a href="{{ post.url }}">{{ post.title }}</a></li> 
+                      {% assign counter = 1 %}
                     {% endif %}
                   {% endfor %}
-                  </ul>
-                {% endif %}
-                
-                {% assign counter = 0 %}
+                  
+                  {% if counter == 1%}
+                    <p>{{tag_full_name }} Posts:</p>
+                    <ul class="posts">
+                    {% for post in site.categories[cat] %}
+                      {% if post.tags contains tag %}
+                        <li><a href="{{ post.url }}">{{ post.title }}</a></li> 
+                      {% endif %}
+                    {% endfor %}
+                    </ul>
+                  {% endif %}
+                  
+                  {% assign cat = 'projects' %}
+                  {% assign counter = 0 %}
+                    {% for post in site.categories[cat] %}
+                    {% if post.tags contains tag %}
+                      {% assign counter = 1 %}
+                    {% endif %}
+                  {% endfor %}
+                  
+                  {% if counter == 1%}
+                    <p>{{ tag_full_name }} Projects:</p>
+                    <ul class="posts">
+                    {% for post in site.categories[cat] %}
+                      {% if post.tags contains tag %}
+                        <li><a href="{{ post.url }}">{{ post.title }}</a></li> 
+                      {% endif %}
+                    {% endfor %}
+                    </ul>
+                  {% endif %}
+                  
+                  {% assign counter = 0 %}
                 </div>
             </div>
             
@@ -133,16 +145,28 @@ categories: projects
   </div>
 
 </div>
-
 <div id="footerbar"></div>
 
 <script>
-$( document ).ready(function() {
-  var urlTab = window.location.hash.substr(1) || 'aws'
-  var activeTab = '#nav-tabs a[href="#' + urlTab + '"]';
-  $(activeTab).tab('show')
-});
-
+  $( document ).ready(function() {
+    var parseQueryString = function( queryString ) {
+      var params = {}, queries, temp, i, l;
+      // Split into key/value pairs
+      queries = queryString.split("&");
+      // Convert the array of strings into an object
+      for ( i = 0, l = queries.length; i < l; i++ ) {
+          temp = queries[i].split('=');
+          params[temp[0]] = temp[1];
+      }
+      return params;
+    };
+    var queryStringObject = parseQueryString(window.location.search.substr(1));
+    var tabToActivate = queryStringObject.t || 'aws';
+    $('#nav-tabs a[href="#' + tabToActivate + '"]').tab('show')
+    if (queryStringObject.c) {
+      $('#' + queryStringObject.c).scrollTo();
+    } 
+  });
 
 </script>
 
