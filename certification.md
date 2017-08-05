@@ -5,16 +5,23 @@ categories: posts
 ---
 {% assign project_tags = site.array %}
 {% assign skills = site.otherarray %}
-{% assign skills = "aws-solutions-arch-pro,aws-dev-ops-pro" | split: "," %}
+{% assign skills = "aws-solutions-arch-pro,aws-dev-ops-pro,pmp,pmi-acp,aws-academy" | split: "," %}
 
 <div>
   <ul class="nav nav-tabs" id="nav-tabs" role="tablist">
     {% for skill in skills %}
       {% if skill == "aws-dev-ops-pro" %}
-        {% assign skill_full_name = "AWS DevOps Engineer Professional" %}
+        {% assign skill_full_name = "AWS DevOps Engineer Pro" %}
       {% elsif skill == "aws-solutions-arch-pro" %}
-        {% assign skill_full_name = "AWS Solutions Architect Professional" %}
+        {% assign skill_full_name = "AWS Solutions Architect Pro" %}
+      {% elsif skill == "pmp" %}
+        {% assign skill_full_name = "Project Mgt Pro" %}
+      {% elsif skill == "pmi-acp" %}
+        {% assign skill_full_name = "Agile Cert Prac" %}
+      {% elsif skill == "aws-academy" %}
+        {% assign skill_full_name = "AWS Academy Accredited Instructor" %}
       {% endif %}
+
 
       <li role="presentation">
         <a href="#{{skill}}" aria-controls="home" role="tab" data-toggle="tab">{{skill_full_name}}</a>
@@ -29,29 +36,26 @@ categories: posts
         <div class="category-archive">
           {% if skill == "aws-dev-ops-pro" %}
             {% assign project_tags = "cloudformation,opsworks,elastic-beanstalk,cloudwatch" | split: "," %}
+            
           {% elsif skill == 'aws-solutions-arch-pro' %}
             {% assign project_tags = "cloudfront,rds,kinesis,iam,vpc,cloudformation,opsworks,elastic-beanstalk,cloudwatch,dynamodb,cloudsearch,aws-services" | split: "," %}
+            
+          {% else %}
+            {% assign project_tags = '' %}
           {% endif %}
 
           {% assign includer = "tags/" | append: skill | append: ".html" %}
-          {% assign portfolio_skill_ref = skill | append: "-ref" %}
+          {% assign portfolio_skill_ref = skill %}
           <br>
           <p>{% include {{includer}} %}</p>
-          
-          
+ 
           {% for tag in project_tags %}
-            {% if tag == 'basicfront' %}
-              {% assign tag_full_name = "Front End Development" %}
-            {% elsif tag == 'basicback' %}
-              {% assign tag_full_name = "Backend End Development" %}
-            {% elsif tag == 'tdd' %}
-              {% assign tag_full_name = "Test Driven Development" %}
-            {% elsif tag == 'api' %}
-              {% assign tag_full_name = "API Development" %}
-            {% elsif tag == 'webapp' %}
-              {% assign tag_full_name = "Web Applications" %}
-            {% elsif tag == 'htmlcss' %}
-              {% assign tag_full_name = "HTML5 & CSS" %}
+            {% if tag == 'pmp' %}
+              {% assign tag_full_name = "Project Management Professional" %}
+            {% elsif tag == 'pmi-acp' %}
+              {% assign tag_full_name = "Project Management Institute Agile Certified Practioner" %}
+            {% elsif tag == 'aws-academy' %}
+              {% assign tag_full_name = "AWS Academy Accredited Instructor" %}
             {% else %}
               {% assign tag_full_name = {{tag | capitalize}}  %}
             {% endif %}
@@ -142,14 +146,4 @@ categories: posts
   });
 
 </script>
-
-
-
-
-
 <div id="footerbar"></div>
-
-
-
-
-
