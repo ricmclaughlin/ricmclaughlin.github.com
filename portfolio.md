@@ -47,11 +47,11 @@ categories: projects
           {% elsif skill == 'data' %}
             {% assign project_tags = "dynamodb,redshift,elasticache,rds,mongodb" | split: "," %}
           {% elsif skill == 'languages' %}
-            {% assign project_tags = "javascript,ruby" | split: "," %}
+            {% assign project_tags = "javascript,ruby,python" | split: "," %}
           {% elsif skill == 'classes' %}
             {% assign project_tags = "portfoliodev,htmlcssclass,javascriptclass,c9" | split: "," %}
           {% elsif skill == 'curriculum-dev' %}
-            {% assign project_tags = "" | split: "," %}
+            {% assign project_tags = "iot-aws,data-struct,portfolio-dev" | split: "," %}
           {% elsif skill == 'project-delivery' %}
             {% assign project_tags = "special-sauce,scrum,kanban,leanux" | split: "," %}
           {% elsif skill == 'aws' %}
@@ -148,25 +148,37 @@ categories: projects
 <div id="footerbar"></div>
 
 <script>
-  $( document ).ready(function() {
-    var parseQueryString = function( queryString ) {
-      var params = {}, queries, temp, i, l;
-      // Split into key/value pairs
-      queries = queryString.split("&");
-      // Convert the array of strings into an object
-      for ( i = 0, l = queries.length; i < l; i++ ) {
-          temp = queries[i].split('=');
-          params[temp[0]] = temp[1];
-      }
-      return params;
-    };
-    var queryStringObject = parseQueryString(window.location.search.substr(1));
-    var tabToActivate = queryStringObject.t || 'aws';
-    $('#nav-tabs a[href="#' + tabToActivate + '"]').tab('show')
-    if (queryStringObject.c) {
-      $('#' + queryStringObject.c).scrollTo();
-    } 
-  });
+$( document ).ready(function() {
+  var parseQueryString = function( queryString ) {
+    var params = {}, queries, temp, i, l;
+    // Split into key/value pairs
+    queries = queryString.split("&");
+    // Convert the array of strings into an object
+    for ( i = 0, l = queries.length; i < l; i++ ) {
+        temp = queries[i].split('=');
+        params[temp[0]] = temp[1];
+    }
+    return params;
+  };
+  var queryStringObject = parseQueryString(window.location.search.substr(1));
+  var tabToActivate = queryStringObject.t || 'aws';
+  $('#nav-tabs a[href="#' + tabToActivate + '"]').tab('show')
+  if (queryStringObject.c) {
+    $('#' + queryStringObject.c).scrollTo();
+  }
+  // $('a[data-toggle="tab"]').on('click', function(e) {
+  //   history.pushState(null, null, $(this).attr('href'));
+  // });
+  // // navigate to a tab when the history changes
+  // window.addEventListener("popstate", function(e) {
+  //   var activeTab = $('[href=' + location.hash + ']');
+  //   if (activeTab.length) {
+  //     activeTab.tab('show');
+  //   } else {
+  //     $('.nav-tabs a:first').tab('show');
+  //   }
+  // }); 
+});
 
 </script>
 
