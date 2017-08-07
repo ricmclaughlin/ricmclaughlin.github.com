@@ -2,8 +2,8 @@
 layout: post
 title: "Github Pages Portfolio Class Setup with C9"
 description: ""
-category: projects
-tags: [git, classes]
+category: posts
+tags: [portfolio-dev, curriculum-dev, c9]
 ---
 {% include JB/setup %}
 

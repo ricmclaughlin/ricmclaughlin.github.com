@@ -3,12 +3,9 @@ layout: post
 title: "Github Pages Portfolio Development with Jekyll, Yeoman and Gulpjs v1.5"
 description: ""
 category: posts
-tags: [git, classes, portfoliodev, node]
+tags: [git, curriculum-dev, portfolio-dev, node, javascript]
 ---
 {% include JB/setup %}
-
-There is a new version of this class here: [Github Pages Portfolio Development Course with Jekyll, Yeoman and Gulpjs v1.6]({{ BASE_PATH }}/posts/portfolio-development-class-v1.6)
-
 
 The idea behind the class is to take students who have a basic compentence in HTML & CSS with bit of commandline and JavaScript skills and teach them the basics of [git](https://git-scm.com/), [github](https://github.com/ricmclaughlin), [Jekyll](http://jekyllrb.com/) and [gulp.js](http://gulpjs.com/). In addition, folks will get some understanding of what a development tool chain is and how to manage that tool chain on an [Ubuntu](http://www.ubuntu.com/) workstation using the super cool [c9](https://c9.io) cloud development environment.
 
