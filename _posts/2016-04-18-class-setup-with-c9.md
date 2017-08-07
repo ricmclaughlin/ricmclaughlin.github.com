@@ -3,7 +3,7 @@ layout: post
 title: "Class Setup with C9"
 description: ""
 category: posts
-tags: [git, classes, portfoliodev, c9]
+tags: [git, curriculum-dev, c9, data-struct]
 ---
 {% include JB/setup %}
 

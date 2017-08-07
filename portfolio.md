@@ -51,7 +51,7 @@ categories: projects
           {% elsif skill == 'classes' %}
             {% assign project_tags = "portfoliodev,htmlcssclass,javascriptclass,c9" | split: "," %}
           {% elsif skill == 'curriculum-dev' %}
-            {% assign project_tags = "iot-aws,data-struct,portfolio-dev" | split: "," %}
+            {% assign project_tags = "aws-iot,data-struct,portfolio-dev" | split: "," %}
           {% elsif skill == 'project-delivery' %}
             {% assign project_tags = "special-sauce,scrum,kanban,leanux" | split: "," %}
           {% elsif skill == 'aws' %}

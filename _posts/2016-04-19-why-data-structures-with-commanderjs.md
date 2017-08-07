@@ -3,7 +3,7 @@ layout: post
 title: "Why JavaScript Data Structures with Commander.js"
 description: ""
 category: posts
-tags: [javascriptclass]
+tags: [javascript, data-struct, curriculum-dev, c9]
 ---
 {% include JB/setup %}
 
