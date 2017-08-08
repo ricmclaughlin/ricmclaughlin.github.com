@@ -7,7 +7,7 @@ tags: [aws, data-pipeline]
 ---
 {% include JB/setup %}
 
-AWS [Data Pipeline](http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/what-is-datapipeline.html) is a web service that you can use to automate the movement and transformation of data. With AWS Data Pipeline, you can define data-driven workflows, so that tasks can be dependent on the successful completion of previous tasks. In essence, the Data Pipeline is an ETL tool with orchestration... sort and filled much of tthe functions that Lambda now fills.
+AWS [Data Pipeline](http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/what-is-datapipeline.html) is a web service that you can use to automate the movement and transformation of data. With AWS Data Pipeline, you can define data-driven workflows, so that tasks can be dependent on the successful completion of previous tasks. In essence, the Data Pipeline is an ETL tool with orchestration... sort and filled much of the functions that Lambda and Step Functions now fills.
 
 There are several components to the Data Pipeline application: 
 
@@ -42,7 +42,7 @@ A Pipeline includes:
 
 * EMR errors? Locate cluster in console; troubleshoot
 
-* Pipeline stuck in `Pending`? Probably a problem in the pipeline defintion
+* Pipeline stuck in `Pending`? Probably a problem in the pipeline definition
 
 * Component stuck in `WAITING_FOR_RUNNER`? Missing `runsOn` or `workerGroup` field
 

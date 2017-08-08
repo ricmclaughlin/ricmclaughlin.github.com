@@ -50,3 +50,7 @@ If you traffic is in excess of 4 Ggps, you need AWS Direct Connect which can pro
 - VPN = quick to bring up and easy; slower and sucks Internet bandwidth
 
 - Direct Connect = consistent lower latency and fixed bandwidth; more secure; lower cost
+
+## Transition from VPN to Direct Connect
+
+Once Direct Connect is installed configure it and the VPN to occupy the same BGP Community. Then configure BGP to assign a higher cost the VPN and the traffic will flow through the Direct Connect line.
