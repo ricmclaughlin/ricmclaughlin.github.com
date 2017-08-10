@@ -19,7 +19,7 @@ There are three types of EBS:
 
 1. General purpose SSD (gp2) - Minimum of 100 IOPS then 3 IOPS per GB; can burst to 3000 IOPS if less than 1 TB. The max throughput is 160 MiB/s and this can end up being a bottleneck if read size is large. These instances include a burst pool of 5.4 Millions IOPS which can be burned at 3000 MAX. Even though you can boost performance, use if you are after less than 10K IOPS; 3Tb gets you there. 
 
-2. Provisioned IOPS (io1) - 30 IOPS per GB up to 20,000 IOPS to a maxiuim of 320 MiB/s; Steady consisten IOPS not really a burstable; Use if you are after over 10k IOPS
+2. Provisioned IOPS (io1) - 30 IOPS per GB up to 20,000 IOPS to a maxiuim of 320 MiB/s; Steady consistent IOPS not really a burstable; Use if you are after over 10k IOPS
 
 3. Magnetic - Cheap and slow EBS volumes can also be Cold HDD (sc1) and Throughput Optimized HDD (st1). Can not specify IOPS with this storage type and it is not burstable; not recommended for smaller read sizes using random access
 
@@ -68,9 +68,11 @@ RAID array snapshots are a pain. You need to freeze the file system, unmount the
 
 ### RAID
 
-- RAID 0 - striping; good performance; 128k or 256k block size preferred
+RAID can be implemented on EBS or Instance Store volumes.
 
-- RAID 1 - mirror
+- RAID 0 - striping; improves IOPS performance only; no fault tolerance; 128k or 256k block size preferred; EBS optimzed instance is preferrable
+
+- RAID 1 - mirror; no additional IOPS or throughput; increased fault tolerance
 
 - RAID 5 - 4 data; 1 chksum; NEVER on EBS
 
@@ -101,6 +103,10 @@ Hot backups are a big case of backup... you can:
 - Use a Logical Volume Manager & backup the LVM snapshots inside the EBS snapshot... then delete the LVM snapshot
 
 - LVM is also a good choice for RAID Volume Snapshots
+
+### Restoration
+
+Restoration is a straight forward affair; simply, create a volume from the snapshot then mount it. From there you can also do a file level restore by copying the files to a regular production volume.
 
 ## Use Cases
 
