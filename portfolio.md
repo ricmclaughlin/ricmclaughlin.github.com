@@ -45,7 +45,7 @@ categories: projects
           {% elsif skill == "devops" %}
             {% assign project_tags = "cloudformation,git,travis,opsworks,elastic-beanstalk" | split: "," %}
           {% elsif skill == 'data' %}
-            {% assign project_tags = "dynamodb,redshift,elasticache,rds,mongodb" | split: "," %}
+            {% assign project_tags = "s3,dynamodb,mongodb,redshift,elasticache,rds" | split: "," %}
           {% elsif skill == 'languages' %}
             {% assign project_tags = "javascript,ruby,python" | split: "," %}
           {% elsif skill == 'classes' %}
@@ -62,8 +62,7 @@ categories: projects
           {% assign portfolio_skill_ref = skill | append: "-ref" %}
           <br>
           <p>{% include {{includer}} %}</p>
-          
-          
+                    
           {% for tag in project_tags %}
             {% if tag == 'basicfront' %}
               {% assign tag_full_name = "Front End Development" %}
@@ -92,7 +91,9 @@ categories: projects
                 </a>
               </div>
               <div class="media-body">
-                <h3 class="media-heading" ><a href="{{tag_page_ref}}">{{tag_full_name | capitalize}}</a></h3>
+                <h3 class="media-heading" >
+                  <a href="{{tag_page_ref}}">{{tag_full_name | capitalize}}</a>
+                </h3>
                 {% if tag != skill %}
                   <p>{% include {{includer}} %}</p>
                 {% endif %}

@@ -11,7 +11,7 @@ tags: [aws, elasticache, aws-services, aws-solutions-arch-pro]
 
 ElastiCache only backs up Redis clusters. Snapshots backup the data for the entire cluster at a specific time and probably cause a performance degradation. Try to backup read replicas! Multi-AZ friendly.
 
-| Thingy | memecache | Reddis |
+| Thingy | memecached | Reddis |
 |--------|-----------|--------|
 | Use case complexity | low | high  |
 | Threading | multi  | single |

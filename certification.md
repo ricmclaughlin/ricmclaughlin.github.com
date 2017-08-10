@@ -13,7 +13,7 @@ categories: posts
       {% if skill == "aws-dev-ops-pro" %}
         {% assign skill_full_name = "AWS DevOps Engineer Pro" %}
       {% elsif skill == "aws-solutions-arch-pro" %}
-        {% assign skill_full_name = "AWS Solutions Architect Pro" %}
+        {% assign skill_full_name = "AWS Solutions Architect" %}
       {% elsif skill == "pmp" %}
         {% assign skill_full_name = "Project Mgt Pro" %}
       {% elsif skill == "pmi-acp" %}
