@@ -125,25 +125,20 @@ categories: posts
 </div>
 
 <script>
-  $( document ).ready(function() {
-    var parseQueryString = function( queryString ) {
-      var params = {}, queries, temp, i, l;
-      // Split into key/value pairs
-      queries = queryString.split("&");
-      // Convert the array of strings into an object
-      for ( i = 0, l = queries.length; i < l; i++ ) {
-          temp = queries[i].split('=');
-          params[temp[0]] = temp[1];
-      }
-      return params;
-    };
-    var queryStringObject = parseQueryString(window.location.search.substr(1));
-    var tabToActivate = queryStringObject.t || 'aws-solutions-arch-pro';
-    $('#nav-tabs a[href="#' + tabToActivate + '"]').tab('show')
-    if (queryStringObject.c) {
-      $('#' + queryStringObject.c).scrollTo();
-    } 
+$( document ).ready(function() {
+  var tabToActivate = window.location.hash || '#aws-solutions-arch-pro';
+  console.log(tabToActivate);
+  $('#nav-tabs a[href="' + tabToActivate + '"]').tab('show')
+  $('a[data-toggle="tab"]').on('click', function(e) {
+    history.pushState(null, null, $(this).attr('href'));
   });
 
+  window.addEventListener("popstate", function(e) {
+    var tabToActivate = window.location.hash || '#aws-solutions-arch-pro';
+    $('#nav-tabs a[href="' + tabToActivate + '"]').tab('show')
+  }); 
+});
+
 </script>
+
 <div id="footerbar"></div>
