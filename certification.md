@@ -127,7 +127,6 @@ categories: posts
 <script>
 $( document ).ready(function() {
   var tabToActivate = window.location.hash || '#aws-solutions-arch-pro';
-  console.log(tabToActivate);
   $('#nav-tabs a[href="' + tabToActivate + '"]').tab('show')
   $('a[data-toggle="tab"]').on('click', function(e) {
     history.pushState(null, null, $(this).attr('href'));

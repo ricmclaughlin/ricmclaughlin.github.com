@@ -81,7 +81,9 @@ The log file name includes the end-time, ip address of the ELB and a random gene
 
 - Request - including verb, protocol version (http 1.1 or 2.0)
 
-ALB can also forward X-Forwarded-For header so logging can occur at the instance layer NOT the ALB (because ALB routing is best effort to complete). To accomplish the same thing with an ELB you need to enable the [Proxy Protocol Headers](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-proxy-protocol.html) which adds a header for the backend to parse but this does not enable sticky session or `X-Forward-For` header.
+ALB can also forward X-Forwarded-For header so logging can occur at the instance layer NOT the ALB (because ALB routing is best effort to complete). 
+
+To accomplish the same thing with an ELB you need to enable the [Proxy Protocol Headers](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-proxy-protocol.html) which adds a header for the backend to parse but this does not enable sticky session or `X-Forward-For` header. This can only be configured from the command line.
 
 The ALB can also add the custom "X-Amzn-Trace-Id" HTTP header on all requests to improve tracability. 
 

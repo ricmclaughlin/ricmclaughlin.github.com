@@ -2,7 +2,7 @@
 layout: post
 title: "AWS - VMware"
 description: ""
-category: 
+category: posts
 tags: [aws, vm-ware, aws-solutions-arch-pro, aws-services]
 ---
 {% include JB/setup %}
