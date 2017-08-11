@@ -51,7 +51,7 @@ Delete origin file; wait for TTL to expire
 
 Use Invalidation API to remove object from edge location
 
-use route53 CNAME to point new distribution as an alternative
+Use route53 CNAME to point new distribution as an alternative
 
 ### Private Content
 
@@ -91,8 +91,6 @@ There are two different ways to configure SSL:
 Dedicated IP Custom SSL - expensive; limited support from ancient browsers
 
 SNU Custom SNL - multiple domains to serve SSL over same IP address; good support overall browsers
-
-
 
 ## When
 

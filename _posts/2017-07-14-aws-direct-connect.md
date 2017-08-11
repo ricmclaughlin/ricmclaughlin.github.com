@@ -33,24 +33,6 @@ Virtual Interfaces (VIF) - the connection. They come in two flavors:
 
 In the US, a single direct connect connections can access all 4 US regions provided you use a public VIF, BGP and VPN.
 
-## VPN
-
-To connect securely with your VPC on AWS you can create a Virtual Public Gateway and connect that to a Customer Gateway forming a VPN. Dual VPN tunnels provide higher availability. Limits on VPN include:
-
-- 5 Virtual Private Gateways per region
-
-- 1 Virtual Private Gateways per VPC
-
-- 50 Customer Gateways per Region
-
-If you traffic is in excess of 4 Ggps, you need AWS Direct Connect which can provide up to 10Ggps. Direct Connect uses BGP and an Autonomous System Number (ASN) and IP prefixes. 
-
-### Direct connect vs VPN Capability
-
-- VPN = quick to bring up and easy; slower and sucks Internet bandwidth
-
-- Direct Connect = consistent lower latency and fixed bandwidth; more secure; lower cost
-
 ## Transition from VPN to Direct Connect
 
 Once Direct Connect is installed configure it and the VPN to occupy the same BGP Community. Then configure BGP to assign a higher cost the VPN and the traffic will flow through the Direct Connect line.
