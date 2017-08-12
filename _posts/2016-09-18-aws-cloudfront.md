@@ -112,7 +112,11 @@ reporting
 
 invalidation
 
-streaming media
+Secure RTMP? Signed URL
+
+Secure Progressive Download? Signed URL; user CAN download the entire file which is sort of bad for some use cases
+
+Secure HLS? Signed Cookies because there are tons of small files and signed URLs won't work
 
 support zone apex - use Route53 to alias to CloudFront distribution; no charge for alias record lookup (Queries to Alias records that are mapped to Elastic Load Balancers, Amazon CloudFront distributions, AWS Elastic Beanstalk environments, and Amazon S3 website buckets are free.)
 
@@ -129,4 +133,6 @@ configure PUT to edge location and forward to S3
 Increase cache hit percentage is the #1 way to increase CloudFront performance. Increasing min and max TTL helps improve this metric.
 
 Dynamic content personalization with cookies
+
+Restrict access to S3 content = origin access identity
 

@@ -7,11 +7,17 @@ tags: [aws, elasticache, aws-services, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
-[ElastiCache ](https://aws.amazon.com/elasticache/) is a managed service the provides caching services for apps. There are two engines available from ElastiCache: Redis and memecached. The signifigant differences between memcached and redis make for differences in monitoring and scaling.
+Caching is a complicated thing to implement well. Time to live, and cache expiration and other issues make caching strategies difficult. 
 
-ElastiCache only backs up Redis clusters. Snapshots backup the data for the entire cluster at a specific time and probably cause a performance degradation. Try to backup read replicas! Multi-AZ friendly.
+The Lazy Loading caching strategy is where the application looks at the cache first, either finds the data or goes to the source and then adds the record to the cache. If there is a node failure it's replacement will fill in due time so no big dealio.
 
-| Thingy | memecached | Reddis |
+The Write Through caching strategy updates the cache when the data is written to the DB so data is never stale or need update. Keeping all nodes up to date, high latency because of multiple writes per record and the storage of some data that might be infrequently accessed are all problems with this strategy. 
+
+The easiest way to implement caching on AWS is [ElastiCache ](https://aws.amazon.com/elasticache/), a managed service the provides caching services for apps. There are two engines available from ElastiCache: Redis and memecached. Reserved instances are a great choice here; spot instances are not.
+
+ElastiCache only backs up Redis clusters. Snapshots backup the data for the entire cluster at a specific time and probably cause a performance degradation. Try to backup read replicas! Redis is multi-AZ friendly.
+
+| Thingy | memecached | Redis |
 |--------|-----------|--------|
 | Use case complexity | low | high  |
 | Threading | multi  | single |
@@ -21,6 +27,7 @@ ElastiCache only backs up Redis clusters. Snapshots backup the data for the enti
 | fail-over | nope | yep |
 | persist it | nope | yep |
 | pub-sub | nope | yep |
+| auto-discovery | yep | no |
 
 ## Monitoring
 
@@ -30,7 +37,7 @@ ElastiCache only backs up Redis clusters. Snapshots backup the data for the enti
 
 multithreaded; and performs well up to 90% utilization then increase size of node or # of nodes
 
-| **Metric**  | **Description**  |**Solution**  |
+| **Metric**  | **Description**  | **Solution**  |
 |:-----------------------------------------|:--------------------------------------------------------|:----------------------| 
 |CPU utilization | good up to 90% utilization | increase size of node or # of nodes |
 | evictions | # records ejected from cache | larger instances and # of nodes |
@@ -39,7 +46,7 @@ multithreaded; and performs well up to 90% utilization then increase size of nod
 
 ## Redis
 
-Single threaded; generally scale UP with larger instances OR scale out with more READ replicas
+Single threaded; generally scale UP with larger instances by snapshoting and increasing the instance size OR scale out with more READ replicas; Automatic and manual snapshots work like RDS
 
 | **Metric**  | **Description**  |**Solution**  |
 |:-----------------------------------------|:--------------------------------------------------------|:----------------------| 
@@ -47,14 +54,9 @@ Single threaded; generally scale UP with larger instances OR scale out with more
 | evictions | # records ejected from cache | more nodes |
 | CurrConnections | # app to memcached connections| likely an application problem with no closing connections |
 
-## Simple Question
-
-You have enabled a CloudWatch metric on your Redis ElastiCache cluster. Your alarm is triggered due to an increased amount of evictions. How might you go about solving the increased eviction errors from the ElastiCache cluster?
-
-
 ## Triage
 
-- Simple use case, horizontal scaling (shard), multi-threaded? Memecache
+- Simple use case, horizontal scaling (shard), multi-threaded? Memecached
 
 - Complex? Redis
 

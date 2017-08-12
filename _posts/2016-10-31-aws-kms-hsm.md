@@ -11,7 +11,7 @@ Encryption Key Management is a major function of online systems that requires lo
 
 # KMS
 
-KMS is a managed service that makes it easy for your to create, control, rotate and use encryption keys. It uses asymmetric encryption (2 different keys). Symmetric is not supported. KMS keys are single region?? 
+KMS is a managed service that makes it easy for your to create, control, rotate and use encryption keys. It uses asymmetric encryption (2 different keys). Symmetric is not supported. KMS keys are single region. The Customer Master Key is the default key used by KMS to encrypt/decrypt. 
 
 ## Service Features
 
@@ -24,7 +24,6 @@ KMS is a managed service that makes it easy for your to create, control, rotate 
 * Integrated with AWS CloudTrail & Cloud watch
 
 * Full AWS API, CLI and SDK suppot
-
 
 ## Setup
 
