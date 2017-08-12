@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "AWS - Devops Overview"
+title: "AWS - Devops"
 description: ""
 category: posts
-tags: [aws, devops, opsworks, cloudformation, elastic-beanstalk, aws-dev-ops-pro, aws-solutions-arch-pro]
+tags: [aws, devops, opsworks, cloudformation, elastic-beanstalk, aws-dev-ops-pro, aws-guides, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
@@ -97,24 +97,6 @@ Disposable deployment types are generally slower because new resources must be c
 
 * Cloudformation - control; can combine with EB or OpsWorks
 
-### Scenario -> Product
-
-maintain capacity; Speed not issue = rolling with batch ; Opsworks? Cloudformation
-
-in-place? Opsworks &amp; CodeDeploy
-
-Super fast? in-place; all-at-once faster than rolling
-
-Consistent or lots of deployments? in-place
-
-No DNS change? all-at-once, rolling, immutable, blue/green with launch config change OR ASG swap
-
-No downtime? Blue/Green or rolling
-
-Pre-baked AMI? Cloudformation &amp; OpsWorks
-
-Canary Analysis = Route53 or an ELB; not well supported with Elastic Beanstalk
-
 ### Hybrid Deployment Models
 
 * CloudFormation with Puppet - puppet master holds instruction and definitions; clients connect and follow instructions
@@ -122,3 +104,24 @@ Canary Analysis = Route53 or an ELB; not well supported with Elastic Beanstalk
 * CloudFormation with Chef - better for longer deployments
 
 * CloudFormation with Elastic BeanStalk - less flexible than OpsWorks; better with immutable deployments
+
+### Scenario -> Product
+
+- maintain capacity; Speed not issue = rolling with batch ; Opsworks? Cloudformation
+
+- in-place? Opsworks &amp; CodeDeploy
+
+- Super fast? in-place; all-at-once faster than rolling
+
+- Consistent or lots of deployments? in-place
+
+- No DNS change? all-at-once, rolling, immutable, blue/green with launch config change OR ASG swap
+
+- No downtime? Blue/Green or rolling
+
+- Pre-baked AMI? Cloudformation &amp; OpsWorks
+
+- Canary Analysis = Route53 or an ELB; not well supported with Elastic Beanstalk
+
+
+

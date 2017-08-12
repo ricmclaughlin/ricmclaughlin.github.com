@@ -33,6 +33,8 @@ Managing the certificate on the ELB is always the magic... In fact, managing cer
 
 In addition to a cert, you need to define an SSL Negotiation configuration, called a security policy, which is a combination of SSL protocols, SSL ciphers, and the Server Order Preference option.
 
+Multiple SSL Certs are required unless you use a wildcard certificate.
+
 ## Health Checks
 
 To enable removing unhealthy instances from the round robin, each ELB can do a health check of the instances in the load balancing group. The health check can use different ports, including port 80, and set a response timeout, a health check interval, an unhealthy threshold and a healthy threshold. 
@@ -137,8 +139,6 @@ There are three `Cookie Stickiness`, also know as session affinity, with both en
 - Enable Path MTU Discovery
 
 - Use TCP if your application does NOT use common HTTP codes
-
-- When using TCP 
 
 ### General Config Problems
 

@@ -2,18 +2,18 @@
 layout: post
 title: "AWS - Costing"
 description: ""
-category:
-tags: []
+category: posts
+tags: [aws, aws-guides, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
-There are AWS numerous services and techniques that can be used to manage costs. A few of these services and techniques include:
-
+# Demonstrate ability to make architectural decisions that minimize and optimize infrastructure cost
 
 ## Budgets
 
 Budgets are an AI based approach to projecting monthly costs. By default, there is no budget setup and they don't show refunds. Budgets are updated every 24 hours and include SNS/CloudWatch alarms capability. 
 
+# Apply the appropriate AWS account and billing set-up options based on scenario
 
 ## Consolidated Billing
 
@@ -25,10 +25,24 @@ In some cases excess EC2 Reserved Instances can rollover to consolidate accounts
 
 The paying account is independent of the other accounts; the paying account cannot access the resources of the other accounts but billing alarms roll up the data from other accounts. Account limits, like the number of EC2 instances, only work on the account level and support is per account as well.To keep things simple, don't put resources in the billing account. 
 
+## Resource Groups
 
-Tags 
-
-Resource Groups
 Tag editor
 
 http://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/tag-editor.html
+
+## Cross Account Access
+
+### STS
+
+# Ability to compare and contrast the cost implications of different architectures
+
+EC2 instance types
+
+EC2 Purchase options & restrictions
+
+RDS purchase options & restrictions
+
+
+
+
