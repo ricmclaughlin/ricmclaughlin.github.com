@@ -9,17 +9,15 @@ tags: [aws, vpc, aws-solutions-arch-pro, aws-guides]
 
 # Demonstrate ability to design and implement networking features of AWS
 
-ELB
+- ELB
 
-HPC
-
-Enhanced networking
-
-Placement groups
+- HPC, Enhanced networking, multiple IP addresses, ENI, and Placement groups - part of EC2
 
 NAT & Scaling NAT
 
 VPC Peering
+
+Jumbo Frames - Bigger MTU enables higher throughput; Risky outside of VPC; most useful in VPC
 
 ## VPC Multicast Support
 
@@ -38,6 +36,8 @@ CIDR Block between /16 and /28
 ## VPN
 
 Good connection with limited HA use two IPSec tunnel connections with [BGP](https://en.wikipedia.org/wiki/Border_Gateway_Protocol#Requirements_of_a_router_for_use_of_BGP_for_Internet_and_backbone-of-backbones_purposes) for failure recovery. For better HA, use two VPNs and with four IPSec tunnel connections.
+
+VPNs might use RSA asymmetric keys (like SSL) or use Diffie-Hellman which provides Perfect Forward Secrecy and typically uses AES encryption.
 
 ### VPN Setup
 

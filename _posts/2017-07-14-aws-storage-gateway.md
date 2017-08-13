@@ -11,28 +11,16 @@ The AWS Storage Gateway is a service connecting an on-premises software applianc
 
 [File gateway](http://docs.aws.amazon.com/storagegateway/latest/userguide/create-file-gateway.html) - you store and retrieve objects in Amazon S3 with a local cache for low latency access to your most recently used data.
 
-Volume Gateway are local vm based servers that enable file access with backup.
+Volume Gateway are local vm based servers that enable file access with backup that can be mounted by and iSCSI device.
 
-- Cached (Gateway-cached) - store in cloud; cache local for low latency; 32TB each * 32 volumes supported = 1PB
+- Cached (Gateway-cached) - cached local for low latency; 150TiB total storage
 
-- Stored (Gateway-stored) - store it local; 512TB; mounted as iSCSI; point-in-time snapshots (consistency = offline the volume to flush data to disk) stored on S3; EBS volume capable
+- Stored (Gateway-stored) - store it local then async back to s3; 12 TiB; point-in-time snapshots (consistency = offline the volume to flush data to disk); EBS volume capable
 
 Tape gateway - (Gateway-Virtual Tape Library or Shelf) - Each Gateway-VTL presents a backup application with an industry-standard iSCSI-based Virtual Tape Library (VTL) consisting of a virtual media changer and tape drives that can hold up to 1PB. 
 
-- Virtual tape libraries - S3 backed; 1500 tapes; instantaneous retrieval; 
+- Virtual tape libraries - S3 backed; 1500 tapes; instantaneous retrieval
 
 - Virtual tape shelf - Glacier backed; unlimited tapes; 24 hour retrieval
 
-### Gateway Cached vs Gateway Stored vs Virtual Tape Library vs Virtual Tape Shelf vs Import/Export Snowball
 
-- Low end DR = S3 directly
-
-- Gateway Cached = less to maintain local so cheaper outlay, frequently access to small amount of data
-
-- Gateway Stored = low latency for ALL data; snapshots can be used as a migration tool 
-
-- Virtual Tape Shelf - unlimited storage and OK with a 24 hour turn around time.
-
-- Virtual Tape Library - fast access. 1500 tape..
-
-- Snowball - lots of data with a small pipe
