@@ -23,6 +23,8 @@ Redshift does not use indexes because the data is stored in columns.
 
 Data is encrypted in transit and at rest using Redshift managed keys. Key Management through HSM or KMS is possible. Encryption is an immutable property of the cluster. The only way to switch from an encrypted cluster to a nonencrypted cluster is to unload the data and reload it into a new cluster. Encryption applies to the cluster and any backups. When you restore a cluster from an encrypted snapshot, the new cluster is encrypted as well.
 
+Like RDS, Redshift uses parameter groups to standardize the configuration of database. Workload Management groups are a big part of the standardization of a cluster. By default the WLM group contains one queue that can run 5 queries concurrently. More queues can be added and the last one is the default queue. Additionally, users, query groups, user groups can be defined to allow differiented access to the cluster.
+
 ## Operations
 
 Data load - single source per load generally compressed from S3
@@ -47,13 +49,13 @@ Deleting a cluster does not create a final snapshot and deletes all the automate
 
 ### Redshift Backups
 
-Free storge for snapshots and backups up the amount of storage in the cluster. Automatic 
+Free automatic storge for snapshots and backups up the amount of storage in the cluster.  
 
 Snapshots are point-in-time backups. Redshift nodes are continuously backed up to S3
 
-Restoring data from a snapshot by launching a new cluster and importing the data from the snapshot. The snapshot contains the number of nodes, type of nodes, the cluster configuration and the data included in the nodes.
+The automatic snapshot copy feature copies snapshots from one region to another manually and automatically. Automatic snap shotting can be configured with a retention period (default of 7 days) and does incur data transfer costs.
 
-Snapshots can be copied from one region to another manually and automatically. Automatic snap shotting can be configured with a retention period and does incur data transfer costs.
+Restoring data from a snapshot by launching a new cluster and importing the data from the snapshot. The snapshot contains the number of nodes, type of nodes, the cluster configuration and the data included in the nodes.
 
 ## Costing
 

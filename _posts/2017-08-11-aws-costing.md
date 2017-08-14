@@ -27,21 +27,30 @@ The paying account is independent of the other accounts; the paying account cann
 
 ## Resource Groups
 
-Tag editor
+Use the [Tag editor](http://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/tag-editor.html) to restriction actions to resources; add assigning/mod tags restrictions into a policy
 
-http://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/tag-editor.html
 
 ## Cross Account Access
 
-### STS
+
+### STS Use Cases
+
+- SSO to console; no SAML? Broker with `STS:AssumeRole`; requires IAM user
+
+- SS0 to API; no SAML? Broker with `GetFederationToken`; requires IAM user
+
+- SSO to AD or other SAML? no broker; `AssumeRoleWithSAML`
+
+- WIF? auth with IdP; `AssumeRoleWithWebIdentity`
+
 
 # Ability to compare and contrast the cost implications of different architectures
 
-EC2 instance types
+- EC2 instance types
 
-EC2 Purchase options & restrictions
+- EC2 Purchase options & restrictions
 
-RDS purchase options & restrictions
+- RDS purchase options & restrictions
 
 
 

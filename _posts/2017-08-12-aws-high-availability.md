@@ -7,16 +7,17 @@ tags: [aws, aws-guides, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
-
-
 # Demonstrate ability to architect the appropriate level of availability based on stakeholder requirements
+  
   RDS, S3, EBS 
 
 # Demonstrate ability to implement DR for systems based on RPO and RTO
+  
   RPO
   RTO
 
 ## backup and restore
+    
     RDS - auto backup; no backup of read-replicas
     Elasticache - redis only
     Redshift
@@ -28,15 +29,18 @@ tags: [aws, aws-guides, aws-solutions-arch-pro]
     Import/Export
 
 ## Pilot light
+    
     Route53
     ASG/Launch Configuration
     RDS - 
 
 ## Warm Standby
+    
     Route53 - Weighted
     Multi-AZ - syncronous
 
 ## Multi-Site
+    
     Cross region Replication
       DynamoDB
       RDS cross region read Replicas - async; No Oracle or MS

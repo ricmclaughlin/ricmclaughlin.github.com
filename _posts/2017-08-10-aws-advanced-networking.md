@@ -9,15 +9,25 @@ tags: [aws, vpc, aws-solutions-arch-pro, aws-guides]
 
 # Demonstrate ability to design and implement networking features of AWS
 
+- largest and smallest network in VPC? CIDR Block between /16 and /28
+
+- IP in /24 network? 251; First 4 IP Addresses and last 1 per CIDR Block used by AWS
+
 - ELB
 
 - HPC, Enhanced networking, multiple IP addresses, ENI, and Placement groups - part of EC2
 
-NAT & Scaling NAT
+- NAT & Scaling NAT
 
-VPC Peering
+- VPC Peering
 
 Jumbo Frames - Bigger MTU enables higher throughput; Risky outside of VPC; most useful in VPC
+
+## HPC Use Cases
+
+- Grid - distributed work loads that are loosely coupled and don't require tight communication between nodes; ASG has application here
+
+- Cluster Computing - two or more instances connected together to support an application; high throughput low latency communication between nodes; weather computations; placement groups
 
 ## VPC Multicast Support
 
@@ -27,17 +37,23 @@ This OS level network includes a tunnel and virtual networking that must have a 
 
 # Demonstrate ability to design and implement connectivity features of AWS
 
-Direct Connect
-  private vs public VIFs
-HTTP End Points
-CIDR Block between /16 and /28
-5 IP Addresses per CIDR Block
+Access S3 bucket in VPC? S3 end point
+
+## Direct Connect
+
+- Access private stuff? private VIF
+
+- Access Public stuff? private VIF
+
+- Access Public stuff in any US region?
 
 ## VPN
 
 Good connection with limited HA use two IPSec tunnel connections with [BGP](https://en.wikipedia.org/wiki/Border_Gateway_Protocol#Requirements_of_a_router_for_use_of_BGP_for_Internet_and_backbone-of-backbones_purposes) for failure recovery. For better HA, use two VPNs and with four IPSec tunnel connections.
 
 VPNs might use RSA asymmetric keys (like SSL) or use Diffie-Hellman which provides Perfect Forward Secrecy and typically uses AES encryption.
+
+There are four options to VPN into a VPC including hardware VPN, Direct Connect, VPN CloudHub, Software VPN
 
 ### VPN Setup
 
@@ -69,7 +85,5 @@ If you traffic is in excess of 4 Ggps, you need AWS Direct Connect which can pro
 
 - [Network Admin Guide to VPC](http://docs.aws.amazon.com/AmazonVPC/latest/NetworkAdminGuide/Introduction.html)
 
-https://www.youtube.com/watch?v=uQ9HQVTmhBQ
-
-https://www.youtube.com/watch?v=Qep11X1r1QA
+- [Deep dive: Direct Connect & VPNs](https://www.youtube.com/watch?v=Qep11X1r1QA)
 

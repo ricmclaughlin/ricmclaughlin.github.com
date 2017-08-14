@@ -13,7 +13,7 @@ AD Connector and Microsoft Active Directory (Enterprise Edition) support standar
 
 ## AD Connector 
 
-AD Connector connects existing AD implementation with the AWS cloud which enables existing security polices like password expiration/history and account lockout with existing RADIUS-based MFA to manage resources like EC2 instances and applications like WorkSpaces, WorkDocs or WorkMail. AD Connectors and  on-premises domains have a 1-to-1 relationship. 
+AD Connector connects existing AD implementation with the AWS cloud which enables existing security polices like password expiration/history and account lockout with existing RADIUS-based MFA to manage resources like EC2 instances and applications like WorkSpaces, WorkDocs or WorkMail. AD Connectors and on-premises domains have a 1-to-1 relationship. There does not seem to be a limit to the number of users AD Connector supports. 
 
 ## Simple AD
 

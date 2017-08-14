@@ -9,21 +9,41 @@ tags: [cloudfront, aws, aws-solutions-arch-pro]
 
 [CloudFront](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html) uses edge locations and regions as a CDN point of presence. It isn't just for ALL the content on a static website anymore and an Adobe STMP stream distributions. 
 
-One gotcha is that CloudFront will wait for first request to resolve before processing the second request.  Uploading via CDN is faster but does not cache. You have to disable the distribution before you can delete it!
+One gotcha is that in cases of duplicate request from different clients CloudFront will wait for first request to resolve before processing the second request. Uploading via CDN is faster but does not cache. You have to disable the distribution before you can delete it!
+
+Per Distribution service limits include:
+
+- 40 Gbps data transfer rate
+
+- 100,000 requests per second
+
+- 25 Origins
+
+- 100 CNAMES
+
+Per Account limits include:
+
+- 200 web distributions; 100 RTMP
 
 ## Distributions
 
-A Distribution is the name for the CDN you create - essentially a collection of Edge Locations. Two types of distributions: RTMP (for a Adobe Flash server???) and Web Distribution.
+A Distribution is the name for the CDN you create - essentially a collection of Edge Locations. Two types of distributions: RTMP, for Adobe Flash based content, and a Web Distribution which can use S3 or a custom origin.
 
 GET, HEAD, OPTIONS can be cached; PUT, POST, PATCH, DELETE are not cached and do not invalidate objects in the cache
 
 Custom origins and custom origin rules determine which part of website requests go where.
 
+### RTMP Distributions
+
+Unlike these file based options RTMP Distributions is an actual streaming of video instead of serving files and the origin must be a S3 bucket. Does not support iOS or HTML and only support Adobe Flash.
+
 ### Web Distributions
 
 A 0 TTL forces CloudFront to check the `If-Modified-Since` header to see if the origin has changed.
 
-### Video Distributions
+If it is dyanamic content use a custom origin; enable forwarding query string; and set the TTL to 0. TTL = 0 enables a pull through caching mechanism where CloudFront sends a GET request to the origin with an "If-Modified-Since" header.
+
+#### Video Distributions
 
 Video streaming is essentially a web cloud front distribution that hosts video oriented files - except for RTMP. There is no [streaming switch](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cache-hit-ratio.html#cache-hit-ratio-http-streaming) for CloudFront. Types of video oriented distribution options include:
 
@@ -33,29 +53,15 @@ Video streaming is essentially a web cloud front distribution that hosts video o
 
 - Progressive Downloads - again use a web distribution and use an HTTP-based dynamic streaming protocol such as Apple HTTP Dynamic Streaming (Apple HDS), Apple HTTP Live Streaming (Apple HLS), Microsoft Smooth Streaming, or MPEG-DASH.  Progressive downloads won't work with signed URLS.
 
-- Live streaming - pretty much the same as progressive downloads except the origin is a WOWZA media server which probably sits on an EC2 instance.
+- Live streaming - pretty much the same as progressive downloads except the origin is a WOWZA media server which probably sits on an EC2 instance. CloudFront is super effective with a WOWZA server...
 
-Unlike these file based options RTMP Distributions is an actual streaming of video instead of serving files. Does not support iOS or HTML and only support Adobe Flash.
 
-## Working with Objects
-
-If it is dyanamic content use a custom origin; enable forwarding query string; TTL 0; 
-
-TTL = 0 enables a pull through caching mechanism where CloudFront sends a GET request to the origin with an "If-Modified-Since" header.
-
-### Invalidation Techniques
-
-Objects are cached for the life of the TTL
-
-Delete origin file; wait for TTL to expire
-
-Use Invalidation API to remove object from edge location
-
-Use route53 CNAME to point new distribution as an alternative
 
 ### Private Content
 
-Security files can be done using signed URLs or using signed Cookies using the Restrict Viewer Access option.
+Security files can be done using signed URLs or using signed Cookies using the Restrict Viewer Access option. Secure RTMP needs a signed URL while secure Progressive Download coud use a signed URL, user CAN download the entire file which is sort of bad for some use cases. For secure HLS use signed cookies because there are tons of small files and signed URLs won't work.
+
+Resticting users from going directly to S3 use Origin Access Identity which is a CloudFront user you can give read access to the origin bucket.
 
 ### Configuration 
 
@@ -64,6 +70,12 @@ CloudFront has many, many configuration options including:
 * Device detection - Redirect or serve different content based on user agent
 
 * CNAMEs - supports wildcard CNAMES and up to 10 CNAMES total
+
+* Origin KeepAlive Timeout - keep connection from edge location to the CloudFront origin open
+
+* Allowed HTTP Methods - can be just GET and HEAD
+
+* Origin Protocol Policy - HTTP, HTTPS or Match Viewer; S3 only support HTTP
 
 configure custom SSL Cert - work with Certification SSL?
 Generic SSL Cert
@@ -100,27 +112,29 @@ Control access to section of site or type of media on site = signed cookie
 
 Control access to a URL for a period of time = signed URL
 
-SSL configuration
-
 ## Troubleshooting
 
 [Serving Private Content through CloudFront](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
 
 [Increase cache hits](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cache-hit-ratio.html)
 
+Restrict access to S3 content? origin access identity, which is a special CloudFront user with a bucket policy
+
 reporting
 
-invalidation
+### Invalidation Techniques
 
-Secure RTMP? Signed URL
+Objects are cached for the life of the TTL
 
-Secure Progressive Download? Signed URL; user CAN download the entire file which is sort of bad for some use cases
+- Slow cheap invalidation: Delete origin file; wait for TTL to expire
 
-Secure HLS? Signed Cookies because there are tons of small files and signed URLs won't work
+- Fast, Expensive invalidation: Use Invalidation API to remove object from edge location
 
-support zone apex - use Route53 to alias to CloudFront distribution; no charge for alias record lookup (Queries to Alias records that are mapped to Elastic Load Balancers, Amazon CloudFront distributions, AWS Elastic Beanstalk environments, and Amazon S3 website buckets are free.)
+- Blue/green invalidation: Use route53 CNAME to point new distribution as an alternative
 
-edge caching
+- Build Process invalidation: 
+
+- support zone apex? - use Route53 to alias to CloudFront distribution; no charge for alias record lookup (Queries to Alias records that are mapped to Elastic Load Balancers, Amazon CloudFront distributions, AWS Elastic Beanstalk environments, and Amazon S3 website buckets are free.)
 
 Redirect HTTP to HTTPS is a common security feature which can be enable on Cloudfront.
 
@@ -134,5 +148,5 @@ Increase cache hit percentage is the #1 way to increase CloudFront performance. 
 
 Dynamic content personalization with cookies
 
-Restrict access to S3 content = origin access identity
+
 
