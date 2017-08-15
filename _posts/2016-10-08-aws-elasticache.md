@@ -15,7 +15,7 @@ The Write Through caching strategy updates the cache when the data is written to
 
 The easiest way to implement caching on AWS is [ElastiCache ](https://aws.amazon.com/elasticache/), a managed service the provides caching services for apps. There are two engines available from ElastiCache: Redis and memecached. Reserved instances are a great choice here; spot instances are not.
 
-ElastiCache only backs up Redis clusters. Snapshots backup the data for the entire cluster at a specific time and probably cause a performance degradation. Try to backup read replicas! Redis is multi-AZ friendly.
+ElastiCache only backs up Redis clusters. Snapshots backup the data for the entire cluster at a specific time and probably cause a performance degradation. Try to backup read replicas which get updated synchrously and even in a multi-AZ friendly setup!
 
 | Thingy | memecached | Redis |
 |--------|-----------|--------|
@@ -46,7 +46,7 @@ multithreaded; and performs well up to 90% utilization then increase size of nod
 
 ## Redis
 
-Single threaded; generally scale UP with larger instances by snapshoting and increasing the instance size OR scale out with more READ replicas; Automatic and manual snapshots work like RDS
+Single threaded; generally scale UP with larger instances by snapshoting and increasing the instance size OR scale out with more READ replicas; Automatic and manual snapshots work like RDS; snapshotting read replicas is a great idea.
 
 | **Metric**  | **Description**  |**Solution**  |
 |:-----------------------------------------|:--------------------------------------------------------|:----------------------| 

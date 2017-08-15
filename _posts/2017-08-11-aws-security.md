@@ -76,12 +76,12 @@ Generally IDS/IPS systems site in a public subnet and write data from received f
 ## Services
 
 ### Mitigation
-  
 
+ASG, CloudFront, ELB, Route53
 
-  ASG, CloudFront, ELB, Route53
-  DDoS Protection - waf, shield
-  CloudWatch
+DDoS Protection - waf, shield
+
+CloudWatch
 
 
 
@@ -90,3 +90,5 @@ Generally IDS/IPS systems site in a public subnet and write data from received f
 - [Overview of Security Processes White Paper](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Whitepaper.pdf)
 
 - [DDoS White Paper](https://d0.awsstatic.com/whitepapers/Security/DDoS_White_Paper.pdf)
+
+- [Best Practices for Content Delivery using Amazon CloudFront](https://www.youtube.com/watch?v=s9Xt1qzD6SA)

@@ -41,7 +41,6 @@ CloudHSM would be great if you need FIPS 140-2 validation and don't mind fixed c
 
 The HSM does work with peered VPC as well.
 
-
 ## HSM or KMS ?
 
 Overall, KMS is probably adequate unless additional protection is necessary for some applications and data that are subject to strict contractual or regulatory requirements for managing cryptographic keys, then HSM should be used.
@@ -57,3 +56,6 @@ Centralize Key Management onsite & AWS? HSM
 Complete Key Control? HSM
 
 FIPS 140-1 or 140-2? HSM
+
+High-performance in-VPC cryptographic acceleration (bulk crypto) (including Apache and Nginx for SSL offload)? HSM
+

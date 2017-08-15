@@ -39,9 +39,21 @@ Unlike these file based options RTMP Distributions is an actual streaming of vid
 
 ### Web Distributions
 
+#### Static Content
+
 A 0 TTL forces CloudFront to check the `If-Modified-Since` header to see if the origin has changed.
 
+#### Dynamic Content
+
 If it is dyanamic content use a custom origin; enable forwarding query string; and set the TTL to 0. TTL = 0 enables a pull through caching mechanism where CloudFront sends a GET request to the origin with an "If-Modified-Since" header.
+
+Types of dynamic content includes:
+
+- Unique content per request
+
+- not unique but has a short TTL - stale content will be served if origin is unavailable
+
+- end user input changes user request
 
 #### Video Distributions
 
@@ -55,11 +67,15 @@ Video streaming is essentially a web cloud front distribution that hosts video o
 
 - Live streaming - pretty much the same as progressive downloads except the origin is a WOWZA media server which probably sits on an EC2 instance. CloudFront is super effective with a WOWZA server...
 
+Optimize distribution by not forwarding headers, cookies or query strings in these scenarios and use signed cookies for access control.
 
+### Access Control Content
 
-### Private Content
+Access control can be done using signed URLs or using signed Cookies using the Restrict Viewer Access option. 
 
-Security files can be done using signed URLs or using signed Cookies using the Restrict Viewer Access option. Secure RTMP needs a signed URL while secure Progressive Download coud use a signed URL, user CAN download the entire file which is sort of bad for some use cases. For secure HLS use signed cookies because there are tons of small files and signed URLs won't work.
+Use signed URLs for RTMP needs a signed URL while secure Progressive Download could use a signed URL, user CAN download the entire file which is sort of bad for some use cases. Use for marketing emails too.
+
+Use signed cookies for secure HLS, because there are tons of small files and signed URLs won't work. Use for whole site authentication too.
 
 Resticting users from going directly to S3 use Origin Access Identity which is a CloudFront user you can give read access to the origin bucket.
 
@@ -77,12 +93,17 @@ CloudFront has many, many configuration options including:
 
 * Origin Protocol Policy - HTTP, HTTPS or Match Viewer; S3 only support HTTP
 
-configure custom SSL Cert - work with Certification SSL?
-Generic SSL Cert
-
 #### HTTPS
 
 If the origin is S3 all requests are made to the distribution will stay the same protocol... so a request in HTTPS then it will be forwarded via HTTPS. Custom Origins can be configured to use HTTP only or to match viewer, which will match the user agent protocol.
+
+There are three different ways to configure SSL (in order of goodness):
+
+- Generic SSL Cert - using *.cloudfront.net SSL certificate
+
+- SNI Custom SNL - multiple domains to serve SSL over same IP address; good support overall browsers; included with CloudFront
+
+- Dedicated IP Custom SSL - expensive; limited support from ancient browsers
 
 ### Cloudfront Reports
 
@@ -97,12 +118,6 @@ Geo Restrictions - by default this is disabled; you can either disable (blacklis
 As a protip, don't cache credit card information in CloudFront edge caches. For example, you can configure your origin to include a Cache-Control:no-cache="field-name" header in responses that contain credit card information, such as the last four digits of a credit card number and the card owner's contact information.
 
 Redirect HTTP to HTTPS is a common security feature which can be enable on Cloudfront.
-
-There are two different ways to configure SSL:
-
-Dedicated IP Custom SSL - expensive; limited support from ancient browsers
-
-SNU Custom SNL - multiple domains to serve SSL over same IP address; good support overall browsers
 
 ## When
 
@@ -120,8 +135,6 @@ Control access to a URL for a period of time = signed URL
 
 Restrict access to S3 content? origin access identity, which is a special CloudFront user with a bucket policy
 
-reporting
-
 ### Invalidation Techniques
 
 Objects are cached for the life of the TTL
@@ -132,21 +145,28 @@ Objects are cached for the life of the TTL
 
 - Blue/green invalidation: Use route53 CNAME to point new distribution as an alternative
 
-- Build Process invalidation: 
+- Build Process invalidation: Rename files
+
+### Best practices 
 
 - support zone apex? - use Route53 to alias to CloudFront distribution; no charge for alias record lookup (Queries to Alias records that are mapped to Elastic Load Balancers, Amazon CloudFront distributions, AWS Elastic Beanstalk environments, and Amazon S3 website buckets are free.)
 
-Redirect HTTP to HTTPS is a common security feature which can be enable on Cloudfront.
+- Redirect HTTP to HTTPS is a common security feature which can be enable on Cloudfront.
 
-Need multiple Geo Restrictions? create multiple distributions
+- Need multiple Geo Restrictions? create multiple distributions
 
-If your web server is not connected to a load balancer, we recommend that you use web server variables instead of the X-Forwarded-For header to avoid IP address spoofing.
+- If your web server is not connected to a load balancer, we recommend that you use web server variables instead of the X-Forwarded-For header to avoid IP address spoofing.
 
-configure PUT to edge location and forward to S3
+- configure PUT to edge location and forward to S3
 
-Increase cache hit percentage is the #1 way to increase CloudFront performance. Increasing min and max TTL helps improve this metric.
+- Increase performance of your website? Increase cache hit percentage is the #1 way to increase CloudFront performance. Increasing min and max TTL helps improve this metric.
 
-Dynamic content personalization with cookies
+- Realtime metrics about website? monitor distribution with CloudWatch
 
+- increase HA? multiple Distributions behind Route53
+
+- Custom Error Message? from S3 with low TTL
+
+- Use Route53 Alias records which are free isntead of CNAME; Alias your zone apex
 
 

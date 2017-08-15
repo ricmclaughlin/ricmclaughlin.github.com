@@ -3,7 +3,7 @@ layout: post
 title: "IoT on AWS Course Development"
 description: ""
 category: posts
-tags: [aws, aws-iot, curriculum-dev]
+tags: [aws-iot, curriculum-dev]
 ---
 {% include JB/setup %}
 
