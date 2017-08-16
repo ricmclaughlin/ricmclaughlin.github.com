@@ -32,16 +32,8 @@ Use the [Tag editor](http://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/ta
 
 ## Cross Account Access
 
+Checkout [STS use cases](/posts/aws-security)
 
-### STS Use Cases
-
-- SSO to console; no SAML? Broker with `STS:AssumeRole`; requires IAM user
-
-- SS0 to API; no SAML? Broker with `GetFederationToken`; requires IAM user
-
-- SSO to AD or other SAML? no broker; `AssumeRoleWithSAML`
-
-- WIF? auth with IdP; `AssumeRoleWithWebIdentity`
 
 
 # Ability to compare and contrast the cost implications of different architectures

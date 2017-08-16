@@ -79,11 +79,11 @@ Bad for: persistant storage (s3 or EBS/EFS), RDMBS (EBS), shared storage (EFS), 
 
 Use Case: 
 
-NoSQL? I2 (365K IOPS)
+- NoSQL? I2 (365K IOPS)
 
-MPP/Hadoop/EMR? D2 3.5 Gib/s; Might prewarm to get max performance
+- MPP/Hadoop/EMR? D2 3.5 Gib/s; Might prewarm to get max performance
 
-Backup instance store? no snapshotting, file backup on mounted EFS/EBS 
+- Backup instance store? no snapshotting, file backup on mounted EFS/EBS 
 
 ## Storage Gateway/Snowball
 
@@ -93,7 +93,7 @@ Use Cases:
 
 - Cached = less to maintain local so cheaper outlay, frequently access to small amount of data
 
-- Stored = low latency for ALL data; snapshots can be used as a migration tool; better for traditional instance backup
+- Stored = low latency for ALL data with EBS Snapshots; snapshots can be used as a migration tool; better for traditional instance backup
 
 - Virtual Tape Library - fast access. 1500 tape..
 
@@ -105,27 +105,40 @@ Use Cases:
 
 # Demonstrate ability to make architectural trade off decisions involving database options
 
-Use RDS for ACID, joins, complex queries
+- Use RDS for ACID, joins, complex queries
 
-Don't use RDS for index and query focused, BLOB
+- Don't use RDS for index and query focused, BLOB
 
-Use DynamoDB for indexed, query focused data, automated scalability
+- Use DynamoDB for indexed, query focused data, automated scalability
 
-Don't use DynamoDB for prewritten apps, data larger than 400kb, BLOB, relational data
+- Don't use DynamoDB for prewritten apps, data larger than 400kb, BLOB, relational data
 
-Use EC2 for DB2, Informix or Sybase
+- Use EC2 for DB2, Informix or Sybase
 
-Use EC2 for complete control of DB
+- Use EC2 for complete control of DB
 
 # Demonstrate ability to implement the most appropriate data storage architecture
 
 ^^^See above^^^
 
+## Products with automated backup
+
+- Redshift
+
+- Redis
+
+- RDS
+
+## Products that don't automatically backup
+
+- EC2
+
+
 # Determine use of synchronous versus asynchronous replication
 
-Multi-AZ RDS = synchronous
+- Multi-AZ RDS = synchronous
 
-RDS Read Replica = asynchronous
+- RDS Read Replica = asynchronous
 
 # Key Resources
 

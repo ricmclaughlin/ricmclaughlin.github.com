@@ -9,11 +9,11 @@ tags: [aws, direct-connect, aws-solutions-arch-pro, networking]
 
 # Direct Connect
 
-[Direct Connect](https://aws.amazon.com/directconnect/) makes it easy to connect an on-premise data center with AWS. Instead of running AWS bound traffic out your regular Intenet connection, Direct Connect enables a 1 or 10 GB dedicated connections to be setup using industry standard 802.1 VLANS to your VPC - provided you remembered to subnet and address your VPC correctly! 
+[Direct Connect](https://aws.amazon.com/directconnect/)(DX) makes it easy to connect an on-premise data center with AWS. Instead of running AWS bound traffic out your regular Intenet connection, Direct Connect enables a 1 or 10 GB dedicated connections to be setup using industry standard 802.1 VLANS to your VPC - provided you remembered to subnet and address your VPC correctly! 
 
 An AWS Direct Connect location provides access to AWS in the region with which it is associated. You can provision a single connection to any AWS Direct Connect location in North America and use it to access public AWS services in all North America regions and AWS GovCloud (US). 
 
-Direct connect is not redundant by default but can be if you use BGP to have multiple direct connects in either an active-active (recommended) or active-failover setup with two CGW.Layer 2 connections are not supported.
+Direct connect is not redundant by default but can be if you use BGP to have multiple direct connects in either an active-active (recommended) or active-failover setup with two CGW. Layer 2 connections are not supported.
 
 There are lower bandwidths of connection available through partners using VLAN trunking - 802.1Q but no SLA available. 
 
@@ -35,4 +35,4 @@ Virtual Interfaces (VIF) - the connection similiar to a tunnel for a VPN. They c
 
 ## Transition from VPN to Direct Connect
 
-Once Direct Connect is installed configure it and the VPN to occupy the same BGP Community. Then configure BGP to assign a higher cost the VPN and the traffic will flow through the Direct Connect line.
+Once Direct Connect line is installed, configure DX and the VPN to occupy the same BGP Community. Then configure BGP to assign a higher cost the VPN and the traffic will flow through the DX line.

@@ -51,9 +51,9 @@ Deleting a cluster does not create a final snapshot and deletes all the automate
 
 Free automatic storge for snapshots and backups up the amount of storage in the cluster.  
 
-Snapshots are point-in-time backups. Redshift nodes are continuously backed up to S3
+Snapshots are point-in-time backups. Redshift nodes are continuously backed up to S3.
 
-The automatic snapshot copy feature copies snapshots from one region to another manually and automatically. Automatic snap shotting can be configured with a retention period (default of 7 days) and does incur data transfer costs.
+Automatic snap shotting can be configured with a retention period (default of 1 days) and can not be manually deleted. The automatic snapshot copy feature copies snapshots from one region to another manually and automatically  and does incur data transfer costs. 
 
 Restoring data from a snapshot by launching a new cluster and importing the data from the snapshot. The snapshot contains the number of nodes, type of nodes, the cluster configuration and the data included in the nodes.
 

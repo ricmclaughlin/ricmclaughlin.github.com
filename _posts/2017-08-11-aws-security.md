@@ -23,8 +23,7 @@ tags: [aws, vpc, aws-solutions-arch-pro, aws-guides]
 # Design identity and access management controls
   
   STS
-    ID broker Scenarios
-      Auth with LDAP first, then hit STS to get role info for temp access
+
   IAM
   Directory Services
   Tag Manager

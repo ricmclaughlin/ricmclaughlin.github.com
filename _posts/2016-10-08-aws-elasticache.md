@@ -46,7 +46,7 @@ multithreaded; and performs well up to 90% utilization then increase size of nod
 
 ## Redis
 
-Single threaded; generally scale UP with larger instances by snapshoting and increasing the instance size OR scale out with more READ replicas; Automatic and manual snapshots work like RDS; snapshotting read replicas is a great idea.
+Single threaded; generally scale UP with larger instances by snapshoting and increasing the instance size OR scale out with more READ replicas; Automatic and manual snapshots work like RDS with storage in S3; snapshotting read replicas is a great idea because snapshotting will degrade performance.
 
 | **Metric**  | **Description**  |**Solution**  |
 |:-----------------------------------------|:--------------------------------------------------------|:----------------------| 

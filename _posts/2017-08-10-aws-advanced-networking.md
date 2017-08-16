@@ -43,9 +43,9 @@ Access S3 bucket in VPC? S3 end point
 
 - Access private stuff? private VIF
 
-- Access Public stuff? private VIF
+- Access Public stuff? public VIF
 
-- Access Public stuff in any US region?
+- Access Public stuff in any US region? 
 
 ## VPN
 
@@ -53,7 +53,7 @@ Good connection with limited HA use two IPSec tunnel connections with [BGP](http
 
 VPNs might use RSA asymmetric keys (like SSL) or use Diffie-Hellman which provides Perfect Forward Secrecy and typically uses AES encryption.
 
-There are four options to VPN into a VPC including hardware VPN, Direct Connect, VPN CloudHub, Software VPN
+There are four options to VPN into a VPC including hardware VPN, Direct Connect, VPN CloudHub, Software VPN. 
 
 ### VPN Setup
 
@@ -65,7 +65,7 @@ There are four options to VPN into a VPC including hardware VPN, Direct Connect,
 
 ### VPN Limits
 
-To connect securely with your VPC on AWS you can create a Virtual Public Gateway and connect that to a Customer Gateway forming a VPN. Dual VPN tunnels provide higher availability. Limits on VPN include:
+To connect securely with your VPC on AWS you can create a Virtual Public Gateway and connect that to a Customer Gateway forming a VPN. Dual VPN tunnels provide higher availability and that is the default configuration. Limits on VPN include:
 
 - 5 Virtual Private Gateways per region
 
