@@ -7,7 +7,7 @@ tags: [aws, cloudtrail, aws-dev-ops-pro, aws-solutions-arch-pro, aws-services]
 ---
 {% include JB/setup %}
 
-AWS [CloudTrail](https://aws.amazon.com/documentation/cloudtrail/) is a fully managed web service that records an auditing of AWS API calls for your account and delivers log files to you encypted in an s3 bucket. This is a key component for auditing and compliance needs - both HIPAA and PCI require 6 years of access logs to be stored and without CloudTrail that just isn't possible! CloudTrail stores log data in JSON format. CloudTrail adds value to logging is not a replacement for other system or AWS service logs.
+AWS [CloudTrail](https://aws.amazon.com/documentation/cloudtrail/) is a fully managed web service that records an auditing of AWS API calls for your account and delivers log files to you encypted in an s3 bucket or [CloudWatch](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/monitor-cloudtrail-log-files-with-cloudwatch-logs.html). This is a key component for auditing and compliance needs - both HIPAA and PCI require 6 years of access logs to be stored and without CloudTrail that just isn't possible! CloudTrail stores log data in JSON format. CloudTrail adds value to logging is not a replacement for other system or AWS service logs.
 
 You can have a total of 5 trails per region.
 
@@ -29,7 +29,7 @@ The log file validation feature creates a digest of log files and the CLI can va
 
 I'd recommend creating an SNS notification for when log file delivery has occurred. Use this notification to trigger loading the data into an analysis tool. 
 
-In the past CloudTrail data was really only good for figuring out what happened in the past. Now you can use the CloudWatch Logs feature and monitor the CloudTrails data in semi-real time by filtering the log for events and creating an event then an alarm for the event. Logs are delivered within 15 minutes of an API call and delivery of the logs is timed about every 5 minutes.
+In the past CloudTrail data was really only good for figuring out what happened in the past. Now you can use the CloudWatch Logs feature and monitor the CloudTrails data in semi-real time by filtering the log for events then creating an event then an alarm for the event. Logs are delivered within 15 minutes of an API call and delivery of the logs is timed about every 5 minutes.
 
 Popular events to monitor for include: 
 

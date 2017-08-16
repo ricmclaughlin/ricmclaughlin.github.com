@@ -11,7 +11,7 @@ Encryption Key Management is a major function of online systems that requires lo
 
 # KMS
 
-KMS is a managed service that makes it easy for your to create, control, rotate and use encryption keys. It uses asymmetric encryption (2 different keys). Symmetric is not supported. KMS keys are single region. The Customer Master Key is the default key used by KMS to encrypt/decrypt. 
+KMS is a managed service that makes it easy for your to create, control, rotate and use encryption keys. It uses asymmetric encryption (2 different keys). Symmetric is not supported. The Customer Master Key is the default key used by KMS to encrypt/decrypt the data key; the encrypted data key is stored with the data. 
 
 ## Service Features
 
@@ -21,7 +21,7 @@ KMS is a managed service that makes it easy for your to create, control, rotate 
 
 * Regional Independence - your key can't travel the world...
 
-* Integrated with AWS CloudTrail & Cloud watch
+* Integrated with AWS CloudTrail & Cloud watch; KMS keys are single region
 
 * Full AWS API, CLI and SDK suppot
 
@@ -31,7 +31,7 @@ Roles don't need access to 'admin' access the key to USE the key. Role, users an
 
 # CloudHSM
 
-CloudHSM is a single tenant hardware security module that you can place in a VPC. There is very limited integration with AWS services with only Oracle, MS SQL and Redshift well supported; S3, KMS and EBS encryption are possible but integration applications must be written.
+CloudHSM is a single tenant hardware security module that must in a VPC. There is very limited integration with AWS services with only Oracle, MS SQL, and Redshift well supported. One big use case is SSL decryption. S3, KMS, and EBS encryption are possible but integration applications must be written. 
 
 AWS does not have access to the contents of your module. If you loose the keys, they are lost if you did not have a copy.
 

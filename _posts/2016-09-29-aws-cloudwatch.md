@@ -63,7 +63,7 @@ Using CloudWatch logs, you can monitor logs from any source in AWS, like EC2 or 
 
 ### Exporting, Subscriptions & Streaming
 
-Once the data is in Cloudwatch logs, it is pretty straightforward to send it elsewhere for processsing. Subscriptions are closely related to filters... except the output of them is to a different service such as Kinesis Streams, Lambda or Kinesis Firehose.
+Once the data is in Cloudwatch logs, it is pretty straightforward to send it elsewhere for processsing. Subscriptions are closely related to filters... except the output of them is to a different service such as Kinesis Streams, Lambda, or Kinesis Firehose.
 
 Logs can be exported to S3 or ElasticSearch directly from CloudWatch.
 
@@ -79,7 +79,7 @@ Targets - Where events are processed including Lambda, Kinesis, SNS or built-in 
 
 ## Monitoring Approach
 
-At the time this course I was taking was written, which is way far in the past, here are 5 statistics total including average, min, max, sum and SampleCount. Use the `GetMetricStatistics` API command from the command line. 
+At the time this course I was taking was written, which is way far in the past, here are 5 statistics total including average, min, max, sum, and `SampleCount`. To view these metrics from the command line `GetMetricStatistics` API command. 
 
 Overall picture - compare SUM and difference between min and max values to get an overview of the data
 

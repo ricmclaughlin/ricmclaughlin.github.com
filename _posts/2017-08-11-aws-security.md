@@ -9,34 +9,41 @@ tags: [aws, vpc, aws-solutions-arch-pro, aws-guides]
 
 # Design information security management systems and compliance controls
   
-  CloudWatch
-  Inspector
-  CloudTrail
-  VPC Flow Logs
+- [CloudWatch](/posts/aws-cloudwatch) - logs retained forever; alarms & metrics retained 14 days
+
+- [CloudTrail](/posts/aws-cloudtrail) - Records API access to a log or Cloudwatch
+
+- [Inspector](https://aws.amazon.com/inspector/) - this applies yet isn't covered yet...
+
+- [VPC](/posts/aws-vpc) - VPC Flow Logs
 
 # Design security controls with the AWS shared responsibility model and global infrastructure
   
-  - Cloud HSM
-
-  - KMS
+- [Cloud HSM/KMS](/posts/aws-kms-hsm) - single tenant; need two; keys are regional; Oracle, MS SQL, redshift, SSL offload
 
 # Design identity and access management controls
   
-  STS
+- [STS](/posts/aws-sts) - client -> broker -> IdP -> broker -> STS -> broker -> client
 
-  IAM
-  Directory Services
-  Tag Manager
+- [IAM](/posts/aws-iam) - Pretty much all of this...
+  
+- [Directory Service](/posts/aws-directory-service) - simple AD = Samba 4 (NO MFA); AD Connector (MFA!!)
+
+- Tag Manager and resource groups as described in the [costing drill down](/posts/aws-costing)
 
 # Design protection of Data at Rest controls
 
-  Encryption - S3, RDS 
-  Bucket Policies
-  MFA Delete
-  Versioning
-  Backup to separate account
+- [RDS](/posts/aws-rds)
+
+- [S3](/posts/aws-s3) - Bucket Policies; MFA Delete; Versioning; Backup to separate account; encryption
 
 # Design protection of Data in Flight and Network Perimeter controls
+
+- [VPC](/posts/aws-vpc) - SG vs NACLS
+
+- [CloudFront](/posts/aws-cloudfront) - SSL
+
+- [Elastic Load Balancer](/posts/aws-elastic-load-balancer)
 
 ## Network Security
 
@@ -62,27 +69,37 @@ Mitigation is all about minimizing the attack surface, absorbing the attack, saf
 
 - Learn normal behavior - and set alarms for abnormal traffic patterns. Generally using CloudWatch and VPC flow logs is the way to figure out if there is a DDoS attach underway and what normal traffic is. Important CloudWatch metrics to watch include: Cloudfront TotalErrorRate and Requests, EC2 CPUUtilization and NetworkIn and ELB SurgeQueueLength, and RequestCount.
 
+## Services to mitigate DDoS
+
+### Minimize attack area
+
+- NAT - lock down access to production IP addresses
+
+- ELB - well-formed TCP connections only; no SYN floods or UDP reflection attacks
+
+### Absorb
+
+- ASG - get bigger to absorbe the attack...
+
+- Shield - insurance for when the attack comes
+
+### Safeguard Exposed Resources
+
+- WAF - inspect and disallow traffic
+
+- CloudFront - Origin Access Identity, geo restriction & blocking
+
+- Route53 - low cost aliases, geo restriction, private IP
+
 ### General Protection Services
 
 Two main types of services:
 
-Intrusion Detection System (IDS) - inspects all inbound and outbound network activity and IDs suspicious patterns; this is just a monitoring service. Generic versions of IDS don't work on AWS because they rely on packet sniffing sort of promiscuous mode and that is a no-go; a proxy service or proxy server sort of architecture might work or redirecting copies of traffic to a service using agents on servers.
+- Intrusion Detection System (IDS) - inspects all inbound and outbound network activity and IDs suspicious patterns; this is just a monitoring service. Generic versions of IDS don't work on AWS because they rely on packet sniffing sort of promiscuous mode and that is a no-go; a proxy service or proxy server sort of architecture might work or redirecting copies of traffic to a service using agents on servers.
 
-Intrusion Protection System (IPS) - inspects all inbound and outbound network activity AND protects the stuff from intrusion
+- Intrusion Protection System (IPS) - inspects all inbound and outbound network activity AND protects the stuff from intrusion
 
 Generally IDS/IPS systems site in a public subnet and write data from received from an EC2 agent to a log the forward the log to a SOC or sometime in S3.
-
-## Services
-
-### Mitigation
-
-ASG, CloudFront, ELB, Route53
-
-DDoS Protection - waf, shield
-
-CloudWatch
-
-
 
 ## Resources
 
