@@ -91,7 +91,7 @@ Disposable deployment types are generally slower because new resources must be c
 
 ### Product Strengths and Weaknesses
 
-* EB - fastest and simpliest way to deploy code; Beanstalk doesn’t allow as much flexibility for some configurations and deployments and is more suitable for shorter application lifecycles where an environment can be thrown away with each deploy; not good for lots of dependencies with more than apt-get functionality or heavy configuration
+* EB - fastest and simpliest way to deploy code; Beanstalk doesn’t allow as much flexibility for some configurations and deployments and is more suitable for shorter application lifecycles where an environment can be thrown away with each deploy; not good for lots of dependencies with more than apt-get functionality or heavy configuration; can provision RDS but don't want to; only changes to git repos are moved to pro; source generally from S3
 
 * Opsworks - more focused on application management; can't do rolling batch with Opsworks...
 

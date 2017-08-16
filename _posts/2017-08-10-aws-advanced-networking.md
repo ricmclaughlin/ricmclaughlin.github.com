@@ -21,13 +21,11 @@ tags: [aws, vpc, aws-solutions-arch-pro, aws-guides]
 
 - VPC Peering
 
-Jumbo Frames - Bigger MTU enables higher throughput; Risky outside of VPC; most useful in VPC
-
 ## HPC Use Cases
 
 - Grid - distributed work loads that are loosely coupled and don't require tight communication between nodes; ASG has application here
 
-- Cluster Computing - two or more instances connected together to support an application; high throughput low latency communication between nodes; weather computations; placement groups
+- Cluster Computing - two or more instances connected together to support an application; high throughput low latency communication between nodes; weather computations; placement groups; Jumbo Frames - Bigger MTU (9000 byte) enables higher throughput; Risky outside of VPC; most useful in VPC with shared file systems like Lustre & NFS
 
 ## VPC Multicast Support
 

@@ -7,15 +7,15 @@ tags: [aws, devops, elastic-load-balancer, aws-dev-ops-pro]
 ---
 {% include JB/setup %}
 
-[Elastic Load Balancer](https://aws.amazon.com/documentation/elastic-load-balancing/) distributes traffic to instances that belong to the ELB group - this can be in a single AZ or multiple AZs. One nifty features it that it allows us to offload SSL certs to load balancers instead of webservers! ELB configuration requires a protocol, a front end port, and a back end port. ELB are NOT free - there is a charge by the hour and per GB of usage. Only one SSL Cert per ELB. The max number of requests that can be queued is 1024, can only use one subnet per AZ; can use up to 5 Security groups and also use deletion protection.
+[Elastic Load Balancer](https://aws.amazon.com/documentation/elastic-load-balancing/) distributes traffic to instances that belong to the ELB group - generaly across multiple AZs. One nifty features it that it allows us to offload SSL certs to load balancers instead of webservers! ELB configuration requires a protocol, a front end port, and a back end port. ELB are NOT free - there is a charge by the hour and per GB of usage. Only one SSL Cert per ELB. The max number of requests that can be queued is 1024, can only use one subnet per AZ; can use up to 5 Security groups and also features deletion protection.
 
 There are two version of ELB - Classic Load Balancer (only a few ports + TCP, HTTP, HTTPS, SSL; layer 4) and Application Load Balancer (any port - just HTTP, HTTPS; layer 7). ELBs do not have a defined IPV4 address but do support both IPV4 & IPV6.
 
 Lots of differences between externally and internally facing load balancers:
 
-- External = must be placed in a public subnet; Elastic IP; external DNS
+- External = must be placed in a public subnet; public IP; external DNS
 
-- Internal = no public IP or Elastic IP; internal DNS name
+- Internal = no public IP; internal DNS name
 
 Lots of times you will know there is more traffic a-coming. In these cases you can "pre-warm" the ELB by contacting AWS!
 
@@ -33,7 +33,7 @@ Managing the certificate on the ELB is always the magic... In fact, managing cer
 
 In addition to a cert, you need to define an SSL Negotiation configuration, called a security policy, which is a combination of SSL protocols, SSL ciphers, and the Server Order Preference option.
 
-Multiple SSL Certs are required unless you use a wildcard certificate.
+If you have multiple ELB then multiple SSL Certs are required unless you use a wildcard certificate.
 
 ## Health Checks
 
@@ -43,11 +43,11 @@ ELB [health checks](http://docs.aws.amazon.com/elasticloadbalancing/latest/class
 
 ## Metrics
 
-Metrics are reported every 60 seconds but if there is no traffic, no metric will be reported. For the ELB there are two useful dimensions the `AvailabilityZone` and `LoadBalancerName`; the ALB adds a `TargetGroup` dimension.
+Metrics are reported every 60 seconds but if there is no traffic, no metric will be reported. For the ELB there are two useful dimensions: the `AvailabilityZone` and `LoadBalancerName`; the ALB adds a `TargetGroup` dimension.
 
 * SurgeQueueLength - Length of waiting queue - closer to zero the better (up to 1024)
 
-* SpilloverCount - How many requests are NOT serviced by the load balancer in EXCESS of the QueueLength - closer to zero the better; This is a bad, bad thing. Avoid. ELB reports a `503 - Service Unavailable`
+* SpilloverCount - How many requests are NOT serviced by the load balancer in EXCESS of the QueueLength - closer to zero the better; This is a bad, bad thing. Avoid. ELB reports a `503 - Service Unavailable` to the client in this scenario.
 
 * Latency - How long a page takes to return
 
@@ -104,19 +104,19 @@ The ALB can also add the custom "X-Amzn-Trace-Id" HTTP header on all requests to
 | Health Check | TCP, ICMP, HTTP, HTTPS| HTTP, HTTPS |
 | Require MultiAZ? | No | Yes |
 
-# ALB
+# ALB Facts
 
-Path based routing & management - because the routing is based on URL matching target groups can be containers, different port on the same box or simply different target groups. The enables the ability to manage each target group individually.
+Path based routing & management - because the routing is based on URL matching target groups can be containers, different port on the same box or simply different target groups. This enables the ability to manage each target group individually.
 
 Target groups are EC2 instances or containers managed as an entity and checks the health of the group automatically.
 
 ## Listeners
 
-ALB listeners supports HTTP & HTTPS only. Rules determine where the traffic gets forwarded. The default rule has no conditions and runs if no other rules are matched. Each rule has a priority, host and path and can only `Forward` to a target group. 
+ALB listeners supports HTTP & HTTPS only. Rules determine where the traffic gets forwarded. The default rule has no conditions and runs if no other rules are matched. Each rule has a priority, host and path and can only `Forward` to a target group.
 
 ## ELB Facts
 
-In a EC2-Classic situation, an ELB support ports, 25, 80, 443, 465, 587 and 1024-65535 (how is this on the test???) while in an EC2-VPC it support ports 1-65535. An Elastic IP can no be assigned to a ELB. DNS apex zone support is in the house while multiple non-wild card SSL certs will require multiple ELB.
+In a EC2-Classic situation, an ELB support ports, 25, 80, 443, 465, 587 and 1024-65535 (how is this on the test???) while in an EC2-VPC it support ports 1-65535. An Elastic IP can not be assigned to a ELB. DNS apex zone support is in the house while multiple non-wild card SSL certs will require multiple ELB. It also support IPv4 &amp; IPv6. Can load balance the zone apex as well.
 
 ## ELB Cookie Stickiness
 

@@ -11,17 +11,17 @@ tags: [aws, direct-connect, aws-solutions-arch-pro, networking]
 
 [Direct Connect](https://aws.amazon.com/directconnect/)(DX) makes it easy to connect an on-premise data center with AWS. Instead of running AWS bound traffic out your regular Intenet connection, Direct Connect enables a 1 or 10 GB dedicated connections to be setup using industry standard 802.1 VLANS to your VPC - provided you remembered to subnet and address your VPC correctly! 
 
-An AWS Direct Connect location provides access to AWS in the region with which it is associated. You can provision a single connection to any AWS Direct Connect location in North America and use it to access public AWS services in all North America regions and AWS GovCloud (US). 
-
-Direct connect is not redundant by default but can be if you use BGP to have multiple direct connects in either an active-active (recommended) or active-failover setup with two CGW. Layer 2 connections are not supported.
-
-There are lower bandwidths of connection available through partners using VLAN trunking - 802.1Q but no SLA available. 
-
 Overall, Direct Connect gives you some great benefits:
 
 1. Reduce your Internet Bandwidth cost - you are probably paying a lot of money to an ISP and could get a cheaper connection directly to AWS
 
 1. Consistently higher bandwidth and lower latency 
+
+There are lower bandwidths of connection available through partners using VLAN trunking - 802.1Q but no SLA available. 
+
+An AWS Direct Connect location provides access to AWS in the region with which it is associated. You can provision a single connection to any AWS Direct Connect location in North America and use it to access public AWS services in all North America regions and AWS GovCloud (US). To access public resources in a remote region, you must set up a public virtual interface and establish a border gateway protocol (BGP) session. To connect to a VPC in a remote region, you can use a virtual private network (VPN) connection over your public virtual interface.
+
+Direct connect is not redundant by default but can be if you use BGP to have multiple direct connects in either an active-active (recommended) or active-failover setup with two CGW. Layer 2 connections are not supported.
 
 ## Direct Connect Components
 
