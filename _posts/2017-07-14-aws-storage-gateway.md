@@ -7,7 +7,7 @@ tags: [aws, storage-gateway, aws-services, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
-The AWS Storage Gateway is a service connecting an on-premises software appliance with cloud-based storage to provide seamless and secure integration between an organization’s on-premises IT environment and AWS’s storage infrastructure. The software application is a VM and host local, can use Storage Gateway and DOES compress data at rest and in flight and supports bandwidth throttling. The service actives on port 80, uses port 3260 for iSCSI and needs port 53 and port 443 as well. Can be deployed to an EC2 instance. One gateway per site... because it is an local appliance sort of thing which runes on VMware ESXi or Hyper-V
+The AWS Storage Gateway is a service connecting an on-premises software appliance with cloud-based storage to provide seamless and secure integration between an organization’s on-premises IT environment and AWS’s storage infrastructure. The software application is a VM and host local, can use Storage Gateway and DOES compress data at rest and in flight and supports bandwidth throttling. The service actives on port 80, uses port 3260 for iSCSI and needs port 53 and port 443 as well. AWS Storage Gateway can be deployed to an EC2 instance. One gateway per site... because it is an local appliance sort of thing which runes on VMware ESXi or Hyper-V
 
 [File Interface](http://docs.aws.amazon.com/storagegateway/latest/userguide/create-file-gateway.html) - you store and retrieve objects from a local cache which syncs the file to Amazon S3
 

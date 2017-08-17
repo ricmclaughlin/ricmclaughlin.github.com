@@ -46,17 +46,16 @@ multithreaded; and performs well up to 90% utilization then increase size of nod
 
 ## Redis
 
-Single threaded; generally scale UP with larger instances by snapshoting and increasing the instance size OR scale out with more READ replicas; Automatic and manual snapshots work like RDS with storage in S3; snapshotting read replicas is a great idea because snapshotting will degrade performance.
+Single threaded; generally scale UP with larger instances by snapshoting and increasing the instance size OR scale out with more READ replicas which use aysnc replication; Automatic and manual snapshots work like RDS with storage in S3; snapshotting read replicas is a great idea because snapshotting will degrade performance.
 
 | **Metric**  | **Description**  |**Solution**  |
 |:-----------------------------------------|:--------------------------------------------------------|:----------------------| 
 | CPU utilization | threshold: 90 / # of CPU cores| read heavy: read replicas; write heavy: larger cache instance | 
 | evictions | # records ejected from cache | more nodes |
-| CurrConnections | # app to memcached connections| likely an application problem with no closing connections |
+| CurrConnections | # app to redis connections| likely an application problem with no closing connections |
 
 ## Triage
 
 - Simple use case, horizontal scaling (shard), multi-threaded? Memecached
 
 - Complex? Redis
-

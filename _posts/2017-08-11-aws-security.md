@@ -55,7 +55,7 @@ There are four main types of attacks:
 
 * L4 - SYN floods - Amplification/Reflection attacks - attacker sends in a small packet to an unrelated server that needs a 28 to 54 times greater response then the unrelated server using a spoofed address; unrelated server send response to target of attack.
 
-* L3 - UDP Attacks - a UDP flood attack can be initiated by sending a large number of UDP packets to random ports on a remote host. As a result, the distant host will: Check for the application listening at that port; See that no application listens at that port; Reply with an ICMP Destination Unreachable packet.
+* L3 - UDP flood - a UDP flood attack can be initiated by sending a large number of UDP packets to random ports on a remote host. As a result, the distant host will: Check for the application listening at that port; See that no application listens at that port; Reply with an ICMP Destination Unreachable packet.
 
 ### Attack Mitigation 
 
@@ -79,7 +79,7 @@ Mitigation is all about minimizing the attack surface, absorbing the attack, saf
 
 ### Absorb
 
-- ASG - get bigger to absorbe the attack...
+- ASG - get bigger to absorb the attack...
 
 - Shield - insurance for when the attack comes
 

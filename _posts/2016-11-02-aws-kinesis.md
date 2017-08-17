@@ -9,13 +9,13 @@ tags: [aws, kinesis, aws-dev-ops-pro, aws-solutions-arch-pro]
 
 [Kinesis](https://aws.amazon.com/kinesis/) is a real-time data processing service that captures and stores large amounts of data to power dashboard and analytics.
 
-In the past realtime process of massive amounts of data was hard... very hard, in fact. Kinesis is quite useful when you need to do multi-stage processing of data, partition the data then load the data. Tons of application in realtime gaming, IoT & mobile app analytics, monitoring app or system logs in real-time.
+In the past realtime process of massive amounts of data was hard... very hard, in fact. Kinesis is quite useful when you need to do multi-stage processing of data, partition the data then load the data. Tons of application in realtime gaming, IoT & mobile app analytics, or monitoring apps and system logs in real-time.
 
 And it is not just one app at time... there can be multiple incoming data streams working concurrently. And it is durable, with data being written to three AZ yet not long lived with data living 24 hours by default and up to 7 days. 
 
 There are three components to the [Kinesis](https://aws.amazon.com/kinesis/) products:
 
-- [Firehose](https://aws.amazon.com/kinesis/firehose/) - a data loader which can batch, compress and encrypt the data into S3, Redshift, Elasticsearch or Kinesis Analytics
+- [Firehose](https://aws.amazon.com/kinesis/firehose/) - a data loader which can batch, compress, and encrypt the data into S3, Redshift, ElasticSearch or Kinesis Analytics
 
 - [Analytics](https://aws.amazon.com/kinesis/analytics/) - the ability to analyze a stream using SQL in an interactive tool including a SQL editor and templates
 
@@ -41,7 +41,7 @@ Records include sequence number, partitian key and up to a one mg blob of data. 
 
 ### Streams &amp; Shards
 
-A stream is made of up of shards and a shard is 1MB per second write and 2MB per second read capacity. There are tons of connectors, libraries and tools [available](https://aws.amazon.com/kinesis/streams/developer-resources/). 
+A stream is made of up of shards and a shard is 1MB per second write and 2MB per second read capacity. There are tons of connectors, libraries, and tools [available](https://aws.amazon.com/kinesis/streams/developer-resources/). 
 
 The max size of a datablob is 1 MB.
 

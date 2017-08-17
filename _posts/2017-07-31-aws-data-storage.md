@@ -9,7 +9,7 @@ tags: [aws, aws-guides, aws-solutions-arch-pro]
 
 # Demonstrate ability to make architectural trade off decisions involving storage options
 
-S3 Parallelization, alphabetical order, randomness in URL
+[S3](/posts/aws-data-storage) - Parallelization, alphabetical order, randomness in URL -> SSHHDDMMYY
 
 ## S3
 
@@ -17,7 +17,7 @@ Good for: Web Storage, Static websites, Data Lake, backup/archive
 
 Bad For: File, System, Structured data, archive (use Glacier class), dynamic websites
 
-#### Classes
+### S3 Storage Classes
 
 Rebuildable asset? S3-SSR (because you can regenerate it!)
 
@@ -26,6 +26,8 @@ Infrequently access (Backup & Archive or DR yet still active)? S3-IA
 Greater than 4 hours retrieval, cheap (archive, digital preservation)? Glacier
 
 ### Use Cases
+
+Change S3 access permissions? bucket policy
 
 Protect S3 file from delete or overwrite? enable versioning
 
@@ -39,17 +41,17 @@ S3 Cross region replication? Requires versioning on source bucket; deletes and l
 
 Partner upload data? [Pre-signed upload URLs](http://docs.aws.amazon.com/AmazonS3/latest/dev/PresignedUrlUploadObject.html)
 
-#### Performance
+#### Performance Use Cases
 
 Faster download of large objects? [range based `GET`](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html) or use CloudFront
 
 [High TPS workload](http://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html#get-workload-considerations)? prefix the key name with a hash or reverse timestamp string
 
+Slow file upload speed? [S3 Transfer acceleration](http://docs.aws.amazon.com/AmazonS3/latest/dev/transfer-acceleration.html) or [multi-part uploads](http://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html)
+
 `PUT` optimization on a strong network? multi-part uploads of between 25-50MB to max throughput
 
-`PUT` optimization on Weak network? multi-part uploads of about 10MB to prevent upload restart
-
-Slow file upload speed? [S3 Transfer acceleration](http://docs.aws.amazon.com/AmazonS3/latest/dev/transfer-acceleration.html) or [multi-part uploads](http://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html)
+`PUT` optimization on a weak network? multi-part uploads of about 10MB to prevent upload restart
 
 ## Glacier
 

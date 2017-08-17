@@ -13,7 +13,7 @@ tags: [aws, aws-guides, aws-solutions-arch-pro]
 
 - [Storage Gateway - Gateway-stored](/posts/aws-storage-gateway) - sits on vm system then takes snapshots stored to migrate VMs to EC2 with consistent snapshots
 
-- [Data Pipeline](/posts/aws-data-pipeline)
+- [Data Pipeline](/posts/aws-data-pipeline) - provision & terminate; on-prem; scheduled; components: data node, activity, precondition, schedule
 
 - [Server Migration Service](https://aws.amazon.com/server-migration-service/) - takes in a vm ware instance and output an AMI; manages sync process
 
@@ -25,13 +25,13 @@ tags: [aws, aws-guides, aws-solutions-arch-pro]
 
 - [VPN](/posts/aws-advanced-networking) - transition from VPN to DX = raise BGP cost for VPN
 
-- [Direct Connect](/posts/aws-direct-connect)
+- [Direct Connect](/posts/aws-direct-connect) - private vif = private addr; public vif = public services
 
-- [VPC](/posts/aws-vpc) - vpc sizes; reserved CIDR
+- [VPC](/posts/aws-vpc) - vpc sizes; reserved CIDR; peering not transitive
 
 ### STS Use Cases
 
-- SSO to console; no SAML? Broker with `STS:AssumeRole`; requires IAM user
+- SSO to console; no SAML? Broker with `STS:AssumeRole`; requires IAM user; very similiar to acct -> acct setup
 
 - SS0 to API; no SAML? Broker with `GetFederationToken`; requires IAM user
 

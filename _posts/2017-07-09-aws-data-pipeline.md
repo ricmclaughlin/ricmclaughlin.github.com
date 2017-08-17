@@ -15,7 +15,7 @@ A Pipeline includes:
 
 * Activity - what is supposed to be done by the pipeline; some are pre-built (called a template) or can be custom built; includes stuff like `CopyActivity`, `SqlActivity` or Hadoop-centric stuff like `PigActivity` and `HiveActivity`
 
-* Precondition - an assertion that must be true to for an activity to run; includes things like `DynamoDBDataExists` or `S3KeyExists` or `S3PrefixNotEmpty` or custom things like `ShellCommandPrecondition` or `Exists`
+* Precondition - an assertion that must be true for an activity to run; includes things like `DynamoDBDataExists` or `S3KeyExists` or `S3PrefixNotEmpty` or custom things like `ShellCommandPrecondition` or `Exists`
 
 * Schedule - defines when the activity runs; might include end date
 
@@ -27,9 +27,9 @@ There are several components to the Data Pipeline application:
 
 * Resources - the resources that does the work like an `Ec2Resource` or `EmrCluster`
 
-* Actions - Oddly named - perhaps results would be a better term - When certain event occur, like failure, an action can either can set an alarm using `SnsAlarm` or `Terminate`
+* Actions - Oddly named - perhaps Results would be a better term for the concept - When certain event occur, like failure, an action can either can set an alarm using `SnsAlarm` or `Terminate`
 
-Because the use of EC2 resources is common, using reserve instances, spot instances, in addition to on-demand resources is very possible. And spot instances come with the associated problems of task interuption and task switching - the pipeline might need to be re-run.
+Because the use of EC2 resources is common, using reserve instances, spot instances, in addition to on-demand resources is possible. And spot instances come with the associated problems of task interuption and task switching - the pipeline might need to be re-run.
 
 ## Use Cases
 
@@ -51,4 +51,4 @@ Because the use of EC2 resources is common, using reserve instances, spot instan
 
 * Component run in wrong order? Data Pipeline is as async as possible; use `dependsOn`
 
-* 400 Error Code: PipelineNotFoundException? Wrong permissions
+* `400 Error - PipelineNotFoundException`? Wrong permissions
