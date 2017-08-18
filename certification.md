@@ -13,11 +13,11 @@ categories: posts
       {% if skill == "aws-dev-ops-pro" %}
         {% assign skill_full_name = "AWS DevOps Engineer Pro" %}
       {% elsif skill == "aws-solutions-arch-pro" %}
-        {% assign skill_full_name = "AWS Solutions Architect" %}
+        {% assign skill_full_name = "AWS Solutions Architect Pro" %}
       {% elsif skill == "pmp" %}
-        {% assign skill_full_name = "Project Mgt Pro" %}
+        {% assign skill_full_name = "PMP" %}
       {% elsif skill == "pmi-acp" %}
-        {% assign skill_full_name = "Agile Cert Prac" %}
+        {% assign skill_full_name = "PMI - Agile" %}
       {% elsif skill == "aws-academy" %}
         {% assign skill_full_name = "AWS Academy Accredited Instructor" %}
       {% endif %}
