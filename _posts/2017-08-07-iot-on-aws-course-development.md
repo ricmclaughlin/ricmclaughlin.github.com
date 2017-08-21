@@ -7,67 +7,94 @@ tags: [aws-iot, curriculum-dev]
 ---
 {% include JB/setup %}
 
-Perhaps my favorite curriculum development project to date was "IoT on AWS" a course I developed for [Level Education](https://www.leveledu.com/) initially offered as part of their [IoT bootcamp](https://pages.northeastern.edu/IoT.html program. To get a feel for how I work and quality of my work, here is an outline of how I developed, taught, gathered feedback then iteratively improved the course.
+Perhaps my favorite curriculum development project to date was "IoT on AWS" a course I developed for [Level Education](https://www.leveledu.com/) initially offered as part of their [IoT bootcamp](https://pages.northeastern.edu/IoT.html program). 
 
 The high level educational goal of the course is to teach IoT students that are tech savvy and hardware focused enough of the AWS IoT service to get started on their own... in two 3-hours sessions. The course clearly had to include lots of the "what and why" of AWS IoT, a good definitional desciption of numerous system components and how they fit together, one or more hands-on activities that included hooking up a device to the AWS service and a good overview of what other sorts of problems the student to look to solve with AWS IoT. That's ambitious. And challenging. And would make a great course if I could pull it off. 
 
-## Step 1: High Level Learning Objectives
+## Overall Development Approach
 
-As in almost all curriculum development projects, I started with the end in mind: what will the student learn as a result of the curriculum being developed. I format those results in the form of the learning objectives using words 
+The course was also a test bed for the best practices I've learned espoused over the last couple of years: 
 
-Initially, after a brief chat with my colleagues, a brief read through of the AWS IoT doc and lots of experience getting folks started with AWS, I came up with a list of learning objectives that looked something like:
+- A thorough walk through to the overall, problem the technology solves, why it is important to solve and alternatives on how to solve it
 
+- Develop each course into smaller learning modules that can be recomposed into different courses and promote easy reuse
 
-## Step 2: Learning Module Development
+- Specific, clearly enunciated learning objectives at the beginning of the course and learning module level that are defined in the curriculum development process at the onset
 
-Lower level LO
-Problem; what why, alternatives
-Hands-on walk through; building a checklist along the way
-Check for understanding
-Evaluate result; Iteratively improve the result of what we just did??
-Segway to the next topic
-Present chances for extention and additional learning 
+- Courseware that is a "we do; you do; you extend" model, akin to a walk through but on steriods and building a checklist along the way
 
+- Check for understanding using quizes embedded in the curriculum
 
-They needed to understand how to create a secure AWS account and yes, that includes setting up MFS. 
+- At the end of each learning module, evaluate the result and demonstrate solutions evaluation then iteratively improve the result of what we just did in the next learning module as a segue to the next learning module
 
-struggle with the board; overhead of creating a secure AWS account; annoying interface with DynamoDB; Finishing vs perfect = cheese is required sometimes
+- Present chances for extention and additional learning at the end of each classroom session
 
-## Step 3: Deliver and Evaluate Student Outcomes
+- Enable courseway to be easily adapted to a face-to-face, live-virtual, or self-paced e-learning environment
 
-The difficulty of monologing & hybrid live student
-No ability to gather student direct student feedback... and this was a missed opportunity on my part; got student via onsite instructor
+And this course pretty much succeeds on these standards.... after the second iteration. The big change from the first iteration was the switch from the an  to the AWS IoT button to enable easier setup and integration with AWS. 
 
-## Step 0 or Step 4?... not sure...
+I used the super cool [Talent LMS](https://www.talentlms.com/) for hosting the content in a self paced learner format and also use the quiz development capability of the platform for learning assessments... which are old school style quizzes. 
 
-The IoT device as an event source = AWS IoT button
-More formal checks for understanding
-LMS implementation with a self paced option
+## Learning Objectives by Learning Module
 
+### Course Learning Objectives
 
+- Explain the AWS IoT service architecture including the Message Broker, Rules Engine, Thing Shadow and Thing Registry
 
+- Demonstrate AWS Account setup in a low-cost, low-risk, & secure manner
 
+- Configure an AWS IoT button on the AWS IoT service and make a button push send an SMS
 
+- Implement AWS IoT service communication, rules and system interaction, debugging, and monitoring tools
 
+- Explain advanced AWS IoT use cases and implement a mock thing and persist data
 
+### AWS IoT Architecture Module Learning Objectives
 
+- List and Describe the function of: Message Broker, Device Shadow, Rules Engine, Security & Identity Service, Thing Registry
 
+- Describe the purpose and relationship between Device Certs, Verisign CA Certs, and Policies 
 
-My development process
-Start with the end Learning objectives in mind
+### AWS Account Setup Module Learning Objectives
 
-Don't over think v1 then iterate
+Develop and execute a Secure Account Checklist including
 
-Hands-on exercises with resusable workflow guides
+- Stop using the Root Account
 
-Higher order thinking skills
+- Use an Admin account in an Admin Group
 
-stuff about the course I developed
+- Enable Multi-factor authentication
 
-Big picture
+- Setup a Password Specification
 
-Hands-on
+- Set a billing alarm and enable admin access to billing information
 
-Iterative
+Explain the different between the AWS 12 Month Free and the Always Free tiers
 
-used other board
+### AWS IoT Button Setup Module Learning Objectives
+
+- Demonstrate Securely Connecting a Button to AWS IoT
+
+- Configure Your IoT Button to Send an SMS using a Node.js Lambda Function
+
+### Extending IoT on AWS Module Learning Objectives
+
+- Demonstrate IoT Web Console Navigate
+
+- Demonstrate IoT Thing Shadow and Cloudwatch Debugging
+
+- Use AWS services to solve IoT requirements
+
+1. Gather fleet metrics using Cloudwatch
+
+2. Mock a thing using the MQTT client
+
+3. Model and control state of thing with device shadow
+
+4. Store and process unstructured data with S3 & SQS
+
+5. Store structured data in DynamoDB
+
+## Wanna take a look?
+
+This IoT on AWS is [available online](https://iotonaws.talentlms.com) at Talent LMS - contact me at <mailto:ric@mclaughlin.today> for access.
