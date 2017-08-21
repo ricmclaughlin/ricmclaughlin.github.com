@@ -21,7 +21,7 @@ My first foray into teaching programming was using Python to teach my son progra
 
 **Cost:** Cheapish... $31.99
 
-**Setup:** There is no prerequisite software to install and the book does a great of getting you up and running with Python via dowload.
+**Setup:** There is a super easy setup procedure outlined in the book... not sure if it maintained these days but it was great to get the numerous applications required for setup installed.
 
 **Recommendation:***
 
