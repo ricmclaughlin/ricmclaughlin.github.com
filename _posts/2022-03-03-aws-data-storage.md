@@ -9,7 +9,7 @@ tags: [aws, aws-guides, aws-solutions-arch-pro]
 
 # Demonstrate ability to make architectural trade off decisions involving storage options
 
-[S3](/posts/aws-data-storage) - Parallelization, alphabetical order, randomness in URL -> SSHHDDMMYY
+[S3](/posts/aws-S3) - Parallelization, alphabetical order, randomness in URL -> SSHHDDMMYY
 
 ## S3
 
@@ -27,7 +27,7 @@ Greater than 4 hours retrieval, cheap (archive, digital preservation)? Glacier
 
 ### Use Cases
 
-Change S3 access permissions? bucket policy
+Change S3 access permissions? IAM & bucket policy
 
 Protect S3 file from delete or overwrite? enable versioning
 
@@ -87,11 +87,15 @@ Use Case:
 
 - Backup instance store? no snapshotting, file backup on mounted EFS/EBS 
 
-## Storage Gateway/Snowball
+## DataSync/Storage Gateway/Snowball
 
 Use Cases:
 
-- Low end DR = S3 directly
+- DataSync - Sync from on-prem to S3, EFS, EBS FSx (agent that includes encryption and integrity checks for NFS or SMB)
+
+- Between storage services? DataSync (EFS -> EFS on EC2 instance)
+
+- Low end DR = S3 directly using DataSync (Storage Gateway is less performant).
 
 - Cached = less to maintain local so cheaper outlay, frequently access to small amount of data
 
@@ -133,8 +137,7 @@ Use Cases:
 
 ## Products that don't automatically backup
 
-- EC2
-
+- EC2 (EBS)
 
 # Determine use of synchronous versus asynchronous replication
 
