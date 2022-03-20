@@ -21,6 +21,8 @@ tags: [aws, aws-guides, aws-solutions-arch-pro]
 
 - [Import/Export Disk](https://aws.amazon.com/snowball/disk/) - from physical storage shipped to AWS to an encrupted form on S3 bucket, Glacier, or EBS Snapshot; export to s3 encrypted only
 
+- Database Migration Service - enables migration from lots of different databases to AWS databases and *from* AWS to on-prem
+
 # Demonstrate ability to design hybrid cloud architectures
 
 - [VPN](/posts/aws-advanced-networking) - transition from VPN to DX = raise BGP cost for VPN

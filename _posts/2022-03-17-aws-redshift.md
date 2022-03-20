@@ -15,7 +15,7 @@ Small configuration is a single node and up to 160Gb.
 
 Multi-Node - includes a leader node and up to 128 compute nodes.
 
-In general, you can optimize on compute density using SSD storage (362 TB) or storage density using magnetic storage (2Pb).
+In general, you can optimize on compute density using SSD storage (362 TB) or storage density using magnetic storage (2Pb). This service attempts to maintain at least three copies of your data (original, recompute nodes, S3).
 
 Only in 1 AZ; no HA.
 
@@ -51,16 +51,18 @@ Deleting a cluster does not create a final snapshot and deletes all the automate
 
 ### Redshift Backups
 
-Redshift includes free automatic storage for snapshots and backups up the amount of storage in the cluster.  
+Redshift includes free automatic storage for snapshots with a 35 day retention period and backups up the amount of storage in the cluster.  
 
 Snapshots are point-in-time backups. Redshift nodes are continuously backed up to S3.
 
-Automatic snap shotting can be configured with a retention period (default of 1 days) and can not be manually deleted. The automatic snapshot copy feature copies snapshots from one region to another manually or automatically  AND does incur data transfer costs. 
+Automatic snap shotting can be configured with a retention period (default of 1 days) and can not be manually deleted. The automatic snapshot copy feature copies snapshots from one region to another manually or automatically AND does incur data transfer costs. 
 
 Restoring data from a snapshot by launching a new cluster and importing the data from the snapshot. The snapshot contains the number of nodes, type of nodes, the cluster configuration and the data included in the nodes.
 
 ## Costing
 
 Price = Compute Node Hours + backup costs + data transfer (within the VPC) 
+
+Notice that the leader node is not a cost!
 
 Storage is provisioned as part of the node as long as the cluster is running so spot instances are not an option. On-demand instances can be added for scaling or temporary clusters. Reserved instances, given they are the right instance type and in the right AZ, can be used.

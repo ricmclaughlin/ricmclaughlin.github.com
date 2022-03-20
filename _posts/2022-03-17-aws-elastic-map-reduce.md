@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "AWS Solutions Arch - EMR"
+title: "AWS - EMR"
 description: ""
 category: posts
-tags: [aws, soluarch]
+tags: [aws, aws-guides, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
@@ -24,11 +24,11 @@ The big idea is distribute high volocity, high volume and lots of variety of dat
 
 EMR includes the following components:
 
-- Master node - Manages data distribution to core and slave nods
+- Master node - Manages data distribution to core and slave nodes; backs up log files to S3 every 5 minutes if configured upon creation
 
 - Core Nodes - store data on HDFS; managed by master node
 
-- Task Nodes - Performs data tasks
+- Task Nodes - Performs data tasks; no HDFS
 
 Storage can use regular good old fashioned HDFS or EMRFS which is storage on S3.
 
