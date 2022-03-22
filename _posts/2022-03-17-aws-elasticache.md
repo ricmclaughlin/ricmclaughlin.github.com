@@ -19,10 +19,10 @@ ElastiCache only backs up Redis clusters. Snapshots backup the data for the enti
 
 | Thingy | memecached | Redis |
 |--------|-----------|--------|
-| Use case complexity | low | high  |
+| Use case complexity | low | high  |git stat
 | Threading | multi  | single |
-| Scaling | horizontal | vertical |
-| AZs  | single | multi  |
+| Scaling | *horizontal* | vertical |
+| AZs  | single | *multi*  |
 | replication? | nope | yep |
 | fail-over | nope | yep |
 | persist it | nope | yep |

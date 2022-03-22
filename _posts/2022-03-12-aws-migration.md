@@ -21,7 +21,9 @@ tags: [aws, aws-guides, aws-solutions-arch-pro]
 
 - [Import/Export Disk](https://aws.amazon.com/snowball/disk/) - from physical storage shipped to AWS to an encrupted form on S3 bucket, Glacier, or EBS Snapshot; export to s3 encrypted only
 
-- Database Migration Service - enables migration from lots of different databases to AWS databases and *from* AWS to on-prem
+- Database Migration Service - enables migration from lots of different databases (S3, Kinesis too) to AWS databases and *from* AWS to on-prem; runs on an EC2 instance
+
+- Schema Conversion Tool - enables heterogeneous database movement 
 
 # Demonstrate ability to design hybrid cloud architectures
 

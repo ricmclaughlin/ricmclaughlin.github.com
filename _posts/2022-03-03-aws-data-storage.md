@@ -87,6 +87,14 @@ Use Case:
 
 - Backup instance store? no snapshotting, file backup on mounted EFS/EBS 
 
+## FSx vs EFS
+
+FSx for windows = is just a SMB windows-based, file server supporting SMB, AD and DFS namespaces; can be used for centralized storage for Sharepoint, SQL server, Workspaecs or IIS.
+
+FSx Lustre = HPC applications; sub-millisecond latencies, 100 GPS throughput and millions of IOPS; can be backed by S3
+
+EFS = NFS for Linux boxes
+
 ## DataSync/Storage Gateway/Snowball
 
 Use Cases:
