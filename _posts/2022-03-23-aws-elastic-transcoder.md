@@ -16,3 +16,5 @@ Components of Elastic Transcoder include:
 - Jobs - the work definition that runs in a workflow process including input keys and outputs key settings along with encryption settings as well.
 
 - Presets - a predefined configuration of settings for jobs
+
+This is a really old service... and is mostly been replaced with [AWS Elemental MediaConvert](https://aws.amazon.com/mediaconvert/).
