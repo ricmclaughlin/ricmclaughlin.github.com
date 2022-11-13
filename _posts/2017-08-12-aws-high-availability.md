@@ -7,12 +7,6 @@ tags: [aws, aws-guides, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
-# Demonstrate ability to architect the appropriate level of availability based on stakeholder requirements
-  
-  RDS, S3, EBS 
-
-  Dual CGW in VPN
-
 # Demonstrate ability to implement DR for systems based on RPO and RTO
   
 - RPO - amount of data, based on time, the business can loose; the shorter then more expensive 

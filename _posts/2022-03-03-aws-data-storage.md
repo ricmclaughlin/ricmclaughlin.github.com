@@ -153,6 +153,3 @@ Use Cases:
 
 - RDS Read Replica = asynchronous
 
-# Key Resources
-
-- [AWS Storage Services Overview](https://d0.awsstatic.com/whitepapers/Storage/AWS%20Storage%20Services%20Whitepaper-v9.pdf)

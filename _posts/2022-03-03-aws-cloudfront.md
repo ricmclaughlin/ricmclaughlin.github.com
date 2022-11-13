@@ -77,7 +77,9 @@ Access control can be done using signed URLs or using signed Cookies using the R
 
 Use signed URLs for RTMP. Progressive Download can use a signed URL, user could use it to download the entire file which is sort of bad for some use cases. Use for marketing emails too.
 
-Use signed cookies for progressive downloads or smooth streaming, because there are tons of small files and signed URLs won't work. Use for whole site authentication too.
+Use signed cookies for progressive downloads, smooth streaming or scenarios where you DON'T want the URL to change. Use for whole site authentication too.
+
+Use presigned S3 URLs when you aren't using CloudFront.
 
 Resticting users from going directly to S3 use Origin Access Identity (OAI) which is a CloudFront user you can give read access to the origin bucket.
 

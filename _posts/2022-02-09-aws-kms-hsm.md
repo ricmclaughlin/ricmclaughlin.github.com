@@ -38,6 +38,8 @@ Roles need access to 'admin' access the key to USE the key. Role, users and exte
 | AWS Managed | yes | no | yes |
 | AWS owned CMK | no | yes | no|
 
+
+
 # CloudHSM
 
 CloudHSM is a single tenant hardware security module that must in a VPC. There is very limited integration with AWS services with only Oracle, MS SQL, and Redshift well supported. There is no AWS API into this thing... One big use case is SSL decryption. S3, KMS, and EBS encryption are possible but integration applications must be written. 
@@ -48,7 +50,7 @@ CloudTrail integration is supported. Syslog is as well.
 
 CloudHSM would be great if you need FIPS 140-2 level 3 validation and don't mind fixed cost of $5k per module. And you are responsible for the HA part so really you need 2 HSM... with a cost of $10k. And a $5k setup fee per region plus an hourly fee.
 
-The HSM does work with peered VPC as well. The HSM module is a cross AZ cluster and is accessed using an ENI in a public subnet of the VPC.
+The HSM does work with peered VPC as well. The HSM module is a cross-AZ cluster and is accessed using an ENI in a public subnet of the VPC.
 
 ## HSM or KMS ?
 

@@ -25,6 +25,8 @@ tags: [aws, aws-guides, aws-solutions-arch-pro]
 
 - Schema Conversion Tool - enables heterogeneous database movement 
 
+On a related note, many of the migration services do run on-prem: DMS, Server Migration Server, Application Discovery Service, VM Import/export. 
+
 # Demonstrate ability to design hybrid cloud architectures
 
 - [VPN](/posts/aws-advanced-networking) - transition from VPN to DX = raise BGP cost for VPN
