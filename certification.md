@@ -5,7 +5,7 @@ categories: posts
 ---
 {% assign project_tags = site.array %}
 {% assign skills = site.otherarray %}
-{% assign skills = "aws-solutions-arch-pro,aws-dev-ops-pro,pmp,pmi-acp,aws-academy" | split: "," %}
+{% assign skills = "aws-solutions-arch-pro,aws-dev-ops-pro,pmp,pmi-acp" | split: "," %}
 
 <div>
   <ul class="nav nav-tabs" id="nav-tabs" role="tablist">

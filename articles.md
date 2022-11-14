@@ -1,13 +1,13 @@
 ---
 layout: page
-title: Portfolio
+title: Articles
 categories: projects
 ---
 
 {% assign cat = 'delivery' %}
 {% assign project_tags = site.array %}
 {% assign skills = site.otherarray %}
-{% assign skills = "aws,web-dev,devops,data,languages,project-delivery,curriculum-dev" | split: "," %}
+{% assign skills = "aws,devops,project-delivery,curriculum-dev" | split: "," %}
 
 <div>
   <!-- Nav tabs -->
@@ -18,7 +18,7 @@ categories: projects
       {% elsif skill == "devops" %}
         {% assign skill_full_name = "DevOps" %}
       {% elsif skill == "aws" %}
-        {% assign skill_full_name = "AWS" %}
+        {% assign skill_full_name = "Solution Architecture" %}
       {% elsif skill == 'data' %}
         {% assign skill_full_name = "Data" %}
      {% elsif skill == 'languages' %}
