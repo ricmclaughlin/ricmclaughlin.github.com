@@ -92,7 +92,7 @@ In addition to third party libraries (Spark, Log4J, Appenders, Flume, Kafka conn
 The SDK polls the shard using `GetRecords`; this can return up to 10 MB (then be throttled for 5 seconds) or up to 10K records. There is a max of 5 `GetRecords` calls per second; this limits throughput signfigantly and leads to a rule: max 1 consumer per
 
 ### Kinesis Client Library (KCL)
-Required if you use KPL because it does de-aggregation; enables a clients to share multiple shards using a "group" and shard discovery. Includes checkpoint functionality with one DynamoDB row used for coordination & checkpointing per shard; this requires enough DynamoDB write and read capacity units. On-Demand DynamoDB scaling (for WCU & RCU) is supported! The `ExpiredIteratorException` suggests you need to increase WCU OR turn on On-Deman DynamoDB scaling. V 2.0 supports consumer advanced Fan-Out.
+Required if you use KPL because it does de-aggregation; enables a clients to share multiple shards using a "group" and shard discovery. Includes checkpoint functionality with one DynamoDB row used for coordination & checkpointing per shard; this requires enough DynamoDB write and read capacity units. On-Demand DynamoDB scaling (for WCU & RCU) is supported! The `ExpiredIteratorException` suggests you need to increase WCU OR turn on On-Demand DynamoDB scaling. V 2.0 supports consumer advanced Fan-Out.
 
 ### Kinesis Connector Library
 This is a legacy, older Java library that writes data to S3, DynamoDB, Redshift, and ElasticSearch. It's largely deprecated because this functionality is now in Kinesis Firehose or can be addressed with Lambda.
