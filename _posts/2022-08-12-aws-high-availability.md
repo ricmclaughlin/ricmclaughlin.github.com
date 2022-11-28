@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AWS - High Availability"
+title: "AWS - HA, Fault Tolerance, Resiliency, "
 description: ""
 category: posts
 tags: [aws, aws-guides, aws-solutions-arch-pro]
@@ -9,9 +9,9 @@ tags: [aws, aws-guides, aws-solutions-arch-pro]
 
 # Demonstrate ability to implement DR for systems based on RPO and RTO
   
-- RPO - amount of data, based on time, the business can loose; the shorter then more expensive 
+- Recovery point objective (RPO) - amount of data, based on time, the business can loose; the shorter then more expensive 
 
-- RTO - The time it takes after a disruption to restore a business process to its service level including time to restore data
+- Recovery time objective (RTO) - The time it takes after a disruption to restore a business process to its service level including time to restore data
 
 AWS is great for DR because it is flexible, Opex model, automation is easy.
 
@@ -71,4 +71,4 @@ nothing really...
 
 # Key Resources
 
-- [Using AWS for Disaster Recovery](http://d36cz9buwru1tt.cloudfront.net/AWS_Disaster_Recovery.pdf)
+- [Disaster Recovery in the Cloud](https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-workloads-on-aws.html)
