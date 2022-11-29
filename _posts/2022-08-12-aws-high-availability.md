@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AWS - HA, Fault Tolerance, Resiliency, "
+title: "AWS - High Availability"
 description: ""
 category: posts
 tags: [aws, aws-guides, aws-solutions-arch-pro]

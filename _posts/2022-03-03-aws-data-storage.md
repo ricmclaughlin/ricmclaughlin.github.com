@@ -59,13 +59,13 @@ Good for: Archive
 
 Bad for: Immediate access, rapidly changing data
 
-## EFS
+## EFS vs FSx for Windows
 
-Good for: Shared File storage for EC2 multi-threaded
+EFS: Shared File storage for EC2 multi-threaded linux
 
-Bad for: Archiving, temp storage, relational data
+Linux >7000 file operations per sec? Max I/O else General Purpose (burstable)
 
-Use Cases: >7000 file operations per sec? Max I/O else General Purpose (burstable)
+FSx for Windows: Active directory, any Windows use-case
 
 ## EBS
 
