@@ -144,25 +144,17 @@ Changes to infrastructure? CloudTrail [config?]
 
 ### Remediate
 
-
 Security and compliance documentation? Artifact
-
-
-
-
-
-
 
 ## Identity Triage
 
-AuthZ - Cognito Identity Pools
+AuthZ mobile/web using social - Cognito Identity Pools
 
-AuthN - Cognito User Pools (mobile focused)
+AuthN mobile/web using social - Cognito User Pools (mobile focused)
 
 AuthN/Z (AWS resources using directory) - AWS SSO
 
-AuthN/Z AWS resources - IAM
-
+AuthN/Z AWS resources from another account? - IAM
 
 ## Resources
 

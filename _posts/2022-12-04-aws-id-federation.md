@@ -1,27 +1,45 @@
 ---
 layout: post
-title: "AWS - STS"
+title: "AWS - ID federation"
 description: ""
 category: posts
-tags: [iam, aws, aws-dev-ops-pro, aws-solutions-arch-pro]
+tags: [iam, sts, aws, aws-dev-ops-pro, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
-# STS vs SSO
-Security Token Service (STS) forms the backbone low-level interface for federation while AWS Single Sign-On enables the ability to centrally manage access to AWS accounts and business applications.
+# STS vs SSO vs AWS IAM Identity Center
+Security Token Service (STS) forms the backbone low-level interface for federation while AWS Single Sign-On enables the ability to centrally manage access to AWS accounts and business applications. Identity Center replaces all of the cases - login across accounts in organization, business apps, SAML 2 apps, and even EC2 Windows instances.
+
+## IAM Identity Center
+Successor to AWS SSO and has built in identity store or can use AD, OneLogin, Okta. Straightfoward approach: Permission sets define access into account; assign permission sets to groups. There's a portal generated that enables access to all the resources.
+
+ID Center enables multi-account permissions, applications (basically using SAML 2.0) and Attribute-Based Access Control (ABAC) which is the use of attributes in the Identity Store for access control. 
 
 ## STS 
 AWS [Security Token Service (STS)](http://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html) is a web service that enables you to request temporary, limited-privilege credentials for AWS Identity and Access Management (IAM) users or for federated users. Federation is creating a trust relationship between an identity store like Amazon, Facebook, Google (also called an IdP), Active Directory, IAM, any SAML 2.0 system and AWS. Users are authenticated with the Federated indentity store FIRST before they hit AWS. 
 
-The common steps to federation at runtime are:
+STS roles can require an External ID (basically a password) which requires the use of CLI, API or user of IAM:AssumeRole calls and also require MFA which forces the use of the console. Session tags can be used in combination with the ```aws:PrincipalTag``` in policies to restrict access of roles.
+
+## The common steps to federation at runtime are:
 
 1. Authenticate with Identity Provider 
 
-2. Obtain Temporary Security Credentials - Done by calling STS. STS returns session credentials, AKID, Secret Access Key, Session Token, &amp; Expiration.
+2. Obtain Temporary Security Credentials - Done by calling STS, although this could be deeper down in the service stack so you aren't calling it directly. STS, or the interface, returns session credentials, AKID, Secret Access Key, Session Token, Expiration, OR all that in a pre-signed URL.
 
-3. Access the AWS resource by passing in the STS provided credentials - now, based the users' role, you have access to AWS Resources using the session credentials issued by STS.
+3. Access the AWS resource by passinstg in the STS provided credentials - now, based the users' role, you have access to AWS Resources using the session credentials issued by STS. When this occurs 
 
 There are several use cases for STS including Corporate ID federation, Web Identity federation, and Cross account federation. The other sort of odd, less commonly thought of, use case for STS is in roles assigned to EC2 instance or other AWS services on your behalf.
+
+## Common APIs to use cases
+```sts:AssumeRole```
+
+```sts:AssumeRoleWithSAML```
+
+```sts:AssumeRoleWithWebIdentity ```
+
+```sts:GetSessionToken```
+
+```sts:GetFederationToken```
 
 # Corporate Identity Federation
 
@@ -47,7 +65,7 @@ Flow: App requests session from proxy; auth against directory which returns enti
 
 Cons: The IAM user associated to the proxy must have `GetFederationToken` policy and all the premissions for all of the users; and `GetFederationToken` does not support MFA 
 
-## AssumeRole with SAML
+## AssumeRoleWithSAML
 
 Use Case: SSO to IAM console without proxy server against AD or other SAML IdP
 
@@ -65,27 +83,21 @@ After the first call from the app to STS, it returns a temporary security creden
 
 ### Web Identity (Standard)
 
-Without using Cognito, the user auths with a web IdP; using the auth'd ID then calls the `AssumeRoleWithWebIdentity`; STS validates the auth evaluates the Role/Trust policy then returns the AWS credentials. 
-
-#### Web Identity Provider Access to DynamoDB (or other AWS Services)
-
-Many times users are authenticated by an IdP then need access to AWS services. As example of how this works, granting user access to DynamoDB steps are:
-
-1. Authenticate with IdP (Receive Token from ID provider)
-
-3. App calls STS with `AssumeRoleWithWebIdentity` &amp; passes in provider token and ARN for IAM role.
-
-4. STS returns access key, secret access key, the token and a duration for a period of 15 minutes to 1 hours. 1 hour is the default.
-
-5. The application then using the returns info to access DynamoDB by adding the session token to the HTTP header or adding it to the query string parameter `X-AMZ-Security-Token`.
+Without using Cognito, the user auths with a web IdP; using the auth'd ID then calls the `AssumeRoleWithWebIdentity`; STS validates the auth evaluates the Role/Trust policy then returns the AWS credentials. AWS recommends using Cognito instead.
 
 ### WIF with Cognito 
 
-Cognito pools enable multiple providers IDs to be stored and treated uniformally. Generally two roles are associated with the pool: one for authenticated users and one for unauthenticated users. If the an unauth'd user authenticates, or reauths with a different ID the IDs can be merged.
+Cognito pools enable multiple providers IDs to be stored and treated uniformally. Generally two roles are associated with the pool: one for authenticated users and one for unauthenticated users. If an unauth'd user authenticates, or reauths with a different ID the IDs can be merged. User pools store AuthN; identify pools store AuthZ.
 
-- Cognito Unauthenticated - using this flow the user creates a new unauthenticated user in the Cognito pool then requests an OpenID token; client calls `STS:AssumeRole` to swap the OpenID token out for a role; STS verifies the request and issues credentials. 
+- Cognito Unauthenticated - using this flow the user creates a new unauthenticated user in the Cognito pool then requests an OpenID token; client calls ```STS:AssumeRole``` to swap the OpenID token out for a role; STS verifies the request and issues credentials. 
 
 - Cognito Authenticated Classic (Simple) - this flow is exactly the same as the Web Identity (Standard) flow except it handles a single pool of users, unauth'd to auth'd flow and abstracts away some of the complexity from handling more than one IdP. 
 
 - Cognito Authenticated Enhanced (Simplfied) - this flow removes several steps in the auth process. Client auths with IdP; client does a get or create ID with Cognito which validates the auth; client requests credentials for ID from Cognito; Cognito returns the goods
+
+## Triage
+
+* AuthZ mobile/web using social - Cognito Identity Pools
+
+* AuthN mobile/web using social - Cognito User Pools (mobile focused)
 

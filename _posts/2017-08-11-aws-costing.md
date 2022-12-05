@@ -34,8 +34,6 @@ Use the [Tag editor](http://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/ta
 
 Checkout [STS use cases](/posts/aws-security)
 
-
-
 # Ability to compare and contrast the cost implications of different architectures
 
 - EC2 instance types

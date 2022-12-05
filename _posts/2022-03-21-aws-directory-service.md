@@ -13,7 +13,7 @@ AD Connector and Microsoft Active Directory (Enterprise Edition) support standar
 
 ## AD Connector 
 
-AD Connector connects existing AD implementation with the AWS cloud which enables existing security polices like password expiration/history and account lockout with existing RADIUS-based MFA to manage resources like EC2 instances and applications like WorkSpaces, WorkDocs or WorkMail. AD Connectors and on-premises domains have a 1-to-1 relationship.  
+AD Connector connects existing AD implementation with the AWS cloud which enables existing security polices like password expiration/history and account lockout with existing RADIUS-based MFA to manage resources like EC2 instances and applications like WorkSpaces, WorkDocs or WorkMail. AD Connectors and on-premises domains have a 1-to-1 relationship. It does not support caching, trust relationships, VPN/DX, SQL server integration.
 
 ## Simple AD
 
@@ -21,15 +21,17 @@ Simple AD is a Microsoft Active Directory–compatible directory from AWS Direct
 
 ## *Managed* Microsoft Active Directory ~~(Enterprise Edition)~~
 
-Managed Microsoft Active Directory, which used to be called the "Enterprise Edition" is the same feature-rich Microsoft Active Directory just hosted on AWS. Microsoft AD is the best choice for more than 5,000 users and need a trust relationship set up between an AWS hosted directory and your on-premises directories. This is a managed service like RDS but better; it's multi-AZ, is patched, rotated and snapshotted by default. All you need to do is manage the implementation of it for the org. 
+Managed Microsoft Active Directory, which used to be called the "Enterprise Edition" is the same feature-rich Microsoft Active Directory just hosted on AWS. This is a managed service like RDS but better; it's multi-AZ, is patched, rotated and snapshotted by default. All you need to do is manage the implementation of it for the org and it's a good choice for more than 5,000 users.
+
+To use on-prem and cloud directory information interchangably, you can set up a trust relationship set up between an AWS hosted directory and your on-premises directories using *AD two-way Forest trust*; trust is NOT replication more like two parts of the same directory. *AD one-way trust* is also possible.. but not sure why one would do that. To replicate data between on-prem and cloud AD, perhaps for a DR scenario, you need to replicate the directory to an EC2 instances then set up two-way Forest Trust with Managed Microsoft AD. (not clear why you can't replicate with Managed AD directly)
 
 ## Cloud Directory
 
 Amazon Cloud Directory is a great choice when you need to build application directories such as device registries, catalogs, social networks, organization structures, and network topologies.
 
-## Cognito User Pools
+## Cognito
 
-You can also use Amazon Cognito when you need to create custom registration fields and store that metadata in your user directory. This fully managed service scales to support hundreds of millions of users fully supports federated identities. 
+You can also use Amazon Cognito when you need to create custom registration fields and store that metadata in your user directory. This fully managed service scales to support hundreds of millions of users while fully supporting federated identities. 
 
 ## Triage
 
@@ -40,5 +42,7 @@ Have AD and wanna use it on AWS? AD Connector
 More than 10 directories and 5 snapshots per each directory? Call AWS for limit increase.
 
 Need something AD compatible? Managed Microsoft AD, AD Connector, Simple AD
+
+Greater than 5000 users? Managed Microsoft AD
 
 Simple LDAP? Cloud Directory
