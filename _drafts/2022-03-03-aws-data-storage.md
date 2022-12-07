@@ -19,7 +19,7 @@ Bad For: File, System, Structured data, archive (use Glacier class), dynamic web
 
 ### S3 Storage Classes
 
-Rebuildable asset? S3-SSR (because you can regenerate it!)
+Rebuildable asset? S3-IA (because you can regenerate it!)
 
 Infrequently access (Backup & Archive or DR yet still active)? S3-IA
 
@@ -53,11 +53,6 @@ Slow file upload speed? [S3 Transfer acceleration](http://docs.aws.amazon.com/Am
 
 `PUT` optimization on a weak network? multi-part uploads of about 10MB to prevent upload restart
 
-## Glacier
-
-Good for: Archive
-
-Bad for: Immediate access, rapidly changing data
 
 ## EFS vs FSx for Windows
 
@@ -131,10 +126,6 @@ Use Cases:
 
 - Use EC2 for complete control of DB
 
-# Demonstrate ability to implement the most appropriate data storage architecture
-
-^^^See above^^^
-
 ## Products with automated backup
 
 - Redshift
@@ -152,4 +143,8 @@ Use Cases:
 - Multi-AZ RDS = synchronous
 
 - RDS Read Replica = asynchronous
+
+# Determining access issues
+
+Check if a bucket is public OR objects are public? Not Trusted Advisor (can't check for public objects in the bucket) instead use EventBridge/S3 Events OR Config.
 
