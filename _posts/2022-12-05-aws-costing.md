@@ -7,6 +7,9 @@ tags: [aws, aws-guides, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
+# Costing
+Cost explorer enables cost forecasting and cost reduction, while Compute Optimizer users ML against CloudWatch metrics to right size resources including Lambda, EC2, AND EBS volumes saving up to 25%.
+
 ## Cost allocation Tags &amp; Tag Editor
 Cost Allocation Tags show up as column in billing reports; can be applied after activation; takes 24 hours for tags to show up in reports and in console. Two types of tags that are activated separately:
  
@@ -25,10 +28,11 @@ Service Quotas enables the management of service quotas via the console, CLI, or
 
 ## Budgets &amp; Cost Explorer
 
-Budgets are an AI based approach to projecting monthly costs. By default, there is no budget setup and they don't show refunds. Budgets are updated every 24 hours and include SNS/CloudWatch alarms capability. 
+Budgets are an AI based approach to projecting monthly costs. By default, there is no budget setup and they don't show refunds. Budgets are updated every 24 hours and include SNS/CloudWatch alarms capability. Four types of budgets: Usage, Cost, Reservation, Saving Plan. Two free budgets then 2 cents a day per budget; up to 5 SNS notifications per budget.
 
-## SAP cost savings 
+Budgets Actions can apply an IAM policy, SCP or stop EC2/RDS service AND optionally execute these applications in a workflow. Another approach is to use SNS as a trigger a Lambda to move the account to a different OU. 
 
+Budgets can be centralized in the Management account, called Centralized Budget Management. Another approach is to decentralize budgets across accounts using standardized budgets applied by cFN.
 
 ## Savings Plans
 Savings Plans is a flexible pricing model that offers low prices on EC2, Lambda and Fargate usage, in exchange for a commitment to a consistent amount of usage (measured in $/hour) for a 1 or 3 year term. There are three types:
@@ -50,7 +54,6 @@ There are tons of ways to save money on S3.
 
 - Data being used by a third-party? S3 requestor pays (need to create a bucket policy so customer does not assume role in the account AND not end up getting charged.)
 
-## Compute Optimizer
 
 
 
