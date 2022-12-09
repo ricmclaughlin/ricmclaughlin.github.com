@@ -7,11 +7,11 @@ tags: [aws, devops, cloudformation, aws-dev-ops-pro, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
-[CloudFormation](https://aws.amazon.com/cloudformation/) templates are JSON documents that build AWS infrastucture. The cool part is that these templates can be version control and run over and over again - this is infrastructure as code in a fleshy-codey sort of way! The only bummer is that you can only have 20 CloudFormation stacks in a region - and of course, you can increase this by contacting AWS. Obviously, you can create as many CloudFormation templates as you want.
+[CloudFormation](https://aws.amazon.com/cloudformation/) templates are JSON/YAML documents that build AWS infrastucture. The cool part is that these templates can be version control and run over and over again - this is infrastructure as code in a fleshy-codey sort of way! The only bummer is that you can only have 20 CloudFormation stacks in a region - and of course, you can increase this by contacting AWS. Obviously, you can create as many CloudFormation templates as you want.
 
 # CloudFormation Templates
 
-CloudFormation Templates have 8 main sections but only the resources section is required. All sections are independent of each other. 
+CloudFormation Templates have 8 main sections but only the *Resources* section is required. All sections are independent of each other. 
 
 * AWSTemplateFormatVersion - this specfies the template version.. duh.
 
@@ -19,7 +19,7 @@ CloudFormation Templates have 8 main sections but only the resources section is 
 
 * [Parameters](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html) - imagine default values and customized template values and stuff you can pass in on the command line OR when you run the template. 
 
-* Mappings - maps keys to values - imagine a different value for each AWS region!
+* Mappings - maps keys to values - imagine a different value for each AWS region
 
 * Resources - create different resources like S3 buckets, EC2 Instances; this is the only required section of the template
 
@@ -59,10 +59,6 @@ Sets the [type of resource](http://docs.aws.amazon.com/AWSCloudFormation/latest/
   Type: "AWS::EC2::Instance"
   Properties: 
 ```
-
-### Resource Properties Types
-
-Within resources, there are numerous different data structures that must be built to set options - essentially, you are creating an embedded object in a resource. And these embedded objects have types which can be set using the `Type` property sets the possible properties available as documented the [resource specification](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html). 
 
 ### Pseudo Parameters
 
@@ -256,7 +252,7 @@ The `Action` attribute can be set to `Update:Modify`, `Update:Replace`, `Update:
 
 ## Deleting
 
-By default when a stack is deleted all the resources are deleted. To get around this you can create a [DeletionPolicy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html). See above.delet 
+By default when a stack is deleted all the resources are deleted. To get around this you can create a [DeletionPolicy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html). To retain data after deletion, you can use the `DeletionPolicy=Retain` option, the `DeletionPolicy=SnapShot` for databases (the default for RDS)or storage, or `DeletePolicy=Delete` (the default for everything else but RDS).
 
 ## EC2 Instances
 
@@ -351,6 +347,8 @@ UpdatePolicy:
   AutoScalingScheduledAction:
     IgnoreUnmodifiedGroupSizeProperties: true
 ```
+## StackSets
+StackSets can create, update, delete stacks across multiple accounts with a single operation. Stacks can be deployed using _self-managed_ permissions (without Organizations) or using _service-managed_ permissions with Organizations and also using an *automatic deployment* feature.
 
 ## Triage
 
@@ -359,6 +357,14 @@ UpdatePolicy:
 * Don't hardcode names, passwords or usernames in template as this causes portability issues; use parameters and `!Ref`  
 
 * When using the `Fn::GetAZs` use `0` or `1` or `3` to maximize portability
+
+* use drift detection to find changes made to resources outside of cFn
+
+* use CFN integration with secrets manager by generating a secret, use the secret when creating, the create a `SecretTargetAttachment` which will enable SecretsManager to rotate the password.
+
+* use resource import to add existing resources into existing/new stacks by creatin a template that describes the entire stack including a unique identifier for each target resource. Each resources must have a `DeletionPolicy`
+
+* Don't try to import the same resource into multiple stacks
 
 ### Troubleshooting
 

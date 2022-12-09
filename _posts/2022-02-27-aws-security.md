@@ -7,52 +7,6 @@ tags: [aws, vpc, aws-solutions-arch-pro, aws-guides]
 ---
 {% include JB/setup %}
 
-# Design information security management systems and compliance controls
-  
-- [CloudWatch](/posts/aws-cloudwatch) - logs retained forever; alarms & metrics retained 14 days
-
-- [CloudTrail](/posts/aws-cloudtrail) - Records API access to a log or Cloudwatch
-
-- [Inspector](https://aws.amazon.com/inspector/) - this applies yet isn't covered yet...
-
-- [VPC](/posts/aws-vpc) - VPC Flow Logs
-
-- [Firewall Manager](/posts/aws-firewall-manager)
-
-# Design security controls with the AWS shared responsibility model and global infrastructure
-  
-- [Cloud HSM](/posts/aws-kms-hsm) - single tenant; need two; keys are regional; Oracle, MS SQL, redshift, SSL offload
-
-# Design identity and access management controls
-  
-- [STS](/posts/aws-sts) - client -> broker -> IdP -> broker -> STS -> broker -> client
-
-- [IAM](/posts/aws-iam) - Pretty much all of this...
-  
-- [Directory Service](/posts/aws-directory-service) - simple AD = Samba 4 (NO MFA); AD Connector (MFA!!)
-
-- Tag Manager and resource groups as described in the [costing drill down](/posts/aws-costing)
-
-# Design protection of Data at Rest controls
-
-- [RDS](/posts/aws-rds)
-
-- [S3](/posts/aws-s3) - Bucket Policies; MFA Delete; Versioning; Backup to separate account; encryption
-
-- [KMS](/posts/aws-kms-hsm) - Bucket Policies; MFA Delete; Versioning; Backup to separate account; encryption
-
-# Design protection of Data in Flight and Network Perimeter controls
-
-- [VPC](/posts/aws-vpc) - SG vs NACLS
-
-- [CloudFront](/posts/aws-cloudfront) - SSL
-
-- [Elastic Load Balancer](/posts/aws-elastic-load-balancer)
-
-- [Web Application Firewall(WAF)](/posts/aws-web-application-firewall-shield-firewall-manager) - Web ACL
-
-- [Shield](/posts/aws-web-application-firewall-shield-firewall-manager#Shield) 
-
 ## Network Security
 
 There are four main types of attacks:
@@ -120,7 +74,6 @@ Generally IDS/IPS systems site in a public subnet and write data from received f
 
 ## Security Management Service Triage
 
-
 ### Identify
 Security architecture guidance? Well-architected tool
 
@@ -135,12 +88,11 @@ Store, create, provision certs? Certificate Manager
 
 
 ### Respond
-Parse CloudTrail, Flow, DNS GuardDuty logs - Detective (using ML)
+Parse CloudTrail, Flow, DNS GuardDuty logs? Detective (using ML)
 
 Aggregate alerts from GuardDuty, Inspector, Macie? Security Hub
 
 Changes to infrastructure? CloudTrail [config?]
-
 
 ### Remediate
 

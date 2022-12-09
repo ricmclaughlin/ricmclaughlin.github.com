@@ -23,6 +23,7 @@ Of course, WAF is PCI compliant.
 ## Web ACL terminology
 
 *Conditions* can include XSS, IP address range, geo restrictions, query string/header parsing (using REGEX), SQL injection
+
 *Rules* pull conditions together with a logical AND; rules are ordered and work to filter out bad requests; the default action occurs when no rules fire
 
 ## Web ACL Workflow

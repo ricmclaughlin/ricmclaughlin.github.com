@@ -100,7 +100,9 @@ This is a legacy, older Java library that writes data to S3, DynamoDB, Redshift,
 ### AWS Lambda
 Lambda is great for lightweight ETL into S3, DynamoDB, Redshift, ElasticSearch or anything you can interface with Lambda. Lambda does support a de-aggregation library for use with streams produced by KPL. Supports Consumer Enhanced Fan-Out.
 
-Kinesis Firehouse
+## Kinesis Firehouse
+
+## Kinesis Video Streams
 
 #### Triage
 

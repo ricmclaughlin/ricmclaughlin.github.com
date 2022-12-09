@@ -9,7 +9,7 @@ tags: [lambda, aws, devops, aws-dev-ops-pro, aws-solutions-arch-pro]
 
 # WTF is Lambda?
 
-Lambda is an abstract compute service where all you need to do is upload your code... AWS manages the servers for you. Lambda works in an event driven, orchestration manner and as a result of a request via API gateway or an ALB.
+Lambda is an abstract compute service where all you need to do is upload your code... AWS manages the servers for you. Lambda works well for for event driven &amp; orchestration workloads and as a result of a request via API gateway or an ALB. Lambda has broad language support and the ability to run Lambda Container images.
 
 Lambda functions can be called by specifying a version or alias (qualified ARN) OR without a version (unqualified ARN).
 
@@ -26,11 +26,18 @@ With Amazon CloudFront, you can write your own code to customize how your CloudF
 
 - CloudWatch: can send matched event, part of the matched, or a constant chunk of JSON
 
+## Networking
+
+
 ## Triage
 
-- function termination? out of memory
+- Need Internet access? Deploy in private subnet and add NAT 
 
-- Synchronously call? (anything that requires a response to proceed)
+- Need Internet access with fixed IP? Deploy in private subnet, add NAT, &amp; Elastic IP
+
+- Function termination? out of memory
+
+- Synchronously call? (anything that requires a response to proceed and error handling)
     * ELB
     * Cognito
     * Lex
@@ -41,13 +48,14 @@ With Amazon CloudFront, you can write your own code to customize how your CloudF
     * Step Functions
     * S3 Batch Functions
     * SQS
+    * SDK/CLI
 
 - Asynchronously call? (anything that architecturally could be modeled as a queue)
    * S3
    * SNS
    * SES
    * CloudFormation
-   * CloudWatch Logs & Events
+   * CloudWatch Logs & Events (EventBridge)
    * AWS CodeCommit & CodePipeline
    * AWS Config
    * AWS IoT services 
@@ -56,15 +64,21 @@ With Amazon CloudFront, you can write your own code to customize how your CloudF
 
 - Configure number of retries? Sync = caller configured; async = twice
 
-The old version of the function is served? there is a brief window of time, typically less than a minute, when the requests could be served by the older veersion.
+- The old version of the function is served? there is a brief window of time, typically less than a minute, when the requests could be served by the older veersion.
 
-Lambda to poll queue? Kinesis, DynamoDB (streams), SQS
+- Lambda to poll queue? Kinesis, DynamoDB (streams), SQS
 
-Promote new version to `LATEST`? Update alias to new version (assuming you are following best practice by using an alias ARN)
+- Promote new version to `LATEST`? Update alias to new version (assuming you are following best practice by using an alias ARN)
  
-Memory, timeout ranges? 128-10,240 MB, 900 seconds
+- Memory, deployment size, timeout ranges? 128Mg-10G, 50 MB compressed deployment (250 uncompress including layers)
 
-Change permissions of Lambda? must use CLI/SDK; can't use console
+- Change permissions of Lambda? must use CLI/SDK; can't use console
+
+- More than 1000 concurrent executions? Call support; 10K hard limit
+
+- need traffic shift during deployment? CodeDeploy Linear, Canary or all at once deployment
+
+- check with traffic before and after deployment? Pre and Post traffic hooks
 
 # API Gateway
 
@@ -76,3 +90,4 @@ Access control can be implemented using resource policies, IAM roles/policies, C
 
 Uses CloudWatch execution logging to capture user requests and response payloads.
 
+- 

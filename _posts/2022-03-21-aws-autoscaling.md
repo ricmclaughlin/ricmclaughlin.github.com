@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "AWS - Auto Scaling"
+title: "AWS - EC2 Auto Scaling"
 description: ""
 category: posts
-tags: [autoscaling, aws, devops, aws-dev-ops-pro, aws-solutions-arch-pro]
+tags: [ec2autoscaling, aws, devops, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
@@ -23,9 +23,7 @@ Spot instances can be used in an ASG but must include a bid price. ASG will bala
 
 ## Scaling Plans
 
-There are ~~four~~ five types of scaling plans
-
-0. Maintain current instance Levels - (Auto Scaling Self Healing) the use cases where a single server is needed, and needed all the time, the ability to create an ASG of one is useful.
+There are four types of scaling plans:
 
 0. Manual Scaling - manually change max, min, and desired capacity
 
@@ -34,10 +32,6 @@ There are ~~four~~ five types of scaling plans
 0. Dynamic Scaling - scale based changing demand using alarms and scaling policies. At a minimium you are going to need at least 2 scaling plans. 
 
 0. Predictive Scaling - EC2 Auto Scaling can work in conjunction with AWS Auto Scaling to reactively and proactively scale stuff.
-
-###  Manual Scaling
-
-Simply put, this is when you change the max, min and desired capacity of the group using the CLI or console.
 
 ### Dynamic Scaling
 
@@ -49,37 +43,13 @@ Scaling policies implement dynamic scaling. Alarms fire the scaling policies. Sc
 
 - `PercentChangeInCapacity` - percentage change
 
-#### Scaling Policy Types
+#### Dynamic Scaling Policy Types
 
 Simple Scaling - single scaling adjustment; have cooldown; default of 300 seconds
 
 Step Scaling - scale based on size of alarm breach; no cooldown; don't lock group; continuously evaluated; instance warmup
 
-#### ASG Instance Lifecycle &amp; Lifecycle Hooks
-
-The two main states for instances are:
-
-- `InService` - when the instance is happiest; the instance gets to this state via a "scale out" - Whenever an ASG starts to scale out the instances moves from the `Pending` state through the EC2_INSTANCE_LAUNCHING hook `Pending: Wait` state and `Pending:Proceed` state then to the `InService` state.
-
-- `Terminated` - when the instance is gone... the instance gets to this state via a "scale in" (or Health Check Failure) - Whenever an ASG starts to scale in the instance moves from the `InService` to `Terminating` then into the EC2_INSTANCE_TERMINATING hook `Terminating: Wait` and `Terminating: Proceed` and finally to `Terminated`
-
-While instances are `Pending` to be added to an ASG or `Terminating` out of an ASG there is an opportunity to add a hook into the processes. These hooks can be a CloudWatch event, an SNS or SQS message or launches a script.
-
-The wait state is how long these hooks have to run before proceeding to the lifecycle stage. By default the wait state is 3600 seconds and can changed using the `heartbeat-timeout` parameter or be ended using the `complete-lifecycle-action` or lengthened using `record-lifecycle-action-heartbeat` commands. The max wait state is 48 hours.
-
-At the end of the lifecycle the state will be `ABANDON` or `CONTINUE`. The ASG auto scaling cooldown does not start until the instance enters the InService state. In the case of Simple Scaling, the cooldown period does not begin until after the instance moves out of the wait state or in the case of spot instances the cooldown period begins when the bid is successful. Lifecycle Hooks can be used with Spot Instances but this does NOT prevent an instance from terminating.
-
-| API      | Purpose       |
-|----------|---------------|
-| `put-lifecycle-hook` | create hook |
-| `complete-lifecycle-action` | complete the hook with `ABANDON` or `CONTINUE` |
-| `record-lifecycle-action-heartbeat` | amount of additional time to extend the lifecycle hook timeout|
-
-There are also two other states:
-
-- Stand By - If you need to trouble shoot or work with an instance, but still want it managed by the ASG then the instance goes from InService to EnteringStandby to Standby. When returned to service, the instance goes through the `EC2_INSTANCE_LAUNCHING` hook process. By default, Auto Scaling decrements the desired capacity of your Auto Scaling group when you put an instance on standby and increments your desired capacity when you add instances and does NOT perform health checks on it.
-
-- Detach - If you need to remove an instance from InService state and remove it from the ASG you call `DetachInstances` then the service goes to `Detaching` through the `Detached` state and ends up an EC2 instance. Any instance can be attached to the ASG using `AttachInstances`.
+Target target - set capacity based on a single metric - the best metrics are `CPUUtilization`, `Average Network In/Out` and `RequestCountPerTarget` 
 
 ### Update Policies
 
@@ -135,37 +105,16 @@ There are numerous AS processes that can be suspended. Generally, suspending AS 
 
 - AddToLoadBalancer - Don't add new instance to the load balancer... useful for testing instances in the ASG before traffic gets to them; when re-enabled instances do NOT get added to the load balancer automatically
 
-## Monitoring and Controlling
-
-### AutoScaling Metrics
-
-| metric      | Purpose       |
-|--------------------|---------------|
-| `GroupMinSize` | min size |
-| `GroupMaxSize` | max size |
-| `GroupDesiredCapacity` | attempts to maintain this number  |
-| `GroupInServiceInstances` | in-service and not pending or terminating  |
-| `GroupPendingInstances` | pending instances |
-| `GroupTerminatingInstance` | terminating instances  |
-| `GroupStandbyInstances` | instances in stand-by state  |
-| `GroupTotalInstances` | in-service, pending, &amp; terminating  |
-
 ### Health Checks
 
 There are three types of [health checks](http://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html) that can be preformed in an ASG. Unhealthy instances are terminated almost immediately so never recover to healthy typically or be in a situation where `SetInstanceHealth` can set them to healthy. EIP and EBS volumes are detached and not re-attached to new instances.
 
-Status checks - good old fashioned system &amp; instance status checks
+Status checks - good old fashioned system (host) &amp; instance (vm) status checks
 
 ELB Health checks - the ELB/ALB will check the health of the instance; if an instance is in more than one ELB, all must report healthy else instance gets replaced.
 
 Custom Health Checks - based on a check from within the instance send a message to the ASG using the 'set-instance-health' command; Not sure why it works this way it should be done at the ELB/ALB level.
 
-## Troubleshooting
+## Software updates
 
-Least efficient way of solving problems? raise minimum number of instances
-
-
-
-
-
-
+Upgrade AMI? update launch configuration/template and terminate manually OR EC2 Instance Refresh for Auto Scaling (create new launch template and specify min % healthy and warm-up time)

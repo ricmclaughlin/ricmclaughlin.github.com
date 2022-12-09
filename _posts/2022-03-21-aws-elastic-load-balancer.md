@@ -9,7 +9,7 @@ tags: [aws, devops, elastic-load-balancer, aws-dev-ops-pro]
 
 [Elastic Load Balancer](https://aws.amazon.com/documentation/elastic-load-balancing/) distributes traffic to instances that belong to the ELB group - generally across multiple AZs. One nifty features it that it allows us to offload SSL certs to load balancers instead of webservers! ELB configuration requires a protocol, a front end port, and a back end port. ELB are charged by the hour and per GB of usage. Only one SSL Cert per ELB. The max number of requests that can be queued is 1024, can only use one subnet per AZ and must be set up to use 2 AZ; can use up to 5 Security groups and also features deletion protection.
 
-There are ~~two~~ three versions of ELB - Classic Load Balancer (only a few ports + TCP, HTTP, HTTPS, SSL; layer 4), Network load balancers (like classic but best for TCP at scale) and Application Load Balancer (any port - just HTTP, HTTPS; layer 7). ELBs do not have a defined IPV4 address but do support both IPV4 & IPV6.
+There are ~~two~~ three versions of ELB - Classic Load Balancer (only a few ports + TCP, HTTP, HTTPS, SSL; layer 4), Network load balancers (like classic but best for TCP at scale) and Application Load Balancer (any port - just HTTP, HTTPS; layer 7). ELBs do not have a defined IPV4 address but do support both IPV4 &amp; IPV6.
 
 Lots of differences between externally and internally facing load balancers:
 
@@ -21,7 +21,7 @@ Lots of times you will know there is more traffic a-coming. In these cases you c
 
 ## SSL on ELB
 
-One of the key features of ELB is the ability to terminate SSL connections for instances in the load balancing group - SSL is still a highly compute intensive process for webservers. In this configuration, the HTTPS client uses port 443 to communicate with the ELB and the ELB communicates on port 80 to the web server instances in the autoscaling group. Although a great feature, end-to-end encryption is an important aspect to consider in system design.
+One of the key features of ELB is the ability to terminate SSL connections for instances in the load balancing group. In this configuration, the HTTPS client uses port 443 to communicate with the ELB and the ELB communicates on port 80 to the web server instances in the autoscaling group. Although a great feature, end-to-end encryption is an important aspect to consider in system design.
 
 Managing the certificate on the ELB is always the magic... In fact, managing certs in general, is the magic. There are three options. 
 
