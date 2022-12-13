@@ -19,9 +19,18 @@ Lots of differences between externally and internally facing load balancers:
 
 Lots of times you will know there is more traffic a-coming. In these cases you can "pre-warm" the ELB by contacting AWS!
 
-## SSL on ELB
+When enabled Cross-Zone Load Balancing sends equal traffic to clients regardless of AZ; when disabled equal traffic traffic is sent to each AZ.
 
-One of the key features of ELB is the ability to terminate SSL connections for instances in the load balancing group. In this configuration, the HTTPS client uses port 443 to communicate with the ELB and the ELB communicates on port 80 to the web server instances in the autoscaling group. Although a great feature, end-to-end encryption is an important aspect to consider in system design.
+## Routing Algorithms
+
+There are 4 load balancer routing algorithms:
+Least outstanding requests
+Round Robin
+Flow Hash (NLB) - TCP/UDP connection is routed to a single target for the life of the connection - it' slike 
+
+## SSL on Load Balancers
+
+One of the key features of ELB is the ability to terminate SSL connections for instances in the load balancing group. In this configuration, the HTTPS client uses port 443 to communicate with the ELB and the ELB communicates on port 80 to the web server instances in the autoscaling group. 
 
 Managing the certificate on the ELB is always the magic... In fact, managing certs in general, is the magic. There are three options. 
 
@@ -39,82 +48,37 @@ If you have multiple ELB then multiple SSL Certs are required unless you use a w
 
 To enable removing unhealthy instances from the round robin, each ELB can do a health check of the instances in the load balancing group. The health check can use different ports, including port 80, and set a response timeout, a health check interval, an unhealthy threshold, and a healthy threshold. 
 
-ELB [health checks](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-healthchecks.html) only determine if the instance is available; optionally, an ASG can use ELB health checks in addition to the EC2 status checks it uses.
-
-## Metrics
-
-Metrics are reported every 60 seconds but if there is no traffic, no metric will be reported. For the ELB there are two useful dimensions: the `AvailabilityZone` and `LoadBalancerName`; the ALB adds a `TargetGroup` dimension.
-
-* SurgeQueueLength - Length of waiting queue - closer to zero the better (up to 1024)
-
-* SpilloverCount - How many requests are NOT serviced by the load balancer in EXCESS of the QueueLength - closer to zero the better; This is a bad, bad thing. Avoid. ELB reports a `503 - Service Unavailable` to the client in this scenario.
-
-* Latency - How long a page takes to return
-
-* BackendConnectionErrors - unsuccessful connection to the backend; Look at SUM and difference between min and max values
-
-* HealthyHostCount, UnHealthyHostCount - how well the backend instances are holding up
-
-* HTTPCode_Backend_XXX - response codes from the backend (2XX, 3XX, 4XX)
-
-* HTTPCode_ELB_4XX - malformed on incomplete client requests
-
-* HTTPCode_ELB_5XX - no healthy backend instance or request rate too high
-
-* RequestCount - # of requests over 1 or 5 minute interval
-
-## Logging
-
-Strangely [ELB Logging](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/access-log-collection.html) is disabled by default and are generated on a best-case situation so data might be missing; logs are stored in S3 and delivered every hour OR every 5 minutes.
-
-The log file name includes the end-time, ip address of the ELB and a random generated string. The logs themselves include a timestamp, client:port, backend:port, user_agent and the important:
-
-- request_processing_time - 
-  * for HTTP load balancer = complete request -> send to instance 
-  * for TCP load balancer = TCP connect -> first byte to instance
-
-- backend_processing_time
-  * for HTTP load balancer = completed send to backend server -> start of response 
-  * for TCP load balancer = time until connect to backend server
-
-- response_processing_time
-  * for HTTP load balancer = start of reponse head -> start of send response to client
-  * for TCP load balancer = time until first byte from instance started sending reponse to client
-
-- Request - including verb, protocol version (http 1.1 or 2.0)
-
-ALB can also forward X-Forwarded-For header so logging can occur at the instance layer NOT the ALB (because ALB routing is best effort to complete). 
-
-To accomplish the same thing with an ELB you need to enable the [Proxy Protocol Headers](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-proxy-protocol.html) which adds a header for the backend to parse but this does not enable sticky session or `X-Forward-For` header. This can only be configured from the command line.
-
-The ALB can also add the custom "X-Amzn-Trace-Id" HTTP header on all requests to improve tracability. 
+Load balancer [health checks](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-healthchecks.html) only determine if the instance is available; optionally, an ASG can use ELB health checks in addition to the EC2 status checks it uses.
 
 ## Differences between ELB (Classic) &amp; ALB
 
-| Thingy | ELB   |      ALB      |
-|-----------------|:-------------:|:------:|
-| HTTP & HTTP | Yes | Yes |
-| TCP/SSL (Layer 4) | Yes | No |
-| Layer? | 4 (forwards request) | 7 (terminates; parses header; new request) |
-| Layer 7 | No | Yes |
-| Websockets | No | Yes |
-| Path Routing | No | Yes |
-| Host Routing | No | Yes |
-| Cookie Stickiness | Yes | ELB Cookies only (called AWSALB) |
-| Health Check | TCP, ICMP, HTTP, HTTPS| HTTP, HTTPS |
-| Require MultiAZ? | No | Yes |
+| Thingy                    |           ELB          | NLB                  |                     ALB                    |
+|---------------------------|:----------------------:|----------------------|:------------------------------------------:|
+| HTTP & HTTPS              |           Yes          | Yes                  |                     Yes                    |
+| SSL Termination           |    Yes - single cert   | Yes                  |        Yes - Server Name Indication        |
+| Layer?                    |  4 (forwards request)  | 4 (TCP, UDP)         | 7 (terminates; parses header; new request) |
+| Layer 7                   |           No           | No                   |                     Yes                    |
+| Websockets/HTTP2          |           No           | Yes                  |                     Yes                    |
+| Path Routing              |           No           | No                   |                     Yes                    |
+| Cross-Zone Load Balancing |     Disabled - free    | Disabled - $$        |            Always active - free            |
+| Cookie Stickiness         |           Yes          | Flow Hash                   |      Yes Cookies only (called AWSALB)      |
+| Health Check              | TCP, ICMP, HTTP, HTTPS | TCP, HTTP, HTTPS     |                 HTTP, HTTPS                |
+| MultiAZ?                  |           No           | Yes - one EIP per AZ |                  Required                  |
 
-# ALB Facts
+## Application Load Balancer
 
-Path based routing & management - because the routing is based on URL matching target groups can be containers, different port on the same box or simply different target groups. This enables the ability to manage each target group individually.
+Path based routing & management - because the routing is based on URL matching target groups can be containers, different port on the same box or simply different target groups. ALB uses Dynamic Port Mapping to place more than one task of the same app on an ECS cluster. ALB can front Lambda by turning the HTTP request in to a JSON event. 
 
-Target groups are EC2 instances or containers managed as an entity and checks the health of the group automatically.
+Target groups are EC2 instances or containers managed as an entity and checks the health of the group automatically. 
 
-## Listeners
+### Listeners
 
 ALB listeners supports HTTP & HTTPS only. Rules determine where the traffic gets forwarded. The default rule has no conditions and runs if no other rules are matched. Each rule has a priority, host and path and can only `Forward` to a target group.
 
-## ELB Facts
+## Network Load Balancer
+NLB are layer 4 load balancers that work with massive amounts of UDP and TCP traffic. NLB supports one static IP per AZ and also supports Elastic IP addresses. It's common to puts an NLB in front of an ALB to keep the static IP address. Zonal DNS names resolves to all the NLB nodes in all enabled AZs (so typically more than 1 IP address will be returned). Add the AZ name to the NLB DNS names resolve the specific IP for that AZ - this could be useful for an application to keep traffic within a single AZ.
+
+## Elastic Load Balancer 
 
 In a EC2-Classic situation, an ELB support ports, 25, 80, 443, 465, 587 and 1024-65535 (ephemeral ports) while in an EC2-VPC it support ports 1-65535. An Elastic IP can not be assigned to a ELB. DNS apex zone support is in the house while multiple non-wild card SSL certs will require multiple ELB. It also support IPv4 &amp; IPv6. Can load balance the zone apex as well.
 
@@ -128,54 +92,6 @@ There are three `Cookie Stickiness`, also know as session affinity, with both en
 
 * Enable Application Generated Cookie Stickiness - ELB generates a cookie that correlates to the application cookie - the duration is set by the application cookie; name the cookie in the setting.
 
-## Autoscaling and ELB Trouble Shooting
 
-### Improving Operations
 
-- Install a web server on each instance, so the default health checks work well.
 
-- Enable keep-alive timeout so the ELB to backend connection stays open
-
-- Enable Path MTU Discovery
-
-- Use TCP if your application does NOT use common HTTP codes
-
-### General Config Problems
-
-1. Attempting to create instance in the wrong zone, subnet or security group or with the wrong key pair. 
-
-2. Instance is not supported in that AZ, region or is the wrong type for autoscaling.
-
-3. The region is out of capacity.
-
-3. There is an invalid EBS device mapping, or you are attaching a EBS block device to a instance store AMI.
-
-4. An ELB will issues a `HTTP 503 Error` when it can process any more requests - call AWS if a huge traffic spike comes!
-
-#### Dumbass Problems:
-
-1. Autoscaling is not enabled on the account.
-
-2. Autoscaling config is not working correctly. ie. there is a bug.
-
-3. Autoscaling is in a "suspended state"
-
-## Patterns 
-
-0. [Idle timeouts](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/config-idle-timeout.html) - decrease the connection idle timeouts from the front of the system to the back... this defaults to 60 seconds on the ELB. This does not apply to the ALB.
-
-0. [More than one AZ]() - always associate an ELB with more than one AZ
-
-0. [ELB routing results in AZ load in-balance]() - sometimes the lack of DNS servers causes an AZ to get hotter than others because some networks can't service the requests and cached results are used; enable cross zone routing with Route 53.
-
-0. X-Fowarded-For header - enables the customer IP address to be forward to the application layer
-
-0. Sticky sessions - supported by Classic; NLB/ALB only support Target Group level sticky sessions
-
-0. Cross-zone load balancing - the ability to route cross AZ instead of only to the AZ of the ELB
-
-0. Path patterns - parse the URL and route traffic based on pattern matching... it's what ALB does that Classic and NLB don't...
-
-## Errors
-
-```Error 504``` - this is an application issue, at the application or database layer, reported from the load balancer

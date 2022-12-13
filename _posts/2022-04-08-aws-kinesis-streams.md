@@ -103,6 +103,7 @@ Lambda is great for lightweight ETL into S3, DynamoDB, Redshift, ElasticSearch o
 ## Kinesis Firehouse
 
 ## Kinesis Video Streams
+Kinesis Video Streams is a serverless streaming data service that makes it easy to capture, process, and store data streams at any scale. There is a single stream per device; technicall you use the Kinesis Video Streams Producer library. The data is stored in S3 but you can not write data directly to S3 without writing a custom solution. Data can be consumed by EC2 instances using the Kinesis Video Stream Parser Library or integrated with Rekognition which can, in turn, create a Kinesis Data Stream for further analysis.
 
 #### Triage
 

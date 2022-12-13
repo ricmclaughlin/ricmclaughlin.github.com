@@ -148,3 +148,20 @@ Use Cases:
 
 Check if a bucket is public OR objects are public? Not Trusted Advisor (can't check for public objects in the bucket) instead use EventBridge/S3 Events OR Config.
 
+# EC2 attached storage
+
+Long term data storage? EBS
+
+data shared between instance fast? memecached or redis
+
+persist data shared between instances? EFS
+
+don't care? instance store
+
+DB or INTENSE datawarehouse server = IOPS/io1
+
+General purpose = gp2
+
+Large I/O including EMR, Kafka, log processing and data warehouse ETL = st1 (sequential data reads)
+
+Super high disk IO? either RAID 0 or RAID 10 EBS, EBS-optimized instances, modern Linux kernel

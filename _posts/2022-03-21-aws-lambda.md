@@ -80,14 +80,6 @@ With Amazon CloudFront, you can write your own code to customize how your CloudF
 
 - check with traffic before and after deployment? Pre and Post traffic hooks
 
-# API Gateway
 
-Integration sources? Lambda functions (in account or other account), Step Functions, HTTP endpoints (EB), EC2, non-AWS HTTP/S endpoints, or private end-points via VPC links/Direct Connect. 
-
-Caching using cache keys made from headers, query strings & URL; can set size and over-ride cached elements; when resized the cache is flushed.
-
-Access control can be implemented using resource policies, IAM roles/policies, CORS, lambda authorizers, Cognito pools, SSL Certs, and usage plans.
-
-Uses CloudWatch execution logging to capture user requests and response payloads.
 
 - 

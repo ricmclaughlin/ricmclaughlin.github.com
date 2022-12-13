@@ -23,4 +23,4 @@ The advantage of CodeDeploy is the integration with all AWS compute types and lo
 Hosted git with integrations into IAM, EventBridge, and Lambda. 
 
 # Code Pipeline
-Jenkins sort of thing except on AWS. Easy to 
+Jenkins sort of thing except on AWS. Easy to integration with ECR (to build container images). Integates with GitHub. In V1 CodePipeline could poll GitHub or use HTTP Webhooks. V2 integration uses CodeStar Source Connections.

@@ -86,7 +86,6 @@ Store non-rotated configuration and passwords? Systems Manager Parameter Store (
 
 Store, create, provision certs? Certificate Manager
 
-
 ### Respond
 Parse CloudTrail, Flow, DNS GuardDuty logs? Detective (using ML)
 
@@ -107,6 +106,9 @@ AuthN mobile/web using social - Cognito User Pools (mobile focused)
 AuthN/Z (AWS resources using directory) - AWS SSO
 
 AuthN/Z AWS resources from another account? - IAM
+
+## Gateway Load Balancer
+Essentially a centralized proxy server that operates at layer 3 to forward traffic to a set of security services and load balances between virtual devices if needed. Uses the GENEVE protocol on port 6081 to forward traffic to EC2 instances OR private IP addresses. Cross-Zone Load Balancing is disabled by default and costs if enabled.
 
 ## Resources
 
