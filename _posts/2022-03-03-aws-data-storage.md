@@ -7,9 +7,6 @@ tags: [aws, aws-guides, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
-# Demonstrate ability to make architectural trade off decisions involving storage options
-
-[S3](/posts/aws-S3) - Parallelization, alphabetical order, randomness in URL -> SSHHDDMMYY
 
 ## S3
 
@@ -39,7 +36,7 @@ Only certain folks can change state of versioning? enable MFA
 
 S3 Cross region replication? Requires versioning on source bucket; deletes and lifecycle actions not supported
 
-Partner upload data? [Pre-signed upload URLs](http://docs.aws.amazon.com/AmazonS3/latest/dev/PresignedUrlUploadObject.html)
+Authenticated upload? [Pre-signed upload URLs](http://docs.aws.amazon.com/AmazonS3/latest/dev/PresignedUrlUploadObject.html)
 
 #### Performance Use Cases
 
@@ -52,15 +49,6 @@ Slow file upload speed? [S3 Transfer acceleration](http://docs.aws.amazon.com/Am
 `PUT` optimization on a strong network? multi-part uploads of between 25-50MB to max throughput
 
 `PUT` optimization on a weak network? multi-part uploads of about 10MB to prevent upload restart
-
-
-## EFS vs FSx for Windows
-
-EFS: Shared File storage for EC2 multi-threaded linux
-
-Linux >7000 file operations per sec? Max I/O else General Purpose (burstable)
-
-FSx for Windows: Active directory, any Windows use-case
 
 ## EBS
 
@@ -165,3 +153,14 @@ General purpose = gp2
 Large I/O including EMR, Kafka, log processing and data warehouse ETL = st1 (sequential data reads)
 
 Super high disk IO? either RAID 0 or RAID 10 EBS, EBS-optimized instances, modern Linux kernel
+
+## EFS vs FSx for Windows
+
+EFS: Shared File storage for EC2 multi-threaded linux
+
+Linux >7000 file operations per sec? Max I/O else General Purpose (burstable)
+
+FSx for Windows: Active directory, any Windows use-case
+
+## Data Lifecycle Manager vs AWS Backup
+DLM = EBS Snapshots; AWS Backup = all services (including EBS)
