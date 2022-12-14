@@ -23,10 +23,11 @@ Each file share can only connect to one S3 bucket, but multiple file shares can 
 
 - Stored - store it local then async backed; 32 volumes of 16TB each = 512 TB; stores backups as EBS snapshots 
 
-[Tape Gateway](https://docs.aws.amazon.com/storagegateway/latest/tgw/WhatIsStorageGateway.html) - Each Gateway-VTL presents a backup application with an industry-standard iSCSI-VTL (Virtual Tape Library) consisting of a virtual media changer and tape drives that can hold up to 1PB. 
+[Tape Gateway](https://docs.aws.amazon.com/storagegateway/latest/tgw/WhatIsStorageGateway.html) - Each Gateway-VTL presents a backup application with an industry-standard iSCSI-VTL (Virtual Tape Library) consisting of a virtual media changer and tape drives that can hold up to 1PB. Individual files are not accessible via S3 - you have to download the entire tape.
 
 - Virtual tape libraries - S3 backed; 1500 tapes; instantaneous retrieval; 1 PB
 
 - Virtual tape shelf - Glacier backed; unlimited tapes; 24 hour retrieval
+
 
 

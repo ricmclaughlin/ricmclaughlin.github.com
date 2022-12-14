@@ -7,7 +7,6 @@ tags: [aws, aws-guides, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
-
 ## S3
 
 Good for: Web Storage, Static websites, Data Lake, backup/archive

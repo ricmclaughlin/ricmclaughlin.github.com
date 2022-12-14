@@ -38,3 +38,4 @@ Global Accelerator supports healthchecks, only requires the two IP addresses to 
 
 # Fault Injection Simulator (FIS)
 
+Chaos engineering service that injects faults into a running system to test self healing. In FIS you generate an experiment template, run the experiment, then monitor the results using EventBridge and CloudWatch

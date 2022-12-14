@@ -34,9 +34,6 @@ Just backup the data and restore it later; Backup data; services idle.. RPO can 
 
 - [Snowball &amp; Import/Export Snowball](/posts/aws-snowball) - this gets the initial chunk of data OR big chunks of data, to S3
 
-- AWS backup
-
-
 ## Pilot light
 Live data; services idle 
 - [Route53](/posts/route53) - health checks
