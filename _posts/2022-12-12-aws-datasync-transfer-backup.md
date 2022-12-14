@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AWS - DataSync & Transfer Family"
+title: "AWS - DataSync, Transfer Family & AWS Backup"
 description: ""
 category: posts
 tags: [datasync, aws, aws-solutions-arch-pro]
@@ -23,3 +23,10 @@ AWS Transfer Family securely scales recurring business-to-business file transfer
 Full redundancy across multiple Availability Zones within an AWS Region. Access control in the service or integrate with existing auth system.
 
 The public endpoint for AWS Transfer Family will change which means you can't set up IP allow lists. VPC endpoints with access from a corporate local works. To secure access from the internet using an allow list attach an elastic IP to the VPC endpoint and set up an appropriate security group to enable access.
+
+# AWS Backup
+Fully managed centralized management and automation of backups across all AWS services to S3. No custom scripts OR manual processes. Support cross region &amp; multiple accounts; only manages backups made with AWS Backup. Some services require opt-in, some support Point-in-time-recovery. On-demand or scheduled backup; tag based backup. 
+
+- _Backup plans_ are name of the policies for AWS Backup and set up frequency, backup window, time to transfer to cold storage, and retention period.
+
+- _Vault Lock_ enables Write Once Read Many (WORM) access that disables ANY modification, even by the root user.

@@ -41,11 +41,4 @@ tags: [aws, aws-guides, aws-solutions-arch-pro]
 
 - SNS Mobile Push - push to phones with amaz-balls support for Windows Phone
 
-- Kinesis - 
-
-# Demonstrate ability to implement the most appropriate data storage scaling architecture
-
-- RDS vs noSQL
-
-# Determine trade-offs between vertical and horizontal scaling
 

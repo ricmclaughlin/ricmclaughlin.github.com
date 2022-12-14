@@ -84,7 +84,7 @@ Use Cases:
 
 - DataSync - Sync from on-prem to S3, EFS, EBS FSx (agent that includes encryption and integrity checks for NFS or SMB)
 
-- Between storage services? DataSync (EFS -> EFS on EC2 instance)
+- Between storage services? DataSync (EFS -> EBS on EC2 instance)
 
 - Low end DR = S3 directly using DataSync (Storage Gateway is less performant).
 
@@ -96,7 +96,7 @@ Use Cases:
 
 - Virtual Tape Shelf - unlimited storage and OK with a 24 hour turn around time.
 
-- Snowball - lots of data with a small pipe = loading data takes more than a week
+- Snowball - more than 2TB of data for a T3 connection, 5TB for a 100MB connection, and 60TB for 1000Mbps connections.
 
 - Import/Export - send a disk into AWS
 
@@ -164,3 +164,4 @@ FSx for Windows: Active directory, any Windows use-case
 
 ## Data Lifecycle Manager vs AWS Backup
 DLM = EBS Snapshots; AWS Backup = all services (including EBS)
+

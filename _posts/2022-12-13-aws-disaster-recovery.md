@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "AWS - High Availability"
+title: "AWS - Disaster Recovery"
 description: ""
 category: posts
-tags: [aws, aws-guides, aws-solutions-arch-pro]
+tags: [disaster-recovery, aws, aws-guides, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
-# Demonstrate ability to implement DR for systems based on RPO and RTO
+# Disaster recovery basics RPO and RTO
   
 - Recovery point objective (RPO) - amount of data, based on time, the business can loose; the shorter then more expensive 
 
@@ -15,9 +15,10 @@ tags: [aws, aws-guides, aws-solutions-arch-pro]
 
 AWS is great for DR because it is flexible, Opex model, automation is easy.
 
-Four scenarios: Backup and restore, pilot light, warm standby, and multi-site
+There are four main scenarios: Backup and restore, pilot light, warm standby, and multi-site
 
-## backup and restore
+## Backup and Restore
+Just backup the data and restore it later; Backup data; services idle.. RPO can be short cheaply; RTO ends up being really long
 
 - [RDS](/posts/aws-rds) - auto backup with max 35 days retention; no backup of read-replicas; On-premise RDS replication
 
@@ -29,12 +30,15 @@ Four scenarios: Backup and restore, pilot light, warm standby, and multi-site
 
 - [S3/Glacier](/posts/aws-s3) - S3 is a great target for backup; Glacier has a long RTO metric
 
-- [Storage Gateway](/posts/aws-storage-gateway)
+- [Storage Gateway](/posts/aws-storage-gateway) - continuous backup
 
-- [Snowball &amp; Import/Export Snowball](/posts/aws-snowball)
+- [Snowball &amp; Import/Export Snowball](/posts/aws-snowball) - this gets the initial chunk of data OR big chunks of data, to S3
+
+- AWS backup
+
 
 ## Pilot light
-    
+Live data; services idle 
 - [Route53](/posts/route53) - health checks
 
 - [ASG](/posts/aws-autoscaling) - Autoscaling min/max adjustment & stored launch Configuration
@@ -44,13 +48,13 @@ Four scenarios: Backup and restore, pilot light, warm standby, and multi-site
 - [RDS](/posts/rds) - replication between AZ or from on-prem
 
 ## Warm Standby
-
+Live data; services small
 - [Route53](/posts/route53) - Route53 - Weighted
 
 - [RDS](/posts/rds) - Multi-AZ - synchronous
 
 ## Multi-Site
-
+Live data; live services load balanced between sites 
 - [Route53](/posts/route53) - latency based routing with health checks; 
     
 - [DynamoDB](/posts/aws-dynamodb) - Cross region Replication
@@ -59,15 +63,8 @@ Four scenarios: Backup and restore, pilot light, warm standby, and multi-site
 
 - [Redshift](/posts/redshift) - automated cross region snapshot copy
 
-# Determine appropriate use of multi-Availability Zones vs. multi-Region architectures
-
-nothing really...
-
-# Demonstrate ability to implement self-healing capabilities
-
-- [RDS](/posts/rds) - Multi-AZ
-
-- [ASG](/posts/aws-autoscaling) - Autoscaling min/max adjustment & stored launch Configuration
+# Elastic Disaster Recovery (DRS)
+Very much like Application Migration Server (MGN) except for DR - used to be called _CloudEndure Disaster Recovery_. DRS minimizes downtime and data loss with fast, reliable recovery of on-premises and cloud-based applications using affordable storage, minimal compute, and point-in-time recovery. Uses what looks like the same AWS Replication Agent as Application Migration Server to do block-level replication for servers; failover happens in minutes.
 
 # Key Resources
 
