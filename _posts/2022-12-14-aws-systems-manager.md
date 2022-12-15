@@ -23,8 +23,10 @@ SSM has a Session Manager feature that enables shell access to EC2 instances and
 Aggregates information such as issues, events, and alerts across AWS resources such Config, CloudTrail, CloudWatch Alarms, and CloudFormation into OpsItems. OpsItems can trigger Automation Runbooks.
 
 ## Parameter Store
-Part of AWS Systems Manager (SSM), parameter store is serverless storage service for configuration and secrets. Can be used for Passwords, database connection strings, license codes, and API keys. Can be stored encrypted or plaintext and in hierarchies using a tree structures. SSM publishes AMI values that are read-only. Parameter store can also be used to pass variables between Cfn templates.
+Part of AWS Systems Manager (SSM), parameter store is serverless storage service for configuration and secrets. Can be used for passwords, database connection strings, license codes, and API keys. Parameters are versioned, can be stored encrypted (using KMS) or plaintext and in hierarchies using a tree structures. Parameter store can also be used to pass variables between Cfn templates. Security through IAM; notifications through EventBridge.
 
+Secrets Manager secrets can also be access via Parameter Store. SSM publishes AMI values that are read-only.
 
+There are two tiers of parameters: Standard (10K parameters, 4kb) or Advanced (100K parameters, 8kb, Parameter Policies). Parameter Policies enable a TTL on sensitive data; when TTL expires an EventBridge event is fired which could enable a password change.
 
 

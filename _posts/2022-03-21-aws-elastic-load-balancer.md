@@ -42,7 +42,7 @@ Managing the certificate on the ELB is always the magic... In fact, managing cer
 
 In addition to a cert, you need to define an SSL Negotiation configuration, called a security policy, which is a combination of SSL protocols, SSL ciphers, and the Server Order Preference option.
 
-If you have multiple ELB then multiple SSL Certs are required unless you use a wildcard certificate.
+If you have multiple ELB then multiple SSL Certs are required unless you use a wildcard (SNI) certificate.
 
 ## Health Checks
 
@@ -76,11 +76,11 @@ Target groups are EC2 instances or containers managed as an entity and checks th
 ALB listeners supports HTTP & HTTPS only. Rules determine where the traffic gets forwarded. The default rule has no conditions and runs if no other rules are matched. Each rule has a priority, host and path and can only `Forward` to a target group.
 
 ## Network Load Balancer
-NLB are layer 4 load balancers that work with massive amounts of UDP and TCP traffic. NLB supports one static IP per AZ and also supports Elastic IP addresses. It's common to puts an NLB in front of an ALB to keep the static IP address. Zonal DNS names resolves to all the NLB nodes in all enabled AZs (so typically more than 1 IP address will be returned). Add the AZ name to the NLB DNS names resolve the specific IP for that AZ - this could be useful for an application to keep traffic within a single AZ.
+NLB are layer 4 load balancers that work with massive amounts of UDP and TCP traffic. NLB supports one static IP per AZ and also supports Elastic IP addresses. It's common to puts an NLB in front of an ALB to keep the static IP address. Doing a DNS lookup on a NLB zonal name will resolves to all the NLB nodes in all enabled AZs (so typically more than 1 IP address will be returned). Add the AZ name to the NLB DNS names resolve the specific IP for that AZ - this could be useful for an application to keep traffic within a single AZ. NLB don't support SG.
 
 ## Elastic Load Balancer 
 
-In a EC2-Classic situation, an ELB support ports, 25, 80, 443, 465, 587 and 1024-65535 (ephemeral ports) while in an EC2-VPC it support ports 1-65535. An Elastic IP can not be assigned to a ELB. DNS apex zone support is in the house while multiple non-wild card SSL certs will require multiple ELB. It also support IPv4 &amp; IPv6. Can load balance the zone apex as well.
+In a EC2-Classic situation, an ELB support ports, 25, 80, 443, 465, 587 and 1024-65535 (ephemeral ports) while in an EC2-VPC it support ports 1-65535. An Elastic IP can not be assigned to a ELB. DNS apex zone support is in the house while multiple non-wild card SSL certs will require multiple ELB. It also support IPv4 &amp; IPv6. Can load balance the zone apex as well. Does not support SNI certs.
 
 ## ELB Cookie Stickiness
 

@@ -55,4 +55,4 @@ Simple to use: install ECS Container Agent and SSM Agent on instance; specify EX
 
 Repository with private and public container images supporting versioning, image tags, image lifecycle, and vulnerability scanning. It's an AWS service so you need an IAM permission to access it. Supports cross-region and cross-account replication. 
 
-Scanning for vulnerabilities can be configured manually or on push to the repository. Findings fire an EventBridge event and are accessible via the console. Two scanning types: Basic scanning using the Common Vulnerabilities and Exposures (CVE) from the Clair project. Enhanced Scanning uses Amazon Inspector, a product dedicated to ECR (why is this a separate service?).
+Scanning for vulnerabilities can be configured manually or on push to the repository. Findings fire an EventBridge event and are accessible via the console. Two scanning types: Basic scanning using the Common Vulnerabilities and Exposures (CVE) from the Clair project. Enhanced Scanning uses Amazon Inspector, a product dedicated to scanning for network and CVE vulnerabilities.

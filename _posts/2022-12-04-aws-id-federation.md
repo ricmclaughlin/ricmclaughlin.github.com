@@ -101,3 +101,12 @@ Cognito pools enable multiple providers IDs to be stored and treated uniformally
 
 * AuthN mobile/web using social - Cognito User Pools (mobile focused)
 
+## Identity Triage
+
+AuthZ mobile/web using social - Cognito Identity Pools
+
+AuthN mobile/web using social - Cognito User Pools (mobile focused)
+
+AuthN/Z (AWS resources using directory) - AWS SSO
+
+AuthN/Z AWS resources from another account? - IAM role or resource policy

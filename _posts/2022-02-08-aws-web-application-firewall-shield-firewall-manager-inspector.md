@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Web Application Firewall - Shield"
 description: ""
 category: posts
-tags: [aws, aws-dev-ops-pro, vpc, shield, waf, aws-services]
+tags: [aws, aws-dev-ops-pro, shield, waf, aws-services, inspector]
 ---
 {% include JB/setup %}
 
@@ -45,10 +45,15 @@ $1 per rule per month
 ## Shield
 Shield helps protect again DDoS attacks.
 
-Shield comes in two flavors: Standard, which is included at no cost and protects against layer 3 & layer 4 attacks (SYN/UDP & reflection attacks), and Advanced ($3000 per month) which will absorb most attacks, give you a free coverage for usage (EC2, ELB, CloudFront, Route53) during the attack and access to the DDoS response team. 
+Shield comes in two flavors: Standard, which is included at no cost and protects against layer 3 & layer 4 attacks (SYN/UDP & reflection attacks), and Advanced ($3000 per month) which will absorb most attacks, give you a free coverage for usage (Global Accelerator, EC2, ELB, CloudFront, Route53) during the attack and access to the DDoS response team. 
 
 # WTF is Firewall Manager?
-[Firewall manager](https://aws.amazon.com/firewall-manager/) enables centralized management of firewall rules accross accounts and applications using AWS Organizations. Can be used to apply WAF rules, Shield protections and Security groups (for EC2 and ENI)
+[Firewall manager](https://aws.amazon.com/firewall-manager/) enables centralized management of firewall rules accross accounts and applications using AWS Organizations. Can be used to apply WAF rules, Shield protections, Security groups (for EC2 and ENI), Network Filewall, Route53 DNS Firewall at the regional level.
+
+Once defined Firewall Manager Rules are applied for all new resources.
+
+# Inspector
+Runs automated security assessments for compute using CVE and network reachability for EC2. For EC2 it uses the SSM agent to scan for network accessibility issues and known vulnerabilities. For ECR, assess images as they are pushed. For Lambda, function code and package dependencies are analyzed as they are deployed. Integrates with Security Hub and EventBridge and reports a risk score.
 
 ## Resources
 Great Jeff Barr [introduction blog post about WAF for ALB ](https://aws.amazon.com/blogs/aws/aws-web-application-firewall-waf-for-application-load-balancers/) from right after 2016 re:Invent
