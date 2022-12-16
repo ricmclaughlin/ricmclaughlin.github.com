@@ -49,33 +49,28 @@ Turning log data into metrics is done through the use of [metric filters](http:/
 
 ## Alarms
 
-Alarms take must be in same region as the data; have three states `OK`, `ALARM`, and `INSUFFICIENT_DATA`. Metrics are for 1 or 5 minutes so alarms have to be equal to or higher frequency. You can use the `mon-put-metric-alarm` command to create or update an alarm using the ancient Java command line tool. There is a max of 5000 alarms per AWS account. Alarm history is stored for 14 days.
+Alarms take must be in same region as the data; have three states `OK`, `ALARM`, and `INSUFFICIENT_DATA`. Metrics are for 1 or 5 minutes so alarms have to be equal to or higher frequency. You can use the `mon-put-metric-alarm` command to create or update an alarm using the ancient Java command line tool. There is a max of 5000 alarms per AWS account. Alarm history is stored for 14 days. Alarms can trigger EC2 actions (reboot, stop, terminate, recover), autoscaling and SNS; alarm events can also be handled by EventBridge.
 
 ## Logs
 
-Using CloudWatch logs, you can monitor logs from any source in AWS, like EC2 or CloudTrail, and then archive that data. It's an aggregation tool that will indefinitely store your logs. 
+Using CloudWatch logs, you can monitor logs from any source in AWS, like EC2, Route53, or CloudTrail, or on-prem using the CloudWatch Logs Agent, CloudWatch Unified Agent, and the SDK and then archive that data. It's an aggregation tool that will indefinitely store your logs. KMS encryption is supported.
 
-- Log Group - a group of log streams that have the same properties, policies, and access controls. Retention settings specify how long to keep logs from 1 day to 10 years and all streams in the group inherit this setting. 
+- Log Group - a group of log streams that have the same properties, policies, and access controls. Log expiration policies specify how long to keep logs from 1 day to forever and all streams in the group inherit this setting. 
 
 - Log Stream - a series of event from the same source; auto deleted after two months
 
 - Log Event - an event that happened; includes a Timestamp and a message
 
+Log Filters are filter expressions used to search logs and turned into the data into a metric. CloudWatch Logs Insights can be used to query logs and add queries to CloudWatch Dashboards.
+
 ### Exporting, Subscriptions & Streaming
 
-Once the data is in Cloudwatch logs, it is pretty straightforward to send it elsewhere for processsing. Subscriptions are closely related to filters... except the output of them is to a different service such as Kinesis Streams, Lambda, or Kinesis Firehose.
+Once the data is in Cloudwatch logs, it is pretty straightforward to send it elsewhere for processsing. Logs can be exported to S3 but it can take up to 12 hours, the bucket must be encrypted with AES-256 (SSE-S3) not KMS, and it must be automated using the `CreateExportTask` call. 
 
-Logs can be exported to S3 or ElasticSearch directly from CloudWatch.
+Log Subscriptions Filters enable sending data to Kinesis Firehouse (perhaps to S3) or Kinesis Data Stream in near-real time, or Lambda (real-time). It's easy to load the data directly into ElasticSearch from there.
 
-## Events (CloudWatch Events)
-
-This service is similiar to CloudTrail but faster; you might call it the central nervous system of AWS.
-
-Events - Events take the form of small JSON documents generated when a resource changes state, an API call is delivered via CloudTrail to CloudWatch, OR when your app generates an event. Use Events instead of CloudTrail when you need real-time monitoring not batched monitoring.
-
-Rules - code that matches and routes incoming events; all rules that match an event get fired; can process the JSON or pass the entire message
-
-Targets - Where events are processed including Lambda, Kinesis, SNS or built-in targets
+### CloudWatch Agent SSM Integration
+Using the `AWS-ConfigureAWSPackage` document the SSM Run Command can install the CW agent. The SSM State Manager feature also works for this. Configure the CW agent using the config from SSM Parameter store.
 
 ## Monitoring Approach
 
@@ -84,3 +79,12 @@ At the time this course I was taking was written, which is way far in the past, 
 Overall picture - compare SUM and difference between min and max values to get an overview of the data
 
 Time Frames - alarms should be equal to or greater than the metric frequency
+
+## Synthetics Canary
+Synthetics canaries are configurable scripts that run on a schedule, to monitor endpoints and APIs. Canaries trigger alarms, are written in Node.js or python against a headless Chrome browser and check and store, availability, latency and screenshot of UI. There are blueprints to start with:
+- Heartbeat monitor
+- API Canary
+- Broken Link Checker
+- Visual monitoring - which compares screen shots
+- Canary Recorder
+- GUI workflow builder
