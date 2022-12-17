@@ -7,7 +7,20 @@ tags: [aws, aws-guides, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
-## EMR Overview
+## EMR
+EMR Supports many different big data products including Spark, HBASE, Presto, Flink. Storage can use regular good old fashioned HDFS or EMRFS which is storage on S3. EMR runs in a VPC but within a single AZ.
+
+EMR includes the following components:
+
+- Master node - Manages data distribution to core and slave nodes; backs up log files to S3 every 5 minutes if configured upon creation; long running (so good candidates for RI)
+
+- Core Nodes - store data on HDFS; managed by master node; long running (so good candidates for RI)
+
+- Task Nodes - Performs data tasks; no HDFS; short running and good for Spot instances
+
+It's also common to run EMR in a transient cluster (temporary useage). Capacity is related to instances configuration; uniform instances groups have single instances types, purchasing options, and autoscaling while instances fleets mix instance types and don't have autoscaling (like Spot for EMR).
+
+## Hadoop Background
 
 The big idea is distribute high volocity, high volume and lots of variety of data across tons of servers... using Hadoop. Tasks include Log analysis, web indexing, machine learning, financial analysis, scientific simulation, and bioinformatics. Hadoop is a data storage and batch processing framework that is comprized of four major components:
 
@@ -20,25 +33,14 @@ The big idea is distribute high volocity, high volume and lots of variety of dat
 - Hadoop Map Reduce - the engine - an implementation of the MapReduce programming model for large scale data processing.
 
 
-## EMR
-
-EMR includes the following components:
-
-- Master node - Manages data distribution to core and slave nodes; backs up log files to S3 every 5 minutes if configured upon creation
-
-- Core Nodes - store data on HDFS; managed by master node
-
-- Task Nodes - Performs data tasks; no HDFS
-
-Storage can use regular good old fashioned HDFS or EMRFS which is storage on S3.
-
 ## Map Reduce
 
 Parallel processing framework that works with Hadoop. It moves data out to processing location which essentially scales-out the architecture; fault tolerant; runs on commodity hardware; many different langauges are supported; works with Hive in V2 and Pig (V1 & V2)
 
 ## Hive
 
-Data warehouse based on Hadoop (Petabyte scale; distributed on commodity hardware; highly latent queries) Hive uses HQL so you can leverage your SQL skills and works on structed and unstructured data and has the nifty feature of defining a schema on read.
+Data warehouse based on Hadoop (Petabyte scale; distributed on commodity hardware; highly latent queries) Hive uses HQL so you can leverage your SQL skills and works on structed and unstructured data and has the nifty feature of defining a schema on read. Hive can be configured to read data from DynamoDB.
+
 Components of Hive include:
 
 - Databases - named bunch of data
@@ -49,7 +51,7 @@ Components of Hive include:
 
 - Buckets - a file in a directory table used to manage tables; more efficient that 1000s of small partitions
 
-- Views & indexes - same as RDBDS
+- Views &amp; indexes - same as RDBmS
 
 - Hive Metastore - stores information about partitions, schemas, tables & locations, and columns/column types
 

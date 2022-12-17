@@ -7,7 +7,7 @@ tags: [aws, redshift, aws-solutions-arch-pro, aws-services]
 ---
 {% include JB/setup %}
 
-Redshift is a data warehouse product that costs about $1000 per terabyte per year which is about 1/10 the cost of most data warehousing solutions. Instead of storing data in a row, data is stored in columns which makes it ideal for aggregating data. Data is stored squentially and compressed and when combined with Massive Parallel Processing the system is quite peppy. 
+Redshift is a data warehouse product that costs about $1000 per terabyte per year which is about 1/10 the cost of most data warehousing solutions. Instead of storing data in a row, data is stored in columns which makes it ideal for aggregating data. Data is stored squentially and compressed and when combined with Massive Parallel Processing (MPP) the system is quite peppy. 
 
 ## Configurations
 
@@ -27,11 +27,9 @@ Similiar to RDS, Redshift uses parameter groups to standardize the configuration
 
 ## Operations
 
-Data load - single source per load generally compressed from S3
+Data load - single source per load; generally compressed from S3 but others as well
 
 Any SQL client that works with PostgreSQL works with Redshift.
-
-The `EXPLAIN` command spits out the execution plan for the query.
 
 ### Resizing
 

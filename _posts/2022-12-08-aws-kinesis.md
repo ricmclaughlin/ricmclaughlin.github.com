@@ -9,40 +9,40 @@ tags: [aws, kinesis, data-collection, aws-data-analytics aws-dev-ops-pro, aws-so
 
 [Kinesis](https://aws.amazon.com/kinesis/) is a real-time data processing service that captures and stores large amounts of data to power dashboard and analytics. It's the AWS alternative to [Apache Kafka](https://kafka.apache.org/).
 
-In the past realtime process of massive amounts of data was hard... very hard, in fact. Kinesis is quite useful when you need to do multi-stage processing of data, partition the data, and then load the data. Tons of application in realtime gaming, IoT & mobile app analytics, or monitoring apps and system logs in real-time.
-
-And it is not just one app at time... there can be multiple incoming data streams working concurrently. And it is durable, with data being written to three AZ. Data is ummutable persisted for 24 hours by default and up to ~~7~~ 365 days and can be replayed and reprocessed.
-
 There are three components to the [Kinesis](https://aws.amazon.com/kinesis/) products:
 
 - [Firehose](https://aws.amazon.com/kinesis/firehose/) - a data loader which can batch, compress, and encrypt the data into S3, Redshift, ElasticSearch, [Splunk](https://www.splunk.com/) or Kinesis Analytics
 
 - [Analytics](https://aws.amazon.com/kinesis/analytics/) - the ability to analyze a stream using SQL in an interactive tool including a SQL editor and templates
 
-- [Streams](https://aws.amazon.com/kinesis/streams/) - ingestion at low latency
+- [Streams](https://aws.amazon.com/kinesis/streams/) - ingestion at low latency;
 
-As a complete side note, Kinesis is the best marketed product in the AWS line. 
+As a complete side note, Kinesis is the best marketed service in the AWS. 
+
+# Streams
+Multiple producers and consumers possible; data is immutable once ingested; more shares equals more throughput. Data is durable, with data being written to three AZ. Data is ummutable persisted for 24 hours by default and up to ~~7~~ 365 days and can be replayed and reprocessed.
+
+Two capacity modes: On-Demand (no capacity planning required), Provisioned (had to manage shards)
 
 ## Kinesis Components
 There are tons of connectors, libraries, and tools [available](https://aws.amazon.com/kinesis/streams/developer-resources/). 
 
-
-## Data Producers 
+### Data Producers 
 
 In addition to third party libraries (Spark, Log4J, Appenders, Flume, Kafka connect, etc) and AWS "Managed" sources (CloudWatch Logs, AWS IoT, Kinesis Data Analytics there are three data producers that can add records to a stream:
 
-### Kinesis Streams API (SDK) 
+#### Kinesis Streams API (SDK) 
 Using the `PutRecord` or `PutRecords` calls; `PutRecords` is batched therefore higher throughput
 
-### Kinesis Producer Library (KPL) 
+#### Kinesis Producer Library (KPL) 
 KPL is for developing resusable producers and includes configurable retry mechanism, sync or async, and kicks off CloudWatch metrics. It does not support compression; compression is a roll-your-own sort of thing. KPL requires the use of the Kinesis Consumer Library or a helper library.
 
 KPL includes batching to increase throughput and decrease cost. *Collect* enables the ability to record across multiple shards in the same `PutRecords` call. *Aggregate* stores multiple records in one record by increasing payload size but increases latency. 
 
-### Kinesis Agent 
-The Kinesis agent is a java app that sits on top of KPL for Linux devices. It can process multiple logs and write to multiple streams. It handles file rotation, checkpointing, and failure retries.
+#### Kinesis Agent 
+The Kinesis agent is a java app that sits on top of KPL for Linux devices - works for Streams and Firehose. It can process multiple logs and write to multiple streams. It handles file rotation, checkpointing, and failure retries.
 
-### Data Producer Triage
+#### Data Producer Triage
 
 Simple, low throughput? SDK
 
@@ -56,9 +56,7 @@ Decrease latency using KPL? decrease `RecordMaxBufferedTime` (default is 100ms)
 
 ## Streams &amp; Shards
 
-A stream is made of up of shards and a shard is 1MB per second write and 2MB per second read capacity. 
-
-The max size of a datablob is 1 MB.
+A stream is made of up of shards and a shard is 1MB per second write and 2MB per second read capacity. The max size of a datablob is 1 MB.
 
 You can calculate the initial number of shards (number_of_shards) that your stream will need by using the input values in the following formula:
 
@@ -81,15 +79,15 @@ Producer retries, typically caused by networking timeouts, can create duplicate 
 ## Data Consumers
 Consumers can interact with a stream in two ways:
 
-- Consumer Classic - which enables 2 MB/s per shard across all consumers & 5 API calls per second per shard (pull model). 
+- Consumer Classic - which enables _2 MB/s per shard across all consumers_ & 5 API calls per second per shard (pull model). 
 
-- Consumer Enhanced Fan-Out - which enables 2 MB/s per shard per enhanced consumer with no API calls (push model) As of Aug 2018, KCL 2.0 and Lambda support a push model via the `SubscribeToShard` function enabling > 1 consumers to get 2 MB/s per shard over HTTP/2 with reduced latency of ~70ms. Supports a soft limit of 5 consumers and costs more.
+- Consumer Enhanced Fan-Out - which enables _2 MB/s per shard per enhanced consumer_ with no API calls (push model) As of Aug 2018, KCL 2.0 and Lambda support a push model via the `SubscribeToShard` function enabling > 1 consumers to get 2 MB/s per shard over HTTP/2 with reduced latency of ~70ms. Supports a soft limit of 5 consumers and costs more.
 
 In addition to third party libraries (Spark, Log4J, Appenders, Flume, Kafka connect, etc) there are several data producers that can consume records from a stream:
 
 ### Kinesis SDK - (Classic/Pull) 
 
-The SDK polls the shard using `GetRecords`; this can return up to 10 MB (then be throttled for 5 seconds) or up to 10K records. There is a max of 5 `GetRecords` calls per second; this limits throughput signfigantly and leads to a rule: max 1 consumer per
+The SDK polls the shard using `GetRecords`; this can return up to 10 MB (then be throttled for 5 seconds) or up to 10K records. There is a max of 5 `GetRecords` calls per second; this limits throughput signfigantly and leads to a rule: max 1 consumer per shard.
 
 ### Kinesis Client Library (KCL)
 Required if you use KPL because it does de-aggregation; enables a clients to share multiple shards using a "group" and shard discovery. Includes checkpoint functionality with one DynamoDB row used for coordination & checkpointing per shard; this requires enough DynamoDB write and read capacity units. On-Demand DynamoDB scaling (for WCU & RCU) is supported! The `ExpiredIteratorException` suggests you need to increase WCU OR turn on On-Demand DynamoDB scaling. V 2.0 supports consumer advanced Fan-Out.
@@ -113,8 +111,22 @@ greater than 3 consumers and < 70ms latency? Enhanced fan-out
 
 Duplicate records? Add unique ID to record payload.
 
+# Firehose
+Amazon Kinesis Data Firehose is a fully managed service for delivering real-time streaming data to destinations in near real-time. Near real-time is 60 seconds for full batches or at least 1 MB of data. 
 
+Firehose ingests up to 1 mg records from SDK, KPL, Kinesis agent, Kinesis Streams, Cloudwatch and IoT. Lambda can transform the data if needed using custom code or standard blueprint templates. The data is batch written to AWS destinations (S3, Redshift via S3, OpenSearch/ElasticSearch), third-party destinations (Datadog, Splunk, New Relic), and or custom HTTP endpoint. All source records or failed transformation or delivery records can also be written to S3 directly from Firehose.
 
+Data is buffered for write; the size of the buffer is based on time (for example 1 minute) OR size (for example 32mg) rules. If the stream is high throughput the buffer size will get hit; if the stream is low throughput the time will get hit. If the app can't handle buffering time, then the only way to get a real-time flush is Lambda.
 
+# Kinesis Analytics
+With Amazon Kinesis Data Analytics for SQL Applications processes and analyzes streaming data using standard SQL. Useful for streaming ETL, continous metric generation, and responsive analytics (alerting, monitoring). Queries can be written in SQL or Flink; has automatic schema discovery; Lambda can be configured to preprocess.
 
+## Components
 
+Input stream - from Firehose or Streams
+
+Reference table - data used enrich the stream
+
+Output stream - the data that is extracted (and sent to firehose or another consumer via streams)
+
+error stream - where the errors go..
