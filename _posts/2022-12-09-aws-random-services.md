@@ -30,11 +30,6 @@ Hybrid cloud using what are basically Snowball edge that brings low-latency, dat
 # AppSync
 Enables a GraphQL interface into one or more backend datasources via Websockets or MQTT (on Websockets). GraphQL Schema resolves interpret the requests, marshall and consolidate the data then transmitt it back to the client. Cognito authorization is well integrated using groups in the schema.
 
-# Global Accelerator
-AWS Global Accelerator is a networking service that helps improve the availability, performance, and security of your public applications by using the AWS network instead of the Internet for connectivity. Global Accelerator provides two global static Anycast public IPs that act as a fixed entry point to your application endpoints, such as Application Load Balancers, Network Load Balancers, Amazon Elastic Compute Cloud (EC2) instances, and elastic IPs. 
-
-Global Accelerator supports healthchecks, only requires the two IP addresses to be whitelisted, and fully support Shield. Because GA supports TCP &amp; UDP it is great for games, IoT, and VoIP
-
 # Fault Injection Simulator (FIS)
 Chaos engineering service that injects faults into a running system to test self healing. In FIS you generate an experiment template, run the experiment, then monitor the results using EventBridge and CloudWatch.
 

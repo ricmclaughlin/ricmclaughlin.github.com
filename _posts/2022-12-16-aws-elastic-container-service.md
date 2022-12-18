@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Elastic Container Service"
 description: ""
 category: posts
-tags: [ECS, aws, solutionsarch]
+tags: [ECS, aws, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

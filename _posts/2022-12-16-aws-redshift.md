@@ -29,6 +29,8 @@ Similiar to RDS, Redshift uses parameter groups to standardize the configuration
 
 Data load - single source per load; generally compressed from S3 but others as well
 
+Redshift Enhanced VPC Routing enables faster COPY and UNLOAD through the VPC.
+
 Any SQL client that works with PostgreSQL works with Redshift.
 
 ### Resizing
@@ -53,7 +55,7 @@ Redshift includes free automatic storage for snapshots with a 35 day retention p
 
 Snapshots are point-in-time backups. Redshift nodes are continuously backed up to S3.
 
-Automatic snap shotting can be configured with a retention period (default of 1 days) and can not be manually deleted. The automatic snapshot copy feature copies snapshots from one region to another manually or automatically AND does incur data transfer costs. 
+Automatic snap shotting happens every 8 hours, every 5 GB or on a schedule with configurable retention period (default of 1 days); these can not be manually deleted but are automatically deleted after the retention period is up. Manual snapshots are retained until you delete them. The automatic snapshot copy feature copies snapshots from one region to another manually or automatically BUT does incur data transfer costs. To transfer encrypted snapshots cross region, a snapshot copy grant must be preformed so that redshift access the KMS key.
 
 Restoring data from a snapshot by launching a new cluster and importing the data from the snapshot. The snapshot contains the number of nodes, type of nodes, the cluster configuration and the data included in the nodes.
 
@@ -64,3 +66,13 @@ Price = Compute Node Hours + backup costs + data transfer (within the VPC)
 Notice that the leader node is not a cost!
 
 Storage is provisioned as part of the node as long as the cluster is running so spot instances are not an option. On-demand instances can be added for scaling or temporary clusters. Reserved instances, given they are the right instance type and in the right AZ, can be used.
+
+## Redshift Spectrum
+
+Redshift Spectrum enables a cluster to query data stored in S3 by spinning up thousands of Redshift Spectrum nodes to do the query. Then the results are transmitted to the compute nodes for aggregation. 
+
+## Redshift Workload Management (WLM)
+Amazon Redshift WLM creates query queues at runtime to keep short, fast queries from getting stuck behind long running queries. There are two modes: Automatic, where the queues and resources as managed by Redshift, and Manual, where you manage queues and resources.
+
+## Redshift Concurrency Scaling
+With the Concurrency Scaling feature, there is support for virtually unlimited concurrent users and concurrent queries, with consistently fast query performance by adding additional cluster capacity to process an increase in both read and write queries. This feature users the WLM feature to prioritize queries. This service charges by the second.
