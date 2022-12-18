@@ -39,3 +39,8 @@ AWS X-Ray is a service that collects data about requests that application serves
 # Personal Health Dashboard
 Dashboard to show how AWS outages &amp; maintenance event impact a specific account's resources and enable remediation. This service does NOT return public events from the Service Health Dashboard. This data is also available via the AWS Health API. Integrates with EventBridge.
 
+## Amazon MQ
+Amazon MQ is a managed service broker for RabbitMQ and ActiveMQ. Amazon MQ runs on servers, so you have to set up multi-AZ with failover and is not as performant as SQS.
+
+Migration from IBM MQ, TIBCO EMS, RabbitMQ, and ApacheMQ to Amazon MQ is totally possible.
+
