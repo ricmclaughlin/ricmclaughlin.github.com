@@ -15,19 +15,19 @@ The Write Through caching strategy updates the cache when the data is written to
 
 The easiest way to implement caching on AWS is [ElastiCache ](https://aws.amazon.com/elasticache/), a managed service the provides caching services for apps. There are two engines available from ElastiCache: Redis and memecached. Reserved instances are a great choice here; spot instances are not.
 
-ElastiCache only backs up Redis clusters. Snapshots backup the data for the entire cluster at a specific time and probably cause a performance degradation. Try to backup read replicas which get updated synchrously and even in a multi-AZ friendly setup!
+## memcached vs Redis
 
-| Thingy | memecached | Redis |
-|--------|-----------|--------|
-| Use case complexity | low | high  |git stat
-| Threading | multi  | single |
-| Scaling | *horizontal* | vertical |
-| AZs  | single | *multi*  |
-| replication? | nope | yep |
-| fail-over | nope | yep |
-| persist it | nope | yep |
-| pub-sub | nope | yep |
-| auto-discovery | yep | no |
+|                     | memecached   | Redis    |
+|---------------------|--------------|----------|
+| Use case complexity | low          | high     |
+| Threading           | multi        | single   |
+| Scaling             | *horizontal* | vertical |
+| AZs                 | single       | *multi*  |
+| replication?        | nope         | yep      |
+| fail-over           | nope         | yep      |
+| persist it          | nope         | yep      |
+| pub-sub             | nope         | yep      |
+| auto-discovery      | yep          | no       |
 
 ## Monitoring
 
@@ -56,6 +56,15 @@ Single threaded; generally scale UP with larger instances by snapshoting and inc
 
 ## Triage
 
-- Simple use case, horizontal scaling (shard), multi-threaded? Memecached
+- Simple use case, non-persistent data, horizontal scaling (shard), multi-threaded? memecached
 
 - Complex? Redis
+
+- Multi-AZ with failover? Redis
+
+- HA? Redis
+
+- Read replicas? Redis
+
+- Backup and Restore? Redis
+
