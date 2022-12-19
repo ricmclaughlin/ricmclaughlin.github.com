@@ -9,12 +9,12 @@ tags: [stepfunctions, aws, aws-solutions-arch-pro]
 
 [Step Functions](hhttps://docs.aws.amazon.com/step-functions/latest/dg/welcome.html) is a serverless orchestration service that integrates Lambda functions and other AWS services to build  workflows modeled as a state machine in JSON.
 
-The max execution time is 1 year with the ability to implement human interaction and approval but does NOT integrate with Mechanical Turk.
+The max execution time is 1 year with the ability to implement human interaction and approval. Strangely, Step Functions does NOT integrate with Mechanical Turk.
 
-Step Function has several optimized integrations with Lambda, Batch, ECS, DynamoDB, SNS/SQS, EMA/Glue/SageMaker, and the SDK and can be invoked using the `StartExcution` call (SDK, API, Lambda), API Gateway, EventBridge, CodePipeline and StepFunctions.
+Step Function has several optimized integrations with Lambda, Batch, ECS, DynamoDB, SNS/SQS, EMR/Glue/SageMaker, and the SDK and can be invoked using the `StartExcution` call from SDK, API, Lambda), or from API Gateway, EventBridge, CodePipeline and StepFunctions.
 
 ## Task types
-There are X types of Tasks:
+There are 4 types of Tasks:
 0. Lambda tasks - invoke a function
 0. Activity task - set up an activity worker then distribute a task via call back once active
 0. Service task - connection to a supported AWS service

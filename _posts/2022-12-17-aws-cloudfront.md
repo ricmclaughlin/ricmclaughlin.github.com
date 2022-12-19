@@ -7,12 +7,12 @@ tags: [cloudfront, aws, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
-[CloudFront](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html) uses edge locations and regions as a CDN point of presence. Also protects against networking and application layer attack and integrates with Shield, WAF, &amp; Route53 while using HTTPS on requests and pull forwards. Support websockets.
+[CloudFront](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html) uses edge locations and regions as a CDN points of presence. Also protects against networking and application layer attack and integrates with Shield, WAF, &amp; Route53 while using HTTPS on requests and pull forwards. Support websockets.
 
 # Origins
 There are numerous content origins:
 
-- _S3_ - S3 Website hosted must be enabled; use Origin Access Control (OAC) to restrict access to the bucket to CloudFront; can also be used as an ingress point for files into S3; 
+- _S3_ - S3 Website hosted must be enabled; use Origin Access Control (OAC) to restrict access to the bucket to CloudFront; can also be used as an ingress point for files into S3 
 
 - _MediaStore Container &amp; MediaPackage Endpoint_ to deliver Video on Demand or live streaming video using AWS Media Services
 
@@ -22,7 +22,6 @@ There are numerous content origins:
 To increase HA and do failover, create a primary and secondary origin in an _Origin Group_. Origin groups can span regions enabling cross-region HA.
 
 # CloudFront Security
-
 Geo Restrictions - by default this is disabled; you can either allow or block by country; restricted viewers get a `403` and yes, you can create custom error pages
 
 As a protip, don't cache credit card information in CloudFront edge caches. For example, you can configure your origin to include a Cache-Control:no-cache="field-name" header in responses that contain credit card information, such as the last four digits of a credit card number and the card owner's contact information.
@@ -30,7 +29,6 @@ As a protip, don't cache credit card information in CloudFront edge caches. For 
 Redirect HTTP to HTTPS is a common security feature which can be enable on Cloudfront.
 
 ## Access Control Content
-
 Access control can be done using signed URLs or using signed Cookies using the Restrict Viewer Access option. This is done using a policy...
 
 Use signed URLs for RTMP. Progressive Download can use a signed URL, user could use it to download the entire file which is sort of bad for some use cases. Use for marketing emails too.
@@ -146,8 +144,6 @@ There are three different ways to configure SSL (in order of goodness):
 
 CloudFront generates metrics to CloudWatch, CloudTrail and HTTP access logs. 
 
-
-
 ### Invalidation Techniques
 
 Objects are cached for the life of the TTL
@@ -186,3 +182,6 @@ Objects are cached for the life of the TTL
 
 - Restrict access to S3 content? origin access identity, which is a special CloudFront user with a bucket policy
 
+You have deployed the same SSL certificate onto your CloudFront and ALB. You would like to ensure you get a high ratio of cache hit but also don't want to break SSL. What do you recommend?
+
+Forward the host header (not remove the host header)

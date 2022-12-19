@@ -74,7 +74,7 @@ Traffic is private but not encrypted; use a VPN to achieve encryption.
 
 Not redundant; add failover DX or failover VPN as mitigation. _Link Aggregation Groups (LAG)_ can aggregate up to 4 connections in an active-active configuration. Links in an LAG must be dedicated, have the same bandwidth, and terminate at the same DX endpoint.
 
-Use a _Direct Connect Gateway_ to connect to one or more VPC, inter or intra region using Private VIF. Use the SiteLink feature of the Direct Connect Gateway to route data via DX to multiple DX connected on-prem locations bypassing AWS regions - essentially using the AWS network as backhaul network.
+Use a _Direct Connect Gateway_ to connect to one or more VPC, inter or intra region using Private VIF. Use the _Direct Connect SiteLink_ feature of the Direct Connect Gateway to route data via DX to multiple DX connected on-prem locations bypassing AWS regions - essentially using the AWS network as backhaul network.
 
 Direct Connect uses BGP and an Autonomous System Number (ASN) and IP prefixes. 
 
@@ -143,9 +143,7 @@ AWS Network Firewall is a stateful, managed, network firewall and intrusion dete
 Supports 1000s of rules; inspected traffic can be allowed, dropped, or trigger an alert. Rules can be managed using Firewall Manager.
 
 # DB Subnet Group (RDS)
-
 RDS instances in a VPC - There is a mythical sort of subnet, called a [DB Subnet Group](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html), that must span multiple availability zones and can house RDS instances.  
-
 
 # Triage 
 ## HPC Use Cases
