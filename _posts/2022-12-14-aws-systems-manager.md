@@ -29,4 +29,5 @@ Secrets Manager secrets can also be access via Parameter Store. SSM publishes AM
 
 There are two tiers of parameters: Standard (10K parameters, 4kb) or Advanced (100K parameters, 8kb, Parameter Policies). Parameter Policies enable a TTL on sensitive data; when TTL expires an EventBridge event is fired which could enable a password change.
 
-
+## Automation
+Automation simplifies common maintenance, deployment, and remediation tasks for EC2, RDS, Redshift,  S3 and other services; Automation uses runbooks, a type of script. The automation action `AWS-CreateImage` can be used to create AMI in a runbook.

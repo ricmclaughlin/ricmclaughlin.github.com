@@ -42,7 +42,7 @@ Many of the compute migration services do run on-prem: DMS, Server Migration Ser
 
 - [vmware vCenter plugin](/posts/aws-vmware) - for migration to EC2 and extend reach of vCenter to new geos without procurement
 
-- [VM Import/export](https://docs.aws.amazon.com/vm-import/latest/userguide/how-vm-import-export-works.html) - moves VM based server images to EC2 instances; looks like this isn't being actively developed
+- [VM Import/export](https://docs.aws.amazon.com/vm-import/latest/userguide/how-vm-import-export-works.html) - moves VM based server images to EC2 instances; looks like this isn't being actively developed but is likely still on the test.
 
 # Databases
 
@@ -58,4 +58,6 @@ Snowball can be used as a transport from on-prem. Use SCT to extract the data an
 
 - Schema Conversion Tool - enables schema translation for OLTP (SQL Server/Oracle to MySQL/ PostgreSQL) OR OLAP (Teradata/Oracle to Redshift)
 
+## Triage 
 
+Move Oracle/MS SQL -> RDS?

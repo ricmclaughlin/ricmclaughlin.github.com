@@ -8,7 +8,6 @@ tags: [aws, vpc, aws-solutions-arch-pro, aws-guides]
 {% include JB/setup %}
 
 # VPC Endpoints
-
 VPC endpoints enable traffic to AWS services to be routed directly using a dedicated endpoint within the VPC. There are two type: Gateway endpoints and Interface endpoints (cost, available for almost all services & many APN services). You can connect a single endpoint policies & 1 or more security groups to control access. 
 
 Connectivity issues are generally because of DNS settings or route table problems - both of these elements are required to be present in the VPC. The VPC DNS setting must have _Enable DNS Hostnames_ and _Enable DNS Support_ to be true. 
@@ -74,14 +73,12 @@ Traffic is private but not encrypted; use a VPN to achieve encryption.
 
 Not redundant; add failover DX or failover VPN as mitigation. _Link Aggregation Groups (LAG)_ can aggregate up to 4 connections in an active-active configuration. Links in an LAG must be dedicated, have the same bandwidth, and terminate at the same DX endpoint.
 
-Use a _Direct Connect Gateway_ to connect to one or more VPC, inter or intra region using Private VIF. Use the _Direct Connect SiteLink_ feature of the Direct Connect Gateway to route data via DX to multiple DX connected on-prem locations bypassing AWS regions - essentially using the AWS network as backhaul network.
+Use a _Direct Connect Gateway_ to connect to one or more VPC, inter or intra region using Private VIF. Direct Connect gateways can be associated with a transit gateway (if there are many VPC in the region) OR directly to each VPC using a VPG. Use the _Direct Connect SiteLink_ feature of the Direct Connect Gateway to route data via DX to multiple DX connected on-prem locations bypassing AWS regions - essentially using the AWS network as backhaul network.
 
 Direct Connect uses BGP and an Autonomous System Number (ASN) and IP prefixes. 
 
 ## Direct connect vs VPN Capability
-
 - VPN = quick to bring up and easy; slower and sucks Internet bandwidth
-
 - Direct Connect = consistent lower latency and fixed bandwidth; more secure; lower cost
 
 # Transit Gateway (TGW)
@@ -89,38 +86,24 @@ Transit gateway is a hub-spoke model for transitive peering of lots of VPC. The 
 
 Transit Gateway can be used to create a single Internet exit point enabling centralization of security at a single point using this [guidance](https://aws.amazon.com/blogs/networking-and-content-delivery/creating-a-single-internet-exit-point-from-multiple-vpcs-using-aws-transit-gateway/). 
 
-## ENI vs EN vs EFA
-
-ENI = Elastic Network Interface - use these to create dual homed instances, possibly for IP restricted software licenses, low budget HA solution or an interface per subnet
-
-EN = Enhanced networking - uses SR-IO; no cost but requires specific instance types; uses either an ENA (100 Gps) or a VF (10 Gps) with an ENA being the default thing to do if possible
-
-EFA = Elastic Fabric Adapter - HPC or ML applications using OS-by-pass
+## ENI vs EN vs EFA vs Elastic IP
+- ENI = Elastic Network Interface - use these to create dual homed instances, possibly for IP restricted software licenses, low budget HA solution or an interface per subnet; by default ENI
+- EN = Enhanced networking - uses SR-IO; no cost but requires specific instance types; uses either an ENA (100 Gps) or a VF (10 Gps) with an ENA being the default thing to do if possible
+- EFA = Elastic Fabric Adapter - HPC or ML applications using OS-by-pass
+- Elastic IP - public IPv4 address remappable to another instance or resource; you can specify the Elastic IP address in a DNS record for your domain, so that your domain points to your instance. 
 
 # AWS Global Accelerator
-
-AWS Global Accelerator is a networking service that helps improve the availability, performance, and security of your public applications by using the AWS network instead of the Internet for connectivity. The benefits include regional failover (HA), improve peformance, and consistent IP caching. It's CloudFront but for endpoints with a flare for non-HTTP use cases. Global Accelerator provides two global static Anycast public IPs that act as a fixed entry point to your application endpoints, such as Application Load Balancers, Network Load Balancers, Amazon Elastic Compute Cloud (EC2) instances, and elastic IPs. 
+_Global Accelerator_ is a networking service that helps improve the availability, performance, and security of your public applications by using the AWS network instead of the Internet for connectivity. The benefits include regional failover (HA), improve peformance, and consistent IP caching. Global Accelerator provides two global static Anycast public IPs that act as a fixed entry point to your application endpoints, such as Application Load Balancers, Network Load Balancers, Amazon Elastic Compute Cloud (EC2) instances, and elastic IPs. 
 
 Global Accelerator supports healthchecks, only requires the two IP addresses to be whitelisted, and fully support Shield. Because GA supports TCP &amp; UDP it is great for games, IoT, and VoIP
 
 ## Workflow to create a Global Accelerator
-
 0. Create the Accelerator - name it, selected IP address type, use AWS IP or provide 2 IP addresses
-
 0. Add listeners - select port, protocol, and client affinity (for stateful applications)
-
 0. Add End Point groups - select region, % of traffic, and health checks
-
 0. Add Endpoints - can be ALB, NLB, EC2 instance, or EIP
 
-## Workflow to delete a Global Accelerator
-
-0. Disable Accelerator
-
-0. Delete Accelerator
-
 # VPC Flow Logs
-
 Flow logs can be enabled at the VPC, subnet, or ENI level; when enabling at the VPC/Subnet level it simply turns flow logs on for the ENIs in that VPC/Subnet. All data is forwarded to CloudWatch logs or S3 but does not work in real time. Cross VPC flow logs are possible within an account.
 
 You can create flow logs for network interfaces that are created by other AWS services; for example, Elastic Load Balancing, Amazon RDS, Amazon ElastiCache, Amazon Redshift, and Amazon WorkSpaces using the EC2 Console or API. Some traffic is not recorded: Amazon DNS traffic, windows license activation traffic, DHCP traffic, instance metadata traffic, default VPC router
@@ -130,11 +113,8 @@ Can record all traffic, accepted traffic, or rejected traffic. Records source an
 Flow logs are commonly used to troubleshoot SG VS NACL issues. If traffic is rejected both inbound/outbound the issue could be either; if rejected either outbound or inbound, but accepted the opposite the issue is NACL. Another common analysis is to make sure the NAT Gateway is functioning using the public IP address of the NAT and see if that traffic is going elsewhere in the VPC.
 
 Limits: 
-
 - Cross-account flow logs aren't possible.
-
 - ~~Can't tag a flow log~~ Nope, now you can tag flow logs!
-
 - Can't modify a flow log once created (change role, etc.)
 
 # AWS Network Firewall

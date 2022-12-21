@@ -42,3 +42,7 @@ Dashboard to show how AWS outages &amp; maintenance event impact a specific acco
 ## Amazon MQ
 Amazon MQ is a managed service broker for RabbitMQ and ActiveMQ. Amazon MQ runs on servers, so you have to set up multi-AZ with failover and is not as performant as SQS. Migration from IBM MQ, TIBCO EMS, RabbitMQ, and ApacheMQ to Amazon MQ is totally possible.
 
+## Service Catalog
+AWS Service Catalog enables organizations to create and manage catalogs of IT services including AMI, servers, software, databases, and complete architectures. Think golden path.
+
+Catalog administrators (administrators) can manage the catalog of products into into portfolios and granting access to end users - the products are generally CloudFormation. Users can access these products and deploy them.

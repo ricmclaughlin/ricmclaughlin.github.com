@@ -27,8 +27,10 @@ To use Secrets Manager from CloudFormation:
 0. Reference Secret in Resource (like a RDS instance)
 0. Use `SecretTargetAttachment` to tell Secrets Manager where the secret is used so it can be rotated.
 
-Cross-account secret sharing (can't be shared via RAM)
-0. 
+# Triage
+- Secret access? user ARN of secret.
+- Inject secret into container? full contents, specific JSON key, specific version (all via ARN) and set to environment variable.
+
 ## When to use Secrets Manager instead of Parameter store
 - Secrets manager can rotate Amazon RDS, Amazon Redshift, and Amazon DocumentDB keys
 - Secrets manager can fire a Lambda to rotate keys for other services
@@ -39,3 +41,6 @@ Cross-account secret sharing (can't be shared via RAM)
 - non-encrypted data
 - need integration with CloudFormation
 - manual control over secrets rotation (EventBridge -> Lambda -> Rotate key)
+
+
+
