@@ -3,7 +3,7 @@ layout: post
 title: "AWS - CloudWatch"
 description: ""
 category: posts
-tags: [cloudwatch, aws, devops, aws-dev-ops-pro, aws-solutions-arch-pro]
+tags: [aws-services, aws, devops, aws-dev-ops-pro, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
@@ -64,7 +64,6 @@ Using CloudWatch logs, you can monitor logs from any source in AWS, like EC2, Ro
 Log Filters are filter expressions used to search logs and turned into the data into a metric. CloudWatch Logs Insights can be used to query logs and add queries to CloudWatch Dashboards.
 
 ### Exporting, Subscriptions & Streaming
-
 Once the data is in Cloudwatch logs, it is pretty straightforward to send it elsewhere for processsing. Logs can be exported to S3 but it can take up to 12 hours, the bucket must be encrypted with AES-256 (SSE-S3) not KMS, and it must be automated using the `CreateExportTask` call. 
 
 Log Subscriptions Filters enable sending data to Kinesis Firehouse (perhaps to S3) or Kinesis Data Stream in near-real time, or Lambda (real-time). It's easy to load the data directly into ElasticSearch from there.

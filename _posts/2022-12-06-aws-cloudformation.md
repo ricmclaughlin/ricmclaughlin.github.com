@@ -3,14 +3,13 @@ layout: post
 title: "AWS - CloudFormation"
 description: ""
 category: posts 
-tags: [aws, devops, cloudformation, aws-dev-ops-pro, aws-solutions-arch-pro]
+tags: [aws, devops, aws-services, aws-dev-ops-pro, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
 [CloudFormation](https://aws.amazon.com/cloudformation/) templates are JSON/YAML documents that build AWS infrastucture. The cool part is that these templates can be version control and run over and over again - this is infrastructure as code in a fleshy-codey sort of way! The only bummer is that you can only have 20 CloudFormation stacks in a region - and of course, you can increase this by contacting AWS. Obviously, you can create as many CloudFormation templates as you want.
 
 # CloudFormation Templates
-
 CloudFormation Templates have 8 main sections but only the *Resources* section is required. All sections are independent of each other. 
 
 * AWSTemplateFormatVersion - this specfies the template version.. duh.
@@ -32,7 +31,6 @@ CloudFormation Templates have 8 main sections but only the *Resources* section i
 * Conditions - imagine the ability to conditionally do stuff. For instance, you can create slightly different configurations for a production or development environments 
 
 ## Nested Stacks
-
 The `AWS::CloudFormation::Stack` resource can be used to call another template from within another template. This is useful if you want break up templates because of size (460k on S3), the number of resources is max'd out (200), or there are more than 100 mappings, 60 parameters or 60 outputs, OR want to reuse components. Parameters and outputs are shared between the parent and child templates.
 
 ```json 

@@ -11,7 +11,7 @@ tags: [aws, config, aws-solutions-arch-pro, aws-services]
 
 Bucket access, SSH access through security groups, OR ALB configuration changes are great use cases for Config. If CloudTrail is enabled (and it is by default), the management events records can be accessed from Config to figure out who/when about resource configurations change.
 
-There are over 75 managed config rules; more rules can be added using Lambda functions. Rules can be run on configuration changes OR in a batch mode. EventBridge, S3, and SNS can recieve notification if not compliant. Rules can be auto remediated using SSM Automations.
+There are over 75 managed config rules; more rules can be added using Lambda functions. Rules can be run on configuration changes OR in a batch mode. EventBridge, S3, and SNS can receive notification if not compliant. Rules can be auto remediated using SSM Automations.
 
 An _Aggregator_ is a read-only collection (resource) of config and compliance data from one or more accounts and multiple regions OR an Organization available in the Aggregator dashboard. 
 

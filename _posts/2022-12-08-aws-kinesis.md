@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "AWS - Kinesis Streams"
+title: "AWS - Kinesis"
 description: ""
 category: posts
-tags: [aws, kinesis, data-collection, aws-data-analytics aws-dev-ops-pro, aws-solutions-arch-pro]
+tags: [aws, aws-services, data-collection, aws-data-analytics, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

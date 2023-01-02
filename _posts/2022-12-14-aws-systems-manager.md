@@ -14,7 +14,7 @@ Helps manages EC2 at scale; needs agent (and associated role) on EC2 instances; 
 The ability to run commands remotely, with control over rate of execution, without SSH access at scale. A common use case is to send an command/trap an event with to EventBridge then trigger a SSM `run` command. Perhaps to send a command to a set of EC2 instances in the `terminating:wait" stage?
 
 ## Patching
-SSM is also great for cross-platform patching using _patch groups_ in a maintenance window with the `AWS-RunPatchBaseline` command. During patching you can control the rate of execution based on concurrency or error threshold. The SSM Inventory feature enables patch compliance.
+SSM is also great for cross-platform patching using _path baselines_ which can be applied individually or using the tag key *Patch Group*/*PatchGroup* (applied using Tag Manager or Fleet Manager) in a maintenance window with the `AWS-RunPatchBaseline` command. During patching you can control the rate of execution based on concurrency or error threshold. The SSM Inventory feature enables patch compliance.
 
 ## Session Manager
 SSM has a Session Manager feature that enables shell access to EC2 instances and on-prem servers without SSH. Supports Linux, macOS, &amp; Windows while logging connections and executed commands. As one might expect, EventBridge, SNS, S3, and  CloudWatch Logs can receive the log items. 

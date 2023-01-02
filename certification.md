@@ -38,7 +38,7 @@ categories: posts
             {% assign project_tags = "cloudformation,opsworks,elastic-beanstalk,cloudwatch" | split: "," %}
             
           {% elsif skill == 'aws-solutions-arch-pro' %}
-            {% assign project_tags = "aws-guides,cloudfront,rds,kinesis,iam,vpc,cloudformation,opsworks,elastic-beanstalk,cloudwatch,dynamodb,cloudsearch,aws-services" | split: "," %}
+            {% assign project_tags = "aws-guides,aws-services" | split: "," %}
             
           {% else %}
             {% assign project_tags = '' %}

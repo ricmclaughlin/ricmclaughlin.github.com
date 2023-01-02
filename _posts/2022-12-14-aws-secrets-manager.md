@@ -32,10 +32,11 @@ To use Secrets Manager from CloudFormation:
 - Inject secret into container? full contents, specific JSON key, specific version (all via ARN) and set to environment variable.
 
 ## When to use Secrets Manager instead of Parameter store
-- Secrets manager can rotate Amazon RDS, Amazon Redshift, and Amazon DocumentDB keys
-- Secrets manager can fire a Lambda to rotate keys for other services
-- Fine grained access control (like restricting retrieval from an IP address range)
-- Cross-region capabilities
+- Secrets rotation? can rotate Amazon RDS, Amazon Redshift, and Amazon DocumentDB keys
+- Secrets rotation for other services? can fire a Lambda to rotate keys for other services
+- Fine grained access control (like restricting retrieval from an IP address range)? yep.
+- Cross-region capabilities? yep.
+- Cross-account? nope.
 
 ## When to use Parameter Store 
 - non-encrypted data

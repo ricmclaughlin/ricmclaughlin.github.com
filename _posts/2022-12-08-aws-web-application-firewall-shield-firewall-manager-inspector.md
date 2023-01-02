@@ -10,9 +10,7 @@ tags: [aws, aws-dev-ops-pro, shield, waf, aws-services, inspector]
 
 # WTF is WAF (Web Application Firewall)
 WAF is a filtering capability that helps find and react to common web exploits for three basic use cases: reduced availability, compromise security, consume excess resources
-Instead of just blocking attack sources, WAF protects again attack patterns based on the entire makeup of the request using filters which can allow, block or simply monitor the activity. WAF can be deployed against a API gateway, CloudFront distribution OR an Application Load Balancer. Of course, WAF is PCI compliant. 
-
-WAF Web ACL are assigned to resources such as API gateway, CloudFront, ALB.
+Instead of just blocking attack sources, WAF protects again attack patterns based on the entire makeup of the request using filters which can allow, block or simply monitor the activity. WAF can be deployed against a API gateway, CloudFront distribution, OR an Application Load Balancer. Of course, WAF is PCI compliant. 
 
 WAF can allow all requests, block all requests, or count the requests that match the conditions you specify.
 

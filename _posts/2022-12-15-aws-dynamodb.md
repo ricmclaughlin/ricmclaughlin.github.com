@@ -3,7 +3,7 @@ layout: post
 title: "AWS - DynamoDB"
 description: ""
 category: posts
-tags: [dynamodb, aws, aws-dev-ops-pro, aws-solutions-arch-pro]
+tags: [aws-services, aws, aws-dev-ops-pro, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

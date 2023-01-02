@@ -3,7 +3,7 @@ layout: post
 title: "AWS - CloudSearch"
 description: ""
 category: posts
-tags: [cloudsearch, aws, aws-dev-ops-pro, aws-solutions-arch-pro, aws-services]
+tags: [aws, aws-dev-ops-pro, aws-solutions-arch-pro, aws-services]
 ---
 {% include JB/setup %}
 

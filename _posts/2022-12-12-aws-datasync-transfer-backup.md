@@ -1,14 +1,13 @@
 ---
 layout: post
-title: "AWS - DataSync, Transfer Family & AWS Backup"
+title: "AWS - DataSync, Transfer Family, & AWS Backup"
 description: ""
 category: posts
-tags: [datasync, aws, aws-solutions-arch-pro]
+tags: [aws, aws-solutions-arch-pro, aws-guides]
 ---
 {% include JB/setup %}
 
 # DataSync
-
 AWS DataSync is a secure, online service that automates and accelerates moving data between on premises and AWS Storage services (including S3, EFS, and FSx) - and can also move data between AWS data storage as well.
 
 Replication tasks are not continuous; they are scheduled. DataSync preserves file permissions and metadata on NFS, POSIX, and SMB file systems.

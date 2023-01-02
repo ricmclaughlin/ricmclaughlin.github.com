@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Security"
 description: ""
 category: posts
-tags: [aws, vpc, aws-solutions-arch-pro, aws-guides]
+tags: [aws, aws-solutions-arch-pro, aws-guides]
 ---
 {% include JB/setup %}
 
@@ -19,7 +19,7 @@ Detective analyzes, investigates, and identifies teh rool cause of security issu
 Centralized security dashboarding tool to manage security across accounts using automated security checks aggregating GuardDuty, Inspector, Macie, IAM access Analyzer, Systems Manager, Filewall Manager and Partner network solutions. Requires Config to be enabled. Security Hub generates EventBridge events, kicks off automated Security Hub findings, and enables Detective based analysis.
 
 ## Amazon GuardDuty
-Uses ML to detect anomalies from CloudTrail Events, VPC flow logs, DNS logs, Kubernetes audit log then fire EventBridge events. Can protect against CryptoCurrency attacks. There is a limit of 5000 accounts that can be managed by GuardDuty in an Organization so there is the ability create a Delegated Adminstrator account FROM the Organization management account ONLY.
+Uses ML to detect anomalies from CloudTrail Events, VPC flow logs, DNS logs, Kubernetes audit log then fire EventBridge events. Can protect against CryptoCurrency attacks. There is a limit of 5000 accounts that can be managed by GuardDuty in an Organization so there is the ability create a Delegated Administrator account FROM the Organization management account ONLY.
 
 ## Security Logs
 Lots of service generate logs that can be useful for finding security issues. 
