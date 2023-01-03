@@ -42,28 +42,20 @@ Lock down access to production IP addresses - NAT
 well-formed TCP connections only; no SYN floods or UDP reflection attacks? ELB
 
 ### Absorb
-
 - ASG - get bigger to absorb the attack...
-
 - Shield - insurance for when the attack comes
 
 ### Safeguard Exposed Resources
 (listed from outside to inside) 
 
 - Route53 - low cost aliases, geo restriction, private IP
-
 - CloudFront - Origin Access Identity, geo restriction & blocking
-
 - AWS Network Filewall
-
 - WAF - inspect and disallow traffic; can be attached to the CloudFront distribution, ALB, or API Gateway
-
 - NACL - filter bad traffic
-
 - instance firewall - not effective behind ALB because the source IP is block
 
 ## Management
-
 - [Firewall Manager](/posts/aws-web-application-firewall-shield-firewall-manager) can help manage SG, Web ACL (WAF), and Shield protections which works in conjunction with AWS organizations 
 
 ## Security Management Service Triage

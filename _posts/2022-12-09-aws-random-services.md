@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Other Services"
 description: ""
 category: posts
-tags: [workspaces, appstream, aws, aws-solutions-arch-pro]
+tags: [aws-services, aws, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

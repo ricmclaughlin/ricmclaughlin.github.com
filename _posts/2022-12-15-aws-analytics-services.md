@@ -3,10 +3,9 @@ layout: post
 title: "AWS - Analytics Services"
 description: ""
 category: posts
-tags: [aws, glue, quicksight vpc, aws-dev-ops-pro]
+tags: [aws, analytics, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
-
 
 # Glue
 [Glue](https://aws.amazon.com/glue/) is a serverless data integration service that makes it easier to discover, prepare, move, and integrate data from multiple sources for analytics, machine learning (ML), and application development. There are three main parts to Glue: a serverless ETL function, the Glue Data Catalog, and Glue Data Crawler which builds the Data Catalog. The Glue Data Catalog can be used by Athena, Redshift Spectrum, and EMR. 

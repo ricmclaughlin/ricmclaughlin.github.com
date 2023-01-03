@@ -3,13 +3,13 @@ layout: post
 title: "AWS - Data Storage"
 description: ""
 category: posts
-tags: [aws, aws-guides, aws-solutions-arch-pro]
+tags: [aws, aws-guides, storage, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
 ## S3
-- Rebuildable asset? S3-IA (because you can regenerate it!)
-- Infrequently access (Backup &amp; Archive or DR yet still active)? S3-IA
+- Re-buildable asset? S3-IA (because you can regenerate it!)
+- Infrequently access (Backup, archive or DR yet still active)? S3-IA
 - Greater than 4 hours retrieval, cheap (archive, digital preservation)? Glacier
 - Change S3 access permissions? role/group with policy (loose permission before assume role) OR bucket policy (to add access permissions using existing role/user/group)
 - Different access to same bucket? Access points
@@ -39,8 +39,8 @@ temp/ storage? (use instance store), multi-instance (use EFS), durable (use EFS/
 - Low end DR? S3 directly using DataSync (Storage Gateway is less performant).
 - When Storage Gateway Cached? frequently access to small amount of data; less to maintain local so cheaper outlay,
 - When Storage Gateway Stored? low latency for ALL data with EBS Snapshots; snapshots can be used as a migration tool; better for traditional instance backup
-- When Virtual Tape Library? fast restore. 1500 tape..
-- When Virtual Tape Shelf?  unlimited storage and OK with a 24 hour turn around time.
+- When Virtual Tape Library? fast restore. 1500 tapes; stored on S3.
+- When Virtual Tape Archive? unlimited storage and OK with a 24 hour turn around time; 
 - When Snowball? more than 2TB of data for a T3 connection, 5TB for a 100MB connection, and 60TB for 1000 Mbps connections.
 
 # Demonstrate ability to make architectural trade off decisions involving database options
@@ -61,7 +61,7 @@ temp/ storage? (use instance store), multi-instance (use EFS), durable (use EFS/
 - Long term data storage? EBS
 - data shared between instance fast? memecached or redis
 - persist data shared between instances? EFS
-- DB or INTENSE datawarehouse server? = IOPS/io1
+- DB or INTENSE data warehouse server? = IOPS/io1
 - General purpose = gp2
 - Large I/O including EMR, Kafka, log processing and data warehouse ETL? st1 (sequential data reads)
 - Super high disk IO? either RAID 0 or RAID 10 EBS, EBS-optimized instances, modern Linux kernel

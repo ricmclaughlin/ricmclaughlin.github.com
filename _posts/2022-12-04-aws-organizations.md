@@ -33,7 +33,7 @@ Using conditions in policies is quite useful. Tags can be used as conditions usi
 ## Control Tower
 [Control Tower](https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html) is another abstraction on top of Organizations. It enables the set up of an environment in a few clicks, implements guardrails, detects violations, provides remediation tools, and can monitor compliance. Includes an account factory that uses AWS Service Catalog to share resources. 
 
-Guard rails - preventive, detective (using Config), comes in different levels mandatory, Strongly Recommended, elective
+Guard rails - preventive, detective (using Config), comes in different levels mandatory, Strongly Recommended, elective; use [IAM access advisor](https://aws.amazon.com/about-aws/whats-new/2019/06/now-use-iam-access-advisor-with-aws-organizations-to-set-permission-guardrails-confidently/) to set permission guardrail confidently.
 
 ## Resource Access Manager
 Resource Access Manager enables cross account sharing of resources inside an organization or just with other random accounts. This is a better alternative than cross-account access using resource-based policies through integration with Organizations, visibility for shared resources and easier, more transparent administration. The goal is to avoid resource duplication. 
@@ -51,4 +51,7 @@ If the account being shared with is NOT in an Organization, an invitation is sen
 0. Respond to the invitation (if the resource is being shared outside of an Organization)
 
 0. Use the resource... 
+
+## Analysis - Storage Lens
+_S3 Storage Lens_ delivers *Organization*-wide, as in AWS Organizations, visibility into object storage usage, activity trends, and makes actionable recommendations to optimize costs and apply data protection best practices. 
 
