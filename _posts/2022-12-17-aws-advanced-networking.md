@@ -13,7 +13,7 @@ VPC endpoints enable traffic to AWS services to be routed directly using a dedic
 Connectivity issues are generally because of DNS settings or route table problems - both of these elements are required to be present in the VPC. The VPC DNS setting must have _Enable DNS Hostnames_ and _Enable DNS Support_ to be true. 
 
 ## Gateway Endpoints
-only for DynamoDB and S3; free; one gateway per VPC and this gateway ONLY works in the VPC (VPN, DX, TGW, VPC peering don't work); can use the same public hostname in route table
+Only for DynamoDB and S3; free; one gateway per VPC and this gateway ONLY works in the VPC (VPN, DX, TGW, VPC peering don't work); can use the same public hostname in route table
 
 ## Interface Endpoints
 Under the covers it provisions an ENI that will have a private interface hostname so SG work; can be accessed via DX or Site-to-Site VPN. Using VPCE services (Private Link) requires an NLB, an NLB fronting an ALB, or an API Gateway Troubleshooting a VPCE:

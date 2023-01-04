@@ -22,14 +22,12 @@ Lots of times you will know there is more traffic a-coming. In these cases you c
 When enabled Cross-Zone Load Balancing sends equal traffic to clients regardless of AZ; when disabled equal traffic traffic is sent to each AZ.
 
 ## Routing Algorithms
-
 There are 4 load balancer routing algorithms:
 Least outstanding requests
 Round Robin
-Flow Hash (NLB) - TCP/UDP connection is routed to a single target for the life of the connection - it' slike 
+Flow Hash (NLB) - TCP/UDP connection is routed to a single target for the life of the connection
 
 ## SSL on Load Balancers
-
 One of the key features of ELB is the ability to terminate SSL connections for instances in the load balancing group. In this configuration, the HTTPS client uses port 443 to communicate with the ELB and the ELB communicates on port 80 to the web server instances in the autoscaling group. 
 
 Managing the certificate on the ELB is always the magic... In fact, managing certs in general, is the magic. There are three options. 
@@ -45,7 +43,6 @@ In addition to a cert, you need to define an SSL Negotiation configuration, call
 If you have multiple ELB then multiple SSL Certs are required unless you use a wildcard (SNI) certificate.
 
 ## Health Checks
-
 To enable removing unhealthy instances from the round robin, each ELB can do a health check of the instances in the load balancing group. The health check can use different ports, including port 80, and set a response timeout, a health check interval, an unhealthy threshold, and a healthy threshold. 
 
 Load balancer [health checks](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-healthchecks.html) only determine if the instance is available; optionally, an ASG can use ELB health checks in addition to the EC2 status checks it uses.
@@ -66,8 +63,7 @@ Load balancer [health checks](http://docs.aws.amazon.com/elasticloadbalancing/la
 | MultiAZ?                  |           No           | Yes - one EIP per AZ |                  Required                  |
 
 ## Application Load Balancer
-
-Path based routing & management - because the routing is based on URL matching target groups can be containers, different port on the same box or simply different target groups. ALB uses Dynamic Port Mapping to place more than one task of the same app on an ECS cluster. ALB can front Lambda by turning the HTTP request in to a JSON event. 
+Path based routing & management - because the routing is based on URL matching target groups can be containers, different port on the same box or simply different target groups. ALB uses Dynamic Port Mapping to place more than one task of the same app on an ECS cluster. ALB can front Lambda by turning the HTTP request in to a JSON event. Session stickiness is supported at the target group level.
 
 Target groups are EC2 instances or containers managed as an entity and checks the health of the group automatically. 
 
@@ -83,7 +79,6 @@ NLB are layer 4 load balancers that work with massive amounts of UDP and TCP tra
 In a EC2-Classic situation, an ELB support ports, 25, 80, 443, 465, 587 and 1024-65535 (ephemeral ports) while in an EC2-VPC it support ports 1-65535. An Elastic IP can not be assigned to a ELB. DNS apex zone support is in the house while multiple non-wild card SSL certs will require multiple ELB. It also support IPv4 &amp; IPv6. Can load balance the zone apex as well. Does not support SNI certs.
 
 ## ELB Cookie Stickiness
-
 There are three `Cookie Stickiness`, also know as session affinity, with both enabled options end up with sticky sessions (so all sessions go back to the same server), options: 
 
 * Disable Stickiness - The disable stickiness option is what you want and then you need to implement ElastiCache or an Amazon RDS instance for session.

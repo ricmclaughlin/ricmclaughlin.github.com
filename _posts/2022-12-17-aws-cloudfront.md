@@ -71,17 +71,11 @@ Custom origins and custom origin rules determine which part of website requests 
 
 ## Configuration 
 CloudFront has many, many configuration options including:
-
 * Device detection - Redirect or serve different content based on user agent
-
 * CNAMEs - supports wildcard CNAMES and up to 100 CNAMES total
-
 * Origin KeepAlive Timeout - keep connection from edge location to the CloudFront origin open
-
 * Allowed HTTP Methods - can be just GET and HEAD
-
-* Origin Protocol Policy - HTTP, HTTPS or Match Viewer; S3 only support HTTP
-
+* Origin Protocol Policy - Redirect HTTP to HTTPS, HTTP, HTTPS or Match Viewer (use what ever protocol over the entire req/res); S3 DOES support HTTPS
 * Custom Error pages - when the origin returns a 4XX or 5XX status code; has a min Error Caching TTL
 
 ### HTTPS
@@ -90,9 +84,7 @@ If the origin is S3 all requests are made to the distribution will stay the same
 There are three different ways to configure SSL (in order of goodness):
 
 - Generic SSL Cert - using *.cloudfront.net SSL certificate
-
 - SNI Custom SNL - included with CloudFront; multiple domains to serve SSL over same IP address; good support overall browsers; 
-
 - Dedicated IP Custom SSL - expensive; limited support from ancient browsers
 
 ## Cloudfront Reports
@@ -102,29 +94,19 @@ CloudFront generates metrics to CloudWatch, CloudTrail and HTTP access logs.
 
 ### Invalidation Technique Triage
 - Slow, cheap, sucky invalidation? Delete origin file; wait for TTL to expire
-
 - Fast, Expensive invalidation? Use Invalidation API to remove object from edge location
-
 - Blue/green invalidation? Use Route53 Alias
-
 - Build Process invalidation? Rename files
 
 ### Triage
 - Support zone apex? - use Route53 to alias to CloudFront distribution
-
 - Redirect HTTP to HTTPS? yes, this is a feature.
-
 - Need multiple Geo Restrictions? create multiple distributions
-
 - Configure PUT to edge location and forward to S3
-
 - Increase performance of your website? Increase cache hit percentage is the #1 way to increase CloudFront performance. Increasing min and max TTL helps improve this metric.
-
 - Realtime metrics about website? monitor distribution with CloudWatch
-
 - Increase HA? multiple distributions behind Route53
 
-- Decrease latency
 
 - Custom Error Message? from S3 with low TTL
 

@@ -15,12 +15,14 @@ Organizations has two modes: 1/ _Consolidated billing_ 2/ _All features_. All fe
 ## Set up
 Generally, an organization has a paying account, which is independent of other accounts and contains no functional resources, and many linked accounts which contain functional resources. The paying account does NOT have access to the functional resources or any resources in linked accounts. Organizations makes a role called `OrganizationAccountAccessRole` to enable control over linked accounts. Accounts can be created using Organizations or they can be created separately and invited. If they are invited, the `OrganizationAccountAccessRole` must be created manually.
 
+The organization root is associated with the ~~master~~ management account. 
+
 Accounts can be grouped into _Organizational units_ (OU). _Service control policies_ (SCP) and tag policies help control what can and can't be done and can be assigned to accounts OR to OU. Logical: An OU can only have one parent; an account can only be in a single OU.
 
 Moving an account from one org to another is easy. Removed the account from org 1; invite from org 2; accept invite from org 2 in the account.
 
 ## Service Control Policies (SCP)
-SCP control the maximum available permissions for ALL users that can be applied at the OU or Account level but does NOT apply to the management account. SCP don't effect service-linked roles. SCP must have an explicit Allow - they don't allow anything by default. An explicit Deny disables the use of the service in the account. There are three types of SCP:
+SCP control the maximum available permissions for ALL users that can be applied at the OU or Account level but does NOT apply to the management account. SCP applied to an OU apply to all member accounts. SCP don't effect service-linked roles. SCP must have an explicit Allow - they don't allow anything by default. An explicit Deny disables the use of the service in the account. There are three types of SCP:
 
 - _Multi-Account Permission policies_ enable access across accounts - and creates role in accounts being shared.
 

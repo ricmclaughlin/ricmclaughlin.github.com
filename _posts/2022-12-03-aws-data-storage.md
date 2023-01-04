@@ -27,11 +27,13 @@ tags: [aws, aws-guides, storage, aws-solutions-arch-pro]
 - bucket is public OR objects are public? Not Trusted Advisor (can't check for public objects in the bucket) instead use EventBridge/S3 Events OR Config.
 
 ## EBS
-Burst-able? gp2/3
-temp/ storage? (use instance store), multi-instance (use EFS), durable (use EFS/S3), Web content (S3)
+- Burst-able? gp2/3
+- temp storage 365+K IOPS? instance store
+- Shared file storage, no POSIX? EBS io2 multi-attach
+- Shared file storage, POSIX? EFS
 - NoSQL? io2/3/express (365K IOPS)
 - MPP/Hadoop/EMR? D2 3.5 Gib/s
-- Backup instance store? file backup on mounted EFS/EBS, no snap shotting 
+- Backup instance store? file backup on mounted EFS/EBS, no snap shotting possible
 
 ## DataSync/Storage Gateway/Snowball
 - Sync from on-prem to S3, EFS, EBS FSx? DataSync (agent that includes encryption and integrity checks for NFS or SMB)
@@ -52,8 +54,8 @@ temp/ storage? (use instance store), multi-instance (use EFS), durable (use EFS/
 - Use EC2 for complete control of DB
 
 ## Backup
-- Need to automate backup? EBS
-- Automated backup? Redshift, Redis, RDS
+- Need to automate backup? EBS, FSx for Lustre
+- Automated backup? Redshift, Redis, RDS, FSx
 - Automate EBS backup? Data Lifecycle Manager (DLM)
 - Automate all AWS Backup? = AWS Backup (including EBS)
 
@@ -72,3 +74,9 @@ temp/ storage? (use instance store), multi-instance (use EFS), durable (use EFS/
 - NFS for Linux boxes? EFS
 - Linux >7000 file operations per sec? EFS Max I/O 
 - Shared File storage for EC2 multi-threaded linux? General Purpose EFS (burstable)
+
+## FSx
+- No downtime FSx for Windows Single AZ to multi-AZ? for no downtime, create a multi-AZ file system then use DataSync to migrate the data over. 
+- For downtime ok FSx for Windows Single AZ to multi-AZ? backup the single-AZ and restore multi-AZ works well.
+- Reduce size of file system? create smaller version and DataSync
+- Increase size of file system? increase must be greater than 10%, must have throughput of 16 MB/s, 6 hours after last increase

@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Timestream & DocumentDB"
 description: ""
 category: posts
-tags: [aws, timestream, documentdb, aws-solutions-arch-pro]
+tags: [aws, analytics, databases, aws-services, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
@@ -18,7 +18,7 @@ Kinesis Streams, AWS IoT, Prometheus, and Telegraf
 DocumentDB is full managed, HA with replication across 3 AZ that grows in increments of 10GB and scales automatically. Like Aurora there is a primary node and replica nodes. 
 
 ## Pricing
-- On-demand instances (per second with a minimium of 10 minutes)
+- On-demand instances (per second with a minimum of 10 minutes)
 - Database I/O
 - Database Storage
 - Backup Storage
