@@ -8,35 +8,29 @@ tags: [lambda, aws, devops, aws-dev-ops-pro, aws-solutions-arch-pro]
 {% include JB/setup %}
 
 # WTF is Lambda?
-
 Lambda is an abstract compute service where all you need to do is upload your code... AWS manages the servers for you. Lambda works well for for event driven &amp; orchestration workloads and as a result of a request via API gateway or an ALB. Lambda has broad language support and the ability to run Lambda Container images.
 
 Lambda functions can be called by specifying a version or alias (qualified ARN) OR without a version (unqualified ARN).
 
 ## Serverless Application Model (SAM)
-
-SAM is a CloudFormation extention optimized for serverless application. It's basically macro library that enables serverless applications to use a more consise syntax for common patterns like functions, APIs, and tables.
+SAM is a CloudFormation extension optimized for serverless application. It's basically macro library that enables serverless applications to use a more concise syntax for common patterns like functions, APIs, and tables.
 
 ## Lambda@edge
 With Amazon CloudFront, you can write your own code to customize how your CloudFront distributions process HTTP requests and responses instead of using CloudFront functions. Lambda@edge functions can be run when on viewer/origin request and on the viewer/origin response.
 
 ## Interaction with other AWS services
-
 - SQS: max messages per batch = 10; 
-
 - CloudWatch: can send matched event, part of the matched, or a constant chunk of JSON
 
-## Networking
-
+## Concurrency
+By default 100 units of concurrency are reserved for all functions that don't have a concurrency limit set. There are two types of concurrency available: 
+- _Reserved Concurrency_ - creates a pool of requests that can only be used by it's function establishing an upper bound
+- _Provisioned Concurrency_ - initializes a requested number of execution environments so that they are prepared to respond 
 
 ## Triage
-
 - Need Internet access? Deploy in private subnet and add NAT 
-
 - Need Internet access with fixed IP? Deploy in private subnet, add NAT, &amp; Elastic IP
-
 - Function termination? out of memory
-
 - Synchronously call? (anything that requires a response to proceed and error handling)
     * ELB
     * Cognito
@@ -60,26 +54,14 @@ With Amazon CloudFront, you can write your own code to customize how your CloudF
    * AWS Config
    * AWS IoT services 
 
-- Process failed async innvocations? dead letter queue items with SQS or SNS
-
+- Process failed async invocations? Dead letter queue items with SQS or SNS
 - Configure number of retries? Sync = caller configured; async = twice
-
 - The old version of the function is served? there is a brief window of time, typically less than a minute, when the requests could be served by the older veersion.
-
 - Lambda to poll queue? Kinesis, DynamoDB (streams), SQS
-
 - Promote new version to `LATEST`? Update alias to new version (assuming you are following best practice by using an alias ARN)
- 
 - Memory, deployment size, timeout ranges? 128Mg-10G, 50 MB compressed deployment (250 uncompress including layers)
-
 - Change permissions of Lambda? must use CLI/SDK; can't use console
-
 - More than 1000 concurrent executions? Call support; 10K hard limit
-
-- need traffic shift during deployment? CodeDeploy Linear, Canary or all at once deployment
-
-- check with traffic before and after deployment? Pre and Post traffic hooks
-
-
-
-- 
+- Need traffic shift during deployment? CodeDeploy Linear, Canary or all at once deployment
+- Check with traffic before and after deployment? Pre and Post traffic hooks
+- `TooManyRequestsException` errors? SQS (non-FIFO because of rate limits) OR Kinesis (and batch data out of API Gateway)

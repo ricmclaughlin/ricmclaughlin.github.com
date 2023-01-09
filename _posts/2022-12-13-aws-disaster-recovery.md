@@ -47,5 +47,6 @@ Live data; live services load balanced between sites
 # Elastic Disaster Recovery (DRS)
 Very much like Application Migration Server (MGN) except for DR - used to be called _CloudEndure Disaster Recovery_. DRS minimizes downtime and data loss with fast, reliable recovery of on-premises and cloud-based applications using affordable storage, minimal compute, and point-in-time recovery. Uses what looks like the same "AWS Replication Agent" in Application Migration Server to do block-level replication for servers; failover happens in minutes.
 
-# Key Resources
-- [Disaster Recovery in the Cloud](https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-workloads-on-aws.html)
+# Triage
+"Disaster resilient"? multi-region using S3 CRR?
+

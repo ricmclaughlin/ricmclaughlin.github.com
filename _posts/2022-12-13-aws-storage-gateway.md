@@ -18,7 +18,7 @@ Each file share can only connect to one S3 bucket, but multiple file shares can 
 
 [FSx File Gateway](https://docs.aws.amazon.com/filegateway/latest/filefsxw/what-is-file-fsxw.html) - FSx Gateway enables a caching solution a FSx for Windows File Server.
 
-[Volume Gateway](https://docs.aws.amazon.com/storagegateway/latest/vgw/WhatIsStorageGateway.html) are on-prem vm based servers that enable file access interfaced using iSCSI. Backups are EBS snapshots that can be configured to use point-in-time snapshots. For consistency move the disk offline then volume to flush data to disk and then backup.
+[Volume Gateway](https://docs.aws.amazon.com/storagegateway/latest/vgw/WhatIsStorageGateway.html) are on-prem vm based servers that enable file access interfaced using iSCSI; uses the Challenge-Handshake Authentication Protocol (CHAP) to authenticate iSCSI and initiator connections. Backups are EBS snapshots that can be configured to use point-in-time snapshots. For consistency move the disk offline then volume to flush data to disk and then backup.
 
 - Cached - Basically a SAN with primary data written to S3; cached local for low latency; can snapshot to create a point in time version
 

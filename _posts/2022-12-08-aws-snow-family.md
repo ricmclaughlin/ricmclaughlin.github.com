@@ -26,7 +26,7 @@ A Snowmobile is a semi-trailer that can move 100PB of data.
 ### Improving Transfer Performance
 Use the [Amazon S3 Adapter for Snowball](https://docs.aws.amazon.com/snowball/latest/ug/snowball-transfer-adapter.html), which is being deprecated, to speed transfer. After that, here are several ways to improve performance, most impactful to least:
 0. Multiple writes at a time
-0. Batch up small files in an archive (zip)
+0. Batch up small files in an archive (zip) (Each copy operation has some overhead because of encryption.)
 0. Don't update files during transfer
 0. Reduce local network traffic
 0. Eliminate network hops (directly connect device to network)

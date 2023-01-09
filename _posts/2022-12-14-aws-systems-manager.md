@@ -8,7 +8,7 @@ tags: [aws, systems-manager, aws-solutions-arch-pro, aws-services]
 {% include JB/setup %}
 
 # Systems Manager (SSM)
-Helps manages EC2 at scale; needs agent (and associated role) on EC2 instances; enabled to work on-prem too 
+Helps manages EC2 at scale; needs agent (and associated role) on EC2 instances; enabled to work on-prem too. 
 
 ## SSM `run` command
 The ability to run commands remotely, with control over rate of execution, without SSH access at scale. A common use case is to send an command/trap an event with to EventBridge then trigger a SSM `run` command. Perhaps to send a command to a set of EC2 instances in the `terminating:wait" stage?

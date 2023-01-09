@@ -42,11 +42,11 @@ Tool that helps orgs develop plans for cloud adoption and migration across busin
 # Compute
 Many of the compute migration services do run on-prem: DMS, Server Migration Service, Application Discovery Service, VM Import/export. Sort of obvious but you can download Amazon Linux 2 as an ISO to use on-prem.
 
-- [Application Migration Service (MGN)](https://docs.aws.amazon.com/mgn/latest/ug/what-is-application-migration-service.html) - does lift and shift migrations for VMware vSphere, Microsoft Hyper-V, and EC2 services to run natively on AWS. MGN used to be CloudEndure and replaces Server Migration Service; an on-prem application called _AWS Replication Agent_ collects data and configures a test VM in a staging environment enabling testing. If it works, launch it!
+- [Application Migration Service (MGN)](https://docs.aws.amazon.com/mgn/latest/ug/what-is-application-migration-service.html) - does *lift and shift* migrations for VMware vSphere, Microsoft Hyper-V, and EC2 services to run natively on AWS. MGN used to be CloudEndure and replaces Server Migration Service; an on-prem application called _AWS Replication Agent_ collects data and configures a test VM in a staging environment enabling testing. If it works, launch it!
 
-- [VM Import/export](https://docs.aws.amazon.com/vm-import/latest/userguide/how-vm-import-export-works.html) - moves VM based server images to EC2 instances - a manual tool which results in downtime; looks like this isn't being actively developed but is likely still on the test.
+- [VM Import/export](https://docs.aws.amazon.com/vm-import/latest/userguide/how-vm-import-export-works.html) - moves VM-based server images to EC2 instances via a bucket - a manual tool which results in downtime
 
-[Server Migration Service](https://docs.aws.amazon.com/server-migration-service/latest/userguide/server-migration.html) - runs in a VM on-prem, does replication of live volumes from VMware, Hyper-V, and AzureVm; can handle multi-server migrations; prefer MGN, as this is the old version of 
+[Server Migration Service](https://docs.aws.amazon.com/server-migration-service/latest/userguide/server-migration.html) - runs in a VM on-prem, does replication of live volumes from VMware, Hyper-V, and AzureVm; can handle multi-server migrations; prefer MGN, as this is the old version of Cloud Endure Migration. This tool is for actually moving VM NOT planning a move.
 
 ## Triage
 Figure out what should be migrated? ADS

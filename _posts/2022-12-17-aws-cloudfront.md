@@ -100,22 +100,17 @@ CloudFront generates metrics to CloudWatch, CloudTrail and HTTP access logs.
 
 ### Triage
 - Support zone apex? - use Route53 to alias to CloudFront distribution
-- Redirect HTTP to HTTPS? yes, this is a feature.
-- Need multiple Geo Restrictions? create multiple distributions
-- Configure PUT to edge location and forward to S3
 - Increase performance of your website? Increase cache hit percentage is the #1 way to increase CloudFront performance. Increasing min and max TTL helps improve this metric.
 - Realtime metrics about website? monitor distribution with CloudWatch
 - Increase HA? multiple distributions behind Route53
-
-
 - Custom Error Message? from S3 with low TTL
-
-- Use Route53 Alias records which are free instead of CNAME; Alias your zone apex
-
+- Zone apex? Use Route53 Alias records which are free instead of CNAME
 - Uploading via CDN is faster but does not cache. 
+- Same SSL cert on CloudFront and ALB? Forward the host header
+- Don't cache field on edge caches? Add `Cache-Control:no-cache="field-name"` header in responses
 
-- Restrict access to S3 content? origin access identity, which is a special CloudFront user with a bucket policy
-
-Same SSL cert on CloudFront and ALB? Forward the host header
-
-don't cache field on edge caches? Add `Cache-Control:no-cache="field-name"` header in responses
+### Access Triage
+- Restrict access to S3 content? origin access identity, which is a special CloudFront user with a bucket policy, give access to bucket, remove other access methods to bucket
+- Restrict to Custom origin content? Custom headers in distribution, configure app to look for custom headers, Viewer protocol (force HTTPS from client), Origin Protocol (force HTTPS to origin)
+- Need multiple Geo Restrictions? create multiple distributions
+- Redirect HTTP to HTTPS? use Viewer Protocol policy to force HTTPS
