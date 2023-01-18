@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Step Functions"
 description: ""
 category: posts
-tags: [stepfunctions, aws, aws-solutions-arch-pro]
+tags: [app-integration, aws-services, serverless, aws, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
@@ -11,7 +11,7 @@ tags: [stepfunctions, aws, aws-solutions-arch-pro]
 
 The max execution time is 1 year with the ability to implement human interaction and approval. Strangely, Step Functions does NOT integrate with Mechanical Turk.
 
-Step Function has several optimized integrations with Lambda, Batch, ECS, DynamoDB, SNS/SQS, EMR/Glue/SageMaker, and the SDK and can be invoked using the `StartExcution` call from SDK, API, Lambda), or from API Gateway, EventBridge, CodePipeline and StepFunctions.
+Step Function has several optimized integrations with Lambda, Batch, ECS, DynamoDB, SNS/SQS, EMR/Glue/SageMaker, and the SDK and can be invoked using the `StartExecution` call from SDK, API, Lambda), or from API Gateway, EventBridge, CodePipeline, and StepFunctions.
 
 ## Task types
 There are 4 types of Tasks:
@@ -29,9 +29,7 @@ There are two types of workflows:
 | Execution start per second | 2000                 | >100k                        |
 | Transition rate per second | 4000                 | nearly unlimited             |
 | Price                      | per state transition | executions, duration, memory |
-| Execution Semantics        | exactly once         | at least once                |
-
-Express workflows can be synchronous or asynchronous. 
+| Execution Semantics        | exactly once         | at least once (asynchronous); at most once(synchronous) |
 
 ## Error handling
 You can enable error handling, retries (retry interval, MaxAttempts, backoffRate) and add alerting to State Machines. 

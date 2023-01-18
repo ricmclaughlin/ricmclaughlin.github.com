@@ -3,12 +3,12 @@ layout: post
 title: "AWS - ID federation"
 description: ""
 category: posts
-tags: [security-id-compliance, aws, aws-services, aws-solutions-arch-pro]
+tags: [security-id-compliance, aws, aws-guides, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
-# STS vs SSO vs AWS IAM Identity Center
-_Security Token Service (STS)_ forms the backbone low-level interface for federation while _AWS Single Sign-On_ enables the ability to centrally manage access to AWS accounts and business applications. _Identity Center_ replaces all of the cases - login across accounts in organization, business apps, SAML2 apps, and even EC2 Windows instances.
+# Overview
+_Security Token Service (STS)_ forms the backbone low-level interface for all federation. _AWS Single Sign-On_ enables the ability to centrally manage access to AWS accounts and business applications. _Identity Center_ replaces all of the corporate ID cases - login across accounts in organization, business apps, SAML2 apps, and even EC2 Windows instances. SAML 2.0 federation enables lots of other cases but isn't preferred while a custom ID broker is less in favor and should only be used when SAML 2.0 federation isn't available. 
 
 ## The common steps to federation at runtime are:
 1. Authenticate with Identity Provider (IdP) - IdP returns a pre-signed URL
@@ -24,9 +24,9 @@ Identity Center enables multi-account permissions, applications (basically using
 ## SAML 2.0 Federation
 Use Case: Access to console, CLI, API using temp credentials *from* AD or other SAML 2.0 IdP
 
-Background: AD and it's hosted version [AWS Directory Service](https://aws.amazon.com/directoryservice/), LDAP and SAML can be integrated into IAM; generally you map groups in the ID provider to IAM roles
+Background: AD, and it's hosted cousin [AWS Directory Service](https://aws.amazon.com/directoryservice/), LDAP and SAML can be integrated into IAM; generally you map groups in the ID provider to IAM roles
 
-Flow: Auth with trusted IdP (could also be Active Directory Federation Service - ADFS) which returns SAML token; from here:
+Flow: Auth with trusted IdP (could also be Active Directory Federation Service - ADFS) which returns SAML token and then:
 0. the user can sign on to the console using the token and the AWS sign-in endpoint for SAML at _signin.aws.amazon.com/saml_ where the endpoint calls `AssumeRoleWithSAML`
 0. the app can call the STS service and call `AssumeRoleWithSAML` and use the returned credentials to access the resource
 

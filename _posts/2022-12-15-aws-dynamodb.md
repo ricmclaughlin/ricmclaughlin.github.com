@@ -3,10 +3,9 @@ layout: post
 title: "AWS - DynamoDB"
 description: ""
 category: posts
-tags: [aws-services, aws, databases, aws-solutions-arch-pro]
+tags: [aws-services, aws, serverless, databases, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
-
 
 [DynamoDB](https://aws.amazon.com/dynamodb/) is a NoSQL database - but the concepts behind MongoDB have better names. It stores unlimited amounts of data in three separate data centers - not AZs.
 

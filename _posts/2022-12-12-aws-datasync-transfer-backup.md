@@ -3,12 +3,12 @@ layout: post
 title: "AWS - DataSync, Transfer Family, & AWS Backup"
 description: ""
 category: posts
-tags: [aws, storage, aws-solutions-arch-pro, aws-guides]
+tags: [aws, storage, aws-solutions-arch-pro, serverless, aws-guides]
 ---
 {% include JB/setup %}
 
 # DataSync
-AWS DataSync is a secure, online service that automates and accelerates moving data between on premises and AWS Storage services (including S3, EFS, and FSx) - and can also move data between AWS data storage as well.
+AWS DataSync is a secure, online service that automates and accelerates moving data between on premises and AWS storage services (including S3, EFS, and FSx) - and can also move data between AWS data storage as well.
 
 Replication tasks are not continuous; they are scheduled. DataSync preserves file permissions and metadata on NFS, POSIX, and SMB/NTFS file systems.
 
@@ -19,7 +19,7 @@ AWS services don't require an agent. The Snow family fully supports DataSync as 
 # AWS Transfer Family
 AWS Transfer Family securely scales recurring business-to-business file transfers to S3 OR EFS using SFTP, FTPS, FTP, and AS2 protocols. 
 
-Full redundancy across multiple Availability Zones within an AWS Region. Access control in the service or integrate with existing auth system.
+Full redundancy across multiple AZ within an AWS Region. Access control in the service or integrate with existing auth system.
 
 The public endpoint for AWS Transfer Family will change which means you can't set up IP allow lists. VPC endpoints with access from a corporate local works. To secure access from the internet using an allow list attach an elastic IP to the VPC endpoint and set up an appropriate security group to enable access.
 

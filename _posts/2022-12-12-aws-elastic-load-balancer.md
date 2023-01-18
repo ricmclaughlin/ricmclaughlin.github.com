@@ -12,30 +12,17 @@ tags: [aws, devops, elastic-load-balancer, aws-dev-ops-pro]
 There are ~~two~~ three versions of ELB - Classic Load Balancer (only a few ports + TCP, HTTP, HTTPS, SSL; layer 4), Network load balancers (like classic but best for TCP at scale) and Application Load Balancer (any port - just HTTP, HTTPS; layer 7). ELBs do not have a defined IPV4 address but do support both IPV4 &amp; IPV6.
 
 Lots of differences between externally and internally facing load balancers:
-
 - External = must be placed in a public subnet; public IP; external DNS
-
 - Internal = no public IP; internal DNS name
 
-Lots of times you will know there is more traffic a-coming. In these cases you can "pre-warm" the ELB by contacting AWS!
-
-When enabled Cross-Zone Load Balancing sends equal traffic to clients regardless of AZ; when disabled equal traffic traffic is sent to each AZ.
-
-## Routing Algorithms
-There are 4 load balancer routing algorithms:
-Least outstanding requests
-Round Robin
-Flow Hash (NLB) - TCP/UDP connection is routed to a single target for the life of the connection
+Lots of times you will know there is more traffic a-coming. In these cases you can "pre-warm" the ELB by contacting AWS! When enabled Cross-Zone Load Balancing sends equal traffic to clients regardless of AZ; when disabled equal traffic traffic is sent to each AZ.
 
 ## SSL on Load Balancers
 One of the key features of ELB is the ability to terminate SSL connections for instances in the load balancing group. In this configuration, the HTTPS client uses port 443 to communicate with the ELB and the ELB communicates on port 80 to the web server instances in the autoscaling group. 
 
 Managing the certificate on the ELB is always the magic... In fact, managing certs in general, is the magic. There are three options. 
-
 0. Use the new AWS Certificate Manager service. 
-
 0. Use a certificate from IAM. 
-
 0. Upload your own.
 
 In addition to a cert, you need to define an SSL Negotiation configuration, called a security policy, which is a combination of SSL protocols, SSL ciphers, and the Server Order Preference option.
@@ -65,20 +52,22 @@ Load balancer [health checks](http://docs.aws.amazon.com/elasticloadbalancing/la
 ## Application Load Balancer
 Path based routing & management - because the routing is based on URL matching target groups can be containers, different port on the same box or simply different target groups. ALB uses Dynamic Port Mapping to place more than one task of the same app on an ECS cluster. ALB can front Lambda by turning the HTTP request in to a JSON event. Session stickiness is supported at the target group level.
 
-Target groups are EC2 instances or containers managed as an entity and checks the health of the group automatically. 
+Target groups are EC2 instances or containers managed as an entity and checks the health of the group automatically. By default, ALB use Round Robin routing. 
 
 ### Listeners
-
-ALB listeners supports HTTP & HTTPS only. Rules determine where the traffic gets forwarded. The default rule has no conditions and runs if no other rules are matched. Each rule has a priority, host and path and can only `Forward` to a target group.
+ALB listeners supports HTTP &amp; HTTPS only. Rules determine where the traffic gets forwarded. The default rule has no conditions and runs if no other rules are matched. Each rule has a priority, host and path and can only `Forward` to a target group.
 
 ## Network Load Balancer
-NLB are layer 4 load balancers that work with massive amounts of UDP and TCP traffic. NLB supports one static IP per AZ and also supports Elastic IP addresses. It's common to puts an NLB in front of an ALB to keep the static IP address. Doing a DNS lookup on a NLB zonal name will resolves to all the NLB nodes in all enabled AZs (so typically more than 1 IP address will be returned). Add the AZ name to the NLB DNS names resolve the specific IP for that AZ - this could be useful for an application to keep traffic within a single AZ. NLB don't support SG.
+NLB are layer 4 load balancers that work with massive amounts of UDP and TCP traffic. NLB supports one static IP per AZ and also supports Elastic IP addresses. It's common to puts an NLB in front of an ALB to keep the static IP address. 
 
-## Elastic Load Balancer 
+NLB use Flow Hash routing that enables a TCP/UDP connection to be routed a single target for the life of the connection.
 
+Doing a DNS lookup on a NLB zonal name will resolves to all the NLB nodes in all enabled AZs (so typically more than 1 IP address will be returned). Add the AZ name to the NLB DNS names resolve the specific IP for that AZ - this could be useful for an application to keep traffic within a single AZ. NLB don't support SG.  
+
+## Classic Load Balancer 
 In a EC2-Classic situation, an ELB support ports, 25, 80, 443, 465, 587 and 1024-65535 (ephemeral ports) while in an EC2-VPC it support ports 1-65535. An Elastic IP can not be assigned to a ELB. DNS apex zone support is in the house while multiple non-wild card SSL certs will require multiple ELB. It also support IPv4 &amp; IPv6. Can load balance the zone apex as well. Does not support SNI certs.
 
-## ELB Cookie Stickiness
+### Classic Cookie Stickiness
 There are three `Cookie Stickiness`, also know as session affinity, with both enabled options end up with sticky sessions (so all sessions go back to the same server), options: 
 
 * Disable Stickiness - The disable stickiness option is what you want and then you need to implement ElastiCache or an Amazon RDS instance for session.

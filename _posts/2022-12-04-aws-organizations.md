@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Organizations"
 description: ""
 category: posts
-tags: [aws, mgt-governance, aws-services, security-id-compliance, aws-dev-ops-pro, aws-solutions-arch-pro]
+tags: [aws, mgt-governance, aws-services, financial-mgt, security-id-compliance, aws-dev-ops-pro, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
@@ -29,11 +29,11 @@ There are four types of Policies:
 Using conditions in policies is quite useful. Tags can be used as conditions using the `aws:TagKeys` condition key. To make sure things are tagged, `aws:TagKeys` can be used in combination with `ForAllValues` to make sure the tags just exist OR `ForAnyValue` to have at least these tags present. `aws:RequestedRegion` is a handy way of restricting where resources are created. The `Null` condition can be used to require a tag is present. 
 
 ### Service Control Policies (SCP)
-SCP control the maximum available permissions boundary *in the account* that can be applied at the OU or Account level. SCP applied to an OU apply to all member accounts. SCP are not enabled by default. Like regular IAM, without any SCP in place none of the member accounts/OU can do anything; the deny, allow, deny pattern of identity policies are present here too. 
+SCP control the maximum available permissions boundary *in the account* that can be applied at the OU or Account level. SCP applied to an OU apply to all member accounts. SCP are not enabled by default. SCP do NOT apply to the management account. SCP don't effect service-linked roles. There are two approaches to using SCP: _Deny lists_ and _Allow lists_ 
 
-However, this default does not really apply because the `FullAWSAccess` policy is in place initially, which allows access to all services and to manage permissions you write _deny lists_ policies. To enable _allow lists_, remove the `FullAWSAccess` policy, and write _allow list_ policies.
+_Deny lists_ policies polices are the default; you write deny policies that restrict all the permissions allowed in the `FullAWSAccess` policy that exists by default. 
 
-SCP do NOT apply to the management account. SCP don't effect service-linked roles. 
+_Allow lists_, require replacing the `FullAWSAccess` policy with a policy that starts by a Deny of a set of services then an _allow list_ policies. Because an explicit Deny overrides any allow, this makes it really difficult to manage.
 
 ## Resource Access Manager
 Resource Access Manager enables cross account sharing of resources inside an organization or just with other random accounts. This is a better alternative than cross-account access using resource-based policies through integration with Organizations, visibility for shared resources and easier, more transparent administration. The goal is to avoid resource duplication. 

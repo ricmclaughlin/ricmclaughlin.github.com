@@ -11,6 +11,9 @@ tags: [aws, aws-guides, storage, aws-solutions-arch-pro]
 - Re-buildable asset? S3-IA (because you can regenerate it!)
 - Infrequently access (Backup, archive or DR yet still active)? S3-IA
 - Greater than 4 hours retrieval, cheap (archive, digital preservation)? Glacier
+Cheap archive but charged for instant retrieval? Glacier instant retrieval 
+Cheap archive but ok with little delay?Glacier Flexible _expedited_ (1-5 minutes), _standard_ (3-5 hours), or _bulk_ (5-12 hours)
+Pure archive with 12-48 hours? S3 Deep archive (think frozen data)
 - Change S3 access permissions? role/group with policy (loose permission before assume role) OR bucket policy (to add access permissions using existing role/user/group)
 - Different access to same bucket? Access points
 - Protect S3 file from delete or overwrite? enable versioning
@@ -25,6 +28,7 @@ tags: [aws, aws-guides, storage, aws-solutions-arch-pro]
 - `PUT` optimization on a strong network? multi-part uploads of between 25-50MB to max throughput
 - `PUT` optimization on a weak network? multi-part uploads of about 10MB to prevent upload restart
 - bucket is public OR objects are public? Not Trusted Advisor (can't check for public objects in the bucket) instead use EventBridge/S3 Events OR Config.
+- WORM data
 
 ## EBS
 - Burst-able? gp2/3
@@ -45,17 +49,17 @@ tags: [aws, aws-guides, storage, aws-solutions-arch-pro]
 - When Virtual Tape Archive? unlimited storage and OK with a 24 hour turn around time; 
 - When Snowball? more than 2TB of data for a T3 connection, 5TB for a 100MB connection, and 60TB for 1000 Mbps connections.
 
-# Demonstrate ability to make architectural trade off decisions involving database options
-- Use RDS for ACID, joins, complex queries
+# Database options
+- ACID, joins, complex queries? RDS 
 - Don't use RDS for index and query focused, BLOB
 - Use DynamoDB for indexed, query focused data, automated scalability
-- Don't use DynamoDB for prewritten apps, data larger than 400kb, BLOB, relational data
-- Use EC2 for DB2, Informix or Sybase
-- Use EC2 for complete control of DB
+- prewritten apps, data larger than 400kb, BLOB, relational data? !DynamoDB
+- DB2, Informix or Sybase? EC2
+- Complete control of DB? EC2 for 
 
 ## Backup
 - Need to automate backup? EBS, FSx for Lustre
-- Automated backup? Redshift, Redis, RDS, FSx
+- No need for Automated backup? Redshift, Redis, RDS, FSx
 - Automate EBS backup? Data Lifecycle Manager (DLM)
 - Automate all AWS Backup? = AWS Backup (including EBS)
 
@@ -63,7 +67,7 @@ tags: [aws, aws-guides, storage, aws-solutions-arch-pro]
 - Long term data storage? EBS
 - data shared between instance fast? memecached or redis
 - persist data shared between instances? EFS
-- DB or INTENSE data warehouse server? = IOPS/io1
+- DB or INTENSE data warehouse server? IOPS/io1
 - General purpose = gp2
 - Large I/O including EMR, Kafka, log processing and data warehouse ETL? st1 (sequential data reads)
 - Super high disk IO? either RAID 0 or RAID 10 EBS, EBS-optimized instances, modern Linux kernel
@@ -76,7 +80,7 @@ tags: [aws, aws-guides, storage, aws-solutions-arch-pro]
 - Shared File storage for EC2 multi-threaded linux? General Purpose EFS (burstable)
 
 ## FSx
-- No downtime FSx for Windows Single AZ to multi-AZ? for no downtime, create a multi-AZ file system then use DataSync to migrate the data over. 
-- For downtime ok FSx for Windows Single AZ to multi-AZ? backup the single-AZ and restore multi-AZ works well.
+- No downtime FSx for Windows Single AZ to multi-AZ? Create a multi-AZ file system then use DataSync to migrate the data over. 
+- For downtime ok FSx for Windows Single AZ to multi-AZ? Backup the single-AZ and restore multi-AZ works well.
 - Reduce size of file system? create smaller version and DataSync
 - Increase size of file system? increase must be greater than 10%, must have throughput of 16 MB/s, 6 hours after last increase

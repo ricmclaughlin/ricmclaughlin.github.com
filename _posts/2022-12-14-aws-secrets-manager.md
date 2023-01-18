@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Secrets Manager"
 description: ""
 category: posts
-tags: [aws, secrets-manager, aws-solutions-arch-pro, aws-services]
+tags: [aws, security-id-compliance, aws-solutions-arch-pro, aws-services]
 ---
 {% include JB/setup %}
 
@@ -18,7 +18,7 @@ AWS Secrets Manager helps you protect secrets needed to access your applications
 
 ## Operations
 Use Resource Policies to control access to secrets.
-Account sharing secret
+Account sharing secret:
 0. Created resource based policies for secret granting `secretsmanager:GetSecretValue`
 0. Grant the user the ability to decrypt the secret using `kms:Decrypt` via Secrets Manager `kms:ViaService": "secretsmanager.your-region.amazonaws.com` (enable the user to have KMS decrypt the secret so it can be retrieved)
 
@@ -40,8 +40,8 @@ To use Secrets Manager from CloudFormation:
 
 ## When to use Parameter Store 
 - non-encrypted data
-- need integration with CloudFormation
-- manual control over secrets rotation (EventBridge -> Lambda -> Rotate key)
+- need integration with CloudFormation (or other services that does not support Secrets manager like ECS, EC2, CodeDeploy/CodeBuild)
+- Manual control over secrets rotation (EventBridge -> Lambda -> Rotate key)
 
 
 

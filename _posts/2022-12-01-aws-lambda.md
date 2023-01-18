@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Lambda"
 description: ""
 category: posts
-tags: [lambda, aws, devops, aws-dev-ops-pro, aws-solutions-arch-pro]
+tags: [compute, serverless, aws, aws-dev-ops-pro, aws-solutions-arch-pro, app-integration]
 ---
 {% include JB/setup %}
 
@@ -19,7 +19,7 @@ SAM is a CloudFormation extension optimized for serverless application. It's bas
 With Amazon CloudFront, you can write your own code to customize how your CloudFront distributions process HTTP requests and responses instead of using CloudFront functions. Lambda@edge functions can be run when on viewer/origin request and on the viewer/origin response.
 
 ## Interaction with other AWS services
-- SQS: max messages per batch = 10; 
+- SQS: max messages per batch = 10 
 - CloudWatch: can send matched event, part of the matched, or a constant chunk of JSON
 
 ## Concurrency
@@ -49,17 +49,17 @@ By default 100 units of concurrency are reserved for all functions that don't ha
    * SNS
    * SES
    * CloudFormation
-   * CloudWatch Logs & Events (EventBridge)
-   * AWS CodeCommit & CodePipeline
+   * CloudWatch Logs &amp; Events (EventBridge)
+   * AWS CodeCommit &amp; CodePipeline
    * AWS Config
    * AWS IoT services 
 
 - Process failed async invocations? Dead letter queue items with SQS or SNS
 - Configure number of retries? Sync = caller configured; async = twice
-- The old version of the function is served? there is a brief window of time, typically less than a minute, when the requests could be served by the older veersion.
+- The old version of the function is served? there is a brief window of time, typically less than a minute, when the requests could be served by the older version.
 - Lambda to poll queue? Kinesis, DynamoDB (streams), SQS
-- Promote new version to `LATEST`? Update alias to new version (assuming you are following best practice by using an alias ARN)
-- Memory, deployment size, timeout ranges? 128Mg-10G, 50 MB compressed deployment (250 uncompress including layers)
+- Promote new version to `LATEST`? Update alias to new version (using an alias ARN - best practice!)
+- Memory, deployment size, timeout ranges? 128Mg-10G, 50 MB compressed deployment (250 uncompressed including layers)
 - Change permissions of Lambda? must use CLI/SDK; can't use console
 - More than 1000 concurrent executions? Call support; 10K hard limit
 - Need traffic shift during deployment? CodeDeploy Linear, Canary or all at once deployment

@@ -16,8 +16,6 @@ WAF can allow all requests, block all requests, or count the requests that match
 
 Filter rules are executed in order and will act on the first rule that is matched OR the default rule will be executed. You must specify a default action for requests that don't match filter rules. The default action can be a fail/close where all non-matching requests fail (a default deny sort of thing) OR you can have a default allow filter rule.
 
-Of course, WAF is PCI compliant.
-
 ## Web ACL terminology
 *Conditions* can include XSS, IP address range, geo restrictions, query string/header parsing (using REGEX), SQL injection
 
@@ -33,27 +31,24 @@ Of course, WAF is PCI compliant.
 
 ### Pricing
 Simple pricing structure: 
-
-$5 per web ACL per month
-$1 per rule per month
-0.60 per million requests
+- $5 per web ACL per month
+- $1 per rule per month
+- 0.60 per million requests
 
 ## Shield
-Shield helps protect again DDoS attacks.
-
-Shield comes in two flavors: Standard, which is included at no cost and protects against layer 3 & layer 4 attacks (SYN/UDP & reflection attacks), and Advanced ($3000 per month) which will absorb most attacks, give you a free coverage for usage (Global Accelerator, EC2, ELB, CloudFront, Route53) during the attack and access to the DDoS response team. 
+Shield helps protect again DDoS attacks. Shield comes in two flavors: 
+- _Standard_ is included at no cost and protects against layer 3 & layer 4 attacks (SYN/UDP & reflection attacks)
+_ Advanced_ which will absorb most attacks, give you a free coverage for usage (Global Accelerator, EC2, ELB, CloudFront, Route53, EIP) during the attack and access to the DDoS response team for a cost ($3000 per month). You have to enable protects; nothing is protected by default.
 
 # WTF is Firewall Manager?
-[Firewall manager](https://aws.amazon.com/firewall-manager/) enables centralized management of firewall rules across accounts and applications using AWS Organizations. Can be used to apply WAF rules, Shield protections, Security groups (for EC2 and ENI), Network Firewall, Route53 DNS Firewall at the regional level.
-
-Once defined Firewall Manager Rules are applied for all new resources.
+[Firewall manager](https://aws.amazon.com/firewall-manager/) enables centralized management of firewall rules across accounts and applications using AWS Organizations. Can be used to apply WAF rules, Shield protections, Security groups (for EC2 and ENI), Network Firewall, Route53 DNS Firewall at the regional level. Once defined Firewall Manager Rules are applied for all new resources.
 
 # Inspector
-Runs automated security assessments for compute using CVE and network reachability for EC2. For EC2 it uses the SSM agent to scan for network accessibility issues and known vulnerabilities. For ECR, assess images as they are pushed. For Lambda, function code and package dependencies are analyzed as they are deployed. Integrates with Security Hub and EventBridge and reports a risk score.
+Runs automated security assessments for compute using CVE and network reach-ability for EC2. For EC2 it uses the SSM agent to scan for network accessibility issues and known vulnerabilities. For ECR, assess images as they are pushed. For Lambda, function code and package dependencies are analyzed as they are deployed. Integrates with Security Hub and EventBridge and reports a risk score.
 
 ## Resources
 Great Jeff Barr [introduction blog post about WAF for ALB ](https://aws.amazon.com/blogs/aws/aws-web-application-firewall-waf-for-application-load-balancers/) from right after 2016 re:Invent
 
-
 # Triage
 DDOS attack coverage? Shield Advanced &amp; WAF
+Centralize Firewall management? Firewall Manager
