@@ -38,7 +38,7 @@ categories: posts
             {% assign project_tags = "cloudformation,opsworks,elastic-beanstalk,cloudwatch" | split: "," %}
             
           {% elsif skill == 'aws-solutions-arch-pro' %}
-            {% assign project_tags = "aws-guides,aws-services" | split: "," %}
+            {% assign project_tags = "storage,database,mgt-governance" | split: "," %}
             
           {% else %}
             {% assign project_tags = '' %}
@@ -53,7 +53,7 @@ categories: posts
             {% if tag == 'pmp' %}
               {% assign tag_full_name = "Project Management Professional" %}
             {% elsif tag == 'pmi-acp' %}
-              {% assign tag_full_name = "Project Management Institute Agile Certified Practioner" %}
+              {% assign tag_full_name = "Project Management Institute Agile Certified Practitioner" %}
             {% elsif tag == 'aws-academy' %}
               {% assign tag_full_name = "AWS Academy Accredited Instructor" %}
             {% else %}
