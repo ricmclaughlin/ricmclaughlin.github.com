@@ -7,26 +7,18 @@ categories: projects
 {% assign cat = 'delivery' %}
 {% assign project_tags = site.array %}
 {% assign skills = site.otherarray %}
-{% assign skills = "aws,devops,project-delivery,curriculum-dev" | split: "," %}
+{% assign skills = "aws,solution-delivery,ml" | split: "," %}
 
 <div>
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" id="nav-tabs" role="tablist">
     {% for skill in skills %}
-      {% if skill == "web-dev" %}
-        {% assign skill_full_name = "Web Development" %}
-      {% elsif skill == "devops" %}
-        {% assign skill_full_name = "DevOps" %}
-      {% elsif skill == "aws" %}
+      {% if skill == "aws" %}
         {% assign skill_full_name = "Solution Architecture" %}
-      {% elsif skill == 'data' %}
-        {% assign skill_full_name = "Data" %}
-     {% elsif skill == 'languages' %}
-        {% assign skill_full_name = "Languages" %}
-      {% elsif skill == 'curriculum-dev' %}
-        {% assign skill_full_name = "Curriculum Development" %}
-      {% elsif skill == 'project-delivery' %}
-        {% assign skill_full_name = "Project Delivery" %}
+      {% elsif skill == "ml" %}
+        {% assign skill_full_name = "Machine Learning" %}
+      {% elsif skill == 'solution-delivery' %}
+        {% assign skill_full_name = "Solution Delivery" %}
       {% endif %}
 
       <li role="presentation">
@@ -40,22 +32,12 @@ categories: projects
     {% for skill in skills %}
       <div role="tabpanel" class="tab-pane" id="{{skill}}">
         <div class="category-archive">
-          {% if skill == "web-dev" %}
-            {% assign project_tags = "node,express,reactjs,html-css,mongodb" | split: "," %}
-          {% elsif skill == "devops" %}
-            {% assign project_tags = "cloudformation,git,travis,opsworks,elastic-beanstalk" | split: "," %}
-          {% elsif skill == 'data' %}
-            {% assign project_tags = "s3,dynamodb,mongodb,redshift,elasticache,rds" | split: "," %}
-          {% elsif skill == 'languages' %}
-            {% assign project_tags = "javascript,ruby,python" | split: "," %}
-          {% elsif skill == 'classes' %}
-            {% assign project_tags = "portfoliodev,htmlcssclass,javascriptclass,c9" | split: "," %}
-          {% elsif skill == 'curriculum-dev' %}
-            {% assign project_tags = "aws-iot,data-struct,portfolio-dev" | split: "," %}
-          {% elsif skill == 'project-delivery' %}
+          {% if skill == "ml" %}
+            {% assign project_tags = "ethics,design-data,modeling,mlops,ai-services" | split: "," %}
+          {% elsif skill == 'solution-delivery' %}
             {% assign project_tags = "special-sauce,scrum,kanban,leanux" | split: "," %}
           {% elsif skill == 'aws' %}
-            {% assign project_tags = "aws" | split: "," %}
+            {% assign project_tags = "aws-system-design,aws-guides" | split: "," %}
           {% endif %}
 
           {% assign includer = "tags/" | append: skill | append: ".html" %}

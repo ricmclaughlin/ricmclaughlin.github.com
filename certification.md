@@ -5,13 +5,13 @@ categories: posts
 ---
 {% assign project_tags = site.array %}
 {% assign skills = site.otherarray %}
-{% assign skills = "aws-solutions-arch-pro,aws-dev-ops-pro,pmp,pmi-acp" | split: "," %}
+{% assign skills = "aws-solutions-arch-pro,aws-ml-spec,pmp,pmi-acp" | split: "," %}
 
 <div>
   <ul class="nav nav-tabs" id="nav-tabs" role="tablist">
     {% for skill in skills %}
-      {% if skill == "aws-dev-ops-pro" %}
-        {% assign skill_full_name = "AWS DevOps Engineer Pro" %}
+      {% if skill == "aws-ml-spec" %}
+        {% assign skill_full_name = "AWS Machine Learning Specialty" %}
       {% elsif skill == "aws-solutions-arch-pro" %}
         {% assign skill_full_name = "AWS Solutions Architect Pro" %}
       {% elsif skill == "pmp" %}

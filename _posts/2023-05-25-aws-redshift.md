@@ -64,3 +64,10 @@ Amazon Redshift WLM creates query queues at runtime to keep short, fast queries 
 
 ## Redshift Concurrency Scaling
 With the Concurrency Scaling feature, there is support for virtually unlimited concurrent users and concurrent queries, with consistently fast query performance by adding additional cluster capacity to process an increase in both read and write queries. This feature users the WLM feature to prioritize queries. This service charges by the second.
+
+## Redshift ML
+Redshift ML enables the creation, training, and deployment of machine learning models directly from a Redshift cluster. The process works like:
+1. Automaticall export the results of a query to a bucket
+2. Calls SageMaker AutoPilot to generate the model
+3. Uses SageMaker Neo to optimize the model then makes it available as a SQL function
+4. SQl function is exposed via a SageMaker endpoint.

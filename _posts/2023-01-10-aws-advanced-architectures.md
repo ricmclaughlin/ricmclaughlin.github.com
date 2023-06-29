@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Advanced Architectures"
 description: ""
 category: posts 
-tags: [aws, aws-dev-ops-pro, aws-solutions-arch-pro, aws-guides]
+tags: [aws-dev-ops-pro, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

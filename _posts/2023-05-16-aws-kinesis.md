@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Kinesis"
 description: ""
 category: posts
-tags: [aws, aws-services, analytics, data-collection, serverless, aws-solutions-arch-pro]
+tags: [aws, aws-services, analytics, data-collection, serverless, aws-solutions-arch-pro, aws-spec-ml]
 ---
 {% include JB/setup %}
 
@@ -46,7 +46,7 @@ Decrease latency using KPL? decrease `RecordMaxBufferedTime` (default is 100ms)
 `ProvisionedThroughputException`? likely a hot shard; solve using better partition key, increase shards, and do retries with backoff (this is best practice to begin with...)
 
 ## Streams &amp; Shards
-A stream is made of up of shards and a shard is 1MB per second write and 2MB per second read capacity. The max size of a datablob is 1 MB.
+A stream is made of up of shards and a shard is 1MB per second write and 2MB per second read capacity. The max size of a datablob is 1 MB. Data can be retained at least 1 day and as long as 7 days.
 
 The initial number of shards (number_of_shards) that a stream will need can be done using the input values in the following formula:
 
@@ -84,27 +84,24 @@ This is a legacy, older Java library that writes data to S3, DynamoDB, Redshift,
 Lambda is great for lightweight ETL into S3, DynamoDB, Redshift, ElasticSearch or anything you can interface with Lambda. Lambda does support a de-aggregation library for use with streams produced by KPL. Supports Consumer Enhanced Fan-Out.
 
 ## Kinesis Firehouse
+Piping data in a stream to S3, Redshift, OpenSearch, Splunk or even HTTP endpoints.
 
 ## Kinesis Video Streams
 Kinesis Video Streams is a serverless streaming data service that makes it easy to capture, process, and store data streams at any scale. There is a single stream per device; technically you use the Kinesis Video Streams Producer library. The data is stored in S3 but you can not write data directly to S3 without writing a custom solution. Data can be consumed by EC2 instances using the Kinesis Video Stream Parser Library or integrated with Rekognition which can, in turn, create a Kinesis Data Stream for further analysis.
 
-#### Triage
-
-1-3 consumers and > ~200ms latency OR low cost? KCL standard
-
-greater than 3 consumers and < 70ms latency? Enhanced fan-out
-
-Duplicate records? Add unique ID to record payload.
-
 # Firehose
 Amazon Kinesis Data Firehose is a fully managed service for delivering real-time streaming data to destinations in near real-time. Near real-time is 60 seconds for full batches or at least 1 MB of data. 
 
-Firehose ingests up to 1 mg records from SDK, KPL, Kinesis agent, Kinesis Streams, Cloudwatch and IoT. Lambda can transform the data if needed using custom code or standard blueprint templates. The data is batch written to AWS destinations (S3, Redshift via S3, OpenSearch/ElasticSearch), third-party destinations (Datadog, Splunk, New Relic), and or custom HTTP endpoint. All source records or failed transformation or delivery records can also be written to S3 directly from Firehose.
+Firehose ingests up to 1 mg records from SDK, KPL, Kinesis agent, Kinesis Streams, Cloudwatch and IoT. Lambda can transform the data if needed using custom code or standard blueprint templates; by default, Firehose does NOT write Parquet. The data is batch written to AWS destinations (S3, Redshift via S3, OpenSearch/ElasticSearch), third-party destinations (Datadog, Splunk, New Relic), and or custom HTTP endpoint. All source records or failed transformation or delivery records can also be written to S3 directly from Firehose.
 
 Data is buffered for write; the size of the buffer is based on time (for example 1 minute) OR size (for example 32mg) rules. If the stream is high throughput the buffer size will get hit; if the stream is low throughput the time will get hit. If the app can't handle buffering time, then the only way to get a real-time flush is Lambda.
 
 # Kinesis Analytics
-With Amazon Kinesis Data Analytics for SQL Applications processes and analyzes streaming data using standard SQL. Useful for streaming ETL, continous metric generation, and responsive analytics (alerting, monitoring). Queries can be written in SQL or Flink; has automatic schema discovery; Lambda can be configured to preprocess.
+With Amazon Kinesis Data Analytics for SQL Applications processes and analyzes streaming data using standard SQL. Useful for streaming ETL, continuous metric generation, and responsive analytics (alerting, monitoring). Queries can be written in SQL or Flink; has automatic schema discovery; Lambda can be configured to preprocess. 
+
+For realtime anomaly detection in a data stream use the `RANDOM_CUT_FOREST` function. This function does not use older records in the stream for machine learning, nor does it use statistics from previous executions of the application. This algo requires domain expertise to configure what an anomaly is. 
+
+The `HOTSPOTS` function detects relatively dense regions in data. The HOTSPOT function does not return the records that make up a hotspot. You can use the ROWTIME column to determine which records belong to a given hotspot.
 
 ## Components
 
@@ -115,3 +112,17 @@ Reference table - data used enrich the stream
 Output stream - the data that is extracted (and sent to firehose or another consumer via streams)
 
 error stream - where the errors go..
+
+## Kinesis Video Streams
+This is the VCR of AWS. 
+
+## Triage
+
+Realtime to S3 or OpenSearch? Firehose; use Lambda to transform if needed, for example to write the data in Parquet format in S3
+
+Realtime to S3 into Parquet? Kinesis Data Streams to a Glue streaming ETL job.
+
+Near realtime to Redshift? use Redshift Streaming Ingestion for near-realtime scenarios from Data streams NOT Firehose
+
+
+
