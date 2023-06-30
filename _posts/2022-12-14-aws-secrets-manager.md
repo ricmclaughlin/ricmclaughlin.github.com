@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Secrets Manager"
 description: ""
 category: posts
-tags: [aws, security-id-compliance, aws-solutions-arch-pro, aws-services]
+tags: [devops, serverless, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

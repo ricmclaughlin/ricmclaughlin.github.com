@@ -3,7 +3,7 @@ layout: post
 title: "Get Great Website Usability Using Joint Application Design and Simple Usability Testing"
 description: ""
 category: posts
-tags: [special-sauce, project-delivery]
+tags: [special-sauce, solution-delivery]
 ---
 {% include JB/setup %}
 All websites are supposed to be easy to use. They have to be. If your website isn’t, then your visitors will bail and find a website that is. But how in the world do you sure your website has ease of use?

@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Advanced Networking"
 description: ""
 category: posts
-tags: [aws, networking-cdn, aws-solutions-arch-pro, aws-guides]
+tags: [networking, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

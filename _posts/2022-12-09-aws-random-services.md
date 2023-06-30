@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Other Services"
 description: ""
 category: posts
-tags: [aws-services, iot, web-mobile, aws, aws-solutions-arch-pro]
+tags: [other, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

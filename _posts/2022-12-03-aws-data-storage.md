@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Data Storage"
 description: ""
 category: posts
-tags: [aws, aws-guides, storage, aws-solutions-arch-pro]
+tags: [aws-guides, storage, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

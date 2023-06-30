@@ -3,7 +3,7 @@ layout: post
 title: "AWS - OpenSearch"
 description: ""
 category: posts
-tags: [aws, aws-solutions-arch-pro, aws-services, databases]
+tags: [aws-solutions-arch-pro, database]
 ---
 {% include JB/setup %}
 

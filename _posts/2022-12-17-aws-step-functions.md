@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Step Functions"
 description: ""
 category: posts
-tags: [app-integration, aws-services, serverless, aws, aws-solutions-arch-pro]
+tags: [integration, serverless, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

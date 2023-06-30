@@ -3,7 +3,7 @@ layout: post
 title: "AWS - ElastiCache"
 description: ""
 category: posts
-tags: [aws, databases, aws-services, aws-solutions-arch-pro]
+tags: [database, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

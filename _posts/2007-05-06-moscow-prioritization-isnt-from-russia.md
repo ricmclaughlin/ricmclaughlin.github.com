@@ -3,7 +3,7 @@ layout: post
 title: "Moscow Prioritization Isn't from Russia"
 description: ""
 category: posts
-tags: [special-sauce, project-delivery]
+tags: [special-sauce, solution-delivery]
 ---
 
 {% include JB/setup %}

@@ -3,7 +3,7 @@ layout: post
 title: "AWS - ServiceCatalog"
 description: ""
 category: posts
-tags: [mgt-governance, aws, aws-services, aws-solutions-arch-pro]
+tags: [management, serverless, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

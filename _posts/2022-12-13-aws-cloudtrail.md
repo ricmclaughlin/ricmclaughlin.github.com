@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Cloudtrail"
 description: ""
 category: posts
-tags: [aws, mgt-governance, aws-dev-ops-pro, aws-solutions-arch-pro, aws-services]
+tags: [management, aws-solutions-arch-pro, integration]
 ---
 {% include JB/setup %}
 

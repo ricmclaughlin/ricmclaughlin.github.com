@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Migration"
 description: ""
 category: posts
-tags: [aws, aws-guides, migration, aws-solutions-arch-pro]
+tags: [aws-guides, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

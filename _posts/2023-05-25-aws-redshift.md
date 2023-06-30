@@ -3,7 +3,7 @@ layout: post
 title: "AWS - RedShift"
 description: ""
 category: posts
-tags: [aws, analytics, aws-solutions-arch-pro, aws-services]
+tags: [analytics, aws-solutions-arch-pro, aws-ml-spec]
 ---
 {% include JB/setup %}
 

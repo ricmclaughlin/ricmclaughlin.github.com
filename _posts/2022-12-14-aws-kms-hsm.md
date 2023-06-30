@@ -3,7 +3,7 @@ layout: post
 title: "AWS - KMS-HSM"
 description: ""
 category: posts
-tags: [aws, kms, aws-solutions-arch-pro, aws-services]
+tags: [management, aws-solutions-arch-pro, serverless]
 ---
 {% include JB/setup %}
 

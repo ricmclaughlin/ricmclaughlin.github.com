@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Config"
 description: ""
 category: posts
-tags: [aws, mgt-governance, aws-solutions-arch-pro, aws-services]
+tags: [management, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

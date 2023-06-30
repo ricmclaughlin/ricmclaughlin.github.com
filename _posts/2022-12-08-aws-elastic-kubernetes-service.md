@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Elastic Kubernetes Service"
 description: ""
 category: posts
-tags: [compute, aws, aws-services, aws-solutions-arch-pro]
+tags: [compute, serverless aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

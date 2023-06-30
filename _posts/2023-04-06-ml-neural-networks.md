@@ -3,7 +3,7 @@ layout: post
 title: "Machine Learning - Neural Networks"
 description: ""
 category: posts
-tags: [ml, neural-networks, aws-spec-ml]
+tags: [modeling, aws-spec-ml]
 ---
 {% include JB/setup %}
 

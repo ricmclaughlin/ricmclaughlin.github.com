@@ -3,7 +3,7 @@ layout: post
 title: "AWS - EC2 Auto Scaling"
 description: ""
 category: posts
-tags: [aws-services, aws, compute, devops, aws-solutions-arch-pro]
+tags: [compute, devops, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

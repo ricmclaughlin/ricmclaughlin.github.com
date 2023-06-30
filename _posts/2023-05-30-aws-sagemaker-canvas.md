@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Sagemaker Canvas"
 description: ""
 category: posts
-tags: [sagemaker, ai-services, aws-solutions-arch-pro, aws-spec-ml]
+tags: [mlops, aws-solutions-arch-pro, aws-spec-ml]
 ---
 {% include JB/setup %}
 

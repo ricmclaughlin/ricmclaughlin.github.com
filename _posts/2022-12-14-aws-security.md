@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Security"
 description: ""
 category: posts
-tags: [aws, aws-solutions-arch-pro, security-id-compliance, aws-guides]
+tags: [aws-solutions-arch-pro, aws-guides]
 ---
 {% include JB/setup %}
 

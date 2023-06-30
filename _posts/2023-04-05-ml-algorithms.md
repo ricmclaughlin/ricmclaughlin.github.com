@@ -3,7 +3,7 @@ layout: post
 title: "Machine Learning - Algorithms"
 description: ""
 category: posts
-tags: [ml, algorithms, aws-spec-ml]
+tags: [ml, modeling, aws-spec-ml]
 ---
 {% include JB/setup %}
 

@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Web Application Firewall - Shield"
 description: ""
 category: posts
-tags: [aws, aws-dev-ops-pro, shield, waf, aws-services, inspector]
+tags: [serverless, management, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Organizations"
 description: ""
 category: posts
-tags: [aws, mgt-governance, aws-services, financial-mgt, security-id-compliance, aws-dev-ops-pro, aws-solutions-arch-pro]
+tags: [management aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

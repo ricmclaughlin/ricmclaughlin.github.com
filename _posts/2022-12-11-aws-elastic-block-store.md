@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Elastic Block Store"
 description: ""
 category: posts
-tags: [storage, aws, aws-services, aws-solutions-arch-pro]
+tags: [storage, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

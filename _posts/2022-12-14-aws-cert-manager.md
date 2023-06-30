@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Certificate Manager"
 description: ""
 category: posts
-tags: [aws, aws-services, security-id-compliance, aws-solutions-arch-pro, aws-services]
+tags: [aws-solutions-arch-pro, management, serverless]
 ---
 {% include JB/setup %}
 

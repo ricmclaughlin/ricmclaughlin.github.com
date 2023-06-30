@@ -3,7 +3,7 @@ layout: post
 title: "AWS - App Runner"
 description: ""
 category: posts
-tags: [aws-services, dev-tools, compute, aws, aws-solutions-arch-pro]
+tags: [devops, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

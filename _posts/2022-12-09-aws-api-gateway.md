@@ -3,7 +3,7 @@ layout: post
 title: "AWS - API Gateway"
 description: ""
 category: posts
-tags: [aws-services, serverless, app-integration, aws, aws-solutions-arch-pro]
+tags: [serverless, integration, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

@@ -3,7 +3,7 @@ layout: post
 title: "AWS - CloudFront"
 description: ""
 category: posts
-tags: [aws, aws-services, networking-cdn, media-srv, aws-solutions-arch-pro]
+tags: [networking, media-srv, aws-solutions-arch-pro, serverless]
 ---
 {% include JB/setup %}
 

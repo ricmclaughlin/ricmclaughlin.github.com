@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Athena"
 description: ""
 category: posts
-tags: [aws, analytics, aws-services, serverless, aws-solutions-arch-pro, aws-spec-ml]
+tags: [analytics, serverless, aws-solutions-arch-pro, aws-spec-ml]
 ---
 {% include JB/setup %}
 

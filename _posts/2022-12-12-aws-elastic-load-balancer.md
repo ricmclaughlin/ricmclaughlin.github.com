@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Elastic Load Balancer"
 description: ""
 category: posts
-tags: [aws, devops, elastic-load-balancer, aws-dev-ops-pro]
+tags: [devops, networking, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

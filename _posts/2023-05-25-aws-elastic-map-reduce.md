@@ -3,7 +3,7 @@ layout: post
 title: "AWS - EMR"
 description: ""
 category: posts
-tags: [aws, aws-services, analytics, aws-solutions-arch-pro, aws-spec-ml]
+tags: [analytics, aws-solutions-arch-pro, aws-spec-ml]
 ---
 {% include JB/setup %}
 

@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Productivity and Business Apps"
 description: ""
 category: posts
-tags: [aws-services, end-user, aws, aws-solutions-arch-pro]
+tags: [other, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

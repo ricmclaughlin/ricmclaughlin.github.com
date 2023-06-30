@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Lambda"
 description: ""
 category: posts
-tags: [compute, serverless, aws, aws-dev-ops-pro, aws-solutions-arch-pro, app-integration]
+tags: [compute, serverless, aws-solutions-arch-pro, integration]
 ---
 {% include JB/setup %}
 

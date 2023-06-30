@@ -33,31 +33,39 @@ categories: projects
       <div role="tabpanel" class="tab-pane" id="{{skill}}">
         <div class="category-archive">
           {% if skill == "ml" %}
-            {% assign project_tags = "ethics,design-data,modeling,mlops,ai-services" | split: "," %}
+            {% assign project_tags = "ml-ethics-safety,design-data,modeling,mlops,ai-services" | split: "," %}
           {% elsif skill == 'solution-delivery' %}
             {% assign project_tags = "special-sauce,scrum,kanban,leanux" | split: "," %}
           {% elsif skill == 'aws' %}
-            {% assign project_tags = "aws-system-design,aws-guides" | split: "," %}
+            {% assign project_tags = "aws-system-design,aws-guides,mlops,analytics,devops,storage,compute,networking,database,integration,management,other,serverless,media-srv" | split: "," %}
           {% endif %}
 
           {% assign includer = "tags/" | append: skill | append: ".html" %}
           {% assign portfolio_skill_ref = skill | append: "-ref" %}
           <br>
           <p>{% include {{includer}} %}</p>
-                    
-          {% for tag in project_tags %}
-            {% if tag == 'basicfront' %}
-              {% assign tag_full_name = "Front End Development" %}
-            {% elsif tag == 'basicback' %}
-              {% assign tag_full_name = "Backend End Development" %}
-            {% elsif tag == 'tdd' %}
-              {% assign tag_full_name = "Test Driven Development" %}
-            {% elsif tag == 'api' %}
-              {% assign tag_full_name = "API Development" %}
-            {% elsif tag == 'webapp' %}
-              {% assign tag_full_name = "Web Applications" %}
-            {% elsif tag == 'htmlcss' %}
-              {% assign tag_full_name = "HTML5 & CSS" %}
+            {% for tag in project_tags %}
+            {% if tag == "aws-system-design" %}
+              {% assign tag_full_name = "System Design using AWS" %}
+            {% elsif tag == 'aws-guides' %}
+              {% assign tag_full_name = "SA Pro Topics" %}
+            {% elsif tag == 'special-sauce' %}
+              {% assign tag_full_name = "Ric's Special Sauce" %}
+            {% elsif tag == 'ml-ethics-safety' %}
+              {% assign tag_full_name = "AI Ethics and Safety" %}
+            {% elsif tag == 'design-data' %}
+              {% assign tag_full_name = "ML Data Design" %}
+            {% elsif tag == 'ai-services' %}
+              {% assign tag_full_name = "AI Services" %}
+            
+            {% elsif tag == 'serverless' %}
+              {% assign tag_full_name = "AWS Serverless Offerings" %}
+            {% elsif tag == 'media-srv' %}
+              {% assign tag_full_name = "Media Services" %}
+            {% elsif tag == 'management' %}
+              {% assign tag_full_name = "Management Services (a catch-all)" %}
+            {% elsif tag == 'mlops' %}
+              {% assign tag_full_name = "Machine Learning Operations" %}
             {% else %}
               {% assign tag_full_name = {{tag | capitalize}}  %}
             {% endif %}

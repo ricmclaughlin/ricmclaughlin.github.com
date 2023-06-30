@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Costing"
 description: ""
 category: posts
-tags: [aws, aws-guides, financial-mgt, aws-solutions-arch-pro]
+tags: [management, aws-guides, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

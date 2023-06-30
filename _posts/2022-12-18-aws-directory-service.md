@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Directory Service"
 description: ""
 category: posts
-tags: [aws, security-id-compliance, aws-guides, aws-solutions-arch-pro]
+tags: [management, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

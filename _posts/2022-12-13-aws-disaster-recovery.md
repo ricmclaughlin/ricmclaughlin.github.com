@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Disaster Recovery"
 description: ""
 category: posts
-tags: [disaster-recovery, aws, aws-guides, aws-solutions-arch-pro]
+tags: [aws-guides, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

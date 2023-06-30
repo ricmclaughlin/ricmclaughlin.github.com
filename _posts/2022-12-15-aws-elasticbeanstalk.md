@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Elastic Beanstalk"
 description: ""
 category: posts
-tags: [aws, dev-tools, aws-services, aws-dev-ops-pro, aws-solutions-arch-pro]
+tags: [devops, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

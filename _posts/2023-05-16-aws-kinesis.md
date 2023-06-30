@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Kinesis"
 description: ""
 category: posts
-tags: [aws, aws-services, analytics, data-collection, serverless, aws-solutions-arch-pro, aws-spec-ml]
+tags: [analytics, serverless, aws-solutions-arch-pro, aws-spec-ml]
 ---
 {% include JB/setup %}
 

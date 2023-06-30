@@ -3,7 +3,7 @@ layout: post
 title: "AWS - OpsWorks"
 description: ""
 category: posts 
-tags: [aws, aws-services, aws-dev-ops-pro, dev-tools, aws-solutions-arch-pro]
+tags: [devops, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

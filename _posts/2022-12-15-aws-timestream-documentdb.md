@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Timestream & DocumentDB"
 description: ""
 category: posts
-tags: [aws, analytics, databases, aws-services, aws-solutions-arch-pro]
+tags: [analytics, database, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

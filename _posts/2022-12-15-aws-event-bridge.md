@@ -3,7 +3,7 @@ layout: post
 title: "AWS - EventBridge"
 description: ""
 category: posts
-tags: [app-integration, serverless, aws, aws-solutions-arch-pro, aws-services]
+tags: [integration, serverless, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Sagemaker Family of Services"
 description: ""
 category: posts
-tags: [sagemaker, ai-ml-services, aws, aws-solutions-arch-pro, aws-spec-ml]
+tags: [mlops, aws-solutions-arch-pro, aws-spec-ml]
 ---
 {% include JB/setup %}
 

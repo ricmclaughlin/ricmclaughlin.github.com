@@ -3,7 +3,7 @@ layout: post
 title: "AWS - DataSync, Transfer Family, & AWS Backup"
 description: ""
 category: posts
-tags: [aws, storage, aws-solutions-arch-pro, serverless, aws-guides]
+tags: [storage, aws-solutions-arch-pro, management]
 ---
 {% include JB/setup %}
 

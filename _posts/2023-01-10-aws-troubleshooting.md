@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Troubleshooting"
 description: ""
 category: posts 
-tags: [aws-solutions-arch-pro]
+tags: [aws-guides, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

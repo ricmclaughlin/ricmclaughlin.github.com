@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Code[Commit, Build, Pipeline, Deploy]"
 description: ""
 category: posts
-tags: [aws-services, dev-tools, aws, aws-solutions-arch-pro]
+tags: [devops, serverless, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

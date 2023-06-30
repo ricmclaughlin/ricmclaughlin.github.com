@@ -3,7 +3,7 @@ layout: post
 title: "AWS - QuickSight"
 description: ""
 category: posts
-tags: [aws, analytics, quicksight, aws-services, aws-solutions-arch-pro, aws-spec-ml]
+tags: [analytics, aws-solutions-arch-pro, aws-spec-ml]
 ---
 {% include JB/setup %}
 

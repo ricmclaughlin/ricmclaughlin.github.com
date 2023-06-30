@@ -3,7 +3,7 @@ layout: post
 title: "AWS - ID federation"
 description: ""
 category: posts
-tags: [security-id-compliance, aws, aws-guides, aws-solutions-arch-pro]
+tags: [management, aws-guides, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

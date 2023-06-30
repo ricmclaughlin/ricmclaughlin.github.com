@@ -3,7 +3,7 @@ layout: post
 title: "AWS - AI & ML Services"
 description: ""
 category: posts
-tags: [ai-ml-services, aws-solutions-arch-pro, aws-spec-ml]
+tags: [ai-services, aws-solutions-arch-pro, aws-spec-ml, serverless]
 ---
 {% include JB/setup %}
 

@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Devops"
 description: ""
 category: posts
-tags: [aws, dev-tools, aws-dev-ops-pro, aws-guides, aws-solutions-arch-pro]
+tags: [devops, aws-guides, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 

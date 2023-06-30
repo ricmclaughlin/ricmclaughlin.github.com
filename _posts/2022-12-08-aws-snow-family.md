@@ -3,7 +3,7 @@ layout: post
 title: "AWS - Snow[Cone, Ball, Mobile]"
 description: ""
 category: posts
-tags: [aws, storage, aws-services, aws-solutions-arch-pro]
+tags: [storage, aws-solutions-arch-pro]
 ---
 {% include JB/setup %}
 
